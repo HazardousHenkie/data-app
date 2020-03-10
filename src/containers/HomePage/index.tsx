@@ -5,6 +5,8 @@ import Grid from '@material-ui/core/Grid'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 
+import OSMap from './map'
+
 const HomePage: React.FC = () => {
   const { t } = useTranslation('homePage')
 
@@ -19,7 +21,7 @@ const HomePage: React.FC = () => {
       </Helmet>
 
       <Grid container={true} spacing={3}>
-        {t('homePage:title', 'Home Page')}
+        <OSMap />
       </Grid>
     </>
   )
