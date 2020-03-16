@@ -5,6 +5,9 @@
     "tslint-react-hooks",
     "tslint-config-prettier"
   ],
+  //prettier-react
+  //jsx-a11y
+  //redux saga
   "rulesDirectory": ["tslint-plugin-prettier"],
   "rules": {
     "prettier": true,
