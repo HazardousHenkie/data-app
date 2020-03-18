@@ -9,35 +9,35 @@ import { InjectedStore } from 'types'
 import { Reducer } from 'redux'
 
 export function injectReducerFactory(
-  store: InjectedStore,
-  isValid: boolean = false
+    store: InjectedStore,
+    isValid: boolean = false
 ) {
-  return function injectReducer(key: string, reducer: Reducer<object>) {
-    if (!isValid) {
-      checkStore(store)
+    return function injectReducer(key: string, reducer: Reducer<object>) {
+        if (!isValid) {
+            checkStore(store)
+        }
+
+        invariant(
+            isString(key) && !isEmpty(key) && isFunction(reducer),
+            '(app/utils...) injectReducer: Expected `reducer` to be a reducer function'
+        )
+
+        if (
+            Reflect.has(store.injectedReducers, key) &&
+            store.injectedReducers[key] === reducer
+        ) {
+            return
+        }
+
+        store.injectedReducers[key] = reducer
+        store.replaceReducer(createReducer(store.injectedReducers))
     }
-
-    invariant(
-      isString(key) && !isEmpty(key) && isFunction(reducer),
-      '(app/utils...) injectReducer: Expected `reducer` to be a reducer function'
-    )
-
-    if (
-      Reflect.has(store.injectedReducers, key) &&
-      store.injectedReducers[key] === reducer
-    ) {
-      return
-    }
-
-    store.injectedReducers[key] = reducer
-    store.replaceReducer(createReducer(store.injectedReducers))
-  }
 }
 
 export function getInjectors(store: InjectedStore) {
-  checkStore(store)
+    checkStore(store)
 
-  return {
-    injectReducer: injectReducerFactory(store, true)
-  }
+    return {
+        injectReducer: injectReducerFactory(store, true)
+    }
 }

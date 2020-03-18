@@ -37,30 +37,14 @@
     "eject": "react-scripts eject",
     "lint:staged": "lint-staged",
     "lint": "npm run lint:css && npm run lint:eslint .",
-    "lint:css": "stylelint './app/**/*.{js,ts,jsx,tsx}'",
+    "lint:css": "stylelint '**/*.{js,ts,jsx,tsx}'",
     "lint:eslint": "eslint --ext .ts,.tsx,.js,.jsx --no-error-on-unmatched-pattern",
     "lint:eslint:fix": "eslint --ext .ts,.tsx,.js,.jsx --no-error-on-unmatched-pattern --fix",
-    "prettify": "prettier --write",
+    "prettify": "prettier --write '**/*.{ts,tsx,jsx,js,json,md,html}'",
     "trans:extract": "i18next --config i18next-parser.config.js"
   },
   "eslintConfig": {
     "extends": "react-app"
-  },
-  "lint-staged": {
-    "*.{ts,tsx,js,jsx}": [
-      "npm run lint:eslint:fix",
-      "prettier —-single-quote —-write",
-      "git add --force"
-    ],
-    "*.{css,scss,md,json}": [
-      "prettier --write",
-      "git add --force"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint:staged"
-    }
   },
   "browserslist": {
     "production": [

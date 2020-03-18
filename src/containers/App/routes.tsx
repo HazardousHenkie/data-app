@@ -9,14 +9,14 @@ const Home = lazy(() => import('../HomePage'))
 const Error = lazy(() => import('../Error'))
 
 const Routes: React.FC = () => {
-  return (
-    <Suspense fallback={<Loader />}>
-      <Switch>
-        <Route path={ROUTES.HOME} exact={true} component={Home} />
-        <Route component={Error} />
-      </Switch>
-    </Suspense>
-  )
+    return (
+        <Suspense fallback={<Loader />}>
+            <Switch>
+                <Route path={ROUTES.HOME} exact={true} component={Home} />
+                <Route component={Error} />
+            </Switch>
+        </Suspense>
+    )
 }
 
 export default Routes
