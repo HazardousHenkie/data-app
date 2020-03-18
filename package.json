@@ -36,33 +36,26 @@
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "lint:staged": "lint-staged",
-    "lint:eslint": "eslint --ignore-path .gitignore",
-    "lint:eslint:fix": "eslint --ignore-path .gitignore --fix",
-    "lint": "npm run lint:js && npm run lint:css && npm run lint:ts",
-    "lint:css": "stylelint './src/**/*.{js,ts}'",
-    "lint:js": "npm run lint:eslint -- . ",
-    "lint:ts": "npm run lint:tslint",
-    "lint:tslint": "tslint --config ./tslint.json ./src/**/*.{ts,tsx} --project ./tsconfig.json --fix",
+    "lint": "npm run lint:css && npm run lint:eslint .",
+    "lint:css": "stylelint './app/**/*.{js,ts,jsx,tsx}'",
+    "lint:eslint": "eslint --ext .ts,.tsx,.js,.jsx --no-error-on-unmatched-pattern",
+    "lint:eslint:fix": "eslint --ext .ts,.tsx,.js,.jsx --no-error-on-unmatched-pattern --fix",
+    "prettify": "prettier --write",
     "trans:extract": "i18next --config i18next-parser.config.js"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
-  "eslintIgnore": [
-    "**/*.ts",
-    "**/*.tsx"
-  ],
   "lint-staged": {
-    "*.{js,jsx}": [
+    "*.{ts,tsx,js,jsx}": [
       "npm run lint:eslint:fix",
+      "prettier —-single-quote —-write",
       "git add --force"
     ],
-    "*.{md,json}": [
+    "*.{css,scss,md,json}": [
       "prettier --write",
       "git add --force"
-    ],
-    "*.ts": "npm run lint:tslint",
-    "*.tsx": "npm run lint:tslint"
+    ]
   },
   "husky": {
     "hooks": {
@@ -114,11 +107,6 @@
     "stylelint": "^13.2.0",
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-config-styled-components": "^0.1.1",
-    "stylelint-processor-styled-components": "^1.10.0",
-    "tslint": "^6.0.0",
-    "tslint-config-prettier": "^1.18.0",
-    "tslint-plugin-prettier": "^2.1.0",
-    "tslint-react": "^4.2.0",
-    "tslint-react-hooks": "^2.2.1"
+    "stylelint-processor-styled-components": "^1.10.0"
   }
 }
