@@ -7,36 +7,36 @@ import { History } from 'history'
 import { createLogger } from 'redux-logger'
 
 export default function configureStore(
-  initialState: ApplicationRootState | {} = {},
-  history: History
+    initialState: ApplicationRootState | {} = {},
+    history: History
 ) {
-  const reduxSagaMonitorOptions = {}
-  const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions)
+    const reduxSagaMonitorOptions = {}
+    const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions)
 
-  const middlewares = [sagaMiddleware, routerMiddleware(history)]
+    const middlewares = [sagaMiddleware, routerMiddleware(history)]
 
-  if (process.env.NODE_ENV !== 'production' && typeof window === 'object') {
-    const logger = createLogger()
-    middlewares.push(logger)
-  }
+    if (process.env.NODE_ENV !== 'production' && typeof window === 'object') {
+        const logger = createLogger()
+        middlewares.push(logger)
+    }
 
-  const enhancer = applyMiddleware(...middlewares)
+    const enhancer = applyMiddleware(...middlewares)
 
-  const store = (createStore(
-    createReducer(),
-    initialState,
-    enhancer
-  ) as unknown) as InjectedStore
+    const store = (createStore(
+        createReducer(),
+        initialState,
+        enhancer
+    ) as unknown) as InjectedStore
 
-  store.runSaga = sagaMiddleware.run
-  store.injectedReducers = {}
-  store.injectedSagas = {}
+    store.runSaga = sagaMiddleware.run
+    store.injectedReducers = {}
+    store.injectedSagas = {}
 
-  if (module.hot) {
-    module.hot.accept('./reducers', () => {
-      store.replaceReducer(createReducer(store.injectedReducers))
-    })
-  }
+    if (module.hot) {
+        module.hot.accept('./reducers', () => {
+            store.replaceReducer(createReducer(store.injectedReducers))
+        })
+    }
 
-  return store
+    return store
 }
