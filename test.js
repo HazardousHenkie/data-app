@@ -1,20 +1,3 @@
-// "lint-staged": {
-//     "*.{ts,tsx,js,jsx}": [
-//       "npm run lint:eslint:fix",
-//       "prettier —-single-quote —-write",
-//       "git add --force"
-//     ],
-//     "*.{css,scss,md,json}": [
-//       "prettier --write",
-//       "git add --force"
-//     ]
-//   },
-//   "husky": {
-//     "hooks": {
-//       "pre-commit": "npm run lint:staged"
-//     }
-//   },
-
 //   "eslint-config-airbnb-typescript": "7.0.0",
 //   "eslint-config-prettier": "6.0.0",
 //   "eslint-import-resolver-typescript": "2.0.0",
@@ -25,3 +8,9 @@
 //   "eslint-plugin-react": "7.14.2",
 //   "eslint-plugin-react-hooks": "1.6.1",
 //   "eslint-plugin-redux-saga": "1.0.0",
+
+// "husky": {
+//     "hooks": {
+//       "pre-commit": "npm run lint:staged && npm run typecheck"
+//     }
+//   },
