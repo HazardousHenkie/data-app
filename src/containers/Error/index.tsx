@@ -4,9 +4,8 @@ import Typography from '@material-ui/core/Typography'
 
 import { withTranslation, WithTranslation } from 'react-i18next'
 
-import { ErrorPageDiv, StyledTypographyTitle } from './styledComponents'
-
 import { Helmet } from 'react-helmet'
+import { ErrorPageDiv, StyledTypographyTitle } from './styledComponents'
 
 interface ErrorType {
     errorCode: number

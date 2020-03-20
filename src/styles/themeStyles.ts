@@ -9,7 +9,7 @@ let lightTheme = createMuiTheme({
     }
 })
 
-export let darkTheme = responsiveFontSizes(
+export const darkTheme = responsiveFontSizes(
     createMuiTheme({
         palette: {
             type: 'dark',

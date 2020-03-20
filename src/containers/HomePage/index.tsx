@@ -10,7 +10,6 @@ const HomePage: React.FC = () => {
 
     return (
         <>
-            <div dangerouslySetInnerHTML={{ __html: 'test' }} />;
             <Helmet>
                 <title>{t('homePage:title', 'Home Page')}</title>
                 <meta
@@ -18,7 +17,7 @@ const HomePage: React.FC = () => {
                     content={t('homePage:description', 'Homepage description')}
                 />
             </Helmet>
-            <Grid container={true} spacing={3}>
+            <Grid container spacing={3}>
                 {t('homePage:title', 'Home Page')}
             </Grid>
         </>

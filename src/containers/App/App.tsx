@@ -1,7 +1,5 @@
 import React from 'react'
 
-import Routes from './routes'
-
 import lightTheme from 'styles/themeStyles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import GlobalStyle from 'styles/index'
@@ -11,12 +9,13 @@ import { ThemeProvider, StylesProvider } from '@material-ui/styles'
 import { useTranslation } from 'react-i18next'
 
 import { Helmet } from 'react-helmet'
+import Routes from './routes'
 
 const App: React.FC = () => {
     const { t } = useTranslation('app')
 
     return (
-        <StylesProvider injectFirst={true}>
+        <StylesProvider injectFirst>
             <ThemeProvider theme={lightTheme}>
                 <GlobalStyle />
                 <CssBaseline />
