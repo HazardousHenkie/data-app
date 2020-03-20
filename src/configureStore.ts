@@ -1,4 +1,4 @@
-import { applyMiddleware, createStore, compose, StoreEnhancer } from 'redux'
+import { applyMiddleware, createStore, compose } from 'redux'
 import { routerMiddleware } from 'connected-react-router'
 import { createInjectorsEnhancer, forceReducerReload } from 'redux-injectors'
 import createSagaMiddleware from 'redux-saga'
@@ -12,8 +12,7 @@ export default function configureStore(
     initialState: ApplicationRootState | object,
     history: History
 ): InjectedStore {
-    const reduxSagaMonitorOptions = {}
-    const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions)
+    const sagaMiddleware = createSagaMiddleware()
     const { run: runSaga } = sagaMiddleware
     const middlewares = [sagaMiddleware, routerMiddleware(history)]
 
@@ -30,12 +29,10 @@ export default function configureStore(
         middlewares.push(logger)
     }
 
-    const enhancer = compose(...enhancers) as StoreEnhancer<InjectedStore, {}>
-
     const store = createStore(
         createReducer(),
         initialState as object,
-        enhancer
+        compose(...enhancers)
     ) as InjectedStore
 
     // eslint-disable-next-line
