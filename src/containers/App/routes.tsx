@@ -12,7 +12,7 @@ const Routes: React.FC = () => {
     return (
         <Suspense fallback={<Loader />}>
             <Switch>
-                <Route path={ROUTES.HOME} exact={true} component={Home} />
+                <Route path={ROUTES.HOME} exact component={Home} />
                 <Route component={Error} />
             </Switch>
         </Suspense>
