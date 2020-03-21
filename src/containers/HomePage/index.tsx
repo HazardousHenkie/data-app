@@ -5,6 +5,8 @@ import Grid from '@material-ui/core/Grid'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 
+import Drawer from 'components/Atoms/Drawer'
+
 const HomePage: React.FC = () => {
     const { t } = useTranslation('homePage')
 
@@ -20,6 +22,21 @@ const HomePage: React.FC = () => {
             <Grid container spacing={3}>
                 {t('homePage:title', 'Home Page')}
             </Grid>
+
+            <Drawer>
+                testtesttesttesttesttesttesttesttesttesttesttesttesttesttest
+                testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
+                testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
+                testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
+                testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
+                testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
+                testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
+                testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
+                testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
+                testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
+                testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
+                testtesttesttesttesttesttesttesttesttesttest
+            </Drawer>
         </>
     )
 }
