@@ -2,9 +2,9 @@ import styled from 'styled-components'
 
 export const HandleBar = styled.div`
     position: fixed;
-    height: 5px;
-    border-radius: 50px;
-    margin: 0 auto;
+    border-radius: 100px;
+    border: 3px solid ${props => props.theme.black};
+    margin: 0 auto 8px;
     width: 50%;
     bottom: 0;
     left: 25%;

@@ -37,6 +37,8 @@ const Drawer: React.FC<Omit<
                 onClose={toggleDrawer(false)}
                 onOpen={toggleDrawer(true)}
             >
+                <HandleBar />
+
                 {children}
             </SwipeableDrawer>
         </DrawerWrapper>
