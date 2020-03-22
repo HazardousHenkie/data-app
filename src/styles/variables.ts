@@ -1,6 +1,8 @@
 const variables = {
     black: '#000',
     white: '#fff',
+    gray: '#D3D3D3',
+    darkGray: '#A9A9A9',
     breakpoints: {
         up: {
             xxs: 'min-width: 0',
