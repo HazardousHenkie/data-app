@@ -1,42 +1,50 @@
-import { applyMiddleware, createStore } from 'redux'
+import { applyMiddleware, createStore, compose } from 'redux'
 import { routerMiddleware } from 'connected-react-router'
+import { createInjectorsEnhancer, forceReducerReload } from 'redux-injectors'
 import createSagaMiddleware from 'redux-saga'
-import createReducer from './reducers'
-import { InjectedStore, ApplicationRootState } from 'types'
 import { History } from 'history'
 import { createLogger } from 'redux-logger'
 
+import { InjectedStore, ApplicationRootState } from 'types'
+import createReducer from './reducers'
+
 export default function configureStore(
-  initialState: ApplicationRootState | {} = {},
-  history: History
-) {
-  const reduxSagaMonitorOptions = {}
-  const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions)
+    initialState: ApplicationRootState | object,
+    history: History
+): InjectedStore {
+    const sagaMiddleware = createSagaMiddleware()
+    const { run: runSaga } = sagaMiddleware
+    const middlewares = [sagaMiddleware, routerMiddleware(history)]
 
-  const middlewares = [sagaMiddleware, routerMiddleware(history)]
+    const enhancers = [
+        applyMiddleware(...middlewares),
+        createInjectorsEnhancer({
+            createReducer,
+            runSaga
+        })
+    ]
 
-  if (process.env.NODE_ENV !== 'production' && typeof window === 'object') {
-    const logger = createLogger()
-    middlewares.push(logger)
-  }
+    if (process.env.NODE_ENV !== 'production' && typeof window === 'object') {
+        const logger = createLogger()
+        middlewares.push(logger)
+    }
 
-  const enhancer = applyMiddleware(...middlewares)
+    const store = createStore(
+        createReducer(),
+        initialState as object,
+        compose(...enhancers)
+    ) as InjectedStore
 
-  const store = (createStore(
-    createReducer(),
-    initialState,
-    enhancer
-  ) as unknown) as InjectedStore
+    // eslint-disable-next-line
+    store.runSaga = sagaMiddleware.run
+    store.injectedReducers = {}
+    store.injectedSagas = {}
 
-  store.runSaga = sagaMiddleware.run
-  store.injectedReducers = {}
-  store.injectedSagas = {}
+    if (module.hot) {
+        module.hot.accept('./reducers', () => {
+            forceReducerReload(store)
+        })
+    }
 
-  if (module.hot) {
-    module.hot.accept('./reducers', () => {
-      store.replaceReducer(createReducer(store.injectedReducers))
-    })
-  }
-
-  return store
+    return store
 }

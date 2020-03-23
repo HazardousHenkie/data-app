@@ -5,17 +5,16 @@ import { initReactI18next } from 'react-i18next'
 
 export const appLocales = ['en', 'ja', 'nl']
 
-i18n
-  .use(Backend)
-  .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    debug: false,
-    fallbackLng: 'en',
-    whitelist: appLocales,
-    interpolation: {
-      escapeValue: false
-    }
-  })
+i18n.use(Backend)
+    .use(LanguageDetector)
+    .use(initReactI18next)
+    .init({
+        debug: false,
+        fallbackLng: 'en',
+        whitelist: appLocales,
+        interpolation: {
+            escapeValue: false
+        }
+    })
 
 export default i18n
