@@ -21,10 +21,7 @@ const App: React.FC = () => {
                 <CssBaseline />
                 <div className="App">
                     <Helmet
-                        titleTemplate={t(
-                            'app:titleTemplate',
-                            '%s - React shop example'
-                        )}
+                        titleTemplate={t('app:titleTemplate', '%s - Data app')}
                         defaultTitle={t(
                             'app:defaultTitle',
                             'React shop example'
