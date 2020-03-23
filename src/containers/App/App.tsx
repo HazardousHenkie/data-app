@@ -22,10 +22,7 @@ const App: React.FC = () => {
                 <div className="App">
                     <Helmet
                         titleTemplate={t('app:titleTemplate', '%s - Data app')}
-                        defaultTitle={t(
-                            'app:defaultTitle',
-                            'React shop example'
-                        )}
+                        defaultTitle={t('app:defaultTitle', 'data app example')}
                     >
                         <meta
                             name="description"
