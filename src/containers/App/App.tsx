@@ -28,7 +28,7 @@ const App: React.FC = () => {
                             name="description"
                             content={t(
                                 'app:descriptionTitle',
-                                'A React shop example'
+                                'A data app example'
                             )}
                         />
                     </Helmet>
