@@ -25,7 +25,7 @@ const ErrorPage: React.FC<WithTranslation & ErrorType> = ({
                     name={t('error:title', 'Error Page')}
                     content={t(
                         'error:description',
-                        'A simple shop with react application error page'
+                        'A data application error page'
                     )}
                 />
             </Helmet>
