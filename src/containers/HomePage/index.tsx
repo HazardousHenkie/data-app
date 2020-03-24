@@ -1,9 +1,9 @@
 import React from 'react'
 
-import Grid from '@material-ui/core/Grid'
-
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
+
+import Drawer from 'components/Atoms/Drawer'
 
 const HomePage: React.FC = () => {
     const { t } = useTranslation('homePage')
@@ -17,9 +17,23 @@ const HomePage: React.FC = () => {
                     content={t('homePage:description', 'Homepage description')}
                 />
             </Helmet>
-            <Grid container spacing={3}>
-                {t('homePage:title', 'Home Page')}
-            </Grid>
+
+            {t('homePage:title', 'Home Page')}
+
+            <Drawer>
+                testtesttesttesttesttesttesttesttesttesttesttesttesttesttest
+                testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
+                testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
+                testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
+                testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
+                testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
+                testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
+                testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
+                testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
+                testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
+                testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
+                testtesttesttesttesttesttesttesttesttesttest
+            </Drawer>
         </>
     )
 }
