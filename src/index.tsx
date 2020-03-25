@@ -22,16 +22,16 @@ const initialState = {}
 const store = configureStore(initialState, history)
 
 ReactDOM.render(
-  <Provider store={store}>
-    <ThemeProvider theme={variables}>
-      <ConnectedRouter history={history}>
-        <Suspense fallback={null}>
-          <App />
-        </Suspense>
-      </ConnectedRouter>
-    </ThemeProvider>
-  </Provider>,
-  document.getElementById('root')
+    <Provider store={store}>
+        <ThemeProvider theme={variables}>
+            <ConnectedRouter history={history}>
+                <Suspense fallback={null}>
+                    <App />
+                </Suspense>
+            </ConnectedRouter>
+        </ThemeProvider>
+    </Provider>,
+    document.getElementById('root')
 )
 
 // If you want your app to work offline and load faster, you can change
