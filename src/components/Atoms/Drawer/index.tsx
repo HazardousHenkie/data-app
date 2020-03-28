@@ -4,7 +4,12 @@ import SwipeableDrawer, {
     SwipeableDrawerProps
 } from '@material-ui/core/SwipeableDrawer'
 
-import { HandleBar, DrawerWrapper } from './styledComponents'
+import {
+    HandleBar,
+    DrawerWrapper,
+    SwipeIndicator,
+    SwipeIndicatorInner
+} from './styledComponents'
 
 const Drawer: React.FC<Omit<
     SwipeableDrawerProps,
@@ -29,7 +34,11 @@ const Drawer: React.FC<Omit<
 
     return (
         <DrawerWrapper>
-            <HandleBar />
+            <HandleBar>
+                <SwipeIndicator>
+                    <SwipeIndicatorInner />
+                </SwipeIndicator>
+            </HandleBar>
 
             <SwipeableDrawer
                 anchor="bottom"
