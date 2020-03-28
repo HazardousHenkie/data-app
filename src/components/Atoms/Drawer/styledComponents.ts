@@ -1,25 +1,49 @@
-import styled, { keyframes } from 'styled-components'
+import styled, { keyframes, Keyframes, css } from 'styled-components'
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp'
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
 
 interface HandleBarProps {
     relative?: boolean
 }
 
-const mouseAnimation = keyframes`
-  0% {
-    transform: translate(0, 0);
-    opacity: 0;
-  }
-  40% {
-    opacity: 1;
-  }
-  80% {
-    transform: translate(0, -10px);
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
+interface SwipeIndicatorProps {
+    down?: boolean
+}
+
+const arrow = css`
+    position: absolute;
+    left: 50%;
+    margin-left: -12px;
+    color: ${(props): string => props.theme.black};
+`
+
+const indicator = css`
+    cursor: pointer;
+    opacity: 0.5;
+    position: absolute;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    margin-left: -15px;
+    border: 2px solid ${(props): string => props.theme.black};
+    border-radius: 50px;
+`
+
+const swipeAnimation = (reverse: boolean): Keyframes => keyframes`
+    0% {
+        transform: translate(0, 0);
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
+    80% {
+        transform: translate(0, ${reverse ? '10px' : '-10px'});
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
 `
 
 export const HandleBar = styled.div<HandleBarProps>`
@@ -33,6 +57,10 @@ export const HandleBar = styled.div<HandleBarProps>`
     left: ${(props): string => (!props.relative ? '25%' : '0')};
     top: auto;
     background: ${(props): string => props.theme.black};
+
+    @media (${(props): number => props.theme.breakpoints.up.md}) {
+        display: none;
+    }
 `
 
 export const DrawerWrapper = styled.div`
@@ -40,23 +68,28 @@ export const DrawerWrapper = styled.div`
     bottom: 0;
 `
 
-export const SwipeIndicator = styled.div`
-    opacity: 0.5;
-    position: absolute;
-    left: 50%;
-    width: 30px;
-    height: 30px;
-    margin-left: -15px;
-    border: 2px solid ${(props): string => props.theme.black};
-    border-radius: 50px;
-    bottom: 12px;
+export const SwipeIndicator = styled.div<SwipeIndicatorProps>`
+    ${(props): string => (!props.down ? 'bottom: 10px;' : 'top: -35px;')};
+    ${indicator}
+`
+
+export const ClickIndicator = styled.div`
+    bottom: 10px;
+    ${indicator}
+
+    @media (${(props): number => props.theme.breakpoints.down.md}) {
+        display: none;
+    }
 `
 
 export const SwipeIndicatorInner = styled(ArrowDropUpIcon)`
-    position: absolute;
+    ${arrow}
     top: 5px;
-    left: 50%;
-    margin-left: -12px;
-    color: ${(props): string => props.theme.black};
-    animation: ${mouseAnimation} 2s infinite;
+    animation: ${swipeAnimation(false)} 2s infinite;
+`
+
+export const SwipeIndicatorInnerDown = styled(ArrowDropDownIcon)`
+    ${arrow}
+    top: -5px;
+    animation: ${swipeAnimation(true)} 2s infinite;
 `
