@@ -12,6 +12,9 @@ let lightTheme = createMuiTheme({
     },
     overrides: {
         MuiDrawer: {
+            paperAnchorBottom: {
+                overflow: 'visible'
+            },
             paper: {
                 ...MuiDrawer,
                 backgroundColor: variables.gray
@@ -30,6 +33,9 @@ export const darkTheme = responsiveFontSizes(
         },
         overrides: {
             MuiDrawer: {
+                paperAnchorBottom: {
+                    overflow: 'visible'
+                },
                 paper: {
                     ...MuiDrawer,
                     backgroundColor: variables.darkGray
