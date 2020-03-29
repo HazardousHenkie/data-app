@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 
 import Drawer from 'components/Atoms/Drawer'
+import OSMap from './map'
 
 const HomePage: React.FC = () => {
     const { t } = useTranslation('homePage')
@@ -18,7 +19,7 @@ const HomePage: React.FC = () => {
                 />
             </Helmet>
 
-            {t('homePage:title', 'Home Page')}
+            <OSMap />
 
             <Drawer>
                 testtesttesttesttesttesttesttesttesttesttesttesttesttesttest

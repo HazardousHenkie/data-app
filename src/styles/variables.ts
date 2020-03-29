@@ -3,6 +3,8 @@ const variables = {
     white: '#fff',
     gray: '#D3D3D3',
     darkGray: '#A9A9A9',
+    mapFilter: 'grayscale(1)',
+    mapFilterDark: 'invert(1) grayscale(1)',
     breakpoints: {
         up: {
             xxs: 'min-width: 0',
