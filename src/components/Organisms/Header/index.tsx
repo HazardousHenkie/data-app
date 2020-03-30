@@ -1,9 +1,9 @@
 import React from 'react'
 
-import SearchField from 'components/Molecules/SearchField'
+import HeaderSearch from 'components/Molecules/HeaderSearch'
 
 const Header: React.FC = () => {
-    return <SearchField />
+    return <HeaderSearch />
 }
 
 export default Header
