@@ -1,21 +1,30 @@
 import React from 'react'
 
-import InputButton from 'components/Atoms/InputButton'
 import InputField from 'components/Atoms/InputField'
 
-const SearchField: React.FC = () => {
-    // add translation
-    // add form handling maybe in organism?
-    // add form handler here but needs to be abstract/reusable
-    // add header where?
+import { useTranslation } from 'react-i18next'
 
-    const submitForm = () => {}
-    // = handleSubmit(({ email }) => {})
+interface SearchFieldProps {
+    setValue: React.Dispatch<React.SetStateAction<string>>
+    value: string | number
+}
+
+const SearchField: React.FC<SearchFieldProps> = ({ setValue, value }) => {
+    const { t } = useTranslation('searchField')
 
     return (
-        <form onSubmit={submitForm}>
-            <InputField />
-            <InputButton>test</InputButton>
+        <form>
+            <InputField
+                placeholder={t('searchField:inputLabel', 'search')}
+                value={value}
+                onChange={(
+                    event: React.ChangeEvent<
+                        HTMLInputElement | HTMLTextAreaElement
+                    >
+                ): void => {
+                    setValue(event.target.value)
+                }}
+            />
         </form>
     )
 }
