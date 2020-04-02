@@ -8,10 +8,9 @@ const useInjectReducer = ({ key, reducer }: InjectReducerParams): void => {
     useReducer({ key, reducer })
 }
 
-export { useInjectReducer }
-
 const useInjectSaga = ({ key, saga, mode }: InjectSagaParams): void => {
     useSaga({ key, saga, mode })
 }
 
+export { useInjectReducer }
 export { useInjectSaga }
