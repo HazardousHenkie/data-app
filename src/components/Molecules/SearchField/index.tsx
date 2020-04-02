@@ -21,7 +21,7 @@ const SearchField: React.FC<SearchFieldProps> = ({ setValue, value }) => {
                     event: React.ChangeEvent<
                         HTMLInputElement | HTMLTextAreaElement
                     >
-                ): void => {
+                ) => {
                     setValue(event.target.value)
                 }}
             />
