@@ -19,6 +19,11 @@ let lightTheme = createMuiTheme({
                 ...MuiDrawer,
                 backgroundColor: variables.gray
             }
+        },
+        MuiDialog: {
+            paper: {
+                paddingTop: '80px'
+            }
         }
     }
 })
