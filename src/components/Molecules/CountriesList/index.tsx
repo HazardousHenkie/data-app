@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { createStructuredSelector } from 'reselect'
 
@@ -24,6 +24,7 @@ import { makeSelectError, makeSelectLoader, makeSelectData } from './selectors'
 interface CountriesListProps {
     open: boolean
     setOpen: React.Dispatch<React.SetStateAction<boolean>>
+    searchString?: string
 }
 
 const key = 'countriesData'
@@ -34,8 +35,13 @@ const stateSelector = createStructuredSelector({
     loading: makeSelectLoader()
 })
 
-const CountriesList: React.FC<CountriesListProps> = ({ setOpen, open }) => {
+const CountriesList: React.FC<CountriesListProps> = ({
+    setOpen,
+    open,
+    searchString
+}) => {
     const { error, loading, data } = useSelector(stateSelector)
+    const [countries, setCountries] = useState([])
 
     const dispatch = useDispatch()
 
@@ -43,8 +49,24 @@ const CountriesList: React.FC<CountriesListProps> = ({ setOpen, open }) => {
     useInjectSaga({ key, saga })
 
     useEffect(() => {
+        setCountries(data)
+    }, [data])
+
+    useEffect(() => {
         dispatch(getCountriesData())
     }, [dispatch])
+
+    useEffect(() => {
+        if (searchString) {
+            setCountries(
+                data.filter(
+                    (country: Record<string, string>) =>
+                        country.name.toLowerCase() ===
+                        searchString.toLowerCase()
+                )
+            )
+        }
+    }, [searchString, data])
 
     const handleClose = () => {
         setOpen(false)
@@ -65,7 +87,7 @@ const CountriesList: React.FC<CountriesListProps> = ({ setOpen, open }) => {
                 <InlineLoader />
             ) : (
                 <List component="nav" aria-label="main mailbox folders">
-                    {data.map((country: Record<string, string>) => (
+                    {countries.map((country: Record<string, string>) => (
                         <div key={country.name}>
                             <ListItem button>
                                 <ListItemText primary={country.name} />

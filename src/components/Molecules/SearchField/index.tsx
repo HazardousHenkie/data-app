@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 
-import InputField from 'components/Atoms/InputField'
-
 import { useTranslation } from 'react-i18next'
+
+import InputFieldStyled from './styledComponents'
 
 interface SearchFieldProps {
     setValue: React.Dispatch<React.SetStateAction<string>>
@@ -28,7 +28,7 @@ const SearchField: React.FC<SearchFieldProps> = ({ setValue }) => {
 
     return (
         <form>
-            <InputField
+            <InputFieldStyled
                 placeholder={t('searchField:inputLabel', 'search')}
                 onChange={handleOnChange}
             />
