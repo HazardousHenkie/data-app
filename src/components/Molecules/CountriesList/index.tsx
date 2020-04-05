@@ -59,10 +59,10 @@ const CountriesList: React.FC<CountriesListProps> = ({
     useEffect(() => {
         if (searchString) {
             setCountries(
-                data.filter(
-                    (country: Record<string, string>) =>
-                        country.name.toLowerCase() ===
-                        searchString.toLowerCase()
+                data.filter((country: Record<string, string>) =>
+                    RegExp(searchString.toLowerCase()).exec(
+                        country.name.toLowerCase()
+                    )
                 )
             )
         }
