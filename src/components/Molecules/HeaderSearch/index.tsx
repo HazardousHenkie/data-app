@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
-import SearchField from 'components/Molecules/SearchField'
 import CountriesList from 'components/Molecules/CountriesList'
+import SearchField from 'components/Molecules/SearchField'
 
-import TopBar from './styledComponents'
+import TopBar, { CloseCountriesList } from './styledComponents'
 
 const HeaderSearch: React.FC = () => {
     const [searchString, setSearchString] = useState('')
@@ -16,14 +16,17 @@ const HeaderSearch: React.FC = () => {
     }, [searchString])
 
     return (
-        <TopBar>
-            <SearchField setValue={setSearchString} />
+        <>
+            <TopBar>
+                <CloseCountriesList />
+                <SearchField setValue={setSearchString} />
+            </TopBar>
             <CountriesList
                 open={openCountriesList}
                 setOpen={setOpenCountriesList}
                 searchString={searchString}
             />
-        </TopBar>
+        </>
     )
 }
 

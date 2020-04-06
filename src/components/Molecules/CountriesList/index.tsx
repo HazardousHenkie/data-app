@@ -8,11 +8,12 @@ import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors'
 import InlineLoader from 'components/Atoms/InlineLoader'
 import InfoMessage from 'components/Atoms/InfoMessage'
 
-import Dialog from '@material-ui/core/Dialog'
+import Fade from '@material-ui/core/Fade'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import Divider from '@material-ui/core/Divider'
+import CountriesListDiv from './styledComponents'
 
 import saga from './saga'
 import reducer from './reducer'
@@ -78,26 +79,28 @@ const CountriesList: React.FC<CountriesListProps> = ({
     // change language for japanese and stuff
 
     return (
-        <Dialog fullScreen open={open} onClose={handleClose}>
-            {error && (
-                <InfoMessage severity="error" message={error.toString()} />
-            )}
+        <Fade in={open}>
+            <CountriesListDiv>
+                {error && (
+                    <InfoMessage severity="error" message={error.toString()} />
+                )}
 
-            {loading ? (
-                <InlineLoader />
-            ) : (
-                <List component="nav" aria-label="main mailbox folders">
-                    {countries.map((country: Record<string, string>) => (
-                        <div key={country.name}>
-                            <ListItem button>
-                                <ListItemText primary={country.name} />
-                            </ListItem>
-                            <Divider />
-                        </div>
-                    ))}
-                </List>
-            )}
-        </Dialog>
+                {loading ? (
+                    <InlineLoader />
+                ) : (
+                    <List component="nav" aria-label="main mailbox folders">
+                        {countries.map((country: Record<string, string>) => (
+                            <div key={country.name}>
+                                <ListItem button>
+                                    <ListItemText primary={country.name} />
+                                </ListItem>
+                                <Divider />
+                            </div>
+                        ))}
+                    </List>
+                )}
+            </CountriesListDiv>
+        </Fade>
     )
 }
 
