@@ -7,11 +7,14 @@ const TopBar = styled.div`
     top: 0;
     left: 0;
     z-index: 1350;
-    padding: 15px;
-    width: 100%;
+    margin: 15px;
+    width: calc(100% - 30px);
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
+    box-shadow: ${(props): string => props.theme.shadow};
+    background: ${(props): string => props.theme.white};
 `
 
 export const SearchFieldWrapper = styled.div`
@@ -19,9 +22,9 @@ export const SearchFieldWrapper = styled.div`
 `
 
 export const CloseCountriesList = styled(ChevronLeftIcon)`
-    font-size: 3rem;
+    font-size: 2.5rem;
     cursor: pointer;
-    color: ${(props): string => props.theme.black};
+    color: ${(props): string => props.theme.darkGray};
 `
 
 export default TopBar
