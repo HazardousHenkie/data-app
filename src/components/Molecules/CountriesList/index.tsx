@@ -64,6 +64,8 @@ const CountriesList: React.FC<CountriesListProps> = ({
                     )
                 )
             )
+        } else if (searchString === '') {
+            setCountries(data)
         }
     }, [searchString, data])
 
