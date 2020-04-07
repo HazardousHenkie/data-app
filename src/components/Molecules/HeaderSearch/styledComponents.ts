@@ -14,6 +14,10 @@ const TopBar = styled.div`
     justify-content: center;
 `
 
+export const SearchFieldWrapper = styled.div`
+    width: 100%;
+`
+
 export const CloseCountriesList = styled(ChevronLeftIcon)`
     font-size: 3rem;
     cursor: pointer;
