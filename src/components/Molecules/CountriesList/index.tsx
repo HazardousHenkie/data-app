@@ -24,7 +24,6 @@ import { makeSelectError, makeSelectLoader, makeSelectData } from './selectors'
 
 interface CountriesListProps {
     open: boolean
-    setOpen: React.Dispatch<React.SetStateAction<boolean>>
     searchString?: string
 }
 
@@ -37,7 +36,6 @@ const stateSelector = createStructuredSelector({
 })
 
 const CountriesList: React.FC<CountriesListProps> = ({
-    setOpen,
     open,
     searchString
 }) => {
@@ -68,10 +66,6 @@ const CountriesList: React.FC<CountriesListProps> = ({
             )
         }
     }, [searchString, data])
-
-    const handleClose = () => {
-        setOpen(false)
-    }
 
     // when search filter with js function just get a search param in
     // search param is optional

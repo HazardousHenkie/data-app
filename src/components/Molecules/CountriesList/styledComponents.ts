@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 const CountriesListDiv = styled.div`
+    padding-top: 86px;
     position: fixed;
     z-index: 1300;
     right: 0;
