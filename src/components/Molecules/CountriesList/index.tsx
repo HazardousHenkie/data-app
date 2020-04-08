@@ -55,6 +55,13 @@ const CountriesList: React.FC<CountriesListProps> = ({
         dispatch(getCountriesData())
     }, [dispatch])
 
+    const onClickCountry = (
+        event: React.MouseEvent<HTMLDivElement, MouseEvent>
+    ) => {
+        console.log(event)
+        console.log('click')
+    }
+
     useEffect(() => {
         if (searchString) {
             setCountries(
@@ -69,8 +76,6 @@ const CountriesList: React.FC<CountriesListProps> = ({
         }
     }, [searchString, data])
 
-    // when search filter with js function just get a search param in
-    // search param is optional
     // add countries flags
     // change language for japanese and stuff
 
@@ -87,7 +92,7 @@ const CountriesList: React.FC<CountriesListProps> = ({
                     <List component="nav" aria-label="main mailbox folders">
                         {countries.map((country: Record<string, string>) => (
                             <div key={country.name}>
-                                <ListItem button>
+                                <ListItem button onClick={onClickCountry}>
                                     <ListItemText primary={country.name} />
                                 </ListItem>
                                 <Divider />

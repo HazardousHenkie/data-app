@@ -4,11 +4,11 @@ import lightTheme from 'styles/themeStyles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import GlobalStyle from 'styles/index'
 
-import Header from 'components/Organisms/Header'
-
 import { ThemeProvider, StylesProvider } from '@material-ui/styles'
 
 import { useTranslation } from 'react-i18next'
+
+import Header from 'components/Organisms/Header'
 
 import { Helmet } from 'react-helmet'
 import Routes from './routes'
@@ -35,6 +35,7 @@ const App: React.FC = () => {
                         />
                     </Helmet>
 
+                    {/* header conflicts with map so it can't be in the same component  */}
                     <Header />
 
                     <Routes />

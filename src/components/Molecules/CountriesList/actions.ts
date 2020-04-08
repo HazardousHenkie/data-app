@@ -2,6 +2,9 @@ import { action } from 'typesafe-actions'
 
 import ActionTypes from './constants'
 
+export const setSelectedCountry = (country: object) =>
+    action(ActionTypes.SET_SELECTED_COUNTRY, country)
+
 export const getCountriesData = () => action(ActionTypes.GET_COUNTRIES_DATA)
 export const getCountriesDataSuccess = (countriesData: []) =>
     action(ActionTypes.GET_COUNTRIES_DATA_SUCCESS, countriesData)

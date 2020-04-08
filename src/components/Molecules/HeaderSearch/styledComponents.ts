@@ -7,6 +7,7 @@ const TopBar = styled.div`
     top: 0;
     left: 0;
     z-index: 1350;
+    padding: 0 10px;
     margin: 15px;
     width: calc(100% - 30px);
     display: flex;
