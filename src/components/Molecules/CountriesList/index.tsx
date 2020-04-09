@@ -70,9 +70,7 @@ const CountriesList: React.FC<CountriesListProps> = ({
         }
     }, [searchString, data])
 
-    // where to put these files
-    // add countries flags
-    // change language for japanese and stuff
+    // fix scroll
 
     return (
         <Fade in={open}>
@@ -84,12 +82,12 @@ const CountriesList: React.FC<CountriesListProps> = ({
                 {loading ? (
                     <InlineLoader />
                 ) : (
-                    <List component="nav" aria-label="main mailbox folders">
-                        {countries.map((country: Record<string, string>) => (
+                    <List component="nav" aria-label="countries">
+                        {countries.map((country: Record<string, any>) => (
                             <div key={country.name}>
                                 <CountryListItem
                                     setOpen={setOpen}
-                                    name={country.name}
+                                    listCountry={country}
                                 />
                                 <Divider />
                             </div>
