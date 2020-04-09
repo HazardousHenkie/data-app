@@ -10,7 +10,7 @@ const selectCountry = (state: ApplicationRootState) => {
 const makeSelectCountry = () =>
     createSelector(selectCountry, subState => subState.country) as Selector<
         unknown,
-        {}
+        Record<string, any>
     >
 
 export default makeSelectCountry
