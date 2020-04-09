@@ -19,6 +19,6 @@ function* getCountriesDataSaga() {
     }
 }
 
-export default function* getCountriesDataRootSaga() {
+export default function* countriesListRootSaga() {
     yield takeLatest(ActionTypes.GET_COUNTRIES_DATA, getCountriesDataSaga)
 }
