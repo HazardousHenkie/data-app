@@ -7,11 +7,10 @@ import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors'
 
 import InlineLoader from 'components/Atoms/InlineLoader'
 import InfoMessage from 'components/Atoms/InfoMessage'
+import CountryListItem from 'components/Molecules/CountryListItem'
 
 import Fade from '@material-ui/core/Fade'
 import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
 import Divider from '@material-ui/core/Divider'
 import CountriesListDiv from './styledComponents'
 
@@ -24,6 +23,7 @@ import { makeSelectError, makeSelectLoader, makeSelectData } from './selectors'
 
 interface CountriesListProps {
     open: boolean
+    setOpen: React.Dispatch<React.SetStateAction<boolean>>
     searchString?: string
 }
 
@@ -37,6 +37,7 @@ const stateSelector = createStructuredSelector({
 
 const CountriesList: React.FC<CountriesListProps> = ({
     open,
+    setOpen,
     searchString
 }) => {
     const { error, loading, data } = useSelector(stateSelector)
@@ -55,13 +56,6 @@ const CountriesList: React.FC<CountriesListProps> = ({
         dispatch(getCountriesData())
     }, [dispatch])
 
-    const onClickCountry = (
-        event: React.MouseEvent<HTMLDivElement, MouseEvent>
-    ) => {
-        console.log(event)
-        console.log('click')
-    }
-
     useEffect(() => {
         if (searchString) {
             setCountries(
@@ -76,6 +70,7 @@ const CountriesList: React.FC<CountriesListProps> = ({
         }
     }, [searchString, data])
 
+    // where to put these files
     // add countries flags
     // change language for japanese and stuff
 
@@ -92,9 +87,10 @@ const CountriesList: React.FC<CountriesListProps> = ({
                     <List component="nav" aria-label="main mailbox folders">
                         {countries.map((country: Record<string, string>) => (
                             <div key={country.name}>
-                                <ListItem button onClick={onClickCountry}>
-                                    <ListItemText primary={country.name} />
-                                </ListItem>
+                                <CountryListItem
+                                    setOpen={setOpen}
+                                    name={country.name}
+                                />
                                 <Divider />
                             </div>
                         ))}

@@ -35,6 +35,7 @@ const HeaderSearch: React.FC = () => {
             </TopBar>
             <CountriesList
                 open={openCountriesList}
+                setOpen={setOpenCountriesList}
                 searchString={searchString}
             />
         </>

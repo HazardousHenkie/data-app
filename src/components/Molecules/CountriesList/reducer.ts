@@ -2,6 +2,7 @@ import {
     ContainerCountriesListState,
     ContainerCountriesListActions
 } from './types'
+
 import ActionTypes from './constants'
 
 export const initialCountriesHeaderState: ContainerCountriesListState = {
