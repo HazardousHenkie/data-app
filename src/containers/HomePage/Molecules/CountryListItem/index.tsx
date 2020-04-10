@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
-import { makeSelectData } from 'components/Molecules/CountriesList/selectors'
+import { makeSelectData } from 'containers/HomePage/Molecules/CountriesList/selectors'
 import setSelectedCountry from './actions'
 
 import reducer from './reducer'

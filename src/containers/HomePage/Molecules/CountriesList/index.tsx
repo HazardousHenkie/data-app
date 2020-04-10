@@ -7,7 +7,7 @@ import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors'
 
 import InlineLoader from 'components/Atoms/InlineLoader'
 import InfoMessage from 'components/Atoms/InfoMessage'
-import CountryListItem from 'components/Molecules/CountryListItem'
+import CountryListItem from 'containers/HomePage/Molecules/CountryListItem'
 
 import Fade from '@material-ui/core/Fade'
 import List from '@material-ui/core/List'
@@ -70,7 +70,8 @@ const CountriesList: React.FC<CountriesListProps> = ({
         }
     }, [searchString, data])
 
-    // fix scroll
+    // remove scrollbar style
+    // remove left arror if not needed and maybe animate it
 
     return (
         <Fade in={open}>
