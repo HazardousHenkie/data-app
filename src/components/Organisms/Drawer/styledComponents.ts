@@ -1,6 +1,9 @@
 import styled, { keyframes, Keyframes, css } from 'styled-components'
+
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
+
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
 
 interface HandleBarProps {
     relative?: boolean
@@ -43,6 +46,15 @@ const swipeAnimation = (reverse: boolean): Keyframes => keyframes`
     }
     100% {
         opacity: 0;
+    }
+`
+
+export const SwipeableDrawerStyled = styled(SwipeableDrawer)`
+    .MuiDrawer-paper {
+        padding: 20px;
+        border-top-right-radius: 25px;
+        border-top-left-radius: 25px;
+        background-color: ${(props): string => props.theme.darkGrey};
     }
 `
 

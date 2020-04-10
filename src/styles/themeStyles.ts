@@ -1,7 +1,4 @@
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
-import variables from './variables'
-
-import MuiDrawer from './themeStylesMixins'
 
 let lightTheme = createMuiTheme({
     palette: {
@@ -14,10 +11,6 @@ let lightTheme = createMuiTheme({
         MuiDrawer: {
             paperAnchorBottom: {
                 overflow: 'visible'
-            },
-            paper: {
-                ...MuiDrawer,
-                backgroundColor: variables.gray
             }
         }
     }
@@ -35,10 +28,6 @@ export const darkTheme = responsiveFontSizes(
             MuiDrawer: {
                 paperAnchorBottom: {
                     overflow: 'visible'
-                },
-                paper: {
-                    ...MuiDrawer,
-                    backgroundColor: variables.darkGray
                 }
             }
         }
