@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import CountriesList from 'components/Molecules/CountriesList'
+import CountriesList from 'containers/HomePage/Molecules/CountriesList'
 import SearchField from 'components/Molecules/SearchField'
 
 import TopBar, {
