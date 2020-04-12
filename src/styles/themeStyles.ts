@@ -10,7 +10,7 @@ const lightTheme = responsiveFontSizes(
             },
             primary: {
                 light: '#f0f0f0',
-                main: '#343434',
+                main: '#fffafa',
                 dark: '#6b6969',
                 contrastText: 'grayscale(1)'
             }
@@ -30,13 +30,13 @@ export const darkTheme = responsiveFontSizes(
         palette: {
             type: 'dark',
             common: {
-                black: '#000',
-                white: '#fff'
+                black: '#fff',
+                white: '#000'
             },
             primary: {
-                light: '#f0f0f0',
-                main: '#343434',
-                dark: '#6b6969',
+                light: '#424141',
+                main: '#636363',
+                dark: '#252525',
                 contrastText: 'invert(1) grayscale(1)'
             }
         },

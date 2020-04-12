@@ -15,7 +15,7 @@ const TopBar = styled.div`
     justify-content: center;
     border-radius: 10px;
     box-shadow: ${props => props.theme.shadow};
-    background: ${({ theme }) => theme.palette.common.white};
+    background: ${({ theme }) => theme.palette.primary.main};
 `
 
 export const SearchFieldWrapper = styled.div`
@@ -24,8 +24,10 @@ export const SearchFieldWrapper = styled.div`
 
 export const CloseCountriesList = styled(ChevronLeftIcon)`
     font-size: 2.5rem;
+    width: 35px;
+    margin-right: 7px;
     cursor: pointer;
-    color: ${({ theme }) => theme.palette.primary.dark};
+    color: ${({ theme }) => theme.palette.common.black};
 `
 
 export default TopBar

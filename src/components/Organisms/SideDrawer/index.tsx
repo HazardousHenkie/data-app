@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 
 import { DrawerProps } from '@material-ui/core/Drawer'
-import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 
-import StyledDrawer from './styledComponents'
+import StyledDrawer, { IconButtonStyled } from './styledComponents'
 
 const SideDrawer: React.FC<Omit<DrawerProps, 'anchor' | 'onClose'>> = ({
     children
@@ -27,14 +26,14 @@ const SideDrawer: React.FC<Omit<DrawerProps, 'anchor' | 'onClose'>> = ({
 
     return (
         <>
-            <IconButton
+            <IconButtonStyled
                 color="inherit"
                 aria-label="open drawer"
                 onClick={toggleDrawer(true)}
                 edge="start"
             >
                 <MenuIcon />
-            </IconButton>
+            </IconButtonStyled>
 
             <StyledDrawer
                 anchor="left"

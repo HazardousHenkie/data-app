@@ -6,6 +6,10 @@ const GlobalStyle = createGlobalStyle`
   #root {
     height: 100%;
   }
+
+  .MuiPopover-root {
+    z-index: 1400 !important;
+  }
 `
 
 export default GlobalStyle
