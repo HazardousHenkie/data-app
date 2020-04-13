@@ -4,7 +4,14 @@ import SwipeableDrawer, {
     SwipeableDrawerProps
 } from '@material-ui/core/SwipeableDrawer'
 
-import { HandleBar, DrawerWrapper } from './styledComponents'
+import {
+    HandleBar,
+    DrawerWrapper,
+    ClickIndicator,
+    SwipeIndicator,
+    SwipeIndicatorInner,
+    SwipeIndicatorInnerDown
+} from './styledComponents'
 
 const Drawer: React.FC<Omit<
     SwipeableDrawerProps,
@@ -28,20 +35,34 @@ const Drawer: React.FC<Omit<
     }
 
     return (
-        <DrawerWrapper>
-            <HandleBar />
+        <>
+            <ClickIndicator onClick={toggleDrawer(true)}>
+                <SwipeIndicatorInner />
+            </ClickIndicator>
 
-            <SwipeableDrawer
-                anchor="bottom"
-                open={openDrawer}
-                onClose={toggleDrawer(false)}
-                onOpen={toggleDrawer(true)}
-            >
-                <HandleBar />
+            <DrawerWrapper>
+                <HandleBar>
+                    <SwipeIndicator onClick={toggleDrawer(true)}>
+                        <SwipeIndicatorInner />
+                    </SwipeIndicator>
+                </HandleBar>
 
-                {children}
-            </SwipeableDrawer>
-        </DrawerWrapper>
+                <SwipeableDrawer
+                    anchor="bottom"
+                    open={openDrawer}
+                    onClose={toggleDrawer(false)}
+                    onOpen={toggleDrawer(true)}
+                >
+                    <SwipeIndicator down onClick={toggleDrawer(false)}>
+                        <SwipeIndicatorInnerDown />
+                    </SwipeIndicator>
+
+                    <HandleBar relative />
+
+                    {children}
+                </SwipeableDrawer>
+            </DrawerWrapper>
+        </>
     )
 }
 
