@@ -33,8 +33,6 @@ const Drawer: React.FC<Omit<
         setOpenDrawer(open)
     }
 
-    // width and overlay above stuff
-
     return (
         <>
             <ClickIndicator onClick={toggleDrawer(true)}>
