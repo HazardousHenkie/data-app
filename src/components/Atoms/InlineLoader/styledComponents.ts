@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const LoaderWrapper = styled.div`
-    z-index: 1500;
+    z-index: 1600;
     position: absolute;
     height: 100%;
     width: 100%;

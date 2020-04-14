@@ -1,12 +1,14 @@
 import React from 'react'
 
-import CircularProgress from '@material-ui/core/CircularProgress'
+import CircularProgress, {
+    CircularProgressProps
+} from '@material-ui/core/CircularProgress'
 import LoaderWrapper from './styledComponents'
 
-const InlineLoader: React.FC = () => {
+const InlineLoader: React.FC<CircularProgressProps> = props => {
     return (
         <LoaderWrapper>
-            <CircularProgress color="inherit" />
+            <CircularProgress {...props} color="inherit" />
         </LoaderWrapper>
     )
 }

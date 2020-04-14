@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import Loader from 'components/Atoms/Loader'
+import InlineLoader from 'components/Atoms/InlineLoader'
 
 import { appLocales } from 'utils/i18n'
 import { useTranslation } from 'react-i18next'
@@ -11,7 +11,7 @@ import FormControl from '@material-ui/core/FormControl'
 import SelectStyled, { LanguageSwitcherWrapper } from './styledComponents'
 
 const LanguageSwitcher: React.FC = () => {
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     const { i18n } = useTranslation()
 
     const onLocaleToggle = (event: React.ChangeEvent<{ value: unknown }>) => {
@@ -23,10 +23,10 @@ const LanguageSwitcher: React.FC = () => {
         setLoading(false)
     }, [i18n.language])
 
-    // check why loader is wierd
     return (
         <LanguageSwitcherWrapper>
-            {loading && <Loader />}
+            {loading && <InlineLoader />}
+
             <FormControl variant="outlined" fullWidth>
                 <SelectStyled
                     labelId="select-language"
