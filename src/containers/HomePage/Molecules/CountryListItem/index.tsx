@@ -34,6 +34,7 @@ const CountriesListItem: React.FC<CountriesListItemProps> = ({
 }) => {
     const dispatch = useDispatch()
     const { i18n } = useTranslation()
+    // store current language somewhere else it doesn't have to reload?
     useInjectReducer({ key, reducer: reducer as Reducer })
     const { countries } = useSelector(stateSelector)
 

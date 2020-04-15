@@ -11,21 +11,23 @@ import FormControl from '@material-ui/core/FormControl'
 import SelectStyled, { LanguageSwitcherWrapper } from './styledComponents'
 
 const LanguageSwitcher: React.FC = () => {
-    const [loading, setLoading] = useState(false)
+    const [loadingLanguage, setloadingLanguage] = useState(false)
     const { i18n } = useTranslation()
 
     const onLocaleToggle = (event: React.ChangeEvent<{ value: unknown }>) => {
-        setLoading(true)
+        setloadingLanguage(true)
         i18n.changeLanguage(event.target.value as string)
     }
 
     useEffect(() => {
-        setLoading(false)
+        setloadingLanguage(false)
     }, [i18n.language])
+
+    // check loader style when properly imported
 
     return (
         <LanguageSwitcherWrapper>
-            {loading && <InlineLoader />}
+            {loadingLanguage && <InlineLoader />}
 
             <FormControl variant="outlined" fullWidth>
                 <SelectStyled
@@ -33,7 +35,7 @@ const LanguageSwitcher: React.FC = () => {
                     id="select-language"
                     value={i18n.language}
                     onChange={onLocaleToggle}
-                    disabled={loading}
+                    disabled={loadingLanguage}
                 >
                     {appLocales.map(value => (
                         <MenuItem key={value} value={value}>
