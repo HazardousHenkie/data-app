@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
 
-import { Map, MapProps, TileLayer } from 'react-leaflet'
+import { Map, Marker, MapProps, TileLayer } from 'react-leaflet'
 import * as Leaflet from 'leaflet'
 
 import Loader from 'components/Atoms/Loader'
+import Drawer from 'components/Organisms/Drawer'
 
 import { createSelector } from 'reselect'
 import { useSelector } from 'react-redux'
@@ -21,6 +22,11 @@ const OSMap: React.FC = () => {
     const [loading, setLoading] = useState(true)
     const mapRef = useRef() as React.RefObject<Map<MapProps, Leaflet.Map>>
     const { country } = useSelector(stateSelector)
+    const [open, setOpen] = useState(false)
+
+    // close drawer too when closed inside component
+    // select country if not there
+    // check for empty country object
 
     useEffect(() => {
         if (country.latlng) {
@@ -61,7 +67,18 @@ const OSMap: React.FC = () => {
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
+
+                {country && (
+                    <Marker
+                        onClick={() => {
+                            setOpen(true)
+                        }}
+                        position={[mapState.lat, mapState.lng]}
+                    />
+                )}
             </StyledMap>
+
+            <Drawer externalOpenDrawer={open}>{country.name}</Drawer>
         </>
     )
 }
