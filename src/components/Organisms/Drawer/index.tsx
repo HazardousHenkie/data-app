@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { SwipeableDrawerProps } from '@material-ui/core/SwipeableDrawer'
 
@@ -12,11 +12,22 @@ import {
     SwipeIndicatorInnerDown
 } from './styledComponents'
 
-const Drawer: React.FC<Omit<
-    SwipeableDrawerProps,
-    'open' | 'onClose' | 'onOpen'
->> = ({ children }) => {
+interface DrawerCustomProps {
+    externalOpenDrawer: any
+}
+
+const Drawer: React.FC<DrawerCustomProps &
+    Omit<SwipeableDrawerProps, 'open' | 'onClose' | 'onOpen'>> = ({
+    externalOpenDrawer,
+    children
+}) => {
     const [openDrawer, setOpenDrawer] = useState(false)
+
+    useEffect(() => {
+        if (externalOpenDrawer) {
+            setOpenDrawer(true)
+        }
+    }, [externalOpenDrawer])
 
     const toggleDrawer = (open: boolean) => (
         event: React.KeyboardEvent | React.MouseEvent
