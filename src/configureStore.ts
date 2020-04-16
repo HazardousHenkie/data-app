@@ -16,6 +16,11 @@ export default function configureStore(
     const { run: runSaga } = sagaMiddleware
     const middlewares = [sagaMiddleware, routerMiddleware(history)]
 
+    if (process.env.NODE_ENV !== 'production' && typeof window === 'object') {
+        const logger = createLogger()
+        middlewares.push(logger)
+    }
+
     const enhancers = [
         applyMiddleware(...middlewares),
         createInjectorsEnhancer({
@@ -23,11 +28,6 @@ export default function configureStore(
             runSaga
         })
     ]
-
-    if (process.env.NODE_ENV !== 'production' && typeof window === 'object') {
-        const logger = createLogger()
-        middlewares.push(logger)
-    }
 
     const store = createStore(
         createReducer(),

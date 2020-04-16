@@ -10,6 +10,7 @@
   "dependencies": {
     "@material-ui/core": "^4.9.5",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.47",
     "@material-ui/styles": "^4.9.6",
     "connected-react-router": "^6.7.0",
     "history": "^4.10.1",

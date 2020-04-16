@@ -8,7 +8,7 @@ export const StyledTypographyTitle = styled(Typography)`
 `
 
 export const ErrorPageDiv = styled.div`
-    height: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;

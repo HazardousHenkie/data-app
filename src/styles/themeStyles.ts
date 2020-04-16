@@ -1,48 +1,53 @@
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
-import variables from './variables'
 
-import MuiDrawer from './themeStylesMixins'
-
-let lightTheme = createMuiTheme({
-    palette: {
-        type: 'light',
-        primary: {
-            main: '#343434'
-        }
-    },
-    overrides: {
-        MuiDrawer: {
-            paperAnchorBottom: {
-                overflow: 'visible'
-            },
-            paper: {
-                ...MuiDrawer,
-                backgroundColor: variables.gray
-            }
-        }
-    }
-})
-
-export const darkTheme = responsiveFontSizes(
+const lightTheme = responsiveFontSizes(
     createMuiTheme({
         palette: {
-            type: 'dark',
+            type: 'light',
+            common: {
+                black: '#000',
+                white: '#fff'
+            },
             primary: {
-                main: '#343434'
+                light: '#f0f0f0',
+                main: '#fffafa',
+                dark: '#6b6969',
+                contrastText: 'grayscale(1)'
             }
         },
         overrides: {
             MuiDrawer: {
                 paperAnchorBottom: {
                     overflow: 'visible'
-                },
-                paper: {
-                    ...MuiDrawer,
-                    backgroundColor: variables.darkGray
                 }
             }
         }
     })
 )
 
-export default lightTheme = responsiveFontSizes(lightTheme)
+export const darkTheme = responsiveFontSizes(
+    createMuiTheme({
+        palette: {
+            type: 'dark',
+            common: {
+                black: '#fff',
+                white: '#000'
+            },
+            primary: {
+                light: '#424141',
+                main: '#636363',
+                dark: '#252525',
+                contrastText: 'invert(1) grayscale(1)'
+            }
+        },
+        overrides: {
+            MuiDrawer: {
+                paperAnchorBottom: {
+                    overflow: 'visible'
+                }
+            }
+        }
+    })
+)
+
+export default lightTheme
