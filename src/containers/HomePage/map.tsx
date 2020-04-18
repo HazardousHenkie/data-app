@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from 'react'
 
+import { isEmpty } from 'lodash'
+
 import { Map, Marker, MapProps, TileLayer } from 'react-leaflet'
 import * as Leaflet from 'leaflet'
 
@@ -10,6 +12,7 @@ import { createSelector } from 'reselect'
 import { useSelector } from 'react-redux'
 
 import makeSelectCountry from 'containers/HomePage/Molecules/CountryListItem/selectors'
+
 import StyledMap from './styledComponents'
 
 const stateSelector = createSelector(makeSelectCountry(), country => ({
@@ -24,9 +27,6 @@ const OSMap: React.FC = () => {
     const { country } = useSelector(stateSelector)
 
     const { setOpenDrawer } = useContext(DrawerContext)
-
-    // select country if not there
-    // check for empty country object
 
     useEffect(() => {
         if (country.latlng) {
@@ -68,7 +68,7 @@ const OSMap: React.FC = () => {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
 
-                {country && (
+                {!isEmpty(country) && (
                     <Marker
                         onClick={() => {
                             setOpenDrawer(true)
