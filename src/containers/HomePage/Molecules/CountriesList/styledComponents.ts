@@ -8,8 +8,19 @@ const CountriesListDiv = styled.div`
     bottom: 0;
     top: 0;
     left: 0;
-    overflow-y: scroll;
+    overflow-y: hidden;
+    overflow-y: auto;
     background: ${({ theme }) => theme.palette.primary.light};
+
+    ::-webkit-scrollbar {
+        background-color: ${({ theme }) => theme.palette.primary.light};
+    }
+
+    ::-webkit-scrollbar-thumb {
+        height: 30px;
+        border-radius: 25px;
+        background: ${({ theme }) => theme.palette.primary.dark};
+    }
 `
 
 export default CountriesListDiv

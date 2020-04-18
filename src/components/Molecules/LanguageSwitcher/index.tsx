@@ -23,8 +23,6 @@ const LanguageSwitcher: React.FC = () => {
         setloadingLanguage(false)
     }, [i18n.language])
 
-    // check loader style when properly imported
-
     return (
         <LanguageSwitcherWrapper>
             {loadingLanguage && <InlineLoader />}

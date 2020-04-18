@@ -70,9 +70,6 @@ const CountriesList: React.FC<CountriesListProps> = ({
         }
     }, [searchString, data])
 
-    // remove scrollbar style
-    // remove left arror if not needed and maybe animate it
-
     return (
         <Fade in={open}>
             <CountriesListDiv>
