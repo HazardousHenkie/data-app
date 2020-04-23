@@ -1,8 +1,9 @@
 const variables = {
     black: '#000',
     white: '#fff',
-    gray: '#D3D3D3',
-    darkGray: '#A9A9A9',
+    gray: '#f0f0f0',
+    darkGray: '#6b6969',
+    shadow: '0 1px 3px 0 rgba(0, 0, 0, 0.25)',
     mapFilter: 'grayscale(1)',
     mapFilterDark: 'invert(1) grayscale(1)',
     breakpoints: {

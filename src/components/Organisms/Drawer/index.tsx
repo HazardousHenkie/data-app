@@ -21,7 +21,7 @@ const Drawer: React.FC<Omit<
 
     const toggleDrawer = (open: boolean) => (
         event: React.KeyboardEvent | React.MouseEvent
-    ): void => {
+    ) => {
         if (
             event &&
             event.type === 'keydown' &&
