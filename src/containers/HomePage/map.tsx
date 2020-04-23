@@ -34,6 +34,7 @@ const OSMap: React.FC = () => {
             {loading && <Loader />}
 
             <StyledMap
+                zoomControl={false}
                 center={[mapState.lat, mapState.lng]}
                 onlocationfound={getLocationSuccess}
                 onlocationerror={getLocationError}
