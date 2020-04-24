@@ -9,8 +9,8 @@ interface SearchFieldProps {
 }
 
 const SearchField: React.FC<SearchFieldProps> = ({ setValue }) => {
-    const { t } = useTranslation('searchField')
     const [inputValue, setInputValue] = useState('')
+    const { t } = useTranslation('searchField')
 
     useEffect(() => {
         const timer = setTimeout(() => {

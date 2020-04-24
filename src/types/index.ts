@@ -3,7 +3,9 @@ import { Saga, Task } from 'redux-saga'
 import { SagaInjectionModes } from 'redux-injectors'
 
 import { RouterState } from 'connected-react-router'
+
 import { ContainerCountriesListState } from 'components/Molecules/CountriesList/types'
+import { ContainerCountryState } from 'components/Molecules/CountryListItem/types'
 
 export interface InjectedStore extends Store {
     injectedReducers: object
@@ -24,4 +26,5 @@ export interface InjectSagaParams {
 export interface ApplicationRootState {
     readonly router: RouterState
     readonly countriesData: ContainerCountriesListState
+    readonly country: ContainerCountryState
 }
