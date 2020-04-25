@@ -20,7 +20,7 @@ const makeSelectLoader = () =>
 const makeSelectData = () =>
     createSelector(selectCountriesData, subState => subState.data) as Selector<
         unknown,
-        []
+        object[]
     >
 
 export { makeSelectError, makeSelectLoader, makeSelectData }
