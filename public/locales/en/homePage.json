@@ -7,6 +7,16 @@
         "score": "score",
         "message": "message",
         "notFound": "Advisory not found.",
-        "source": "source"
+        "source": "source",
+        "countryInformation": "Country Information"
+    },
+    "countryInformation": {
+        "nativeName": "Native name",
+        "capital": "Capital",
+        "region": "Region",
+        "subregion": "Subregion",
+        "population": "Population",
+        "languages": "Languages",
+        "currencies": "Currencies"
     }
 }

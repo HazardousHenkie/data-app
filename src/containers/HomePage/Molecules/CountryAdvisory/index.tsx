@@ -4,6 +4,7 @@ import { createSelector } from 'reselect'
 import { useSelector } from 'react-redux'
 
 import Avatar from '@material-ui/core/Avatar'
+import WarningIcon from '@material-ui/icons/Warning'
 import CardActions from '@material-ui/core/CardActions'
 import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
@@ -69,7 +70,7 @@ const DrawerCountryContent: React.FC = () => {
                             'country'
                         )}
                     >
-                        {country.alpha2Code}
+                        <WarningIcon />
                     </Avatar>
                 }
                 title={`${t(
