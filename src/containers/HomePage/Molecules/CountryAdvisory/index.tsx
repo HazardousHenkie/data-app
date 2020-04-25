@@ -9,23 +9,26 @@ import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 
+import InfoMessage from 'components/Atoms/InfoMessage'
 import InlineLoader from 'components/Atoms/InlineLoader'
 import makeSelectCountry from 'containers/HomePage/Molecules/CountryListItem/selectors'
 
 import request from 'utils/request'
 
 import { useTranslation } from 'react-i18next'
-import CardStyled from './styledComponents'
+import CardStyled, {
+    CardBottomTypography,
+    StyledLink
+} from './styledComponents'
 
 const stateSelector = createSelector(makeSelectCountry(), country => ({
     country
 }))
 
-// run translations
-// error handle
 const DrawerCountryContent: React.FC = () => {
     const { t, i18n } = useTranslation('homePage')
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState<boolean>(false)
+    const [fetchingError, setFetchingError] = useState<Error>()
     const [countryAdvisory, setCountryAdvisory] = useState<
         Record<string, any>
     >()
@@ -43,7 +46,9 @@ const DrawerCountryContent: React.FC = () => {
                     setCountryAdvisory(result.data[country.alpha2Code])
                 }
             } catch (error) {
-                console.log(error)
+                if (error.response.status !== 404) {
+                    setFetchingError(error)
+                }
             }
 
             setLoading(false)
@@ -67,47 +72,87 @@ const DrawerCountryContent: React.FC = () => {
                         {country.alpha2Code}
                     </Avatar>
                 }
-                title={t(
+                title={`${t(
                     'homePage:countryAdvisor.advisoryTitle',
-                    `Advisory for ${
-                        i18n.language === 'en'
-                            ? country.name
-                            : country.translations[i18n.language]
-                    }`
+                    'Advisory for'
                 )}
+                ${
+                    i18n.language === 'en'
+                        ? country.name
+                        : country.translations[i18n.language]
+                }`}
             />
             <CardContent>
+                {fetchingError && (
+                    <InfoMessage
+                        severity="error"
+                        message={fetchingError.toString()}
+                    />
+                )}
+
                 <Typography variant="body1" component="p">
                     {countryAdvisory &&
-                        !loading &&
-                        countryAdvisory.advisory.message}
+                        countryAdvisory.advisory.score &&
+                        !loading && (
+                            <>
+                                <strong>
+                                    {t(
+                                        'homePage:countryAdvisor.score',
+                                        'score'
+                                    )}
+                                    :
+                                </strong>
+                                {` ${countryAdvisory.advisory.score}`}
+                            </>
+                        )}
+
+                    {countryAdvisory &&
+                        countryAdvisory.advisory.score &&
+                        !loading && <br />}
+
+                    {countryAdvisory && !loading && (
+                        <>
+                            <strong>
+                                {t(
+                                    'homePage:countryAdvisor.message',
+                                    'message'
+                                )}
+                                :
+                            </strong>
+                            {` ${countryAdvisory.advisory.message}`}
+                        </>
+                    )}
 
                     {countryAdvisory &&
                         countryAdvisory.advisory.message === '' &&
                         !loading &&
                         t(
                             'homePage:countryAdvisor.notFound',
-                            'Advisory not available'
+                            'Advisory message not available.'
                         )}
 
                     {!countryAdvisory &&
-                        countryAdvisory &&
                         !loading &&
+                        !fetchingError &&
                         t(
                             'homePage:countryAdvisor.notFound',
-                            'Advisory not found'
+                            'Advisory not found.'
                         )}
                 </Typography>
             </CardContent>
             {countryAdvisory && !loading && (
                 <CardActions>
-                    {/* style this an add link */}
-                    <Typography variant="body2" component="p">
+                    <CardBottomTypography variant="body2" color="inherit">
                         {countryAdvisory.advisory.updated}
-                    </Typography>
-                    <Typography variant="body2" component="p">
-                        {countryAdvisory.advisory.source}
-                    </Typography>
+
+                        <StyledLink
+                            href={countryAdvisory.advisory.source}
+                            color="inherit"
+                            target="_blank"
+                        >
+                            {t('homePage:countryAdvisor.source', 'source')}
+                        </StyledLink>
+                    </CardBottomTypography>
                 </CardActions>
             )}
         </CardStyled>

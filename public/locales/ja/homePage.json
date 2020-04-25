@@ -1,4 +1,12 @@
 {
-    "title": "Home Page",
-    "description": "Homepage description"
+    "title": "ホームページ",
+    "description": "ホームページ説明",
+    "countryAdvisor": {
+        "avatar": "国",
+        "advisoryTitle": "アドバイザリー",
+        "score": "スコア",
+        "message": "メッセージ",
+        "notFound": "助言が見つけられませんでした。",
+        "source": "ソース"
+    }
 }
