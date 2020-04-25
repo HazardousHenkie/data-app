@@ -1,4 +1,12 @@
 {
-    "title": "Home Page",
-    "description": "Homepage description"
+    "title": "Home pagina",
+    "description": "Homepagina beschrijving",
+    "countryAdvisor": {
+        "avatar": "land",
+        "advisoryTitle": "advies voor",
+        "score": "score",
+        "message": "bericht",
+        "notFound": "Advies niet gevonden.",
+        "source": "bron"
+    }
 }

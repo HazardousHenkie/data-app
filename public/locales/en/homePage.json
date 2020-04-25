@@ -1,4 +1,12 @@
 {
     "title": "Home Page",
-    "description": "Homepage description"
+    "description": "Homepage description",
+    "countryAdvisor": {
+        "avatar": "country",
+        "advisoryTitle": "Advisory for",
+        "score": "score",
+        "message": "message",
+        "notFound": "Advisory not found.",
+        "source": "source"
+    }
 }
