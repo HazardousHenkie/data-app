@@ -41,7 +41,7 @@ const CountriesList: React.FC<CountriesListProps> = ({
     searchString
 }) => {
     const { error, loading, data } = useSelector(stateSelector)
-    const [countries, setCountries] = useState([])
+    const [countries, setCountries] = useState<object[]>([])
 
     const dispatch = useDispatch()
 
@@ -59,7 +59,7 @@ const CountriesList: React.FC<CountriesListProps> = ({
     useEffect(() => {
         if (searchString) {
             setCountries(
-                data.filter((country: Record<string, string>) =>
+                data.filter((country: Record<string, any>) =>
                     RegExp(searchString.toLowerCase()).exec(
                         country.name.toLowerCase()
                     )

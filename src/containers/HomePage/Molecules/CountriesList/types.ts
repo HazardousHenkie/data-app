@@ -2,7 +2,7 @@ import { ActionType } from 'typesafe-actions'
 import * as actions from './actions'
 
 interface CountriesListState {
-    readonly data: []
+    readonly data: object[]
     readonly error?: Error | boolean
     readonly loading: boolean
 }
