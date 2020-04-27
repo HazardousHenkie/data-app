@@ -9,15 +9,18 @@ i18n.use(Backend)
     .use(LanguageDetector)
     .use(initReactI18next)
     .init({
-        backend: {
-            loadPath: '/locales/{{lng}}/{{ns}}.json'
-        },
         debug: false,
         lng: 'en',
         fallbackLng: 'en',
         whitelist: appLocales,
+        interpolation: {
+            escapeValue: false
+        },
         react: {
             wait: true
+        },
+        backend: {
+            loadPath: '/locales/{{lng}}/{{ns}}.json'
         }
     })
 
