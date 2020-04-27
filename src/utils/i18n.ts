@@ -6,6 +6,7 @@ import { initReactI18next } from 'react-i18next'
 export const appLocales = ['en', 'ja', 'nl']
 
 i18n.use(Backend)
+    .use(Backend)
     .use(LanguageDetector)
     .use(initReactI18next)
     .init({
@@ -15,6 +16,9 @@ i18n.use(Backend)
         whitelist: appLocales,
         interpolation: {
             escapeValue: false
+        },
+        react: {
+            wait: true
         }
     })
 
