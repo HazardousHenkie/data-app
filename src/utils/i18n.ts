@@ -10,6 +10,7 @@ i18n.use(Backend)
     .use(initReactI18next)
     .init({
         debug: false,
+        lng: 'en',
         fallbackLng: 'en',
         whitelist: appLocales,
         interpolation: {
