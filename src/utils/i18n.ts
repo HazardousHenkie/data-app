@@ -13,9 +13,6 @@ i18n.use(Backend)
         lng: 'en',
         fallbackLng: 'en',
         whitelist: appLocales,
-        interpolation: {
-            escapeValue: false
-        },
         react: {
             wait: true
         }
