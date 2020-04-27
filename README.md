@@ -1,3 +1,6 @@
+Copy to clipboard
+[![Netlify Status](https://api.netlify.com/api/v1/badges/711bd9bc-81f2-4484-8bec-ee69eae6d6cb/deploy-status)](https://app.netlify.com/sites/vigilant-gates-137896/deploys)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
