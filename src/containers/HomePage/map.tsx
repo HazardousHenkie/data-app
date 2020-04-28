@@ -8,7 +8,7 @@ import Loader from 'components/Atoms/Loader'
 import { createSelector } from 'reselect'
 import { useSelector } from 'react-redux'
 
-import makeSelectCountry from 'components/Molecules/CountryListItem/selectors'
+import makeSelectCountry from 'containers/HomePage/Molecules/CountryListItem/selectors'
 import StyledMap from './styledComponents'
 
 const stateSelector = createSelector(makeSelectCountry(), country => ({

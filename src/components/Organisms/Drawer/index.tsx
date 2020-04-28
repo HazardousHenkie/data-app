@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 
-import SwipeableDrawer, {
-    SwipeableDrawerProps
-} from '@material-ui/core/SwipeableDrawer'
+import { SwipeableDrawerProps } from '@material-ui/core/SwipeableDrawer'
 
 import {
+    SwipeableDrawerStyled,
     HandleBar,
     DrawerWrapper,
     ClickIndicator,
@@ -47,7 +46,7 @@ const Drawer: React.FC<Omit<
                     </SwipeIndicator>
                 </HandleBar>
 
-                <SwipeableDrawer
+                <SwipeableDrawerStyled
                     anchor="bottom"
                     open={openDrawer}
                     onClose={toggleDrawer(false)}
@@ -60,7 +59,7 @@ const Drawer: React.FC<Omit<
                     <HandleBar relative />
 
                     {children}
-                </SwipeableDrawer>
+                </SwipeableDrawerStyled>
             </DrawerWrapper>
         </>
     )

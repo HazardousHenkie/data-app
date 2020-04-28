@@ -4,8 +4,8 @@ import { SagaInjectionModes } from 'redux-injectors'
 
 import { RouterState } from 'connected-react-router'
 
-import { ContainerCountriesListState } from 'components/Molecules/CountriesList/types'
-import { ContainerCountryState } from 'components/Molecules/CountryListItem/types'
+import { ContainerCountriesListState } from 'containers/HomePage/Molecules/CountriesList/types'
+import { ContainerCountryState } from 'containers/HomePage/Molecules/CountryListItem/types'
 
 export interface InjectedStore extends Store {
     injectedReducers: object

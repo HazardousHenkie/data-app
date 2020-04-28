@@ -7,7 +7,7 @@ import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors'
 
 import InlineLoader from 'components/Atoms/InlineLoader'
 import InfoMessage from 'components/Atoms/InfoMessage'
-import CountryListItem from 'components/Molecules/CountryListItem'
+import CountryListItem from 'containers/HomePage/Molecules/CountryListItem'
 
 import Fade from '@material-ui/core/Fade'
 import List from '@material-ui/core/List'
@@ -70,9 +70,8 @@ const CountriesList: React.FC<CountriesListProps> = ({
         }
     }, [searchString, data])
 
-    // where to put these files
-    // add countries flags
-    // change language for japanese and stuff
+    // remove scrollbar style
+    // remove left arror if not needed and maybe animate it
 
     return (
         <Fade in={open}>
@@ -84,12 +83,12 @@ const CountriesList: React.FC<CountriesListProps> = ({
                 {loading ? (
                     <InlineLoader />
                 ) : (
-                    <List component="nav" aria-label="main mailbox folders">
-                        {countries.map((country: Record<string, string>) => (
+                    <List component="nav" aria-label="countries">
+                        {countries.map((country: Record<string, any>) => (
                             <div key={country.name}>
                                 <CountryListItem
                                     setOpen={setOpen}
-                                    name={country.name}
+                                    listCountry={country}
                                 />
                                 <Divider />
                             </div>
