@@ -1,6 +1,9 @@
 import styled, { keyframes, Keyframes, css } from 'styled-components'
+
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
+
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
 
 interface HandleBarProps {
     relative?: boolean
@@ -14,7 +17,7 @@ const arrow = css`
     position: absolute;
     left: 50%;
     margin-left: -12px;
-    color: ${(props): string => props.theme.black};
+    color: ${({ theme }) => theme.palette.common.black};
 `
 
 const indicator = css`
@@ -25,7 +28,7 @@ const indicator = css`
     width: 30px;
     height: 30px;
     margin-left: -15px;
-    border: 2px solid ${(props): string => props.theme.black};
+    border: 2px solid ${({ theme }) => theme.palette.common.black};
     border-radius: 50px;
 `
 
@@ -46,21 +49,42 @@ const swipeAnimation = (reverse: boolean): Keyframes => keyframes`
     }
 `
 
+export const SwipeableDrawerStyled = styled(SwipeableDrawer)`
+    .MuiDrawer-paper {
+        padding: 20px;
+        border-top-right-radius: 25px;
+        border-top-left-radius: 25px;
+        background-color: ${({ theme }) => theme.palette.primary.light};
+    }
+`
+
 export const HandleBar = styled.div<HandleBarProps>`
-    position: ${(props): string => (props.relative ? 'relative' : 'fixed')};
     border-radius: 100px;
-    border: 2px solid ${(props): string => props.theme.black};
-    margin: ${(props): string =>
-        props.relative ? '-5px auto 10px' : '0 auto 8px'};
     width: 50%;
     bottom: 0;
-    left: ${(props): string => (!props.relative ? '25%' : '0')};
     top: auto;
-    background: ${(props): string => props.theme.black};
 
-    @media (${(props): number => props.theme.breakpoints.up.md}) {
-        display: none;
-    }
+    ${props =>
+        props.relative
+            ? `
+            position: relative;
+            left: 0;
+            margin: -5px auto 10px;
+        `
+            : `
+            position: fixed;
+            left: 25%;
+            margin: 0 auto 8px;
+        `}
+
+    ${({ theme }) => `
+        background: ${theme.palette.common.black};
+        border: 2px solid ${theme.palette.common.black};
+
+        ${theme.breakpoints.up('md')} {
+            display: none;
+        }
+    `}
 `
 
 export const DrawerWrapper = styled.div`
@@ -69,15 +93,15 @@ export const DrawerWrapper = styled.div`
 `
 
 export const SwipeIndicator = styled.div<SwipeIndicatorProps>`
-    ${(props): string => (!props.down ? 'bottom: 10px;' : 'top: -35px;')};
     ${indicator}
+    ${(props): string => (!props.down ? 'bottom: 10px;' : 'top: -35px;')};
 `
 
 export const ClickIndicator = styled.div`
-    bottom: 10px;
     ${indicator}
+    bottom: 10px;
 
-    @media (${(props): number => props.theme.breakpoints.down.md}) {
+    ${({ theme }) => theme.breakpoints.down('sm')} {
         display: none;
     }
 `

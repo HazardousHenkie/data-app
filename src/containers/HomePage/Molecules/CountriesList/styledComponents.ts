@@ -8,7 +8,8 @@ const CountriesListDiv = styled.div`
     bottom: 0;
     top: 0;
     left: 0;
-    background: ${(props): string => props.theme.gray};
+    overflow-y: scroll;
+    background: ${({ theme }) => theme.palette.primary.light};
 `
 
 export default CountriesListDiv

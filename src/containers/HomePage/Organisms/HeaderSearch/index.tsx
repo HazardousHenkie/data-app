@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 
-import CountriesList from 'components/Molecules/CountriesList'
+import CountriesList from 'containers/HomePage/Molecules/CountriesList'
 import SearchField from 'components/Molecules/SearchField'
+import SideDrawer from 'components/Organisms/SideDrawer'
+import MenuList from '../../Molecules/MenuList'
 
 import TopBar, {
     CloseCountriesList,
@@ -23,7 +25,14 @@ const HeaderSearch: React.FC = () => {
     return (
         <>
             <TopBar>
-                <CloseCountriesList onClick={closeCountriesListClick} />
+                {!openCountriesList && (
+                    <SideDrawer>
+                        <MenuList />
+                    </SideDrawer>
+                )}
+                {openCountriesList && (
+                    <CloseCountriesList onClick={closeCountriesListClick} />
+                )}
                 <SearchFieldWrapper
                     role="button"
                     tabIndex={0}

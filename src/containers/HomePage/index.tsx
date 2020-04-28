@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 
 import Drawer from 'components/Organisms/Drawer'
+import HeaderSearch from './Organisms/HeaderSearch'
 
 import OSMap from './map'
 
@@ -19,6 +20,8 @@ const HomePage: React.FC = () => {
                     content={t('homePage:description', 'Homepage description')}
                 />
             </Helmet>
+
+            <HeaderSearch />
 
             <OSMap />
 
