@@ -1,1 +1,3 @@
 src/serviceWorker.ts
+build-lambda
+build
