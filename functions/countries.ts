@@ -1,6 +1,6 @@
 import { Handler } from 'aws-lambda'
 
-import fetch from 'node-fetch'
+import fetch from 'isomorphic-fetch'
 
 const url = `https://restcountries.eu/rest/v2/all`
 
