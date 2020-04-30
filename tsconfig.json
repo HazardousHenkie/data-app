@@ -17,6 +17,5 @@
         "pretty": true,
         "baseUrl": "src"
     },
-    // exlcude here but include eslint
     "include": ["src", "functions"]
 }
