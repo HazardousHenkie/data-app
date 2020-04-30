@@ -6,7 +6,7 @@ import { getCountriesDataSuccess, getCountriesDataError } from './actions'
 import ActionTypes from './constants'
 
 export function* getCountriesDataSaga() {
-    const requestURL = 'https://restcountries.eu/rest/v2/all'
+    const requestURL = '/.netlify/functions/countries'
 
     try {
         const response = yield call(request, requestURL, {
