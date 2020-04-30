@@ -50,6 +50,8 @@ const getCountries = async () => {
         const responseJson = await response.json()
         const countries = slimUpCountries(responseJson)
 
+        console.log('hero test')
+
         cache.lastFetch = Date.now()
         cache.countries = countries
 
