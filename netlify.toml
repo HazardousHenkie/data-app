@@ -2,3 +2,8 @@
   NODE_VERSION = "12.16.0"
   YARN_VERSION = "1.22.0"
   NPM_VERSION = "12.16.0"
+
+[build]
+  Command = "yarn build"
+  functions = "build-lambda"
+  publish = "build"

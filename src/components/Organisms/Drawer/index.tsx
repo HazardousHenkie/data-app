@@ -14,10 +14,7 @@ import {
     SwipeIndicatorInnerDown
 } from './styledComponents'
 
-const Drawer: React.FC<Omit<
-    SwipeableDrawerProps,
-    'open' | 'onClose' | 'onOpen'
->> = ({ children }) => {
+const useOpenDrawer = () => {
     const { openDrawer, setOpenDrawer } = useContext(DrawerContext)
 
     useEffect(() => {
@@ -25,6 +22,15 @@ const Drawer: React.FC<Omit<
             setOpenDrawer(true)
         }
     }, [openDrawer, setOpenDrawer])
+
+    return { openDrawer, setOpenDrawer }
+}
+
+const Drawer: React.FC<Omit<
+    SwipeableDrawerProps,
+    'open' | 'onClose' | 'onOpen'
+>> = ({ children }) => {
+    const { openDrawer, setOpenDrawer } = useOpenDrawer()
 
     const toggleDrawer = (open: boolean) => (
         event: React.KeyboardEvent | React.MouseEvent

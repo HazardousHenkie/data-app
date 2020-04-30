@@ -26,14 +26,13 @@ const stateSelector = createSelector(makeSelectCountry(), country => ({
     country
 }))
 
-const DrawerCountryContent: React.FC = () => {
-    const { t, i18n } = useTranslation('homePage')
+const useCountryAdvisory = () => {
+    const { country } = useSelector(stateSelector)
     const [loading, setLoading] = useState<boolean>(false)
     const [fetchingError, setFetchingError] = useState<Error>()
     const [countryAdvisory, setCountryAdvisory] = useState<
         Record<string, any>
     >()
-    const { country } = useSelector(stateSelector)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -57,6 +56,14 @@ const DrawerCountryContent: React.FC = () => {
 
         fetchData()
     }, [country])
+
+    return { loading, fetchingError, countryAdvisory }
+}
+
+const DrawerCountryContent: React.FC = () => {
+    const { t, i18n } = useTranslation('homePage')
+    const { country } = useSelector(stateSelector)
+    const { loading, fetchingError, countryAdvisory } = useCountryAdvisory()
 
     return (
         <CardStyled variant="outlined">
