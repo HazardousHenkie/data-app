@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 
+import GoogleLoginButton from 'components/Atoms/GoogleLogin'
 import ThemeSwitcher from 'components/Atoms/ThemeSwitcher'
 import LanguageSwitcher from 'components/Molecules/LanguageSwitcher'
 
@@ -17,6 +18,10 @@ const MenuList: React.FC = () => {
         <ListStyled aria-label={t('menuList:titleMenu', 'Mainmenu')}>
             <ListItem>
                 <ListItemText primary={t('menuList:title', 'Data App')} />
+            </ListItem>
+
+            <ListItem>
+                <GoogleLoginButton />
             </ListItem>
 
             <ListItem style={{ marginTop: 'auto' }} dense>
