@@ -40,7 +40,7 @@ const slimUpCountries = (countries: []) => {
 const getCountries = async () => {
     const timeSinceLastFetch = Date.now() - cache.lastFetch
 
-    // 1 day
+    // 1 day ago check
     if (timeSinceLastFetch <= 86400000) {
         return cache.countries
     }
@@ -49,8 +49,6 @@ const getCountries = async () => {
         const response = await fetch(url)
         const responseJson = await response.json()
         const countries = slimUpCountries(responseJson)
-
-        console.log('hero test')
 
         cache.lastFetch = Date.now()
         cache.countries = countries
