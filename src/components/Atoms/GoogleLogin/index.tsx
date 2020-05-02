@@ -44,7 +44,8 @@ const useGoogleAuthResponse = (googleResponseToken: string | undefined) => {
                         setGoogleAuthServerResponse(result)
                     }
                 } catch (error) {
-                    setFetchingError(error)
+                    const errorResponseMessage = await error.response.json()
+                    setFetchingError(errorResponseMessage)
                 }
 
                 setLoading(false)
@@ -92,9 +93,9 @@ const GoogleLoginButton: React.FC = () => {
         response: GoogleLoginResponse | GoogleLoginResponseOffline
     ) => {
         setGoogleLoading(false)
-        if ((response as GoogleLoginResponse).accessToken) {
+        if ((response as GoogleLoginResponse).getAuthResponse().id_token) {
             setGoogleResponseToken(
-                (response as GoogleLoginResponse).accessToken
+                (response as GoogleLoginResponse).getAuthResponse().id_token
             )
         }
     }
