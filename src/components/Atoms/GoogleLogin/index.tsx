@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
+import serialize from 'serialize-javascript'
+
 import {
     GoogleLogin,
     GoogleLoginResponse,
@@ -11,35 +13,38 @@ import InfoMessage from 'components/Atoms/InfoMessage'
 import InlineLoader from 'components/Atoms/InlineLoader'
 import request from 'utils/request'
 
+import { useDispatch } from 'react-redux'
+import setUser from 'reduxComponents/User/actions'
+
 import GoogleLoginWrapper from './styledComponents'
 
 const useGoogleAuthResponse = (googleResponseToken: string | undefined) => {
     const [loading, setLoading] = useState<boolean>(false)
     const [fetchingError, setFetchingError] = useState<Error>()
     const [googleAuthServerResponse, setGoogleAuthServerResponse] = useState<
-        Record<string, any>
+        object
     >()
 
     useEffect(() => {
         if (googleResponseToken && googleResponseToken !== '') {
-            console.log('hre')
             const fetchData = async () => {
-                console.log(googleResponseToken)
                 setLoading(true)
                 try {
-                    // change to new backend endpoint when created
-                    // post googleresponsetoken
-                    const result = (await request(
-                        `https://restcountries.eu/rest/v2/all`
-                    )) as Record<string, any>
+                    const loginObject = { authToken: googleResponseToken }
+
+                    const result = await request(
+                        `/.netlify/functions/googleLogin`,
+                        {
+                            method: 'POST',
+                            body: serialize(loginObject)
+                        }
+                    )
 
                     if (result) {
-                        setGoogleAuthServerResponse(result.data)
+                        setGoogleAuthServerResponse(result)
                     }
                 } catch (error) {
-                    if (error.response.status !== 404) {
-                        setFetchingError(error)
-                    }
+                    setFetchingError(error)
                 }
 
                 setLoading(false)
@@ -53,11 +58,12 @@ const useGoogleAuthResponse = (googleResponseToken: string | undefined) => {
 }
 
 const GoogleLoginButton: React.FC = () => {
+    const dispatch = useDispatch()
     const [googleResponseToken, setGoogleResponseToken] = useState<string>()
+    const [googleLoading, setGoogleLoading] = useState<boolean>(false)
     const [open, setOpen] = useState<boolean>(false)
 
-    // remove ''
-    const [error, setError] = useState<string>('')
+    const [error, setError] = useState<string>()
 
     const {
         loading,
@@ -65,18 +71,19 @@ const GoogleLoginButton: React.FC = () => {
         googleAuthServerResponse
     } = useGoogleAuthResponse(googleResponseToken)
 
+    const onGoogleLoginRequest = () => {
+        setGoogleLoading(true)
+    }
+
     useEffect(() => {
         if (googleAuthServerResponse) {
-            console.log(
-                'dispatch based on positive server response/show error and logout on negative response'
-            )
+            dispatch(setUser(googleAuthServerResponse))
         }
-    }, [googleAuthServerResponse])
+    }, [googleAuthServerResponse, dispatch])
 
     useEffect(() => {
         if (fetchingError) {
             setOpen(true)
-            // check error string
             setError(fetchingError.toString())
         }
     }, [fetchingError])
@@ -84,6 +91,7 @@ const GoogleLoginButton: React.FC = () => {
     const googleResponseSuccess = (
         response: GoogleLoginResponse | GoogleLoginResponseOffline
     ) => {
+        setGoogleLoading(false)
         if ((response as GoogleLoginResponse).accessToken) {
             setGoogleResponseToken(
                 (response as GoogleLoginResponse).accessToken
@@ -96,33 +104,43 @@ const GoogleLoginButton: React.FC = () => {
     }
 
     const googleResponseError = (response: Record<string, string>) => {
+        setGoogleLoading(false)
         setOpen(true)
         setError(response.error)
     }
 
     return (
-        <GoogleLoginWrapper>
-            {loading && <InlineLoader />}
+        <>
+            {process.env.REACT_APP_GOOGLE_LOGIN_CLIENT_ID && (
+                <GoogleLoginWrapper>
+                    {(loading || googleLoading) && <InlineLoader />}
 
-            <Snackbar
-                open={open}
-                autoHideDuration={6000}
-                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                onClose={handleClose}
-            >
-                <InfoMessage message={error} severity="error" />
-            </Snackbar>
+                    {error && (
+                        <Snackbar
+                            open={open}
+                            autoHideDuration={6000}
+                            anchorOrigin={{
+                                vertical: 'top',
+                                horizontal: 'center'
+                            }}
+                            onClose={handleClose}
+                        >
+                            <InfoMessage message={error} severity="error" />
+                        </Snackbar>
+                    )}
 
-            {/* //set loading when first clicked */}
-            <GoogleLogin
-                // make client id secret
-                clientId=""
-                buttonText="Login"
-                // isSignedIn={true}
-                onSuccess={googleResponseSuccess}
-                onFailure={googleResponseError}
-            />
-        </GoogleLoginWrapper>
+                    <GoogleLogin
+                        clientId={process.env.REACT_APP_GOOGLE_LOGIN_CLIENT_ID}
+                        onRequest={onGoogleLoginRequest}
+                        buttonText="Login"
+                        disabled={googleLoading}
+                        // isSignedIn={true}
+                        onSuccess={googleResponseSuccess}
+                        onFailure={googleResponseError}
+                    />
+                </GoogleLoginWrapper>
+            )}
+        </>
     )
 }
 
