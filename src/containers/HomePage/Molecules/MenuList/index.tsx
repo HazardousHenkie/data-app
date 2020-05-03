@@ -6,6 +6,7 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 
 import GoogleLoginButton from 'components/Atoms/GoogleLogin'
+import LogoutButton from 'components/Atoms/Logout'
 import ThemeSwitcher from 'components/Atoms/ThemeSwitcher'
 import LanguageSwitcher from 'components/Molecules/LanguageSwitcher'
 
@@ -22,6 +23,8 @@ const MenuList: React.FC = () => {
 
             <ListItem>
                 <GoogleLoginButton />
+
+                <LogoutButton />
             </ListItem>
 
             <ListItem style={{ marginTop: 'auto' }} dense>

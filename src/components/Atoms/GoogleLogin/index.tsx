@@ -135,7 +135,6 @@ const GoogleLoginButton: React.FC = () => {
                         onRequest={onGoogleLoginRequest}
                         buttonText="Login"
                         disabled={googleLoading}
-                        // isSignedIn={true}
                         onSuccess={googleResponseSuccess}
                         onFailure={googleResponseError}
                     />
