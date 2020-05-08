@@ -8,6 +8,7 @@ import makeSelectCountry from 'containers/HomePage/Molecules/CountryListItem/sel
 
 import Grid from '@material-ui/core/Grid'
 import CountryAdvisory from '../../Molecules/CountryAdvisory'
+import CountryInformation from '../../Molecules/CountryInformation'
 
 import Header from './styledComponents'
 
@@ -28,6 +29,10 @@ const DrawerCountryContent: React.FC = () => {
                             ? country.name
                             : country.translations[i18n.language]}
                     </Header>
+                </Grid>
+
+                <Grid item xs={6}>
+                    <CountryInformation />
                 </Grid>
 
                 <Grid item xs={6}>
