@@ -7,6 +7,16 @@
         "score": "score",
         "message": "bericht",
         "notFound": "Advies niet gevonden.",
-        "source": "bron"
+        "source": "bron",
+        "countryInformation": "Landinformatie"
+    },
+    "countryInformation": {
+        "nativeName": "Inheemse naam",
+        "capital": "Hoofdstad",
+        "region": "Regio",
+        "subregion": "Subregio",
+        "population": "Populatie",
+        "languages": "Talen",
+        "currencies": "Valuta's"
     }
 }
