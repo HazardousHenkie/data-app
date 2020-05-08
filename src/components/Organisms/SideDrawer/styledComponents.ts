@@ -10,6 +10,7 @@ const StyledDrawer = styled(Drawer)`
 `
 export const DrawerChildren = styled.div`
     width: 250px;
+    height: 100%;
 `
 
 export const IconButtonStyled = styled(IconButton)`
