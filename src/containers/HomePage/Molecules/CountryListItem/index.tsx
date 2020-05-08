@@ -11,7 +11,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import { useTranslation } from 'react-i18next'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { createStructuredSelector } from 'reselect'
+import { createSelector } from 'reselect'
 import { makeSelectData } from 'containers/HomePage/Molecules/CountriesList/selectors'
 import setSelectedCountry from './actions'
 
@@ -24,9 +24,9 @@ interface CountriesListItemProps {
 
 const key = 'country'
 
-const stateSelector = createStructuredSelector({
-    countries: makeSelectData()
-})
+const stateSelector = createSelector(makeSelectData(), countries => ({
+    countries
+}))
 
 const CountriesListItem: React.FC<CountriesListItemProps> = ({
     setOpen,
@@ -34,9 +34,9 @@ const CountriesListItem: React.FC<CountriesListItemProps> = ({
 }) => {
     const dispatch = useDispatch()
     const { i18n } = useTranslation()
-    // store current language somewhere else it doesn't have to reload?
-    useInjectReducer({ key, reducer: reducer as Reducer })
     const { countries } = useSelector(stateSelector)
+
+    useInjectReducer({ key, reducer: reducer as Reducer })
 
     const onClickCountry = (selectedName: string) => {
         const selectedCountry = countries.find(

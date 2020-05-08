@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 
@@ -22,11 +22,21 @@ export const SearchFieldWrapper = styled.div`
     width: 100%;
 `
 
+const RotateNinetyDegrees = keyframes`
+    0% {
+        transform: rotate(90deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+`
+
 export const CloseCountriesList = styled(ChevronLeftIcon)`
     font-size: 2.5rem;
     width: 35px;
     margin-right: 7px;
     cursor: pointer;
+    animation: ${RotateNinetyDegrees} 0.4s ease-in-out;
     color: ${({ theme }) => theme.palette.common.black};
 `
 
