@@ -1,14 +1,18 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 
-import { Map, MapProps, TileLayer } from 'react-leaflet'
+import { isEmpty } from 'lodash'
+
+import { Map, Marker, MapProps, TileLayer } from 'react-leaflet'
 import * as Leaflet from 'leaflet'
 
 import Loader from 'components/Atoms/Loader'
+import DrawerContext from 'components/Organisms/Drawer/DrawerContext'
 
 import { createSelector } from 'reselect'
 import { useSelector } from 'react-redux'
 
 import makeSelectCountry from 'containers/HomePage/Molecules/CountryListItem/selectors'
+
 import StyledMap from './styledComponents'
 
 const stateSelector = createSelector(makeSelectCountry(), country => ({
@@ -21,6 +25,8 @@ const OSMap: React.FC = () => {
     const [loading, setLoading] = useState(true)
     const mapRef = useRef() as React.RefObject<Map<MapProps, Leaflet.Map>>
     const { country } = useSelector(stateSelector)
+
+    const { setOpenDrawer } = useContext(DrawerContext)
 
     useEffect(() => {
         if (country.latlng) {
@@ -61,6 +67,15 @@ const OSMap: React.FC = () => {
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
+
+                {!isEmpty(country) && (
+                    <Marker
+                        onClick={() => {
+                            setOpenDrawer(true)
+                        }}
+                        position={[mapState.lat, mapState.lng]}
+                    />
+                )}
             </StyledMap>
         </>
     )

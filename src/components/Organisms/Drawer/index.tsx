@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useContext } from 'react'
 
 import { SwipeableDrawerProps } from '@material-ui/core/SwipeableDrawer'
+
+import DrawerContext from 'components/Organisms/Drawer/DrawerContext'
 
 import {
     SwipeableDrawerStyled,
@@ -16,7 +18,13 @@ const Drawer: React.FC<Omit<
     SwipeableDrawerProps,
     'open' | 'onClose' | 'onOpen'
 >> = ({ children }) => {
-    const [openDrawer, setOpenDrawer] = useState(false)
+    const { openDrawer, setOpenDrawer } = useContext(DrawerContext)
+
+    useEffect(() => {
+        if (openDrawer) {
+            setOpenDrawer(true)
+        }
+    }, [openDrawer, setOpenDrawer])
 
     const toggleDrawer = (open: boolean) => (
         event: React.KeyboardEvent | React.MouseEvent
