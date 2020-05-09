@@ -1,10 +1,10 @@
 import jwt from 'jsonwebtoken'
 import cookie from 'cookie'
 
-const createJwtCookie = (userId: number) => {
+const createJwtCookie = (userId: string, name: string) => {
     const secretKey = `-----BEGIN RSA PRIVATE KEY-----\n${process.env.JWT_SECRET_KEY}\n-----END RSA PRIVATE KEY-----`
 
-    const token = jwt.sign({ userId }, secretKey, {
+    const token = jwt.sign({ userId, name }, secretKey, {
         algorithm: 'RS256',
         expiresIn: '1 days'
     })
