@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 import cookie from 'cookie'
 
-import publicKey from './publicKeyAccess'
+import publicKey from '../keys/publicKeyAccess'
 
 const authenticatedWrapper = (toBeCheckedCookie: string) => {
     const cookies = toBeCheckedCookie && cookie.parse(toBeCheckedCookie)

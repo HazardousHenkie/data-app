@@ -4,8 +4,14 @@ import { ExprArg } from 'faunadb'
 
 import { OAuth2Client } from 'google-auth-library'
 
-import createJwtCookie, { createRefreshCookie } from './helpers/jwt-helpers'
-import getUser, { createUser } from './helpers/user'
+import createJwtCookie, {
+    createRefreshCookie,
+    createRefreshToken
+} from './helpers/jwt-helpers'
+
+import getUser, { createUser } from './database/user'
+
+import getToken, { createToken } from './database/token'
 
 interface Response {
     statusCode: number
@@ -64,7 +70,15 @@ const handler: Handler = async (event: APIGatewayEvent) => {
 
             // check if token is still valid and login again if not (check on page load and request not in this file)
 
-            if (existingUser?.data) {
+            if (existingUser?.data && googleUser.name) {
+                const refreshToken = createRefreshToken(
+                    googleUser.sub,
+                    googleUser.name
+                )
+
+                // if refresh token is in db remove it
+                await createToken(googleUser.sub, refreshToken)
+
                 response = {
                     statusCode: 200,
                     headers: {
@@ -73,10 +87,7 @@ const handler: Handler = async (event: APIGatewayEvent) => {
                                 existingUser.data.googleId,
                                 existingUser.data.name
                             ),
-                            createRefreshCookie(
-                                existingUser.data.googleId,
-                                existingUser.data.name
-                            )
+                            createRefreshCookie(refreshToken)
                         ],
                         'Content-Type': 'application/json'
                     },
