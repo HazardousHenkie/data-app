@@ -1,11 +1,12 @@
 import jwt from 'jsonwebtoken'
 import cookie from 'cookie'
 
-import publicKey from './publicKey'
+import publicKey from './publicKeyAccess'
 
-const authenticatedWrapper = (toBeCheckedCookie: any) => {
+const authenticatedWrapper = (toBeCheckedCookie: string) => {
     const cookies = toBeCheckedCookie && cookie.parse(toBeCheckedCookie)
-    if (!cookies || !cookies.jwt) {
+
+    if (!cookies || !cookies.jwt_access) {
         const response = {
             statusCode: 401,
             body: JSON.stringify({
@@ -18,7 +19,7 @@ const authenticatedWrapper = (toBeCheckedCookie: any) => {
     }
 
     try {
-        const payload = jwt.verify(cookies.jwt, publicKey) as Record<
+        const payload = jwt.verify(cookies.jwt_access, publicKey) as Record<
             string,
             string | number
         >
