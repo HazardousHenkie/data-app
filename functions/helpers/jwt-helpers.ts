@@ -19,7 +19,7 @@ const createJwtCookie = (userId: string, name: string) => {
     return jwtCookie
 }
 
-export const createRefreshCookie = (userId: string, name: string) => {
+export const createRefreshToken = (userId: string, name: string) => {
     const secretKey = `-----BEGIN RSA PRIVATE KEY-----\n${process.env.REFRESH_SECRET_KEY}\n-----END RSA PRIVATE KEY-----`
 
     const token = jwt.sign({ userId, name }, secretKey, {
@@ -27,6 +27,10 @@ export const createRefreshCookie = (userId: string, name: string) => {
         expiresIn: '30d'
     })
 
+    return token
+}
+
+export const createRefreshCookie = (token: string) => {
     const jwtCookie = cookie.serialize('jwt_refresh', token, {
         // local isn't https so check the secure tag
         secure: process.env.NETLIFY_DEV !== 'true',
