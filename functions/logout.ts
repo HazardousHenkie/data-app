@@ -1,6 +1,9 @@
 import { Handler, Context, Callback, APIGatewayEvent } from 'aws-lambda'
 
-import { clearCookie } from './helpers/jwt-helpers'
+import {
+    clearJwtAccessCookie,
+    clearJwtRefreshCookie
+} from './helpers/jwt-helpers'
 
 import authenticatedHelper from './helpers/authenticatedHelper'
 
@@ -22,7 +25,7 @@ const handler: Handler = (
         response = {
             statusCode: 200,
             headers: {
-                'Set-Cookie': clearCookie(),
+                'Set-Cookie': [clearJwtAccessCookie(), clearJwtRefreshCookie()],
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ message: 'Logged out successfully.' })
