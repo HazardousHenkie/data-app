@@ -1,5 +1,7 @@
 import { Handler, Context, Callback, APIGatewayEvent } from 'aws-lambda'
 
+import cookie from 'cookie'
+
 import {
     clearJwtAccessCookie,
     clearJwtRefreshCookie
@@ -18,7 +20,9 @@ const handler: Handler = (
     context: Context,
     callback: Callback
 ) => {
-    const authenticatedResponse = authenticatedHelper(event.headers.cookie)
+    const authenticatedResponse = authenticatedHelper(
+        cookie.parse(event.headers.cookie).jwt_access
+    )
     let response: ResponseInterface
 
     if (authenticatedResponse.statusCode === 200) {

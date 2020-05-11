@@ -4,6 +4,8 @@ import { ExprArg } from 'faunadb'
 
 import { OAuth2Client } from 'google-auth-library'
 
+import cookie from 'cookie'
+
 import createJwtCookie, {
     createRefreshCookie,
     createRefreshToken
@@ -11,7 +13,7 @@ import createJwtCookie, {
 
 import getUser, { createUser } from './database/user'
 
-import getToken, { createToken } from './database/token'
+import getRefreshToken, { createToken, removeToken } from './database/token'
 
 interface Response {
     statusCode: number
@@ -45,6 +47,7 @@ const verify = async (authToken: string) => {
 
 const handler: Handler = async (event: APIGatewayEvent) => {
     let response: Response
+
     if (event.body && JSON.parse(event.body).authToken) {
         try {
             const googleUser = await verify(JSON.parse(event.body).authToken)
@@ -71,12 +74,33 @@ const handler: Handler = async (event: APIGatewayEvent) => {
             // check if token is still valid and login again if not (check on page load and request not in this file)
 
             if (existingUser?.data && googleUser.name) {
+                const refreshCookie = cookie.parse(event.headers.cookie)
+                    .jwt_refresh
+                let dbToken
+
+                if (refreshCookie) {
+                    try {
+                        dbToken = await getRefreshToken(
+                            googleUser.sub,
+                            refreshCookie
+                        )
+                    } catch (error) {
+                        if (error.requestResult.statusCode !== 404) {
+                            throw new Error(error)
+                        }
+                    }
+
+                    if (dbToken) {
+                        await removeToken(dbToken.ref)
+                    }
+                }
+
                 const refreshToken = createRefreshToken(
                     googleUser.sub,
                     googleUser.name
                 )
 
-                // if refresh token is in db remove it
+                // await getToken(googleUser.sub)
                 await createToken(googleUser.sub, refreshToken)
 
                 response = {
@@ -97,6 +121,7 @@ const handler: Handler = async (event: APIGatewayEvent) => {
                 response = { statusCode: 400, body: 'User DB error.' }
             }
         } catch (error) {
+            console.log(error)
             response = { statusCode: 400, body: JSON.stringify(error.message) }
         }
     } else {
