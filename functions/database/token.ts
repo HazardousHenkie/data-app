@@ -7,10 +7,9 @@ interface UserResponseInterface {
     data: Record<string, string>
 }
 
-// implement expires
-// delete token fucnton for logout
+// delete token function for logout
 
-const getToken = (token: string, id: string) => {
+export const getToken = (token: string, id: string) => {
     const tokenData: Promise<UserResponseInterface> = faunaClient.query(
         fQuery.Get(
             fQuery.Match(
@@ -20,6 +19,12 @@ const getToken = (token: string, id: string) => {
             )
         )
     )
+
+    return tokenData
+}
+
+export const removeToken = (ref: ExprArg) => {
+    const tokenData: Promise<object> = faunaClient.query(fQuery.Delete(ref))
 
     return tokenData
 }
