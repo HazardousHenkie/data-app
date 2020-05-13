@@ -25,6 +25,8 @@ const useGoogleAuthResponse = (googleResponseToken: string | undefined) => {
         object
     >()
 
+    //      // check if token is still valid and login again if not (check on page load and request not in this file)
+
     useEffect(() => {
         if (googleResponseToken && googleResponseToken !== '') {
             const fetchData = async () => {

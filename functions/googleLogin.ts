@@ -71,8 +71,6 @@ const handler: Handler = async (event: APIGatewayEvent) => {
                 }
             }
 
-            // check if token is still valid and login again if not (check on page load and request not in this file)
-
             if (existingUser?.data && googleUser.name) {
                 const refreshCookie = cookie.parse(event.headers.cookie)
                     .jwt_refresh
@@ -100,7 +98,6 @@ const handler: Handler = async (event: APIGatewayEvent) => {
                     googleUser.name
                 )
 
-                // await getToken(googleUser.sub)
                 await createToken(googleUser.sub, refreshToken)
 
                 response = {
@@ -121,7 +118,6 @@ const handler: Handler = async (event: APIGatewayEvent) => {
                 response = { statusCode: 400, body: 'User DB error.' }
             }
         } catch (error) {
-            console.log(error)
             response = { statusCode: 400, body: JSON.stringify(error.message) }
         }
     } else {
