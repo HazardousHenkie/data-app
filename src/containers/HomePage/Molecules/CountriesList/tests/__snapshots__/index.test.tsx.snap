@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CountriesList /> should render like snapshot 1`] = `
+<div
+  class="sc-AxirZ ixIRlM"
+  style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+>
+  <div
+    class="sc-AxjAm hsTYAM"
+  >
+    <div
+      class="MuiCircularProgress-root MuiCircularProgress-indeterminate"
+      role="progressbar"
+      style="width: 40px; height: 40px;"
+    >
+      <svg
+        class="MuiCircularProgress-svg"
+        viewBox="22 22 44 44"
+      >
+        <circle
+          class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
+          cx="44"
+          cy="44"
+          fill="none"
+          r="20.2"
+          stroke-width="3.6"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;

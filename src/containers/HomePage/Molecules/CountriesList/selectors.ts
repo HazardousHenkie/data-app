@@ -3,9 +3,8 @@ import { createSelector, Selector } from 'reselect'
 import { ApplicationRootState } from 'types'
 import { initialCountriesHeaderState } from './reducer'
 
-const selectCountriesData = (state: ApplicationRootState) => {
-    return state.countriesData || initialCountriesHeaderState
-}
+const selectCountriesData = (state: ApplicationRootState) =>
+    state.countriesData || initialCountriesHeaderState
 
 const makeSelectError = () =>
     createSelector(selectCountriesData, subState => subState.error) as Selector<
@@ -20,7 +19,12 @@ const makeSelectLoader = () =>
 const makeSelectData = () =>
     createSelector(selectCountriesData, subState => subState.data) as Selector<
         unknown,
-        []
+        object[]
     >
 
-export { makeSelectError, makeSelectLoader, makeSelectData }
+export {
+    selectCountriesData,
+    makeSelectError,
+    makeSelectLoader,
+    makeSelectData
+}
