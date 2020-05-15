@@ -40,7 +40,7 @@ const CountriesListItem: React.FC<CountriesListItemProps> = ({
 
     const onClickCountry = (selectedName: string) => {
         const selectedCountry = countries.find(
-            (country: Record<string, string>) => country.name === selectedName
+            (country: Record<string, any>) => country.name === selectedName
         )
 
         if (selectedCountry) {

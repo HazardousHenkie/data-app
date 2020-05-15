@@ -5,11 +5,11 @@ import request from 'utils/request'
 import { getCountriesDataSuccess, getCountriesDataError } from './actions'
 import ActionTypes from './constants'
 
-function* getCountriesDataSaga() {
-    try {
-        const requestURL = 'https://restcountries.eu/rest/v2/all'
+export function* getCountriesDataSaga() {
+    const requestURL = 'https://restcountries.eu/rest/v2/all'
 
-        const response: [] = yield call(request, requestURL, {
+    try {
+        const response = yield call(request, requestURL, {
             method: 'GET'
         })
 
