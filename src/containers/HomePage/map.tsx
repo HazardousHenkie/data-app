@@ -19,20 +19,8 @@ const stateSelector = createSelector(makeSelectCountry(), country => ({
     country
 }))
 
-const OSMap: React.FC = () => {
-    const [mapState, setMapState] = useState({ lat: 0.0, lng: 0.0 })
-    const [zoom] = useState(6)
-    const [loading, setLoading] = useState(true)
+const useMapRef = () => {
     const mapRef = useRef() as React.RefObject<Map<MapProps, Leaflet.Map>>
-    const { country } = useSelector(stateSelector)
-
-    const { setOpenDrawer } = useContext(DrawerContext)
-
-    useEffect(() => {
-        if (country.latlng) {
-            setMapState({ lat: country.latlng[0], lng: country.latlng[1] })
-        }
-    }, [country])
 
     useEffect(() => {
         const map = mapRef.current
@@ -41,6 +29,31 @@ const OSMap: React.FC = () => {
             map.leafletElement.locate()
         }
     }, [mapRef])
+
+    return mapRef
+}
+
+const useMapState = () => {
+    const { country } = useSelector(stateSelector)
+    const [mapState, setMapState] = useState({ lat: 0.0, lng: 0.0 })
+
+    useEffect(() => {
+        if (country.latlng) {
+            setMapState({ lat: country.latlng[0], lng: country.latlng[1] })
+        }
+    }, [country])
+
+    return { mapState, setMapState }
+}
+
+const OSMap: React.FC = () => {
+    const { country } = useSelector(stateSelector)
+    const [zoom] = useState(6)
+    const [loading, setLoading] = useState(true)
+    const mapRef = useMapRef()
+    const { mapState, setMapState } = useMapState()
+
+    const { setOpenDrawer } = useContext(DrawerContext)
 
     const getLocationSuccess = (e: Leaflet.LocationEvent): void => {
         setMapState(e.latlng)

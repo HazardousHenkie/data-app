@@ -35,29 +35,20 @@ const stateSelector = createStructuredSelector({
     loading: makeSelectLoader()
 })
 
-const CountriesList: React.FC<CountriesListProps> = ({
-    open,
-    setOpen,
-    searchString
-}) => {
-    const { error, loading, data } = useSelector(stateSelector)
-    const [countries, setCountries] = useState<object[]>([])
-
+const useGetCountries = () => {
     const dispatch = useDispatch()
-
-    useInjectReducer({ key, reducer })
-    useInjectSaga({ key, saga })
-
-    useEffect(() => {
-        setCountries(data)
-    }, [data])
 
     useEffect(() => {
         dispatch(getCountriesData())
     }, [dispatch])
+}
+
+const useFilteredCountries = (searchString: string | undefined) => {
+    const { data } = useSelector(stateSelector)
+    const [countries, setCountries] = useState<object[]>([])
 
     useEffect(() => {
-        if (searchString) {
+        if (searchString && searchString !== '') {
             setCountries(
                 data.filter((country: Record<string, any>) =>
                     RegExp(searchString.toLowerCase()).exec(
@@ -69,6 +60,22 @@ const CountriesList: React.FC<CountriesListProps> = ({
             setCountries(data)
         }
     }, [searchString, data])
+
+    return countries
+}
+
+const CountriesList: React.FC<CountriesListProps> = ({
+    open,
+    setOpen,
+    searchString
+}) => {
+    useGetCountries()
+    const countries = useFilteredCountries(searchString)
+
+    const { error, loading } = useSelector(stateSelector)
+
+    useInjectReducer({ key, reducer })
+    useInjectSaga({ key, saga })
 
     return (
         <Fade in={open}>
