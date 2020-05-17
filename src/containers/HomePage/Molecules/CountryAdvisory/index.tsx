@@ -44,8 +44,7 @@ const useCountryAdvisory = () => {
                 )
 
                 if (result) {
-                    const { data } = result as any
-                    setCountryAdvisory(data[country.alpha2Code])
+                    setCountryAdvisory(result.data[country.alpha2Code])
                 }
             } catch (error) {
                 if (error.response.status !== 404) {
