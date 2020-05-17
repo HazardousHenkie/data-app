@@ -4,7 +4,7 @@ import faunaClient, { fQuery } from './faunaDB'
 interface UserResponseInterface {
     ref: ExprArg
     ts: number
-    data: Record<string, string>
+    data: { [key: string]: string }
 }
 
 // delete token function for logout

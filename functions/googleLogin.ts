@@ -24,7 +24,7 @@ interface Response {
 interface UserResponseInterface {
     ref: ExprArg
     ts: number
-    data: Record<string, string>
+    data: { [key: string]: string }
 }
 
 const clientID = process.env.GOOGLE_CLIENT_ID

@@ -16,7 +16,7 @@ interface Response {
 interface UserResponseInterface {
     ref: ExprArg
     ts: number
-    data: Record<string, string>
+    data: { [key: string]: string }
 }
 
 const handler: Handler = (
@@ -34,9 +34,7 @@ const handler: Handler = (
             const payload = jwt.verify(
                 cookie.parse(event.headers.cookie).jwt_refresh,
                 publicKey
-            ) as Record<string, string | number>
-
-            console.log(payload)
+            ) as { [key: string]: string | number }
 
             response = {
                 statusCode: 200,
@@ -69,8 +67,6 @@ export { handler }
 
 // get id from somewhere maybe the acces token jwt
 // check for the user
-
-// check validity of refresh jwt
 
 // check if id and token are in db
 // if everything is fine create new token

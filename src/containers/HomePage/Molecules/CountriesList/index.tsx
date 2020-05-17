@@ -7,6 +7,7 @@ import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors'
 
 import InlineLoader from 'components/Atoms/InlineLoader'
 import InfoMessage from 'components/Atoms/InfoMessage'
+import { CountryInterface } from 'containers/HomePage/Molecules/CountryListItem/types'
 import CountryListItem from 'containers/HomePage/Molecules/CountryListItem'
 
 import Fade from '@material-ui/core/Fade'
@@ -45,12 +46,12 @@ const useGetCountries = () => {
 
 const useFilteredCountries = (searchString: string | undefined) => {
     const { data } = useSelector(stateSelector)
-    const [countries, setCountries] = useState<object[]>([])
+    const [countries, setCountries] = useState<CountryInterface[]>([])
 
     useEffect(() => {
         if (searchString && searchString !== '') {
             setCountries(
-                data.filter((country: Record<string, any>) =>
+                data.filter(country =>
                     RegExp(searchString.toLowerCase()).exec(
                         country.name.toLowerCase()
                     )
@@ -88,7 +89,7 @@ const CountriesList: React.FC<CountriesListProps> = ({
                     <InlineLoader />
                 ) : (
                     <List component="nav" aria-label="countries">
-                        {countries.map((country: Record<string, any>) => (
+                        {countries.map(country => (
                             <div key={country.name}>
                                 <CountryListItem
                                     setOpen={setOpen}

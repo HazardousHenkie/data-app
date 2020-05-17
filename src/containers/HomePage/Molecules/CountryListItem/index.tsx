@@ -13,13 +13,14 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { createSelector } from 'reselect'
 import { makeSelectData } from 'containers/HomePage/Molecules/CountriesList/selectors'
+import { CountryInterface } from './types'
 import setSelectedCountry from './actions'
 
 import reducer from './reducer'
 
 interface CountriesListItemProps {
     setOpen: React.Dispatch<React.SetStateAction<boolean>>
-    listCountry: Record<string, any>
+    listCountry: CountryInterface
 }
 
 const key = 'country'
@@ -40,7 +41,7 @@ const CountriesListItem: React.FC<CountriesListItemProps> = ({
 
     const onClickCountry = (selectedName: string) => {
         const selectedCountry = countries.find(
-            (country: Record<string, any>) => country.name === selectedName
+            country => country.name === selectedName
         )
 
         if (selectedCountry) {

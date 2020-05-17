@@ -132,7 +132,7 @@ const CountryInformation: React.FC = () => {
                                 :
                             </strong>
                             {` ${country.languages.map(
-                                (language: Record<string, string>) =>
+                                (language: { [key: string]: string }) =>
                                     ` ${language.name}(${language.nativeName})`
                             )}`}
                         </>
@@ -150,28 +150,13 @@ const CountryInformation: React.FC = () => {
                                 :
                             </strong>
                             {` ${country.currencies.map(
-                                (currency: Record<string, string>) =>
+                                currency =>
                                     ` ${currency.code}(${currency.symbol})`
                             )}`}
                         </>
                     </Typography>
                 )}
             </CardContent>
-            {/* {countryAdvisory && !loading && (
-                <CardActions>
-                    <CardBottomTypography variant="body2" color="inherit">
-                        {countryAdvisory.advisory.updated}
-
-                        <StyledLink
-                            href={countryAdvisory.advisory.source}
-                            color="inherit"
-                            target="_blank"
-                        >
-                            {t('homePage:countryAdvisor.source', 'source')}
-                        </StyledLink>
-                    </CardBottomTypography>
-                </CardActions>
-            )} */}
         </Card>
     )
 }

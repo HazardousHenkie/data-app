@@ -6,7 +6,7 @@ const url = `https://restcountries.eu/rest/v2/all`
 
 interface CacheInterface {
     lastFetch: number
-    countries: Record<string, any>
+    countries: { [key: string]: number | object | string }[]
 }
 
 interface ResponseInterface {
@@ -21,7 +21,7 @@ const cache: CacheInterface = {
 
 const slimUpCountries = (countries: []) => {
     return countries.map(
-        (country: Record<string, number | object | string>) => ({
+        (country: { [key: string]: number | object | string }) => ({
             name: country.name,
             alpha2Code: country.alpha2Code,
             latlng: country.latlng,

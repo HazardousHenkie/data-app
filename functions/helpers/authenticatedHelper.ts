@@ -16,10 +16,9 @@ const authenticatedWrapper = (toBeCheckedCookie: string) => {
     }
 
     try {
-        const payload = jwt.verify(toBeCheckedCookie, publicKey) as Record<
-            string,
-            string | number
-        >
+        const payload = jwt.verify(toBeCheckedCookie, publicKey) as {
+            [key: string]: string | number
+        }
 
         const response = { statusCode: 200, body: payload.userId }
 

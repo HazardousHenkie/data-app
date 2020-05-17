@@ -17,6 +17,7 @@ import makeSelectCountry from 'containers/HomePage/Molecules/CountryListItem/sel
 import request from 'utils/request'
 
 import { useTranslation } from 'react-i18next'
+import CountryAdvisoryInterface from './types'
 import CardStyled, {
     CardBottomTypography,
     StyledLink
@@ -31,19 +32,20 @@ const useCountryAdvisory = () => {
     const [loading, setLoading] = useState<boolean>(false)
     const [fetchingError, setFetchingError] = useState<Error>()
     const [countryAdvisory, setCountryAdvisory] = useState<
-        Record<string, any>
+        CountryAdvisoryInterface
     >()
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true)
             try {
-                const result = (await request(
+                const result = await request(
                     `https://www.travel-advisory.info/api?countrycode=${country.alpha2Code}`
-                )) as Record<string, any>
+                )
 
                 if (result) {
-                    setCountryAdvisory(result.data[country.alpha2Code])
+                    const { data } = result as any
+                    setCountryAdvisory(data[country.alpha2Code])
                 }
             } catch (error) {
                 if (error.response.status !== 404) {

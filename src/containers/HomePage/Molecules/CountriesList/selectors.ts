@@ -1,5 +1,6 @@
 import { createSelector, Selector } from 'reselect'
 
+import { CountryInterface } from 'containers/HomePage/Molecules/CountryListItem/types'
 import { ApplicationRootState } from 'types'
 import { initialCountriesHeaderState } from './reducer'
 
@@ -19,7 +20,7 @@ const makeSelectLoader = () =>
 const makeSelectData = () =>
     createSelector(selectCountriesData, subState => subState.data) as Selector<
         unknown,
-        object[]
+        CountryInterface[]
     >
 
 export {
