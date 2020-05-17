@@ -7,9 +7,7 @@ export class ResponseError extends Error {
     }
 }
 
-function parseJSON(
-    response: Response
-): Promise<Response | ResponseError> | null {
+function parseJSON(response: Response) {
     if (response.status === 204 || response.status === 205) {
         return null
     }
@@ -17,7 +15,7 @@ function parseJSON(
     return response.json()
 }
 
-function checkStatus(response: Response): Response {
+function checkStatus(response: Response) {
     if (response.status >= 200 && response.status < 300) {
         return response
     }
@@ -27,11 +25,8 @@ function checkStatus(response: Response): Response {
     throw error
 }
 
-export default async function request(
-    url: string,
-    options?: RequestInit
-): Promise<Response | ResponseError> {
+export default async function request(url: string, options?: RequestInit) {
     const fetchResponse = await fetch(url, options)
     const response = checkStatus(fetchResponse)
-    return parseJSON(response) as Promise<Response | ResponseError>
+    return parseJSON(response)
 }
