@@ -1,6 +1,7 @@
 import { createSelector, Selector } from 'reselect'
 
 import { ApplicationRootState } from 'types'
+import { CountryInterface } from './types'
 import { initialCountryState } from './reducer'
 
 const selectCountry = (state: ApplicationRootState) => {
@@ -10,7 +11,7 @@ const selectCountry = (state: ApplicationRootState) => {
 const makeSelectCountry = () =>
     createSelector(selectCountry, subState => subState.country) as Selector<
         unknown,
-        Record<string, any>
+        CountryInterface
     >
 
 export default makeSelectCountry

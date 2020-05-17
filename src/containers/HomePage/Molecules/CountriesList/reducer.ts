@@ -8,7 +8,23 @@ import ActionTypes from './constants'
 export const initialCountriesHeaderState: ContainerCountriesListState = {
     error: false,
     loading: false,
-    data: []
+    data: [
+        {
+            alpha2Code: '',
+            name: '',
+            nativeName: '',
+            capital: '',
+            region: '',
+            subregion: '',
+            flag: '',
+            currency: '',
+            population: 0,
+            latlng: [0, 0],
+            currencies: [{ currency: 'euro' }],
+            languages: [{ language: 'language' }],
+            translations: { japanese: '日本語' }
+        }
+    ]
 }
 
 function countriesListReducer(

@@ -106,7 +106,7 @@ const GoogleLoginButton: React.FC = () => {
         setOpen(false)
     }
 
-    const googleResponseError = (response: Record<string, string>) => {
+    const googleResponseError = (response: { [key: string]: string }) => {
         setGoogleLoading(false)
         setOpen(true)
         setError(response.error)
