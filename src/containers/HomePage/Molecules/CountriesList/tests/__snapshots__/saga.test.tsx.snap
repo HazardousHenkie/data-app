@@ -6,7 +6,7 @@ Object {
   "combinator": false,
   "payload": Object {
     "args": Array [
-      "https://restcountries.eu/rest/v2/all",
+      "/.netlify/functions/countries",
       Object {
         "method": "GET",
       },
@@ -24,7 +24,7 @@ Object {
   "combinator": false,
   "payload": Object {
     "args": Array [
-      "https://restcountries.eu/rest/v2/all",
+      "/.netlify/functions/countries",
       Object {
         "method": "GET",
       },

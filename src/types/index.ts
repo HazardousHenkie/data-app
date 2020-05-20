@@ -6,6 +6,7 @@ import { RouterState } from 'connected-react-router'
 
 import { ContainerCountriesListState } from 'containers/HomePage/Molecules/CountriesList/types'
 import { ContainerCountryState } from 'containers/HomePage/Molecules/CountryListItem/types'
+import { ContainerUserState } from 'reduxComponents/User/types'
 
 export interface InjectedStore extends Store {
     injectedReducers: object
@@ -27,4 +28,5 @@ export interface ApplicationRootState {
     readonly router: RouterState
     readonly countriesData: ContainerCountriesListState
     readonly country: ContainerCountryState
+    readonly user: ContainerUserState
 }
