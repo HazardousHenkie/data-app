@@ -1,6 +1,3 @@
-import { ActionType } from 'typesafe-actions'
-import setSelectedCountry from './actions'
-
 export interface CountryInterface {
     alpha2Code: string
     name: string
@@ -17,11 +14,6 @@ export interface CountryInterface {
     translations: { [key: string]: string }
 }
 
-interface CountryState {
-    readonly country: object
+export interface CountryState {
+    readonly country: CountryInterface
 }
-
-type CountryActions = ActionType<typeof setSelectedCountry>
-
-export type ContainerCountryState = CountryState
-export type ContainerCountryActions = CountryActions

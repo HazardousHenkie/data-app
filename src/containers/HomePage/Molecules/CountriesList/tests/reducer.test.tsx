@@ -4,10 +4,10 @@ import {
     getCountriesDataSuccess,
     getCountriesDataError
 } from '../actions'
-import { ContainerCountriesListState } from '../types'
+import CountriesListState from '../types'
 
 describe('countriesListReducer', () => {
-    let state: ContainerCountriesListState
+    let state: CountriesListState
     beforeEach(() => {
         state = {
             error: false,
