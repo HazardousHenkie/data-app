@@ -9,7 +9,7 @@ const selectUser = (state: ApplicationRootState) =>
 const makeSelectUser = () =>
     createSelector(selectUser, subState => subState.user) as Selector<
         unknown,
-        Record<string, any>
+        object
     >
 
 export { selectUser, makeSelectUser }

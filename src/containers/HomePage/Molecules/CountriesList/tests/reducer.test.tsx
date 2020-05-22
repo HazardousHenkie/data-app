@@ -34,9 +34,19 @@ describe('countriesListReducer', () => {
     it('should handle the getCountriesDataSuccess action correctly', () => {
         const fixture = [
             {
-                alpha2Code: 'AF',
-                alpha3Code: 'AFG',
-                altSpellings: ['AF', 'Afġānistān']
+                alpha2Code: '',
+                name: '',
+                nativeName: '',
+                capital: '',
+                region: '',
+                subregion: '',
+                flag: '',
+                currency: '',
+                population: 0,
+                latlng: [0, 0],
+                currencies: [{ currency: 'euro' }],
+                languages: [{ language: 'language' }],
+                translations: { japanese: '日本語' }
             }
         ]
         const expectedResult = { error: false, loading: false, data: fixture }

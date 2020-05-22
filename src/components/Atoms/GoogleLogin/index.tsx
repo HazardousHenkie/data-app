@@ -25,6 +25,8 @@ const useGoogleAuthResponse = (googleResponseToken: string | undefined) => {
         object
     >()
 
+    //      // check if token is still valid and login again if not (check on page load and request not in this file)
+
     useEffect(() => {
         if (googleResponseToken && googleResponseToken !== '') {
             const fetchData = async () => {
@@ -44,7 +46,8 @@ const useGoogleAuthResponse = (googleResponseToken: string | undefined) => {
                         setGoogleAuthServerResponse(result)
                     }
                 } catch (error) {
-                    setFetchingError(error)
+                    const errorResponseMessage = await error.response.json()
+                    setFetchingError(errorResponseMessage)
                 }
 
                 setLoading(false)
@@ -92,9 +95,9 @@ const GoogleLoginButton: React.FC = () => {
         response: GoogleLoginResponse | GoogleLoginResponseOffline
     ) => {
         setGoogleLoading(false)
-        if ((response as GoogleLoginResponse).accessToken) {
+        if ((response as GoogleLoginResponse).getAuthResponse().id_token) {
             setGoogleResponseToken(
-                (response as GoogleLoginResponse).accessToken
+                (response as GoogleLoginResponse).getAuthResponse().id_token
             )
         }
     }
@@ -103,7 +106,7 @@ const GoogleLoginButton: React.FC = () => {
         setOpen(false)
     }
 
-    const googleResponseError = (response: Record<string, string>) => {
+    const googleResponseError = (response: { [key: string]: string }) => {
         setGoogleLoading(false)
         setOpen(true)
         setError(response.error)
@@ -134,7 +137,6 @@ const GoogleLoginButton: React.FC = () => {
                         onRequest={onGoogleLoginRequest}
                         buttonText="Login"
                         disabled={googleLoading}
-                        // isSignedIn={true}
                         onSuccess={googleResponseSuccess}
                         onFailure={googleResponseError}
                     />
