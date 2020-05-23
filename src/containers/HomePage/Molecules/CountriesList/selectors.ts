@@ -2,7 +2,7 @@ import { createSelector, Selector } from 'reselect'
 
 import { CountryInterface } from 'containers/HomePage/Molecules/CountryListItem/types'
 import { ApplicationRootState } from 'types'
-import { initialCountriesHeaderState } from './reducer'
+import { initialCountriesHeaderState } from './constants'
 
 const selectCountriesData = (state: ApplicationRootState) =>
     state.countriesData || initialCountriesHeaderState

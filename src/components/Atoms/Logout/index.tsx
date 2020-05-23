@@ -6,7 +6,7 @@ import InlineLoader from 'components/Atoms/InlineLoader'
 import request from 'utils/request'
 
 import { useDispatch } from 'react-redux'
-import setUser from 'reduxComponents/User/actions'
+// import setUser from 'reduxComponents/User/actions'
 
 const useLogoutResponse = () => {
     const [loading, setLoading] = useState<boolean>(false)
@@ -52,9 +52,9 @@ const LogoutButton: React.FC = () => {
     // const { loading, fetchingError, logoutResponse } = useLogoutResponse()
 
     useEffect(() => {
-        if (logoutResponse) {
-            dispatch(setUser(logoutResponse))
-        }
+        // if (logoutResponse) {
+        //     dispatch(setUser(logoutResponse))
+        // }
     }, [logoutResponse, dispatch])
 
     useEffect(() => {
