@@ -8,36 +8,6 @@ import request from 'utils/request'
 import { useDispatch } from 'react-redux'
 // import setUser from 'reduxComponents/User/actions'
 
-const useLogoutResponse = () => {
-    const [loading, setLoading] = useState<boolean>(false)
-    const [fetchingError, setFetchingError] = useState<Error>()
-    const [logoutResponse, setlogoutResponse] = useState<object>()
-
-    useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true)
-            try {
-                const result = await request(`/.netlify/functions/logout`, {
-                    method: 'POST'
-                })
-
-                if (result) {
-                    setlogoutResponse(result)
-                }
-            } catch (error) {
-                const errorResponseMessage = await error.response.json()
-                setFetchingError(errorResponseMessage)
-            }
-
-            setLoading(false)
-        }
-
-        fetchData()
-    }, [])
-
-    return { loading, fetchingError, logoutResponse }
-}
-
 const LogoutButton: React.FC = () => {
     // check if we can do this in a custom hook
     // do something with error message

@@ -1,11 +1,11 @@
 import { action } from 'typesafe-actions'
 
-import LoginState from './types'
+import AuthenticationState from '../types'
 import ActionTypes from './constants'
 
-export const loginRequest = (loginToken?: string) =>
+export const loginRequest = (loginToken: string) =>
     action(ActionTypes.LOGIN_REQUEST, loginToken)
-export const loginSuccess = (user: LoginState['user']) =>
+export const loginSuccess = (user: AuthenticationState['user']) =>
     action(ActionTypes.LOGIN_SUCCESS, user)
 export const loginError = (error: Error | boolean) =>
     action(ActionTypes.LOGIN_ERROR, error)

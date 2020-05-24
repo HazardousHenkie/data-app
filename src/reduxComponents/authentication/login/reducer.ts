@@ -1,13 +1,14 @@
 import { ActionType } from 'typesafe-actions'
 import { Reducer } from 'redux'
-import LoginState from './types'
+import AuthenticationState from '../types'
 
 import * as actions from './actions'
 
-import ActionTypes, { initialLoginState } from './constants'
+import ActionTypes from './constants'
+import initialAuthenticationState from '../constants'
 
-const loginReducer: Reducer<LoginState, ActionType<typeof actions>> = (
-    state = initialLoginState,
+const loginReducer: Reducer<AuthenticationState, ActionType<typeof actions>> = (
+    state = initialAuthenticationState,
     action
 ) => {
     switch (action.type) {

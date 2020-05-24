@@ -7,9 +7,7 @@ import { ActionType as typeSafeAction } from 'typesafe-actions'
 import ActionTypes from './constants'
 import { loginSuccess, loginError, loginRequest } from './actions'
 
-// move all this to external components
 export function* loginSaga(params: typeSafeAction<typeof loginRequest>) {
-    console.log(params)
     const requestURL = '/.netlify/functions/googleLogin'
 
     try {

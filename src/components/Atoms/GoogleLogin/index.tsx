@@ -13,15 +13,15 @@ import InlineLoader from 'components/Atoms/InlineLoader'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { createStructuredSelector } from 'reselect'
-import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors'
+
+import {
+    makeSelectError,
+    makeSelectLoader
+} from 'reduxComponents/authentication/selectors'
+
+import { loginRequest } from 'reduxComponents/authentication/login/actions'
+
 import GoogleLoginWrapper from './styledComponents'
-
-import { loginRequest } from './actions'
-
-import { makeSelectError, makeSelectLoader } from './selectors'
-
-import saga from './saga'
-import reducer from './reducer'
 
 const stateSelector = createStructuredSelector({
     error: makeSelectError(),
@@ -33,12 +33,6 @@ const GoogleLoginButton: React.FC = () => {
     const [googleLoading, setGoogleLoading] = useState<boolean>(false)
     const [open, setOpen] = useState<boolean>(false)
     const [error, setError] = useState<string>()
-
-    const key = 'loginData'
-
-    // check this any
-    useInjectReducer({ key, reducer } as any)
-    useInjectSaga({ key, saga })
 
     const { error: fetchingError, loading } = useSelector(stateSelector)
 

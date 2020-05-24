@@ -6,7 +6,7 @@ import { RouterState } from 'connected-react-router'
 
 import CountriesListState from 'containers/HomePage/Molecules/CountriesList/types'
 import { CountryState } from 'containers/HomePage/Molecules/CountryListItem/types'
-import LoginState from 'components/Atoms/GoogleLogin/types'
+import AuthenticationState from 'reduxComponents/authentication/types'
 
 export interface InjectedStore extends Store {
     injectedReducers: object
@@ -28,5 +28,5 @@ export interface ApplicationRootState {
     readonly router: RouterState
     readonly countriesData: CountriesListState
     readonly country: CountryState
-    readonly loginData: LoginState
+    readonly authenticationData: AuthenticationState
 }
