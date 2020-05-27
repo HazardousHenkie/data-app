@@ -1,15 +1,16 @@
-import { ContainerCountryState, ContainerCountryActions } from './types'
+import { ActionType } from 'typesafe-actions'
+import { CountryState } from './types'
 
-import ActionTypes from './constants'
+import * as actions from './actions'
 
-export const initialCountryState: ContainerCountryState = {
-    country: {}
-}
+import ActionTypes, { CountryItem } from './constants'
+
+export const initialCountryState = CountryItem
 
 function countriesListReducer(
-    state: ContainerCountryState = initialCountryState,
-    action: ContainerCountryActions
-): ContainerCountryState {
+    state: CountryState = initialCountryState,
+    action: ActionType<typeof actions>
+): CountryState {
     switch (action.type) {
         case ActionTypes.SET_SELECTED_COUNTRY:
             return {
