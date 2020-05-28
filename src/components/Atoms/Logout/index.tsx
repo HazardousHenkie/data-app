@@ -5,6 +5,20 @@ import InfoMessage from 'components/Atoms/InfoMessage'
 import InlineLoader from 'components/Atoms/InlineLoader'
 import request from 'utils/request'
 
+// fix this logout remove logout below
+// const googleResponseSuccess = (
+//     response: GoogleLoginResponse | GoogleLoginResponseOffline
+// ) => {
+//     setGoogleLoading(false)
+//     if ((response as GoogleLoginResponse).getAuthResponse().id_token) {
+//         dispatch(
+//             loginRequest(
+//                 (response as GoogleLoginResponse).getAuthResponse().id_token
+//             )
+//         )
+//     }
+// }
+
 import { useDispatch } from 'react-redux'
 // import setUser from 'reduxComponents/User/actions'
 

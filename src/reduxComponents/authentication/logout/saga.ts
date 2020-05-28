@@ -1,11 +1,10 @@
-import { call, put, takeLatest } from 'redux-saga/effects'
+import { call, put } from 'redux-saga/effects'
 
 import request from 'utils/request'
 
-import ActionTypes from './constants'
 import { logoutSuccess, logoutError } from './actions'
 
-export function* logoutSaga() {
+export default function* logoutSaga() {
     const requestURL = '/.netlify/functions/logout'
 
     try {
@@ -17,8 +16,4 @@ export function* logoutSaga() {
     } catch (error) {
         yield put(logoutError(error))
     }
-}
-
-export default function* logoutRootSaga() {
-    yield takeLatest(ActionTypes.LOGOUT_REQUEST, logoutSaga)
 }

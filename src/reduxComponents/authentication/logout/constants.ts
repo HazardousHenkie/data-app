@@ -1,7 +1,7 @@
 enum ActionTypes {
-    LOGOUT_REQUEST = 'components/GoogleLogin/LOGIN_REQUEST',
-    LOGOUT_SUCCESS = 'components/GoogleLogin/LOGIN_SUCCESS',
-    LOGOUT_ERROR = 'components/GoogleLogin/LOGIN_ERROR'
+    LOGOUT_REQUEST = 'authentication/Logout/LOGIN_REQUEST',
+    LOGOUT_SUCCESS = 'authentication/Logout/LOGIN_SUCCESS',
+    LOGOUT_ERROR = 'authentication/Logout/LOGIN_ERROR'
 }
 
 export default ActionTypes
