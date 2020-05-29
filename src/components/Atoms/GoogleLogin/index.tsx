@@ -70,9 +70,11 @@ const GoogleLoginButton: React.FC = () => {
         setError(response.error)
     }
 
+    console.log(process.env.REACT_APP_GOOGLE_CLIENT_ID)
+
     return (
         <>
-            {process.env.REACT_APP_GOOGLE_LOGIN_CLIENT_ID && (
+            {process.env.REACT_APP_GOOGLE_CLIENT_ID && (
                 <GoogleLoginWrapper>
                     {(loading || googleLoading) && <InlineLoader />}
 
@@ -91,7 +93,7 @@ const GoogleLoginButton: React.FC = () => {
                     )}
 
                     <GoogleLogin
-                        clientId={process.env.REACT_APP_GOOGLE_LOGIN_CLIENT_ID}
+                        clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                         onRequest={onGoogleLoginRequest}
                         buttonText="Login"
                         disabled={googleLoading}

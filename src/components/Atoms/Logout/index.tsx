@@ -19,6 +19,16 @@ import request from 'utils/request'
 //     }
 // }
 
+// lgout mo aruda
+
+// import { GoogleLogout } from 'react-google-login';
+// <GoogleLogout
+//   clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+//   buttonText="Logout"
+//   onLogoutSuccess={logout}
+// >
+// </GoogleLogout>
+
 import { useDispatch } from 'react-redux'
 // import setUser from 'reduxComponents/User/actions'
 
