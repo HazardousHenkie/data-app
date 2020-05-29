@@ -41,6 +41,8 @@ export default function configureStore(
     store.runSaga = sagaMiddleware.run
     store.injectedReducers = {}
     store.injectedSagas = {}
+    // check of this can be better
+    // combine sagas?
     store.runSaga(authenticationRootSaga, undefined)
 
     if (module.hot) {

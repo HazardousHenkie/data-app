@@ -1,3 +1,4 @@
+import { CountryItem } from 'containers/HomePage/Molecules/CountryListItem/constants'
 import countriesListReducer from '../reducer'
 import {
     getCountriesData,
@@ -5,15 +6,12 @@ import {
     getCountriesDataError
 } from '../actions'
 import CountriesListState from '../types'
+import { initialCountriesHeaderState } from '../constants'
 
 describe('countriesListReducer', () => {
     let state: CountriesListState
     beforeEach(() => {
-        state = {
-            error: false,
-            loading: false,
-            data: []
-        }
+        state = initialCountriesHeaderState
     })
 
     it('should return the initial state', () => {
@@ -24,7 +22,11 @@ describe('countriesListReducer', () => {
     })
 
     it('should handle the getCountriesData action correctly', () => {
-        const expectedResult = { error: false, loading: true, data: [] }
+        const expectedResult = {
+            error: false,
+            loading: true,
+            data: [CountryItem.country]
+        }
 
         expect(countriesListReducer(state, getCountriesData())).toEqual(
             expectedResult
@@ -32,23 +34,7 @@ describe('countriesListReducer', () => {
     })
 
     it('should handle the getCountriesDataSuccess action correctly', () => {
-        const fixture = [
-            {
-                alpha2Code: '',
-                name: '',
-                nativeName: '',
-                capital: '',
-                region: '',
-                subregion: '',
-                flag: '',
-                currency: '',
-                population: 0,
-                latlng: [0, 0],
-                currencies: [{ currency: 'euro' }],
-                languages: [{ language: 'language' }],
-                translations: { japanese: '日本語' }
-            }
-        ]
+        const fixture = [CountryItem.country]
         const expectedResult = { error: false, loading: false, data: fixture }
 
         expect(
@@ -58,7 +44,11 @@ describe('countriesListReducer', () => {
 
     it('should handle the getCountriesDataError action correctly', () => {
         const error = new Error('Something went wrong!')
-        const expectedResult = { error, loading: false, data: [] }
+        const expectedResult = {
+            error,
+            loading: false,
+            data: [CountryItem.country]
+        }
 
         expect(
             countriesListReducer(state, getCountriesDataError(error))
