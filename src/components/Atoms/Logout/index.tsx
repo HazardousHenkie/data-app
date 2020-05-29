@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import Snackbar from '@material-ui/core/Snackbar'
 import InfoMessage from 'components/Atoms/InfoMessage'
-import InlineLoader from 'components/Atoms/InlineLoader'
+// import InlineLoader from 'components/Atoms/InlineLoader'
 import request from 'utils/request'
 
 // fix this logout remove logout below
