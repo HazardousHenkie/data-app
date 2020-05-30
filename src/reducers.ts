@@ -5,12 +5,10 @@ import authenticationReducer from 'reduxComponents/authentication/reducer'
 
 import history from 'utils/history'
 
-export default function createReducer(
-    injectedReducers = {}
-): Reducer<any, any> {
+export default function createReducer(injectedReducers = {}): Reducer {
     const rootReducer = combineReducers({
         router: connectRouter(history),
-        authenticationReducer,
+        authenticationData: authenticationReducer,
         ...injectedReducers
     })
 

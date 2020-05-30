@@ -6,14 +6,24 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 
 import GoogleLoginButton from 'components/Atoms/GoogleLogin'
-import LogoutButton from 'components/Atoms/GoogleLogout'
+import GoogleLogoutButton from 'components/Atoms/GoogleLogout'
 import ThemeSwitcher from 'components/Atoms/ThemeSwitcher'
 import LanguageSwitcher from 'components/Molecules/LanguageSwitcher'
 
+import { createSelector } from 'reselect'
+import { useSelector } from 'react-redux'
+
+import { makeSelectLoggedIn } from 'reduxComponents/authentication/selectors'
+
 import ListStyled from './styledComponents'
+
+const stateSelector = createSelector(makeSelectLoggedIn(), loggedIn => ({
+    loggedIn
+}))
 
 const MenuList: React.FC = () => {
     const { t } = useTranslation('menuList')
+    const { loggedIn } = useSelector(stateSelector)
 
     return (
         <ListStyled aria-label={t('menuList:titleMenu', 'Mainmenu')}>
@@ -22,9 +32,7 @@ const MenuList: React.FC = () => {
             </ListItem>
 
             <ListItem>
-                <GoogleLoginButton />
-
-                <LogoutButton />
+                {loggedIn ? <GoogleLogoutButton /> : <GoogleLoginButton />}
             </ListItem>
 
             <ListItem style={{ marginTop: 'auto' }} dense>
