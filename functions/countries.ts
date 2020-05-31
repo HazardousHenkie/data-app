@@ -1,6 +1,7 @@
 import { Handler } from 'aws-lambda'
 
 import fetch from 'isomorphic-fetch'
+import serialize from 'serialize-javascript'
 
 const url = `https://restcountries.eu/rest/v2/all`
 
@@ -64,7 +65,7 @@ const handler: Handler = async () => {
 
     const response: ResponseInterface = {
         statusCode: 200,
-        body: JSON.stringify(countries)
+        body: serialize(countries)
     }
 
     return response

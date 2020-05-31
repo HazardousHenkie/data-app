@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 import {
     GoogleLogin,
@@ -14,21 +14,17 @@ import InlineLoader from 'components/Atoms/InlineLoader'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { createStructuredSelector } from 'reselect'
+import { createSelector } from 'reselect'
 
-import {
-    makeSelectError,
-    makeSelectLoader
-} from 'reduxComponents/authentication/selectors'
+import { makeSelectLoader } from 'reduxComponents/authentication/selectors'
 
 import { loginRequest } from 'reduxComponents/authentication/login/actions'
 
 import GoogleLoginWrapper from './styledComponents'
 
-const stateSelector = createStructuredSelector({
-    error: makeSelectError(),
-    loading: makeSelectLoader()
-})
+const stateSelector = createSelector(makeSelectLoader(), loading => ({
+    loading
+}))
 
 const GoogleLoginButton: React.FC = () => {
     const dispatch = useDispatch()
@@ -37,18 +33,11 @@ const GoogleLoginButton: React.FC = () => {
     const [open, setOpen] = useState<boolean>(false)
     const [error, setError] = useState<string>()
 
-    const { error: fetchingError, loading } = useSelector(stateSelector)
+    const { loading } = useSelector(stateSelector)
 
     const onGoogleLoginRequest = () => {
         setGoogleLoading(true)
     }
-
-    useEffect(() => {
-        if (fetchingError) {
-            setOpen(true)
-            setError(fetchingError.toString())
-        }
-    }, [fetchingError])
 
     const googleResponseSuccess = (
         response: GoogleLoginResponse | GoogleLoginResponseOffline

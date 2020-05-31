@@ -21,6 +21,7 @@ export default function* loginSaga(
         })
 
         authToken.token = response.authToken
+        localStorage.setItem('userId', response.user.googleId)
 
         yield put(loginSuccess(response.user))
     } catch (error) {

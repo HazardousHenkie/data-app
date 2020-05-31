@@ -28,5 +28,6 @@ function checkStatus(response: Response) {
 export default async function request(url: string, options?: RequestInit) {
     const fetchResponse = await fetch(url, options)
     const response = checkStatus(fetchResponse)
+
     return parseJSON(response)
 }

@@ -4,8 +4,14 @@ import lightTheme, { darkTheme } from 'styles/themeStyles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import GlobalStyle from 'styles/index'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { getRefreshTokenRequest } from 'reduxComponents/authentication/refreshToken/actions'
+
 import ThemeContext from 'components/Atoms/ThemeSwitcher/ThemeContext'
 import { ThemeProvider } from 'styled-components'
+
+import Snackbar from '@material-ui/core/Snackbar'
+import InfoMessage from 'components/Atoms/InfoMessage'
 
 import {
     ThemeProvider as MuiThemeProvider,
@@ -17,16 +23,41 @@ import { useTranslation } from 'react-i18next'
 
 import { Helmet } from 'react-helmet'
 
+import { createSelector } from 'reselect'
+import { makeSelectError } from 'reduxComponents/authentication/selectors'
 import Routes from './routes'
 
+const stateSelector = createSelector(makeSelectError(), error => ({
+    error
+}))
+
 const App: React.FC = () => {
+    const dispatch = useDispatch()
     const { t } = useTranslation('app')
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
     const [darkMode, setDarkMode] = useState(
         localStorage.getItem('darkmode') === 'true'
     )
     const [theme, setTheme] = useState(lightTheme)
-    // login if cookie is there
+    const [open, setOpen] = useState<boolean>(false)
+    const { error } = useSelector(stateSelector)
+
+    useEffect(() => {
+        if (error) {
+            setOpen(true)
+        }
+    }, [error])
+
+    useEffect(() => {
+        if (
+            localStorage.getItem('userId') &&
+            localStorage.getItem('userId') !== null
+        ) {
+            dispatch(
+                getRefreshTokenRequest(localStorage.getItem('userId') as string)
+            )
+        }
+    }, [dispatch])
 
     useEffect(() => {
         if (!localStorage.getItem('darkmode')) {
@@ -37,6 +68,10 @@ const App: React.FC = () => {
     useEffect(() => {
         setTheme(darkMode ? darkTheme : lightTheme)
     }, [darkMode])
+
+    const handleClose = () => {
+        setOpen(false)
+    }
 
     return (
         <StylesProvider injectFirst>
@@ -63,6 +98,22 @@ const App: React.FC = () => {
                                 )}
                             />
                         </Helmet>
+                        {error && (
+                            <Snackbar
+                                open={open}
+                                autoHideDuration={6000}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'center'
+                                }}
+                                onClose={handleClose}
+                            >
+                                <InfoMessage
+                                    message={error.toString()}
+                                    severity="error"
+                                />
+                            </Snackbar>
+                        )}
                         <ThemeContext.Provider
                             value={{ darkMode, setDarkMode }}
                         >

@@ -6,6 +6,7 @@ import { OAuth2Client } from 'google-auth-library'
 
 import cookie from 'cookie'
 
+import serialize from 'serialize-javascript'
 import createJwtAuthToken, {
     createRefreshCookie,
     createJwtRefreshToken
@@ -111,7 +112,7 @@ const handler: Handler = async (event: APIGatewayEvent) => {
                         'Set-Cookie': createRefreshCookie(refreshToken),
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({
+                    body: serialize({
                         user: existingUser.data,
                         authToken
                     })
@@ -120,7 +121,7 @@ const handler: Handler = async (event: APIGatewayEvent) => {
                 response = { statusCode: 400, body: 'User DB error.' }
             }
         } catch (error) {
-            response = { statusCode: 400, body: JSON.stringify(error.message) }
+            response = { statusCode: 400, body: serialize(error.message) }
         }
     } else {
         response = {
