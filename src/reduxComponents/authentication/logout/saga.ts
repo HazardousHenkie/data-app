@@ -4,12 +4,17 @@ import request from 'utils/request'
 
 import { logoutSuccess, logoutError } from './actions'
 
+import authToken from '../authToken'
+
 export default function* logoutSaga() {
-    const requestURL = '/.netlify/functions/logout'
+    const requestURL = '/.netlify/functions/googleLogout'
 
     try {
         const response = yield call(request, requestURL, {
-            method: 'POST'
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${authToken.token}`
+            }
         })
 
         yield put(logoutSuccess(response))
