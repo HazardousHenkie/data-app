@@ -4,7 +4,6 @@ import cookie from 'cookie'
 
 import { Handler, APIGatewayEvent } from 'aws-lambda'
 
-import serialize from 'serialize-javascript'
 import createJwtAuthToken from './helpers/jwt-helpers'
 
 import publicKey from './keys/publicKeyRefresh'
@@ -67,7 +66,7 @@ const handler: Handler = async (event: APIGatewayEvent) => {
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: serialize({
+                    body: JSON.stringify({
                         user: {
                             userId: user.data.googleId,
                             username: user.data.name
@@ -79,7 +78,7 @@ const handler: Handler = async (event: APIGatewayEvent) => {
                 throw new Error('Cookies not valid or present.')
             }
         } catch (error) {
-            response = { statusCode: 400, body: serialize(error.message) }
+            response = { statusCode: 400, body: JSON.stringify(error.message) }
         }
     } else {
         response = {
