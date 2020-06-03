@@ -7,8 +7,6 @@ interface UserResponseInterface {
     data: { [key: string]: string }
 }
 
-// delete token function for logout
-
 export const getToken = (token: string, id: string) => {
     const tokenData: Promise<UserResponseInterface> = faunaClient.query(
         fQuery.Get(

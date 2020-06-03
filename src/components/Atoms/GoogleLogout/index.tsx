@@ -36,7 +36,6 @@ const GoogleLogoutButton: React.FC = () => {
     }
 
     const googleResponseSuccess = () => {
-        setGoogleLoading(false)
         dispatch(logoutRequest())
     }
 
