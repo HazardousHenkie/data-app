@@ -1,14 +1,19 @@
 import { ExprArg } from 'faunadb'
 import faunaClient, { fQuery } from './faunaDB'
 
-interface UserResponseInterface {
+interface TokenResponseInterface {
     ref: ExprArg
     ts: number
-    data: { [key: string]: string }
+    data: {
+        googleId: string
+        token: string
+        updatedAt: number
+        createdAt: number
+    }
 }
 
-export const getToken = (token: string, id: string) => {
-    const tokenData: Promise<UserResponseInterface> = faunaClient.query(
+const getToken = (token: string, id: string) => {
+    const tokenData: Promise<TokenResponseInterface> = faunaClient.query(
         fQuery.Get(
             fQuery.Match(
                 fQuery.Index('get_token_by_token_and_googleId'),
@@ -22,13 +27,15 @@ export const getToken = (token: string, id: string) => {
 }
 
 export const removeToken = (ref: ExprArg) => {
-    const tokenData: Promise<object> = faunaClient.query(fQuery.Delete(ref))
+    const tokenData: Promise<TokenResponseInterface> = faunaClient.query(
+        fQuery.Delete(ref)
+    )
 
     return tokenData
 }
 
-export const createToken = (id: string, token: string) => {
-    const tokenData: Promise<UserResponseInterface> = faunaClient.query(
+export const createToken = async (id: string, token: string) => {
+    const tokenData: Promise<TokenResponseInterface> = faunaClient.query(
         fQuery.Create(fQuery.Collection('tokens'), {
             data: {
                 googleId: id,
@@ -43,7 +50,7 @@ export const createToken = (id: string, token: string) => {
 }
 
 export const updateToken = (token: string, id: string) => {
-    const tokenData: Promise<UserResponseInterface> = faunaClient.query(
+    const tokenData: Promise<TokenResponseInterface> = faunaClient.query(
         fQuery.Create(fQuery.Collection('tokens'), {
             data: {
                 googleId: id,

@@ -4,7 +4,10 @@ import faunaClient, { fQuery } from './faunaDB'
 interface UserResponseInterface {
     ref: ExprArg
     ts: number
-    data: { [key: string]: string }
+    data: {
+        googleId: string
+        name: string
+    }
 }
 
 const getUser = (id: string) => {
