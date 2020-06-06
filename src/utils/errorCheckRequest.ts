@@ -1,6 +1,6 @@
 import { put } from 'redux-saga/effects'
-import { getRefreshTokenRequest } from 'reduxComponents/authentication/refreshToken/actions'
-import { logoutRequest } from 'reduxComponents/authentication/logout/actions'
+import { getRefreshTokenRequest } from 'globals/authentication/refreshToken/actions'
+import { logoutRequest } from 'globals/authentication/logout/actions'
 import ERROR_STATUS_CODES from 'utils/errorStatusCodes'
 import { ResponseError } from './request'
 

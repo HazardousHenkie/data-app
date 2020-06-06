@@ -6,7 +6,7 @@ import { RouterState } from 'connected-react-router'
 
 import CountriesListState from 'containers/HomePage/Molecules/CountriesList/types'
 import { CountryState } from 'containers/HomePage/Molecules/CountryListItem/types'
-import AuthenticationState from 'reduxComponents/authentication/types'
+import AuthenticationState from 'globals/authentication/types'
 
 export interface InjectedStore extends Store {
     injectedReducers: object

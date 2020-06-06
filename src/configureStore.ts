@@ -6,7 +6,7 @@ import { History } from 'history'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 import { InjectedStore, ApplicationRootState } from 'types'
-import authenticationRootSaga from 'reduxComponents/authentication/sagas'
+import authenticationRootSaga from 'globals/authentication/sagas'
 import createReducer from './reducers'
 
 export default function configureStore(

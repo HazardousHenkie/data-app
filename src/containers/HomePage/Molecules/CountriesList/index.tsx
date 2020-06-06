@@ -40,6 +40,7 @@ const useGetCountries = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
+        console.log('itsumo koko')
         dispatch(getCountriesData())
     }, [dispatch])
 }

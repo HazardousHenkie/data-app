@@ -13,7 +13,7 @@ import LanguageSwitcher from 'components/Molecules/LanguageSwitcher'
 import { createSelector } from 'reselect'
 import { useSelector } from 'react-redux'
 
-import { makeSelectLoggedIn } from 'reduxComponents/authentication/selectors'
+import { makeSelectLoggedIn } from 'globals/authentication/selectors'
 
 import ListStyled from './styledComponents'
 

@@ -5,7 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import GlobalStyle from 'styles/index'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { getRefreshTokenRequest } from 'reduxComponents/authentication/refreshToken/actions'
+import { getRefreshTokenRequest } from 'globals/authentication/refreshToken/actions'
 
 import ThemeContext from 'components/Atoms/ThemeSwitcher/ThemeContext'
 import { ThemeProvider } from 'styled-components'
@@ -24,7 +24,7 @@ import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet'
 
 import { createSelector } from 'reselect'
-import { makeSelectError } from 'reduxComponents/authentication/selectors'
+import { makeSelectError } from 'globals/authentication/selectors'
 import Routes from './routes'
 
 const stateSelector = createSelector(makeSelectError(), error => ({

@@ -12,9 +12,9 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { createSelector } from 'reselect'
 
-import { makeSelectLoader } from 'reduxComponents/authentication/selectors'
+import { makeSelectLoader } from 'globals/authentication/selectors'
 
-import { logoutRequest } from 'reduxComponents/authentication/logout/actions'
+import { logoutRequest } from 'globals/authentication/logout/actions'
 
 import GoogleLogoutWrapper from './styledComponents'
 

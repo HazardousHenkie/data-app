@@ -3,7 +3,10 @@ import React from 'react'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 import IconButton from '@material-ui/core/IconButton'
 
+// do something with active
+
 interface HeartButtonProps {
+    active: boolean
     label: string
     heartOnClick: () => void
 }
