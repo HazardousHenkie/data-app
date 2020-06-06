@@ -25,6 +25,7 @@ import { Helmet } from 'react-helmet'
 
 import { createSelector } from 'reselect'
 import { makeSelectError } from 'globals/authentication/selectors'
+import { ResponseError } from 'utils/request'
 import Routes from './routes'
 
 const stateSelector = createSelector(makeSelectError(), error => ({
@@ -109,7 +110,9 @@ const App: React.FC = () => {
                                 onClose={handleClose}
                             >
                                 <InfoMessage
-                                    message={error.toString()}
+                                    message={
+                                        (error as ResponseError).responseText
+                                    }
                                     severity="error"
                                 />
                             </Snackbar>

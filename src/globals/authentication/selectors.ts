@@ -1,6 +1,8 @@
 import { createSelector, Selector } from 'reselect'
 
 import { ApplicationRootState } from 'types'
+
+import { ResponseError } from 'utils/request'
 import AuthenticationState from './types'
 import initialAuthenticationState from './constants'
 
@@ -11,7 +13,7 @@ const makeSelectError = () =>
     createSelector(
         selectAuthenticationData,
         subState => subState.error
-    ) as Selector<unknown, boolean | Error>
+    ) as Selector<unknown, boolean | ResponseError>
 
 const makeSelectLoggedIn = () =>
     createSelector(

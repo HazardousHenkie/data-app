@@ -13,6 +13,7 @@ import CountryListItem from 'containers/HomePage/Molecules/CountryListItem'
 import Fade from '@material-ui/core/Fade'
 import List from '@material-ui/core/List'
 import Divider from '@material-ui/core/Divider'
+import { ResponseError } from 'utils/request'
 import CountriesListDiv from './styledComponents'
 
 import saga from './saga'
@@ -83,7 +84,10 @@ const CountriesList: React.FC<CountriesListProps> = ({
         <Fade in={open}>
             <CountriesListDiv>
                 {error && (
-                    <InfoMessage severity="error" message={error.toString()} />
+                    <InfoMessage
+                        severity="error"
+                        message={(error as ResponseError).responseText}
+                    />
                 )}
 
                 {loading ? (

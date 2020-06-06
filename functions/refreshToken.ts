@@ -45,16 +45,18 @@ const handler: Handler = async (event: APIGatewayEvent) => {
                     [key: string]: string | number
                 }
                 if (refreshCookiePayload.userId !== userId) {
-                    throw new Error('Invalid access token.')
+                    throw new Error('Invalid refresh token.')
                 }
 
                 const refreshTokenDB = await getRefreshToken(
                     user.data.googleId,
                     refreshCookie
-                )
+                ).catch(() => {
+                    throw new Error('Invalid refresh token')
+                })
 
                 if (!refreshTokenDB) {
-                    throw new Error('Invalid access token')
+                    throw new Error('Invalid refresh token')
                 }
 
                 const authToken = createJwtAuthToken(
