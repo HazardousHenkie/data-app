@@ -2,6 +2,7 @@ import { createSelector, Selector } from 'reselect'
 
 import { CountryInterface } from 'containers/HomePage/Molecules/CountryListItem/types'
 import { ApplicationRootState } from 'types'
+import { ResponseError } from 'utils/request'
 import { initialCountriesHeaderState } from './constants'
 
 const selectCountriesData = (state: ApplicationRootState) =>
@@ -10,7 +11,7 @@ const selectCountriesData = (state: ApplicationRootState) =>
 const makeSelectError = () =>
     createSelector(selectCountriesData, subState => subState.error) as Selector<
         unknown,
-        boolean | Error
+        boolean | ResponseError
     >
 const makeSelectLoader = () =>
     createSelector(

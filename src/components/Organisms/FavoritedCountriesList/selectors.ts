@@ -1,17 +1,36 @@
 import { createSelector, Selector } from 'reselect'
 
+import { ResponseError } from 'utils/request'
+
 import { ApplicationRootState } from 'types'
-import { CountryInterface } from './types'
-import { initialCountryState } from './reducer'
 
-const selectCountry = (state: ApplicationRootState) => {
-    return state.country || initialCountryState
+import FavoritedCountriesState from './types'
+import { initialFavoritedCountriesState } from './constants'
+
+const selectFavoritedCountriesData = (state: ApplicationRootState) =>
+    state.favoritedCountries || initialFavoritedCountriesState
+
+const makeSelectError = () =>
+    createSelector(
+        selectFavoritedCountriesData,
+        subState => subState.error
+    ) as Selector<unknown, boolean | ResponseError>
+
+const makeSelectLoader = () =>
+    createSelector(
+        selectFavoritedCountriesData,
+        subState => subState.loading
+    ) as Selector<unknown, boolean>
+
+const makeSelectFavoritedCountries = () =>
+    createSelector(
+        selectFavoritedCountriesData,
+        subState => subState.countries
+    ) as Selector<unknown, FavoritedCountriesState['countries']>
+
+export {
+    selectFavoritedCountriesData,
+    makeSelectError,
+    makeSelectLoader,
+    makeSelectFavoritedCountries
 }
-
-const makeSelectCountry = () =>
-    createSelector(selectCountry, subState => subState.country) as Selector<
-        unknown,
-        CountryInterface
-    >
-
-export default makeSelectCountry

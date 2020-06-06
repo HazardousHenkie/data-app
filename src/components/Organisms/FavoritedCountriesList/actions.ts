@@ -1,10 +1,16 @@
 import { action } from 'typesafe-actions'
 
+import { ResponseError } from 'utils/request'
 import ActionTypes from './constants'
 
-import { CountryState } from './types'
+import FavoritedCountriesState from './types'
 
-const setSelectedCountry = (country: CountryState['country']) =>
-    action(ActionTypes.GET_FAVORITED_COUNTRIES, country)
+export const getFavoritedCountries = () =>
+    action(ActionTypes.GET_FAVORITED_COUNTRIES)
 
-export default setSelectedCountry
+export const getFavoritedCountriesSuccess = (
+    favoritedCountries: FavoritedCountriesState['countries']
+) => action(ActionTypes.GET_FAVORITED_COUNTRIES_SUCCESS, favoritedCountries)
+
+export const getFavoritedCountriesError = (error: ResponseError) =>
+    action(ActionTypes.GET_FAVORITED_COUNTRIES_ERROR, error)

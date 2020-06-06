@@ -1,19 +1,13 @@
-export interface CountryInterface {
-    alpha2Code: string
+import { ResponseError } from 'utils/request'
+
+export interface FavoritedCountryInterface {
     name: string
-    nativeName: string
-    capital: string
-    region: string
-    subregion: string
-    flag: string
-    currency: string
-    population: number
-    latlng: number[]
-    currencies: { [key: string]: string }[]
-    languages: { [key: string]: string }[]
-    translations: { [key: string]: string }
 }
 
-export interface CountryState {
-    readonly country: CountryInterface
+interface FavoritedCountriesState {
+    readonly error: boolean | ResponseError
+    readonly loading: boolean
+    readonly countries: FavoritedCountryInterface[]
 }
+
+export default FavoritedCountriesState

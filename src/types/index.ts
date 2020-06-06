@@ -7,6 +7,7 @@ import { RouterState } from 'connected-react-router'
 import CountriesListState from 'containers/HomePage/Molecules/CountriesList/types'
 import { CountryState } from 'containers/HomePage/Molecules/CountryListItem/types'
 import AuthenticationState from 'globals/authentication/types'
+import FavoritedCountriesState from 'components/Organisms/FavoritedCountriesList/types'
 
 export interface InjectedStore extends Store {
     injectedReducers: object
@@ -27,6 +28,7 @@ export interface InjectSagaParams {
 export interface ApplicationRootState {
     readonly router: RouterState
     readonly countriesData: CountriesListState
+    readonly favoritedCountries: FavoritedCountriesState
     readonly country: CountryState
     readonly authenticationData: AuthenticationState
 }
