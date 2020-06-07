@@ -7,10 +7,11 @@ import { useTranslation } from 'react-i18next'
 import makeSelectCountry from 'containers/HomePage/Molecules/CountryListItem/selectors'
 
 import Grid from '@material-ui/core/Grid'
+
+import FavoriteCountryButton from 'components/Organisms/FavoriteCountryButton'
+import Header, { FavoriteCountryButtonWrapper } from './styledComponents'
 import CountryAdvisory from '../../Molecules/CountryAdvisory'
 import CountryInformation from '../../Molecules/CountryInformation'
-
-import Header from './styledComponents'
 
 const stateSelector = createSelector(makeSelectCountry(), country => ({
     country
@@ -29,6 +30,12 @@ const DrawerCountryContent: React.FC = () => {
                             ? country.name
                             : country.translations[i18n.language]}
                     </Header>
+
+                    <FavoriteCountryButtonWrapper>
+                        <FavoriteCountryButton
+                            clickedCountry={country.alpha2Code}
+                        />
+                    </FavoriteCountryButtonWrapper>
                 </Grid>
 
                 <Grid item xs={6}>

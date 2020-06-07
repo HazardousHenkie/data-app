@@ -1,7 +1,15 @@
+import { ExprArg } from 'faunadb'
 import { ResponseError } from 'utils/request'
 
 export interface FavoritedCountryInterface {
-    name: string
+    ref: ExprArg
+    ts: number
+    data: {
+        userId: string
+        countryId: string
+        updatedAt: number
+        createdAt: number
+    }
 }
 
 interface FavoritedCountriesState {

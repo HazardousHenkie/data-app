@@ -16,7 +16,9 @@ const authenticatedWrapper = (toBeCheckedCookie: string) => {
     }
 
     try {
-        const payload = jwt.verify(toBeCheckedCookie, publicKey) as {
+        const bearerToken = toBeCheckedCookie.split('Bearer ')
+
+        const payload = jwt.verify(bearerToken[1], publicKey) as {
             [key: string]: string
         }
 

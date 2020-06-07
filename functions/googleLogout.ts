@@ -20,8 +20,9 @@ const handler: Handler = async (
     context: Context,
     callback: Callback
 ) => {
-    const authToken = event.headers.authorization.split('Bearer ')
-    const authenticatedResponse = authenticatedHelper(authToken[1])
+    const authenticatedResponse = authenticatedHelper(
+        event.headers.authorization
+    )
     let response: ResponseInterface
 
     if (authenticatedResponse.statusCode === 200) {

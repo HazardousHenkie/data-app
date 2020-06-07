@@ -7,7 +7,7 @@ import { RouterState } from 'connected-react-router'
 import CountriesListState from 'containers/HomePage/Molecules/CountriesList/types'
 import { CountryState } from 'containers/HomePage/Molecules/CountryListItem/types'
 import AuthenticationState from 'globals/authentication/types'
-import FavoritedCountriesState from 'components/Organisms/FavoritedCountriesList/types'
+import FavoritedCountriesState from 'globals/favoritedCountriesList/types'
 
 export interface InjectedStore extends Store {
     injectedReducers: object

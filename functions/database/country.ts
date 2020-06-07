@@ -1,7 +1,7 @@
 import { ExprArg } from 'faunadb'
 import faunaClient, { fQuery } from './faunaDB'
 
-interface CountryResponseInterface {
+export interface CountryResponseInterface {
     ref: ExprArg
     ts: number
     data: {
@@ -12,10 +12,14 @@ interface CountryResponseInterface {
     }
 }
 
-// check the response of this one
 const getCountries = (id: string) => {
-    const countries: Promise<CountryResponseInterface> = faunaClient.query(
-        fQuery.Get(fQuery.Match(fQuery.Index('get_countries_by_userId'), id))
+    const countries: Promise<CountryResponseInterface[]> = faunaClient.query(
+        fQuery.Map(
+            fQuery.Paginate(
+                fQuery.Match(fQuery.Index('get_countries_by_userId'), id)
+            ),
+            fQuery.Lambda(x => fQuery.Get(x))
+        )
     )
 
     return countries
@@ -29,11 +33,11 @@ export const removeCountry = (ref: ExprArg) => {
     return removedCountry
 }
 
-export const addCountry = (id: string, countryId: string) => {
+export const addCountry = (userId: string, countryId: string) => {
     const country: Promise<CountryResponseInterface> = faunaClient.query(
         fQuery.Create(fQuery.Collection('country_user'), {
             data: {
-                userId: id,
+                userId,
                 countryId,
                 updatedAt: Date.now(),
                 createdAt: Date.now()

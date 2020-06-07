@@ -1,3 +1,4 @@
+import { query } from 'faunadb'
 import FavoritedCountriesState from './types'
 
 enum ActionTypes {
@@ -11,7 +12,14 @@ export const initialFavoritedCountriesState: FavoritedCountriesState = {
     loading: false,
     countries: [
         {
-            name: ''
+            ref: query.Ref(query.Collection('country_user'), ''),
+            ts: 0,
+            data: {
+                userId: '',
+                countryId: '',
+                updatedAt: 0,
+                createdAt: 0
+            }
         }
     ]
 }

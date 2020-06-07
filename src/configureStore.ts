@@ -6,7 +6,8 @@ import { History } from 'history'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 import { InjectedStore, ApplicationRootState } from 'types'
-import authenticationRootSaga from 'globals/authentication/sagas'
+
+import rootSaga from './sagas'
 import createReducer from './reducers'
 
 export default function configureStore(
@@ -42,7 +43,7 @@ export default function configureStore(
     store.runSaga = sagaMiddleware.run
     store.injectedReducers = {}
     store.injectedSagas = {}
-    store.runSaga(authenticationRootSaga, undefined)
+    store.runSaga(rootSaga, undefined)
 
     if (module.hot) {
         module.hot.accept('./reducers', () => {

@@ -25,6 +25,7 @@ import { Helmet } from 'react-helmet'
 
 import { createSelector } from 'reselect'
 import { makeSelectError } from 'globals/authentication/selectors'
+import { getFavoritedCountries } from 'globals/favoritedCountriesList/actions'
 import Routes from './routes'
 
 const stateSelector = createSelector(makeSelectError(), error => ({
@@ -68,6 +69,10 @@ const App: React.FC = () => {
     useEffect(() => {
         setTheme(darkMode ? darkTheme : lightTheme)
     }, [darkMode])
+
+    useEffect(() => {
+        dispatch(getFavoritedCountries())
+    }, [dispatch])
 
     const handleClose = () => {
         setOpen(false)
