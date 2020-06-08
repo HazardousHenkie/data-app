@@ -71,6 +71,7 @@ const App: React.FC = () => {
     }, [darkMode])
 
     useEffect(() => {
+        // if logged in
         dispatch(getFavoritedCountries())
     }, [dispatch])
 

@@ -22,15 +22,22 @@ import {
     makeSelectLoader
 } from 'globals/favoritedCountriesList/selectors'
 
-const useCountryFavorite = (favoritedCountry: string, active: boolean) => {
+const useCountryFavorite = (
+    favoritedCountry: string,
+    active: boolean,
+    clicked: boolean
+) => {
     const [loading, setLoading] = useState<boolean>(false)
+    const [querySuccessfull, setQuerySuccessfull] = useState(false)
     const [fetchingError, setFetchingError] = useState<Error>()
 
+    // only show button when logged In
     useEffect(() => {
-        if (favoritedCountry !== '') {
+        if (favoritedCountry !== '' && clicked) {
             let fetchRequest: Promise<Response>
 
             if (active) {
+                setQuerySuccessfull(false)
                 // todo.ref['@ref'].id this one? and make it after tht again
                 fetchRequest = request(
                     `/.netlify/functions/deleteCountry/${favoritedCountry}`,
@@ -56,6 +63,7 @@ const useCountryFavorite = (favoritedCountry: string, active: boolean) => {
                 setLoading(true)
                 try {
                     await fetchRequest
+                    setQuerySuccessfull(true)
                 } catch (error) {
                     if (error.response.status !== 404) {
                         setFetchingError(error)
@@ -67,9 +75,9 @@ const useCountryFavorite = (favoritedCountry: string, active: boolean) => {
 
             fetchData()
         }
-    }, [favoritedCountry, active])
+    }, [favoritedCountry, active, clicked])
 
-    return { loading, fetchingError }
+    return { loading, querySuccessfull, fetchingError }
 }
 
 interface FavoriteCountryButtonInterface {
@@ -89,8 +97,13 @@ const FavoriteCountryButton: React.FC<FavoriteCountryButtonInterface> = ({
     const dispatch = useDispatch()
     const [favoritedCountry, setFavoritedCountry] = useState<string>('')
     const [active, setActive] = useState<boolean>(false)
+    const [clicked, setClicked] = useState<boolean>(false)
     // error handling
-    const { loading } = useCountryFavorite(favoritedCountry, active)
+    const { loading, querySuccessfull } = useCountryFavorite(
+        favoritedCountry,
+        active,
+        clicked
+    )
     const { t } = useTranslation('FavoriteCountryButton')
 
     const { favoritedCountries } = useSelector(stateSelector)
@@ -114,7 +127,15 @@ const FavoriteCountryButton: React.FC<FavoriteCountryButtonInterface> = ({
         }
     }, [favoritedCountries, clickedCountry])
 
+    useEffect(() => {
+        if (querySuccessfull) {
+            setActive(activeState => !activeState)
+            setClicked(false)
+        }
+    }, [querySuccessfull])
+
     const toggleFavorite = () => {
+        setClicked(true)
         setFavoritedCountry(clickedCountry)
     }
 
