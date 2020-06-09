@@ -54,21 +54,22 @@ const MenuList: React.FC = () => {
     return (
         <FavoritedCountriesList>
             {loading && <InlineLoader />}
-
-            <List
-                aria-label={t(
-                    'favoritedCountryList:titleMenu',
-                    'Favorite countries'
-                )}
-            >
-                {favoritedCountries.map(favoritedCountry => (
-                    <ListItem key={favoritedCountry.data.countryId}>
-                        <ListItemText
-                            primary={favoritedCountry.data.countryId}
-                        />
-                    </ListItem>
-                ))}
-            </List>
+            {favoritedCountries && favoritedCountries[0].ts !== 0 && (
+                <List
+                    aria-label={t(
+                        'favoritedCountryList:titleMenu',
+                        'Favorite countries'
+                    )}
+                >
+                    {favoritedCountries.map(favoritedCountry => (
+                        <ListItem key={favoritedCountry.data.countryId}>
+                            <ListItemText
+                                primary={favoritedCountry.data.countryId}
+                            />
+                        </ListItem>
+                    ))}
+                </List>
+            )}
         </FavoritedCountriesList>
     )
 }

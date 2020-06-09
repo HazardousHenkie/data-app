@@ -32,9 +32,7 @@ const DrawerCountryContent: React.FC = () => {
                     </Header>
 
                     <FavoriteCountryButtonWrapper>
-                        <FavoriteCountryButton
-                            clickedCountry={country.alpha2Code}
-                        />
+                        <FavoriteCountryButton clickedCountry={country} />
                     </FavoriteCountryButtonWrapper>
                 </Grid>
 

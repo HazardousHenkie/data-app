@@ -16,6 +16,9 @@ import { getFavoritedCountries } from 'globals/favoritedCountriesList/actions'
 import reducer from 'globals/favoritedCountriesList//reducer'
 import saga from 'globals/favoritedCountriesList/saga'
 
+import { CountryItem } from 'containers/HomePage/Molecules/CountryListItem/constants'
+import { CountryInterface } from 'containers/HomePage/Molecules/CountryListItem/types'
+
 import {
     makeSelectFavoritedCountries,
     makeSelectError,
@@ -23,7 +26,7 @@ import {
 } from 'globals/favoritedCountriesList/selectors'
 
 const useCountryFavorite = (
-    favoritedCountry: string,
+    favoritedCountry: CountryInterface,
     active: boolean,
     clicked: boolean
 ) => {
@@ -33,7 +36,10 @@ const useCountryFavorite = (
 
     // only show button when logged In
     useEffect(() => {
-        if (favoritedCountry !== '' && clicked) {
+        // iff favoritedcountry has ref other then 0 it's a delete request
+        // active may not be necessary anymore
+        // if it's a save return the favorited country otherwise return the clicked country (favoritedcountry)
+        if (favoritedCountry.alpha2Code !== '' && clicked) {
             let fetchRequest: Promise<Response>
 
             if (active) {
@@ -81,7 +87,7 @@ const useCountryFavorite = (
 }
 
 interface FavoriteCountryButtonInterface {
-    clickedCountry: string
+    clickedCountry: CountryInterface
 }
 
 const stateSelector = createStructuredSelector({
@@ -95,7 +101,9 @@ const FavoriteCountryButton: React.FC<FavoriteCountryButtonInterface> = ({
 }) => {
     const key = 'favoritedCountries'
     const dispatch = useDispatch()
-    const [favoritedCountry, setFavoritedCountry] = useState<string>('')
+    const [favoritedCountry, setFavoritedCountry] = useState<CountryInterface>({
+        ...CountryItem.country
+    })
     const [active, setActive] = useState<boolean>(false)
     const [clicked, setClicked] = useState<boolean>(false)
     // error handling
@@ -119,24 +127,36 @@ const FavoriteCountryButton: React.FC<FavoriteCountryButtonInterface> = ({
 
     useEffect(() => {
         const isAlreadyFavoriteCountry = favoritedCountries.find(
-            favoriteCountry => favoriteCountry.data.countryId === clickedCountry
+            favoriteCountry =>
+                favoriteCountry.data.countryId === clickedCountry.alpha2Code
         )
 
+        console.log(isAlreadyFavoriteCountry)
+
+        // set favoritedcountry if there for use in call
         if (isAlreadyFavoriteCountry) {
+            // setFavoritedCountry(isAlreadyFavoriteCountry)
             setActive(true)
         }
     }, [favoritedCountries, clickedCountry])
 
-    useEffect(() => {
-        if (querySuccessfull) {
-            setActive(activeState => !activeState)
-            setClicked(false)
-        }
-    }, [querySuccessfull])
+    // useEffect(() => {
+    //     // return favorited country if it's a new save
+    //     if (queryFavoritedCountry) {
+    //         setActive(activeState => !activeState)
+    //         setFavoritedCountry(queryFavoritedCountry)
+    //         setClicked(false)
+    //     }
+    // }, [queryFavoritedCountry])
 
     const toggleFavorite = () => {
         setClicked(true)
-        setFavoritedCountry(clickedCountry)
+
+        // when toggeling set favoritedocountry first if not just set clickedcountry
+        // if (favoritedCountry) {
+        // } else {
+        //     setFavoritedCountry(clickedCountry)
+        // }
     }
 
     return (
