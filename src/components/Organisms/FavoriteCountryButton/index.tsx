@@ -16,8 +16,11 @@ import { getFavoritedCountries } from 'globals/favoritedCountriesList/actions'
 import reducer from 'globals/favoritedCountriesList//reducer'
 import saga from 'globals/favoritedCountriesList/saga'
 
-import { CountryItem } from 'containers/HomePage/Molecules/CountryListItem/constants'
+import { FavoritedCountryInterface } from 'globals/favoritedCountriesList/types'
+import { initialFavoritedCountriesState } from 'globals/favoritedCountriesList/constants'
 import { CountryInterface } from 'containers/HomePage/Molecules/CountryListItem/types'
+
+import { query } from 'faunadb'
 
 import {
     makeSelectFavoritedCountries,
@@ -26,7 +29,7 @@ import {
 } from 'globals/favoritedCountriesList/selectors'
 
 const useCountryFavorite = (
-    favoritedCountry: CountryInterface,
+    favoritedCountry: FavoritedCountryInterface,
     active: boolean,
     clicked: boolean
 ) => {
@@ -39,14 +42,14 @@ const useCountryFavorite = (
         // iff favoritedcountry has ref other then 0 it's a delete request
         // active may not be necessary anymore
         // if it's a save return the favorited country otherwise return the clicked country (favoritedcountry)
-        if (favoritedCountry.alpha2Code !== '' && clicked) {
+        if (favoritedCountry.data.countryId !== '' && clicked) {
             let fetchRequest: Promise<Response>
 
             if (active) {
                 setQuerySuccessfull(false)
                 // todo.ref['@ref'].id this one? and make it after tht again
                 fetchRequest = request(
-                    `/.netlify/functions/deleteCountry/${favoritedCountry}`,
+                    `/.netlify/functions/deleteCountry/${favoritedCountry.data.countryId}`,
                     {
                         method: 'DELETE',
                         headers: {
@@ -56,7 +59,7 @@ const useCountryFavorite = (
                 )
             } else {
                 fetchRequest = request(
-                    `/.netlify/functions/saveCountry/${favoritedCountry}`,
+                    `/.netlify/functions/saveCountry/${favoritedCountry.data.countryId}`,
                     {
                         method: 'GET',
                         headers: {
@@ -101,8 +104,10 @@ const FavoriteCountryButton: React.FC<FavoriteCountryButtonInterface> = ({
 }) => {
     const key = 'favoritedCountries'
     const dispatch = useDispatch()
-    const [favoritedCountry, setFavoritedCountry] = useState<CountryInterface>({
-        ...CountryItem.country
+    const [favoritedCountry, setFavoritedCountry] = useState<
+        FavoritedCountryInterface
+    >({
+        ...initialFavoritedCountriesState.countries[0]
     })
     const [active, setActive] = useState<boolean>(false)
     const [clicked, setClicked] = useState<boolean>(false)
@@ -131,11 +136,8 @@ const FavoriteCountryButton: React.FC<FavoriteCountryButtonInterface> = ({
                 favoriteCountry.data.countryId === clickedCountry.alpha2Code
         )
 
-        console.log(isAlreadyFavoriteCountry)
-
-        // set favoritedcountry if there for use in call
         if (isAlreadyFavoriteCountry) {
-            // setFavoritedCountry(isAlreadyFavoriteCountry)
+            setFavoritedCountry(isAlreadyFavoriteCountry)
             setActive(true)
         }
     }, [favoritedCountries, clickedCountry])
@@ -152,11 +154,19 @@ const FavoriteCountryButton: React.FC<FavoriteCountryButtonInterface> = ({
     const toggleFavorite = () => {
         setClicked(true)
 
-        // when toggeling set favoritedocountry first if not just set clickedcountry
-        // if (favoritedCountry) {
-        // } else {
-        //     setFavoritedCountry(clickedCountry)
-        // }
+        // make this more beatifull? maybe use a spread from the constants and only assing data.countryid
+        if (!favoritedCountry) {
+            setFavoritedCountry({
+                ref: query.Ref(query.Collection('country_user'), ''),
+                ts: 0,
+                data: {
+                    userId: '',
+                    countryId: clickedCountry.alpha2Code,
+                    updatedAt: 0,
+                    createdAt: 0
+                }
+            })
+        }
     }
 
     return (
