@@ -1,5 +1,5 @@
 import { ActionType } from 'typesafe-actions'
-import { CountryState } from './types'
+import CountryState from './types'
 
 import * as actions from './actions'
 
@@ -7,7 +7,7 @@ import ActionTypes, { CountryItem } from './constants'
 
 export const initialCountryState = CountryItem
 
-function countriesListReducer(
+function countriesListItemReducer(
     state: CountryState = initialCountryState,
     action: ActionType<typeof actions>
 ): CountryState {
@@ -21,4 +21,4 @@ function countriesListReducer(
     }
 }
 
-export default countriesListReducer
+export default countriesListItemReducer

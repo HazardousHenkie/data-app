@@ -5,6 +5,8 @@ import {
     makeSelectData
 } from '../selectors'
 
+import { initialCountriesHeaderState } from '../constants'
+
 describe('selectHome', () => {
     it('should select the countries state', () => {
         const countriesDataState = {
@@ -51,20 +53,14 @@ describe('makeSelectLoader', () => {
 describe('makeSelectData', () => {
     const dataSelector = makeSelectData()
     it('should select the data', () => {
-        const countriesData = [
-            {
-                alpha2Code: 'AF',
-                alpha3Code: 'AFG',
-                altSpellings: ['AF', 'Afġānistān']
-            }
-        ]
-
         const mockedState: any = {
             countriesData: {
-                data: countriesData
+                data: initialCountriesHeaderState.data
             }
         }
 
-        expect(dataSelector(mockedState)).toEqual(countriesData)
+        expect(dataSelector(mockedState)).toEqual(
+            initialCountriesHeaderState.data
+        )
     })
 })

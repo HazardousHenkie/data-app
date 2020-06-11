@@ -6,7 +6,7 @@ import { CountryItem } from './constants'
 
 export const initialCountryState = CountryItem
 
-const selectCountry = (state: ApplicationRootState) => {
+export const selectCountry = (state: ApplicationRootState) => {
     return state.country || initialCountryState
 }
 

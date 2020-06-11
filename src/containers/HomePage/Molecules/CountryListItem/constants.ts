@@ -1,4 +1,4 @@
-import { CountryState } from './types'
+import CountryState from './types'
 
 enum ActionTypes {
     SET_SELECTED_COUNTRY = 'components/CountriesList/SET_SELECTED_COUNTRY'
