@@ -22,9 +22,8 @@ describe('countriesListReducer', () => {
 
     it('should handle the getCountriesData action correctly', () => {
         const expectedResult = {
-            error: false,
-            loading: true,
-            data: initialCountriesHeaderState.data
+            ...initialCountriesHeaderState,
+            loading: true
         }
 
         expect(countriesListReducer(state, getCountriesData())).toEqual(
@@ -45,9 +44,8 @@ describe('countriesListReducer', () => {
         const error = new Error('Something went wrong!')
 
         const expectedResult = {
-            error,
-            loading: false,
-            data: initialCountriesHeaderState.data
+            ...initialCountriesHeaderState,
+            error
         }
 
         expect(

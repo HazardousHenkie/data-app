@@ -5,7 +5,7 @@ import * as actions from './actions'
 
 import ActionTypes, { CountryItem } from './constants'
 
-export const initialCountryState = CountryItem
+const initialCountryState = CountryItem
 
 function countriesListItemReducer(
     state: CountryState = initialCountryState,

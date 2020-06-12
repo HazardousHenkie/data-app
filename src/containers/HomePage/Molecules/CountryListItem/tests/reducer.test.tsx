@@ -1,4 +1,4 @@
-import countriesListItemReducer, { initialCountryState } from '../reducer'
+import countriesListItemReducer from '../reducer'
 import setSelectedCountry from '../actions'
 
 import CountryState from '../types'
@@ -7,7 +7,7 @@ import { CountryItem } from '../constants'
 describe('countriesListItemReducer', () => {
     let state: CountryState
     beforeEach(() => {
-        state = initialCountryState
+        state = CountryItem
     })
 
     it('should return the initial state', () => {
