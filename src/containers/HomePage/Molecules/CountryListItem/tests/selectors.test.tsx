@@ -1,18 +1,21 @@
 import makeSelectCountry, { selectCountry } from '../selectors'
 import { CountryItem } from '../constants'
 
-// check selectors again
 describe('selectCountry', () => {
     it('should select the country state', () => {
-        // check if we can improve
-        expect(selectCountry(CountryItem as any)).toEqual(CountryItem.country)
+        const mockedState: any = {
+            country: {
+                country: CountryItem.country
+            }
+        }
+        expect(selectCountry(mockedState)).toEqual(CountryItem)
     })
 })
 
 describe('makeSelectCountry', () => {
     const dataSelector = makeSelectCountry()
     it('should select the data', () => {
-        const mockedState: any = {
+        const mockedState = {
             countriesData: {
                 country: CountryItem.country
             }

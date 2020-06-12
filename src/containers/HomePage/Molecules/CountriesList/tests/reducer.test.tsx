@@ -1,4 +1,3 @@
-import { CountryItem } from 'containers/HomePage/Molecules/CountryListItem/constants'
 import countriesListReducer from '../reducer'
 import {
     getCountriesData,
@@ -25,7 +24,7 @@ describe('countriesListReducer', () => {
         const expectedResult = {
             error: false,
             loading: true,
-            data: [CountryItem.country]
+            data: initialCountriesHeaderState.data
         }
 
         expect(countriesListReducer(state, getCountriesData())).toEqual(
@@ -34,20 +33,21 @@ describe('countriesListReducer', () => {
     })
 
     it('should handle the getCountriesDataSuccess action correctly', () => {
-        const fixture = [CountryItem.country]
-        const expectedResult = { error: false, loading: false, data: fixture }
-
         expect(
-            countriesListReducer(state, getCountriesDataSuccess(fixture))
-        ).toEqual(expectedResult)
+            countriesListReducer(
+                state,
+                getCountriesDataSuccess(initialCountriesHeaderState.data)
+            )
+        ).toEqual(initialCountriesHeaderState)
     })
 
     it('should handle the getCountriesDataError action correctly', () => {
         const error = new Error('Something went wrong!')
+
         const expectedResult = {
             error,
             loading: false,
-            data: [CountryItem.country]
+            data: initialCountriesHeaderState.data
         }
 
         expect(

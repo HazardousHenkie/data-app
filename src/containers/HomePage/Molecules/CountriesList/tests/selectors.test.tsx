@@ -9,51 +9,50 @@ import { initialCountriesHeaderState } from '../constants'
 
 describe('selectHome', () => {
     it('should select the countries state', () => {
-        const countriesDataState = {
-            countriesData: {}
+        const mockedState: any = {
+            countriesData: initialCountriesHeaderState
         }
 
-        const mockedState: any = {
-            countriesData: countriesDataState
-        }
-        expect(selectCountriesData(mockedState)).toEqual(countriesDataState)
+        expect(selectCountriesData(mockedState)).toEqual(
+            initialCountriesHeaderState
+        )
     })
 })
 
 describe('makeSelectError', () => {
     const errorSelector = makeSelectError()
     it('should select the data', () => {
-        const error = new Error('Something went wrong!')
-
-        const mockedState: any = {
+        const mockedState = {
             countriesData: {
-                error
+                error: initialCountriesHeaderState.error
             }
         }
 
-        expect(errorSelector(mockedState)).toEqual(error)
+        expect(errorSelector(mockedState)).toEqual(
+            initialCountriesHeaderState.error
+        )
     })
 })
 
 describe('makeSelectLoader', () => {
     const loaderSelector = makeSelectLoader()
     it('should select the data', () => {
-        const loading = false
-
-        const mockedState: any = {
+        const mockedState = {
             countriesData: {
-                loading
+                loading: initialCountriesHeaderState.loading
             }
         }
 
-        expect(loaderSelector(mockedState)).toEqual(loading)
+        expect(loaderSelector(mockedState)).toEqual(
+            initialCountriesHeaderState.loading
+        )
     })
 })
 
 describe('makeSelectData', () => {
     const dataSelector = makeSelectData()
     it('should select the data', () => {
-        const mockedState: any = {
+        const mockedState = {
             countriesData: {
                 data: initialCountriesHeaderState.data
             }
