@@ -8,9 +8,9 @@ import FavoritedCountriesState from './types'
 export const getFavoritedCountries = () =>
     action(ActionTypes.GET_FAVORITED_COUNTRIES)
 
-export const getFavoritedCountriesSuccess = (
+export const setFavoritedCountries = (
     favoritedCountries: FavoritedCountriesState['countries']
-) => action(ActionTypes.GET_FAVORITED_COUNTRIES_SUCCESS, favoritedCountries)
+) => action(ActionTypes.SET_FAVORITED_COUNTRIES, favoritedCountries)
 
 export const getFavoritedCountriesError = (error: ResponseError) =>
     action(ActionTypes.GET_FAVORITED_COUNTRIES_ERROR, error)

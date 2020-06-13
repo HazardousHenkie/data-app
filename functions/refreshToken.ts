@@ -14,8 +14,7 @@ import getUser from './database/user'
 interface Response {
     statusCode: number
     headers?: object
-    // no any
-    body: any
+    body: string
 }
 
 const handler: Handler = async (event: APIGatewayEvent) => {
