@@ -5,7 +5,7 @@ import { SagaInjectionModes } from 'redux-injectors'
 import { RouterState } from 'connected-react-router'
 
 import CountriesListState from 'containers/HomePage/Molecules/CountriesList/types'
-import { CountryState } from 'containers/HomePage/Molecules/CountryListItem/types'
+import CountryState from 'containers/HomePage/Molecules/CountryListItem/types'
 import AuthenticationState from 'globals/authentication/types'
 import FavoritedCountriesState from 'globals/favoritedCountriesList/types'
 import ErrorsState from 'globals/globalErrors/types'

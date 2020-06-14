@@ -5,66 +5,61 @@ import {
     makeSelectData
 } from '../selectors'
 
+import { initialCountriesHeaderState } from '../constants'
+
 describe('selectHome', () => {
     it('should select the countries state', () => {
-        const countriesDataState = {
-            countriesData: {}
+        const mockedState: any = {
+            countriesData: initialCountriesHeaderState
         }
 
-        const mockedState: any = {
-            countriesData: countriesDataState
-        }
-        expect(selectCountriesData(mockedState)).toEqual(countriesDataState)
+        expect(selectCountriesData(mockedState)).toEqual(
+            initialCountriesHeaderState
+        )
     })
 })
 
 describe('makeSelectError', () => {
     const errorSelector = makeSelectError()
     it('should select the data', () => {
-        const error = new Error('Something went wrong!')
-
-        const mockedState: any = {
+        const mockedState = {
             countriesData: {
-                error
+                error: initialCountriesHeaderState.error
             }
         }
 
-        expect(errorSelector(mockedState)).toEqual(error)
+        expect(errorSelector(mockedState)).toEqual(
+            initialCountriesHeaderState.error
+        )
     })
 })
 
 describe('makeSelectLoader', () => {
     const loaderSelector = makeSelectLoader()
     it('should select the data', () => {
-        const loading = false
-
-        const mockedState: any = {
+        const mockedState = {
             countriesData: {
-                loading
+                loading: initialCountriesHeaderState.loading
             }
         }
 
-        expect(loaderSelector(mockedState)).toEqual(loading)
+        expect(loaderSelector(mockedState)).toEqual(
+            initialCountriesHeaderState.loading
+        )
     })
 })
 
 describe('makeSelectData', () => {
     const dataSelector = makeSelectData()
     it('should select the data', () => {
-        const countriesData = [
-            {
-                alpha2Code: 'AF',
-                alpha3Code: 'AFG',
-                altSpellings: ['AF', 'Afġānistān']
-            }
-        ]
-
-        const mockedState: any = {
+        const mockedState = {
             countriesData: {
-                data: countriesData
+                data: initialCountriesHeaderState.data
             }
         }
 
-        expect(dataSelector(mockedState)).toEqual(countriesData)
+        expect(dataSelector(mockedState)).toEqual(
+            initialCountriesHeaderState.data
+        )
     })
 })

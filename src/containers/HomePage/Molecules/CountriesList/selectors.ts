@@ -13,11 +13,13 @@ const makeSelectError = () =>
         unknown,
         boolean | ResponseError
     >
+
 const makeSelectLoader = () =>
     createSelector(
         selectCountriesData,
         subState => subState.loading
     ) as Selector<unknown, boolean>
+
 const makeSelectData = () =>
     createSelector(selectCountriesData, subState => subState.data) as Selector<
         unknown,
