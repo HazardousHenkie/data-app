@@ -1,16 +1,9 @@
 import { ActionType } from 'typesafe-actions'
-import { CountryItem } from 'containers/HomePage/Molecules/CountryListItem/constants'
 import CountriesListState from './types'
 
 import * as actions from './actions'
 
-import ActionTypes from './constants'
-
-export const initialCountriesHeaderState: CountriesListState = {
-    error: false,
-    loading: false,
-    data: [CountryItem.country]
-}
+import ActionTypes, { initialCountriesHeaderState } from './constants'
 
 function countriesListReducer(
     state: CountriesListState = initialCountriesHeaderState,

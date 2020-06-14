@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
 
-import serialize from 'serialize-javascript'
-
 import {
     GoogleLogin,
     GoogleLoginResponse,
@@ -11,78 +9,36 @@ import {
 import Snackbar from '@material-ui/core/Snackbar'
 import InfoMessage from 'components/Atoms/InfoMessage'
 import InlineLoader from 'components/Atoms/InlineLoader'
-import request from 'utils/request'
 
-import { useDispatch } from 'react-redux'
-import setUser from 'reduxComponents/User/actions'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { createStructuredSelector } from 'reselect'
+
+import {
+    makeSelectError,
+    makeSelectLoader
+} from 'reduxComponents/authentication/selectors'
+
+import { loginRequest } from 'reduxComponents/authentication/login/actions'
 
 import GoogleLoginWrapper from './styledComponents'
 
-const useGoogleAuthResponse = (googleResponseToken: string | undefined) => {
-    const [loading, setLoading] = useState<boolean>(false)
-    const [fetchingError, setFetchingError] = useState<Error>()
-    const [googleAuthServerResponse, setGoogleAuthServerResponse] = useState<
-        object
-    >()
-
-    //      // check if token is still valid and login again if not (check on page load and request not in this file)
-
-    useEffect(() => {
-        if (googleResponseToken && googleResponseToken !== '') {
-            const fetchData = async () => {
-                setLoading(true)
-                try {
-                    const loginObject = { authToken: googleResponseToken }
-
-                    const result = await request(
-                        `/.netlify/functions/googleLogin`,
-                        {
-                            method: 'POST',
-                            body: serialize(loginObject)
-                        }
-                    )
-
-                    if (result) {
-                        setGoogleAuthServerResponse(result)
-                    }
-                } catch (error) {
-                    const errorResponseMessage = await error.response.json()
-                    setFetchingError(errorResponseMessage)
-                }
-
-                setLoading(false)
-            }
-
-            fetchData()
-        }
-    }, [googleResponseToken])
-
-    return { loading, fetchingError, googleAuthServerResponse }
-}
+const stateSelector = createStructuredSelector({
+    error: makeSelectError(),
+    loading: makeSelectLoader()
+})
 
 const GoogleLoginButton: React.FC = () => {
     const dispatch = useDispatch()
-    const [googleResponseToken, setGoogleResponseToken] = useState<string>()
     const [googleLoading, setGoogleLoading] = useState<boolean>(false)
     const [open, setOpen] = useState<boolean>(false)
-
     const [error, setError] = useState<string>()
 
-    const {
-        loading,
-        fetchingError,
-        googleAuthServerResponse
-    } = useGoogleAuthResponse(googleResponseToken)
+    const { error: fetchingError, loading } = useSelector(stateSelector)
 
     const onGoogleLoginRequest = () => {
         setGoogleLoading(true)
     }
-
-    useEffect(() => {
-        if (googleAuthServerResponse) {
-            dispatch(setUser(googleAuthServerResponse))
-        }
-    }, [googleAuthServerResponse, dispatch])
 
     useEffect(() => {
         if (fetchingError) {
@@ -96,8 +52,10 @@ const GoogleLoginButton: React.FC = () => {
     ) => {
         setGoogleLoading(false)
         if ((response as GoogleLoginResponse).getAuthResponse().id_token) {
-            setGoogleResponseToken(
-                (response as GoogleLoginResponse).getAuthResponse().id_token
+            dispatch(
+                loginRequest(
+                    (response as GoogleLoginResponse).getAuthResponse().id_token
+                )
             )
         }
     }
@@ -112,9 +70,11 @@ const GoogleLoginButton: React.FC = () => {
         setError(response.error)
     }
 
+    console.log(process.env.REACT_APP_GOOGLE_CLIENT_ID)
+
     return (
         <>
-            {process.env.REACT_APP_GOOGLE_LOGIN_CLIENT_ID && (
+            {process.env.REACT_APP_GOOGLE_CLIENT_ID && (
                 <GoogleLoginWrapper>
                     {(loading || googleLoading) && <InlineLoader />}
 
@@ -133,7 +93,7 @@ const GoogleLoginButton: React.FC = () => {
                     )}
 
                     <GoogleLogin
-                        clientId={process.env.REACT_APP_GOOGLE_LOGIN_CLIENT_ID}
+                        clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                         onRequest={onGoogleLoginRequest}
                         buttonText="Login"
                         disabled={googleLoading}

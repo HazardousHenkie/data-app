@@ -2,41 +2,35 @@ import React, { useState, useEffect } from 'react'
 
 import Snackbar from '@material-ui/core/Snackbar'
 import InfoMessage from 'components/Atoms/InfoMessage'
-import InlineLoader from 'components/Atoms/InlineLoader'
+// import InlineLoader from 'components/Atoms/InlineLoader'
 import request from 'utils/request'
 
+// fix this logout remove logout below
+// const googleResponseSuccess = (
+//     response: GoogleLoginResponse | GoogleLoginResponseOffline
+// ) => {
+//     setGoogleLoading(false)
+//     if ((response as GoogleLoginResponse).getAuthResponse().id_token) {
+//         dispatch(
+//             loginRequest(
+//                 (response as GoogleLoginResponse).getAuthResponse().id_token
+//             )
+//         )
+//     }
+// }
+
+// lgout mo aruda
+
+// import { GoogleLogout } from 'react-google-login';
+// <GoogleLogout
+//   clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+//   buttonText="Logout"
+//   onLogoutSuccess={logout}
+// >
+// </GoogleLogout>
+
 import { useDispatch } from 'react-redux'
-import setUser from 'reduxComponents/User/actions'
-
-const useLogoutResponse = () => {
-    const [loading, setLoading] = useState<boolean>(false)
-    const [fetchingError, setFetchingError] = useState<Error>()
-    const [logoutResponse, setlogoutResponse] = useState<object>()
-
-    useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true)
-            try {
-                const result = await request(`/.netlify/functions/logout`, {
-                    method: 'POST'
-                })
-
-                if (result) {
-                    setlogoutResponse(result)
-                }
-            } catch (error) {
-                const errorResponseMessage = await error.response.json()
-                setFetchingError(errorResponseMessage)
-            }
-
-            setLoading(false)
-        }
-
-        fetchData()
-    }, [])
-
-    return { loading, fetchingError, logoutResponse }
-}
+// import setUser from 'reduxComponents/User/actions'
 
 const LogoutButton: React.FC = () => {
     // check if we can do this in a custom hook
@@ -52,9 +46,9 @@ const LogoutButton: React.FC = () => {
     // const { loading, fetchingError, logoutResponse } = useLogoutResponse()
 
     useEffect(() => {
-        if (logoutResponse) {
-            dispatch(setUser(logoutResponse))
-        }
+        // if (logoutResponse) {
+        //     dispatch(setUser(logoutResponse))
+        // }
     }, [logoutResponse, dispatch])
 
     useEffect(() => {
