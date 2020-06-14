@@ -6,6 +6,8 @@ import serialize from 'serialize-javascript'
 
 import { ActionType as typeSafeAction } from 'typesafe-actions'
 
+import { setError } from 'globals/globalErrors/actions'
+
 import {
     getRefreshTokenRequest,
     getRefreshTokenSuccess,
@@ -31,7 +33,9 @@ export default function* refreshTokenSaga(
 
         yield put(getRefreshTokenSuccess(response.user))
     } catch (error) {
-        // only put error when not 400
-        yield put(getRefreshTokenError(error))
+        if (error.response.status !== 400) {
+            yield put(getRefreshTokenError(error))
+            yield put(setError(error))
+        }
     }
 }

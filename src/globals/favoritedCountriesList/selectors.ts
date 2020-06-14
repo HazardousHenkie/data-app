@@ -1,7 +1,5 @@
 import { createSelector, Selector } from 'reselect'
 
-import { ResponseError } from 'utils/request'
-
 import { ApplicationRootState } from 'types'
 
 import FavoritedCountriesState from './types'
@@ -9,12 +7,6 @@ import { initialFavoritedCountriesState } from './constants'
 
 const selectFavoritedCountriesData = (state: ApplicationRootState) =>
     state.favoritedCountries || initialFavoritedCountriesState
-
-const makeSelectError = () =>
-    createSelector(
-        selectFavoritedCountriesData,
-        subState => subState.error
-    ) as Selector<unknown, boolean | ResponseError>
 
 const makeSelectLoader = () =>
     createSelector(
@@ -30,7 +22,6 @@ const makeSelectFavoritedCountries = () =>
 
 export {
     selectFavoritedCountriesData,
-    makeSelectError,
     makeSelectLoader,
     makeSelectFavoritedCountries
 }

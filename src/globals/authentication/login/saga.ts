@@ -5,6 +5,7 @@ import request from 'utils/request'
 
 import { ActionType as typeSafeAction } from 'typesafe-actions'
 
+import { setError } from 'globals/globalErrors/actions'
 import { loginSuccess, loginError, loginRequest } from './actions'
 
 import authToken from '../authToken'
@@ -26,5 +27,6 @@ export default function* loginSaga(
         yield put(loginSuccess(response.user))
     } catch (error) {
         yield put(loginError(error))
+        yield put(setError(error))
     }
 }

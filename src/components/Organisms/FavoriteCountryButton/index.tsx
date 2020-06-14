@@ -11,10 +11,7 @@ import { createStructuredSelector } from 'reselect'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors'
-import {
-    getFavoritedCountries,
-    setFavoritedCountries
-} from 'globals/favoritedCountriesList/actions'
+import { setFavoritedCountries } from 'globals/favoritedCountriesList/actions'
 
 import reducer from 'globals/favoritedCountriesList//reducer'
 import saga from 'globals/favoritedCountriesList/saga'
@@ -25,13 +22,12 @@ import { CountryInterface } from 'containers/HomePage/Molecules/CountryListItem/
 
 import {
     makeSelectFavoritedCountries,
-    makeSelectError,
     makeSelectLoader
 } from 'globals/favoritedCountriesList/selectors'
+import { setError } from 'globals/globalErrors/actions'
 
 const stateSelector = createStructuredSelector({
     favoritedCountries: makeSelectFavoritedCountries(),
-    error: makeSelectError(),
     loading: makeSelectLoader()
 })
 
@@ -42,14 +38,11 @@ const useCountryFavorite = (
 ) => {
     const dispatch = useDispatch()
     const [loading, setLoading] = useState<boolean>(false)
-    const [fetchingError, setFetchingError] = useState<Error>()
     const [countrySucessfullRequest, setCountrySucessfullRequest] = useState<
         FavoritedCountryInterface
     >()
     const { favoritedCountries } = useSelector(stateSelector)
-    // fix serverless function
-    // fix errors make into seperate component
-    // only show button when logged In
+
     useEffect(() => {
         if (clicked) {
             const fetchData = async () => {
@@ -108,7 +101,7 @@ const useCountryFavorite = (
                     }
                 } catch (error) {
                     if (error.response && error.response.status !== 404) {
-                        setFetchingError(error)
+                        dispatch(setError(error))
                     }
                 }
 
@@ -121,8 +114,7 @@ const useCountryFavorite = (
 
     return {
         loading,
-        countrySucessfullRequest,
-        fetchingError
+        countrySucessfullRequest
     }
 }
 
@@ -134,7 +126,6 @@ const FavoriteCountryButton: React.FC<FavoriteCountryButtonInterface> = ({
     clickedCountry
 }) => {
     const key = 'favoritedCountries'
-    const dispatch = useDispatch()
     const [favoritedCountry, setFavoritedCountry] = useState<
         FavoritedCountryInterface
     >({
@@ -143,24 +134,14 @@ const FavoriteCountryButton: React.FC<FavoriteCountryButtonInterface> = ({
     const [active, setActive] = useState<boolean>(false)
     const [clicked, setClicked] = useState<boolean>(false)
 
-    const {
-        loading,
-        countrySucessfullRequest,
-        fetchingError
-    } = useCountryFavorite(favoritedCountry, active, clicked)
+    const { loading, countrySucessfullRequest } = useCountryFavorite(
+        favoritedCountry,
+        active,
+        clicked
+    )
     const { t } = useTranslation('FavoriteCountryButton')
 
     const { favoritedCountries } = useSelector(stateSelector)
-
-    useEffect(() => {
-        if (
-            favoritedCountries &&
-            favoritedCountries[0] &&
-            favoritedCountries[0].ts === 0
-        ) {
-            dispatch(getFavoritedCountries())
-        }
-    }, [dispatch, favoritedCountries])
 
     useInjectReducer({ key, reducer })
     useInjectSaga({ key, saga })
