@@ -30,7 +30,7 @@ const stateSelector = createSelector(makeSelectCountry(), country => ({
 const useCountryAdvisory = () => {
     const { country } = useSelector(stateSelector)
     const [loading, setLoading] = useState<boolean>(false)
-    const [fetchingError, setFetchingError] = useState<Error>()
+    const [fetchingError, setFetchingError] = useState<string>()
     const [countryAdvisory, setCountryAdvisory] = useState<
         CountryAdvisoryInterface
     >()
@@ -48,7 +48,7 @@ const useCountryAdvisory = () => {
                 }
             } catch (error) {
                 if (error.response.status !== 404) {
-                    setFetchingError(error)
+                    setFetchingError(error.responseText)
                 }
             }
 
@@ -93,10 +93,7 @@ const DrawerCountryContent: React.FC = () => {
             />
             <CardContent>
                 {fetchingError && (
-                    <InfoMessage
-                        severity="error"
-                        message={fetchingError.toString()}
-                    />
+                    <InfoMessage severity="error" message={fetchingError} />
                 )}
 
                 <Typography variant="body1" component="p">
