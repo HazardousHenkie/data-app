@@ -12,7 +12,9 @@ export class ResponseError extends Error {
 
 async function checkStatus(response: Response) {
     if (response.status >= 200 && response.status < 300) {
-        return response.json()
+        return response.json().catch(() => {
+            throw new Error("Can't parse JSON.")
+        })
     }
 
     if (response.status === 204 || response.status === 205) {
@@ -20,6 +22,7 @@ async function checkStatus(response: Response) {
     }
 
     const responseText = await response.json()
+
     const error = new ResponseError(response, responseText)
 
     error.response = response

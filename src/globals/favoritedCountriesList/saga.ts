@@ -17,8 +17,6 @@ export function* getFavoritedCountriesDataSaga() {
             }
         })
 
-        console.log(response)
-
         yield put(setFavoritedCountries(response.data))
     } catch (error) {
         yield put(getFavoritedCountriesError(error))
