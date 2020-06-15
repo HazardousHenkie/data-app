@@ -25,7 +25,7 @@ const handler: Handler = async (event: APIGatewayEvent) => {
             const refreshCookie = cookie.parse(event.headers.cookie).jwt_refresh
             const accessCookie = cookie.parse(event.headers.cookie).jwt_access
 
-            console.log('refresh cookie present?', refreshCookie)
+            // console.log('refresh cookie present?', refreshCookie)
             console.log('access cookie present?', accessCookie)
 
             if (refreshCookie && accessCookie) {
