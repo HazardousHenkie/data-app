@@ -6,7 +6,7 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 
 import GoogleLoginButton from 'components/Atoms/GoogleLogin'
-import LogoutButton from 'components/Atoms/Logout'
+import LogoutButton from 'components/Atoms/GoogleLogout'
 import ThemeSwitcher from 'components/Atoms/ThemeSwitcher'
 import LanguageSwitcher from 'components/Molecules/LanguageSwitcher'
 

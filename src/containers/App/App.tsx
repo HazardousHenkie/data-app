@@ -26,6 +26,7 @@ const App: React.FC = () => {
         localStorage.getItem('darkmode') === 'true'
     )
     const [theme, setTheme] = useState(lightTheme)
+    // login if cookie is there
 
     useEffect(() => {
         if (!localStorage.getItem('darkmode')) {

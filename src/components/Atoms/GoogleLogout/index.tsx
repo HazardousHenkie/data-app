@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from 'react'
 
-import {
-    GoogleLogin,
-    GoogleLoginResponse,
-    GoogleLoginResponseOffline
-} from 'react-google-login'
-
-import { useTranslation } from 'react-i18next'
+import { GoogleLogout, GoogleLogoutProps } from 'react-google-login'
 
 import Snackbar from '@material-ui/core/Snackbar'
 import InfoMessage from 'components/Atoms/InfoMessage'
 import InlineLoader from 'components/Atoms/InlineLoader'
+
+import { useTranslation } from 'react-i18next'
 
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -21,27 +17,23 @@ import {
     makeSelectLoader
 } from 'reduxComponents/authentication/selectors'
 
-import { loginRequest } from 'reduxComponents/authentication/login/actions'
+import { logoutRequest } from 'reduxComponents/authentication/logout/actions'
 
-import GoogleLoginWrapper from './styledComponents'
+import GoogleLogoutWrapper from './styledComponents'
 
 const stateSelector = createStructuredSelector({
     error: makeSelectError(),
     loading: makeSelectLoader()
 })
 
-const GoogleLoginButton: React.FC = () => {
+const GoogleLogoutButton: React.FC = () => {
     const dispatch = useDispatch()
-    const { t } = useTranslation('loginButton')
-    const [googleLoading, setGoogleLoading] = useState<boolean>(false)
+    const { t } = useTranslation('logoutButton')
     const [open, setOpen] = useState<boolean>(false)
+    const [googleLoading, setGoogleLoading] = useState<boolean>(false)
     const [error, setError] = useState<string>()
 
     const { error: fetchingError, loading } = useSelector(stateSelector)
-
-    const onGoogleLoginRequest = () => {
-        setGoogleLoading(true)
-    }
 
     useEffect(() => {
         if (fetchingError) {
@@ -50,33 +42,50 @@ const GoogleLoginButton: React.FC = () => {
         }
     }, [fetchingError])
 
-    const googleResponseSuccess = (
-        response: GoogleLoginResponse | GoogleLoginResponseOffline
-    ) => {
+    const onGoogleLogoutRequest = () => {
+        setGoogleLoading(true)
+    }
+
+    const googleResponseSuccess = () => {
+        dispatch(logoutRequest())
         setGoogleLoading(false)
-        if ((response as GoogleLoginResponse).getAuthResponse().id_token) {
-            dispatch(
-                loginRequest(
-                    (response as GoogleLoginResponse).getAuthResponse().id_token
-                )
-            )
-        }
     }
 
     const handleClose = () => {
         setOpen(false)
     }
 
-    const googleResponseError = (response: { [key: string]: string }) => {
-        setGoogleLoading(false)
+    const googleResponseError = () => {
         setOpen(true)
-        setError(response.error)
+        t('logout:error', 'Logout error')
+        setError('logout failed')
+        setGoogleLoading(false)
+    }
+
+    interface GoogleLogoutCustomButtonProps extends GoogleLogoutProps {
+        customOnClick: () => void
+    }
+
+    const GoogleLogoutCustomButton: React.FC<GoogleLogoutCustomButtonProps> = ({
+        customOnClick,
+        ...props
+    }) => {
+        return (
+            <div
+                onClick={customOnClick}
+                onKeyDown={customOnClick}
+                role="button"
+                tabIndex={0}
+            >
+                <GoogleLogout {...props} />
+            </div>
+        )
     }
 
     return (
         <>
             {process.env.REACT_APP_GOOGLE_CLIENT_ID && (
-                <GoogleLoginWrapper>
+                <GoogleLogoutWrapper>
                     {(loading || googleLoading) && <InlineLoader />}
 
                     {error && (
@@ -93,18 +102,18 @@ const GoogleLoginButton: React.FC = () => {
                         </Snackbar>
                     )}
 
-                    <GoogleLogin
+                    <GoogleLogoutCustomButton
+                        customOnClick={onGoogleLogoutRequest}
                         clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-                        onRequest={onGoogleLoginRequest}
-                        buttonText={t('logout:button', 'Login')}
+                        buttonText={t('logout:button', 'Logout')}
                         disabled={loading || googleLoading}
-                        onSuccess={googleResponseSuccess}
+                        onLogoutSuccess={googleResponseSuccess}
                         onFailure={googleResponseError}
                     />
-                </GoogleLoginWrapper>
+                </GoogleLogoutWrapper>
             )}
         </>
     )
 }
 
-export default GoogleLoginButton
+export default GoogleLogoutButton
