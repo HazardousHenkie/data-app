@@ -26,7 +26,7 @@ const handler: Handler = (
     let response: ResponseInterface
 
     if (authenticatedResponse.statusCode === 200) {
-        // remove entry from db here
+        // remove refreshtoken entry from db here
         response = {
             statusCode: 200,
             headers: {

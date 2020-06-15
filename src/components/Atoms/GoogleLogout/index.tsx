@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ComponentType } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { GoogleLogout, GoogleLogoutProps } from 'react-google-login'
 
