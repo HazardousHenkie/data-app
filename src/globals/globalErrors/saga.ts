@@ -13,7 +13,7 @@ export function* globalAddErrorSaga(params: typeSafeAction<typeof setError>) {
         yield put(setErrors([...errors, params.payload]))
     } catch (error) {
         // eslint-disable-next-line no-console
-        setError(error)
+        yield put(setError(error))
     }
 }
 
@@ -21,9 +21,6 @@ export function* globalRemoveErrorSaga() {
     try {
         yield put(setErrors(initialErrorsState.errors))
     } catch (error) {
-        setError(error)
+        yield put(setError(error))
     }
 }
-
-// add tests
-// show favorited countries

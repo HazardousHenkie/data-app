@@ -1,32 +1,42 @@
 import { action } from 'typesafe-actions'
-// import ActionTypes, { CountryItem } from '../constants'
+import ActionTypes from '../constants'
 
-// import setSelectedCountry from '../actions'
+import { getErrors, setError, removeError, setErrors } from '../actions'
 
-// describe('CountryListItem Actions', () => {
-//     describe('getErrors', () => {
-//         it('should return the correct type.', () => {
-//             const expectedResult = action(
-//                 ActionTypes.SET_SELECTED_COUNTRY,
-//                 CountryItem.country
-//             )
+describe('globalErrors Actions', () => {
+    describe('getErrors', () => {
+        it('should return the correct type.', () => {
+            const expectedResult = action(ActionTypes.GET_ERRORS)
 
-//             expect(setSelectedCountry(CountryItem.country)).toEqual(
-//                 expectedResult
-//             )
-//         })
-//     })
+            expect(getErrors()).toEqual(expectedResult)
+        })
+    })
 
-//     describe('getErrors', () => {
-//         it('should return the correct type and pass.', () => {
-//             const expectedResult = action(
-//                 ActionTypes.SET_SELECTED_COUNTRY,
-//                 CountryItem.country
-//             )
+    describe('setError', () => {
+        it('should return the correct type and pass the error', () => {
+            const error = new Error('Something went wrong!')
 
-//             expect(setSelectedCountry(CountryItem.country)).toEqual(
-//                 expectedResult
-//             )
-//         })
-//     })
-// })
+            const expectedResult = action(ActionTypes.SET_ERROR, error)
+
+            expect(setError(error)).toEqual(expectedResult)
+        })
+    })
+
+    describe('removeError', () => {
+        it('should return the correct type.', () => {
+            const expectedResult = action(ActionTypes.REMOVE_ERROR)
+
+            expect(removeError()).toEqual(expectedResult)
+        })
+    })
+
+    describe('setErrors', () => {
+        it('should return the correct type and pass the error', () => {
+            const errors = [new Error('Something went wrong!')]
+
+            const expectedResult = action(ActionTypes.SET_ERRORS, errors)
+
+            expect(setErrors(errors)).toEqual(expectedResult)
+        })
+    })
+})

@@ -1,32 +1,27 @@
-import countriesListItemReducer from '../reducer'
-// import setSelectedCountry from '../actions'
+import errorsReducer from '../reducer'
+import { setErrors } from '../actions'
 
-// import CountryState from '../types'
-// import { CountryItem } from '../constants'
+import CountryState from '../types'
+import { initialErrorsState } from '../constants'
 
-// describe('countriesListItemReducer', () => {
-//     let state: CountryState
-//     beforeEach(() => {
-//         state = CountryItem
-//     })
+describe('countriesListItemReducer', () => {
+    let state: CountryState
+    beforeEach(() => {
+        state = initialErrorsState
+    })
 
-//     it('should return the initial state', () => {
-//         const expectedResult = state
-//         expect(countriesListItemReducer(undefined, {} as any)).toEqual(
-//             expectedResult
-//         )
-//     })
+    it('should return the initial state', () => {
+        const expectedResult = state
+        expect(errorsReducer(undefined, {} as any)).toEqual(expectedResult)
+    })
 
-//     it('should handle the setSelectedCountry action correctly', () => {
-//         const expectedResult = {
-//             country: CountryItem.country
-//         }
+    it('should handle the setSelectedCountry action correctly', () => {
+        const expectedResult = {
+            errors: initialErrorsState.errors
+        }
 
-//         expect(
-//             countriesListItemReducer(
-//                 state,
-//                 setSelectedCountry(CountryItem.country)
-//             )
-//         ).toEqual(expectedResult)
-//     })
-// })
+        expect(
+            errorsReducer(state, setErrors(initialErrorsState.errors))
+        ).toEqual(expectedResult)
+    })
+})

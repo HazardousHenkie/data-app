@@ -1,27 +1,27 @@
-import React from 'react' // kan weg
-// import makeSelectCountry, { selectCountry } from '../selectors'
-// import { CountryItem } from '../constants'
+import { makeSelectInitialErrors, makeSelectErrors } from '../selectors'
+import { initialErrorsState } from '../constants'
 
-// describe('selectCountry', () => {
-//     it('should select the country state', () => {
-//         const mockedState: any = {
-//             country: {
-//                 country: CountryItem.country
-//             }
-//         }
-//         expect(selectCountry(mockedState)).toEqual(CountryItem)
-//     })
-// })
+describe('selectCountry', () => {
+    it('should select the errors state', () => {
+        const mockedState: any = {
+            errors: {
+                errors: initialErrorsState.errors
+            }
+        }
+        expect(makeSelectInitialErrors(mockedState)).toEqual(initialErrorsState)
+    })
+})
 
-// describe('makeSelectCountry', () => {
-//     const dataSelector = makeSelectCountry()
-//     it('should select the data', () => {
-//         const mockedState = {
-//             countriesData: {
-//                 country: CountryItem.country
-//             }
-//         }
+describe('makeSelectErrors', () => {
+    const dataSelector = makeSelectErrors()
 
-//         expect(dataSelector(mockedState)).toEqual(CountryItem.country)
-//     })
-// })
+    it('should select the data', () => {
+        const mockedState = {
+            errors: {
+                errors: initialErrorsState.errors
+            }
+        }
+
+        expect(dataSelector(mockedState)).toEqual(initialErrorsState.errors)
+    })
+})
