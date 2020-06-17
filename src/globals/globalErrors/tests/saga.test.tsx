@@ -4,15 +4,14 @@ import { ActionType as typeSafeAction } from 'typesafe-actions'
 import ActionTypes from '../constants'
 
 import { setError, setErrors } from '../actions'
-import { globalAddErrorSaga, globalRemoveErrorSaga } from '../saga'
+import globalAddErrorSaga from '../saga'
 
 describe('globalAddErrorSaga Saga', () => {
     let errorsGenerator: Generator
     const params = {
         type: ActionTypes.SET_ERROR,
-        payload: new Error('some error')
+        payload: Error('test')
     }
-
     beforeEach(() => {
         errorsGenerator = globalAddErrorSaga(
             params as typeSafeAction<typeof setError>
@@ -23,17 +22,18 @@ describe('globalAddErrorSaga Saga', () => {
     })
 
     it('should dispatch the setErrors action if it selects the errors successfully', () => {
-        const response = [new Error('some error')]
-        const putDescriptor = errorsGenerator.next(response).value
+        const errors = [params.payload]
+        const putDescriptor = errorsGenerator.next(errors).value
 
-        // eslint-disable-next-line redux-saga/no-unhandled-errors
-        expect(putDescriptor).toEqual(put(setErrors(response)))
+        expect(putDescriptor).toEqual(
+            // eslint-disable-next-line redux-saga/no-unhandled-errors
+            put(setErrors([...errors, params.payload]))
+        )
     })
 
     it('should call the setError action if the response errors', () => {
         const response = new Error('Some error')
         const putDescriptor = errorsGenerator.throw(response).value
-
         // eslint-disable-next-line redux-saga/no-unhandled-errors
         expect(putDescriptor).toEqual(put(setError(response)))
     })

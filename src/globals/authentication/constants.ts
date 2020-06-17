@@ -1,6 +1,6 @@
 import AuthenticationState, { User } from './types'
 
-const initialUserState: User = {
+export const initialUserState: User = {
     id: 0,
     name: ''
 }

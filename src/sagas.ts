@@ -6,10 +6,7 @@ import ActionTypesLogin from 'globals/authentication/login/constants'
 import ActionTypesLogout from 'globals/authentication/logout/constants'
 import ActionTypesFavoritedCountries from 'globals/favoritedCountriesList/constants'
 
-import {
-    globalAddErrorSaga,
-    globalRemoveErrorSaga
-} from 'globals/globalErrors/saga'
+import globalAddErrorSaga from 'globals/globalErrors/saga'
 import loginSaga from 'globals/authentication/login/saga'
 import logoutSaga from 'globals/authentication/logout/saga'
 import refreshTokenSaga from 'globals/authentication/refreshToken/saga'
@@ -21,7 +18,6 @@ export default function* authenticationRootSaga() {
         refreshTokenSaga
     )
     yield takeLatest(ActionTypesErrors.SET_ERROR, globalAddErrorSaga)
-    yield takeLatest(ActionTypesErrors.REMOVE_ERROR, globalRemoveErrorSaga)
     yield takeLatest(ActionTypesLogin.LOGIN_REQUEST, loginSaga)
     yield takeLatest(ActionTypesLogout.LOGOUT_REQUEST, logoutSaga)
     yield takeLatest(

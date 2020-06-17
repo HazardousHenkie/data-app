@@ -12,18 +12,6 @@ Object {
 }
 `;
 
-exports[`globalAddErrorSaga Saga should dispatch the setErrors action if it selects the data successfully 1`] = `
-Object {
-  "@@redux-saga/IO": true,
-  "combinator": false,
-  "payload": Object {
-    "args": Array [],
-    "selector": [Function],
-  },
-  "type": "SELECT",
-}
-`;
-
 exports[`globalAddErrorSaga Saga should dispatch the setErrors action if it selects the errors successfully 1`] = `
 Object {
   "@@redux-saga/IO": true,
@@ -33,22 +21,5 @@ Object {
     "selector": [Function],
   },
   "type": "SELECT",
-}
-`;
-
-exports[`globalAddErrorSaga Saga should dispatch the setErrors action if it selects the errors successfully 2`] = `
-Object {
-  "@@redux-saga/IO": true,
-  "combinator": false,
-  "payload": Object {
-    "action": Object {
-      "error": undefined,
-      "meta": undefined,
-      "payload": [TypeError: errors is not iterable],
-      "type": "components/globalErrors/SET_ERROR",
-    },
-    "channel": undefined,
-  },
-  "type": "PUT",
 }
 `;

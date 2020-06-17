@@ -14,6 +14,10 @@ function errorsReducer(
             return {
                 errors: action.payload
             }
+        case ActionTypes.REMOVE_ERROR:
+            return {
+                ...initialErrorsState
+            }
         default:
             return state
     }

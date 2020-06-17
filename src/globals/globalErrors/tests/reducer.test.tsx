@@ -24,4 +24,14 @@ describe('countriesListItemReducer', () => {
             errorsReducer(state, setErrors(initialErrorsState.errors))
         ).toEqual(expectedResult)
     })
+
+    it('should handle the removeError action correctly', () => {
+        const expectedResult = {
+            errors: initialErrorsState.errors
+        }
+
+        expect(
+            errorsReducer(state, setErrors(initialErrorsState.errors))
+        ).toEqual(expectedResult)
+    })
 })
