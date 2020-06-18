@@ -1,9 +1,9 @@
-import { applyMiddleware, createStore, compose } from 'redux'
+import { applyMiddleware, createStore, compose, StoreEnhancer } from 'redux'
 import { routerMiddleware } from 'connected-react-router'
 import { createInjectorsEnhancer, forceReducerReload } from 'redux-injectors'
 import createSagaMiddleware from 'redux-saga'
 import { History } from 'history'
-import { createLogger } from 'redux-logger'
+import { composeWithDevTools } from 'redux-devtools-extension'
 
 import { InjectedStore, ApplicationRootState } from 'types'
 import authenticationRootSaga from 'reduxComponents/authentication/sagas'
@@ -17,12 +17,6 @@ export default function configureStore(
     const { run: runSaga } = sagaMiddleware
     const middlewares = [sagaMiddleware, routerMiddleware(history)]
 
-    if (process.env.NODE_ENV !== 'production' && typeof window === 'object') {
-        // change logger
-        const logger = createLogger()
-        middlewares.push(logger)
-    }
-
     const enhancers = [
         applyMiddleware(...middlewares),
         createInjectorsEnhancer({
@@ -31,18 +25,23 @@ export default function configureStore(
         })
     ]
 
+    let enhancer: StoreEnhancer<{}, {}>
+    if (process.env.NODE_ENV !== 'production' && typeof window === 'object') {
+        enhancer = composeWithDevTools(...enhancers)
+    } else {
+        enhancer = compose(...enhancers)
+    }
+
     const store = createStore(
         createReducer(),
-        initialState as object,
-        compose(...enhancers)
+        initialState,
+        enhancer
     ) as InjectedStore
 
     // eslint-disable-next-line
     store.runSaga = sagaMiddleware.run
     store.injectedReducers = {}
     store.injectedSagas = {}
-    // check of this can be better
-    // combine sagas?
     store.runSaga(authenticationRootSaga, undefined)
 
     if (module.hot) {
