@@ -7,6 +7,8 @@ import { ActionType as typeSafeAction } from 'typesafe-actions'
 
 import { loginSuccess, loginError, loginRequest } from './actions'
 
+import authToken from '../authToken'
+
 export default function* loginSaga(
     params: typeSafeAction<typeof loginRequest>
 ) {
@@ -18,7 +20,9 @@ export default function* loginSaga(
             body: serialize({ authToken: params.payload })
         })
 
-        yield put(loginSuccess(response))
+        authToken.token = response.authToken
+
+        yield put(loginSuccess(response.user))
     } catch (error) {
         yield put(loginError(error))
     }

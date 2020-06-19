@@ -6,9 +6,9 @@ import { OAuth2Client } from 'google-auth-library'
 
 import cookie from 'cookie'
 
-import createJwtCookie, {
+import createJwtAuthToken, {
     createRefreshCookie,
-    createRefreshToken
+    createJwtRefreshToken
 } from './helpers/jwt-helpers'
 
 import getUser, { createUser } from './database/user'
@@ -93,26 +93,28 @@ const handler: Handler = async (event: APIGatewayEvent) => {
                     }
                 }
 
-                const refreshToken = createRefreshToken(
+                const refreshToken = createJwtRefreshToken(
                     googleUser.sub,
                     googleUser.name
                 )
 
                 await createToken(googleUser.sub, refreshToken)
 
+                const authToken = createJwtAuthToken(
+                    googleUser.sub,
+                    googleUser.name
+                )
+
                 response = {
                     statusCode: 200,
                     headers: {
-                        'Set-Cookie': [
-                            createJwtCookie(
-                                existingUser.data.googleId,
-                                existingUser.data.name
-                            ),
-                            createRefreshCookie(refreshToken)
-                        ],
+                        'Set-Cookie': createRefreshCookie(refreshToken),
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(existingUser.data)
+                    body: JSON.stringify({
+                        user: existingUser.data,
+                        authToken
+                    })
                 }
             } else {
                 response = { statusCode: 400, body: 'User DB error.' }

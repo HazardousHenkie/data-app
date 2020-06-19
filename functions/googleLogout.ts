@@ -1,11 +1,6 @@
 import { Handler, Context, Callback, APIGatewayEvent } from 'aws-lambda'
 
-import cookie from 'cookie'
-
-import {
-    clearJwtAccessCookie,
-    clearJwtRefreshCookie
-} from './helpers/jwt-helpers'
+import { clearJwtRefreshCookie } from './helpers/jwt-helpers'
 
 import authenticatedHelper from './helpers/authenticatedHelper'
 
@@ -20,17 +15,15 @@ const handler: Handler = (
     context: Context,
     callback: Callback
 ) => {
-    const authenticatedResponse = authenticatedHelper(
-        cookie.parse(event.headers.cookie).jwt_access
-    )
+    const authToken = event.headers.authorization.split('Bearer ')
+    const authenticatedResponse = authenticatedHelper(authToken[1])
     let response: ResponseInterface
 
     if (authenticatedResponse.statusCode === 200) {
-        // remove refreshtoken entry from db here
         response = {
             statusCode: 200,
             headers: {
-                'Set-Cookie': [clearJwtAccessCookie(), clearJwtRefreshCookie()],
+                'Set-Cookie': clearJwtRefreshCookie(),
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ message: 'Logged out successfully.' })
