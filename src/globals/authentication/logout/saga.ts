@@ -3,7 +3,7 @@ import { call, put } from 'redux-saga/effects'
 import requestErrorCheck from 'utils/errorCheckRequest'
 import request from 'utils/request'
 
-import { setError } from 'globals/globalErrors/actions'
+import ERROR_STATUS_CODES from 'utils/errorStatusCodes'
 import { logoutSuccess, logoutError } from './actions'
 
 import authToken from '../authToken'
@@ -22,8 +22,10 @@ export default function* logoutSaga() {
         localStorage.removeItem('userId')
         yield put(logoutSuccess())
     } catch (error) {
-        yield requestErrorCheck(error)
+        if (error.response.status === ERROR_STATUS_CODES.UNAUTHORIZED) {
+            yield requestErrorCheck(error)
+        }
+
         yield put(logoutError(error))
-        yield put(setError(error))
     }
 }

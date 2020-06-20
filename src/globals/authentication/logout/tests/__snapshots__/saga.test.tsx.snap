@@ -1,14 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`globalAddErrorSaga Saga should call the getRefreshTokenError and setError action if the response errors 1`] = `
+exports[`logoutSaga Saga should call the logoutError action if the response errors 1`] = `
 Object {
   "@@redux-saga/IO": true,
   "combinator": false,
   "payload": Object {
     "args": Array [
-      "/.netlify/functions/refreshToken",
+      "/.netlify/functions/googleLogout",
       Object {
-        "body": "{\\"userId\\":\\"userId\\"}",
+        "headers": Object {
+          "Authorization": "Bearer ",
+        },
         "method": "POST",
       },
     ],
@@ -19,15 +21,17 @@ Object {
 }
 `;
 
-exports[`globalAddErrorSaga Saga should dispatch the getRefreshTokenSuccess action if call was successfull 1`] = `
+exports[`logoutSaga Saga should dispatch the logoutSuccess action if call was successfull 1`] = `
 Object {
   "@@redux-saga/IO": true,
   "combinator": false,
   "payload": Object {
     "args": Array [
-      "/.netlify/functions/refreshToken",
+      "/.netlify/functions/googleLogout",
       Object {
-        "body": "{\\"userId\\":\\"userId\\"}",
+        "headers": Object {
+          "Authorization": "Bearer ",
+        },
         "method": "POST",
       },
     ],

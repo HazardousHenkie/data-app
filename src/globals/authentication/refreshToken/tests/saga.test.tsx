@@ -2,6 +2,7 @@ import { put } from 'redux-saga/effects'
 
 import { ActionType as typeSafeAction } from 'typesafe-actions'
 import { ResponseError } from 'utils/request'
+import { setError } from 'globals/globalErrors/actions'
 import ActionTypes from '../constants'
 
 import {
@@ -39,10 +40,16 @@ describe('globalAddErrorSaga Saga', () => {
         )
     })
 
-    it('should call the setError action if the response errors', () => {
+    it('should call the getRefreshTokenError and setError action if the response errors', () => {
         const response = new ResponseError(callDescriptor, 'Some error')
         const putDescriptor = refreshTokenGenerator.throw(response).value
         // eslint-disable-next-line redux-saga/no-unhandled-errors
         expect(putDescriptor).toEqual(put(getRefreshTokenError(response)))
+
+        const putDescriptorSecondError = refreshTokenGenerator.next(response)
+            .value
+
+        // eslint-disable-next-line redux-saga/no-unhandled-errors
+        expect(putDescriptorSecondError).toEqual(put(setError(response)))
     })
 })
