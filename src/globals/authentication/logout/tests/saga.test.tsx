@@ -33,5 +33,11 @@ describe('logoutSaga Saga', () => {
         const putDescriptor = logoutSagaGenerator.throw(response).value
         // eslint-disable-next-line redux-saga/no-unhandled-errors
         expect(putDescriptor).toEqual(put(logoutError(response)))
+
+        const putDescriptorSecondError = logoutSagaGenerator.next(response)
+            .value
+
+        // eslint-disable-next-line redux-saga/no-unhandled-errors
+        expect(putDescriptorSecondError).toEqual(put(setError(response)))
     })
 })

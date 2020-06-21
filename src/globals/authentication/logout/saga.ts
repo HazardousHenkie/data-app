@@ -4,6 +4,7 @@ import requestErrorCheck from 'utils/errorCheckRequest'
 import request from 'utils/request'
 
 import ERROR_STATUS_CODES from 'utils/errorStatusCodes'
+import { setError } from 'globals/globalErrors/actions'
 import { logoutSuccess, logoutError } from './actions'
 
 import authToken from '../authToken'
@@ -27,5 +28,6 @@ export default function* logoutSaga() {
         }
 
         yield put(logoutError(error))
+        yield put(setError(error))
     }
 }

@@ -31,7 +31,7 @@ describe('globalAddErrorSaga Saga', () => {
     })
 
     it('should dispatch the getRefreshTokenSuccess action if call was successfull', () => {
-        const response = { user: { id: 0, name: '' } }
+        const response = { user: { id: '', name: '' } }
         const putDescriptor = refreshTokenGenerator.next(response).value
 
         expect(putDescriptor).toEqual(

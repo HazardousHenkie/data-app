@@ -5,6 +5,7 @@ import { logoutRequest } from 'globals/authentication/logout/actions'
 import { setError } from 'globals/globalErrors/actions'
 import { ResponseError } from './request'
 
+// test this one?
 function* requestErrorCheck(error: ResponseError) {
     try {
         if (localStorage.getItem('userId')) {
@@ -12,7 +13,7 @@ function* requestErrorCheck(error: ResponseError) {
                 getRefreshTokenRequest(localStorage.getItem('userId') as string)
             )
         } else {
-            yield put(logoutRequest())
+            throw Error('No userId in local storage.')
         }
     } catch {
         yield put(logoutRequest())

@@ -28,7 +28,7 @@ describe('loginSaga Saga', () => {
     })
 
     it('should dispatch the loginSuccess action if call was successfull', () => {
-        const response = { user: { id: 0, name: '' } }
+        const response = { user: { id: '', name: '' } }
         const putDescriptor = loginSagaGenerator.next(response).value
 
         expect(putDescriptor).toEqual(
