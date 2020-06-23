@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 import { GoogleLogout, GoogleLogoutProps } from 'react-google-login'
 
@@ -10,21 +10,17 @@ import { useTranslation } from 'react-i18next'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { createStructuredSelector } from 'reselect'
+import { createSelector } from 'reselect'
 
-import {
-    makeSelectError,
-    makeSelectLoader
-} from 'reduxComponents/authentication/selectors'
+import { makeSelectLoader } from 'reduxComponents/authentication/selectors'
 
 import { logoutRequest } from 'reduxComponents/authentication/logout/actions'
 
 import GoogleLogoutWrapper from './styledComponents'
 
-const stateSelector = createStructuredSelector({
-    error: makeSelectError(),
-    loading: makeSelectLoader()
-})
+const stateSelector = createSelector(makeSelectLoader(), loading => ({
+    loading
+}))
 
 const GoogleLogoutButton: React.FC = () => {
     const dispatch = useDispatch()
@@ -33,22 +29,15 @@ const GoogleLogoutButton: React.FC = () => {
     const [googleLoading, setGoogleLoading] = useState<boolean>(false)
     const [error, setError] = useState<string>()
 
-    const { error: fetchingError, loading } = useSelector(stateSelector)
-
-    useEffect(() => {
-        if (fetchingError) {
-            setOpen(true)
-            setError(fetchingError.toString())
-        }
-    }, [fetchingError])
+    const { loading } = useSelector(stateSelector)
 
     const onGoogleLogoutRequest = () => {
         setGoogleLoading(true)
     }
 
     const googleResponseSuccess = () => {
-        dispatch(logoutRequest())
         setGoogleLoading(false)
+        dispatch(logoutRequest())
     }
 
     const handleClose = () => {

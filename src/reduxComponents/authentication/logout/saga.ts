@@ -1,5 +1,6 @@
 import { call, put } from 'redux-saga/effects'
 
+import requestErrorCheck from 'utils/errorCheckRequest'
 import request from 'utils/request'
 
 import { logoutSuccess, logoutError } from './actions'
@@ -10,15 +11,17 @@ export default function* logoutSaga() {
     const requestURL = '/.netlify/functions/googleLogout'
 
     try {
-        const response = yield call(request, requestURL, {
+        yield call(request, requestURL, {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${authToken.token}`
             }
         })
 
-        yield put(logoutSuccess(response))
+        localStorage.removeItem('userId')
+        yield put(logoutSuccess())
     } catch (error) {
+        yield requestErrorCheck(error)
         yield put(logoutError(error))
     }
 }

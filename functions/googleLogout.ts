@@ -1,5 +1,6 @@
 import { Handler, Context, Callback, APIGatewayEvent } from 'aws-lambda'
 
+import serialize from 'serialize-javascript'
 import { clearJwtRefreshCookie } from './helpers/jwt-helpers'
 
 import authenticatedHelper from './helpers/authenticatedHelper'
@@ -26,7 +27,7 @@ const handler: Handler = (
                 'Set-Cookie': clearJwtRefreshCookie(),
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ message: 'Logged out successfully.' })
+            body: serialize({ message: 'Logged out successfully.' })
         }
     } else {
         response = authenticatedResponse
