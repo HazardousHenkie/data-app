@@ -6,4 +6,10 @@ const Header = styled.h1`
     margin: 0 0 10px;
 `
 
+export const FavoriteCountryButtonWrapper = styled.div`
+    position: absolute;
+    right: 20px;
+    top: 20px;
+`
+
 export default Header

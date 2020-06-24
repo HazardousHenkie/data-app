@@ -10,6 +10,7 @@ interface SearchFieldProps {
 
 const SearchField: React.FC<SearchFieldProps> = ({ setValue }) => {
     const [inputValue, setInputValue] = useState<string>('')
+
     // suspense makes the map not so we will have handle the not ready state here
     const { t, ready } = useTranslation('searchField', { useSuspense: false })
 

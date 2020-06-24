@@ -46,6 +46,7 @@ const CountriesListItem: React.FC<CountriesListItemProps> = ({
 
         if (selectedCountry) {
             setOpen(false)
+            // actually this could be done with context api
             dispatch(setSelectedCountry(selectedCountry))
         }
     }

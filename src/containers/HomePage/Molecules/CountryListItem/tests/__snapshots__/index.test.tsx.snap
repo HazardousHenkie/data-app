@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ListItem /> should render like snapshot 1`] = `
+<div
+  aria-disabled="false"
+  class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
+  role="button"
+  tabindex="0"
+>
+  <div
+    class="MuiListItemIcon-root"
+  >
+    <img
+      alt=""
+      height="20"
+      src=""
+      width="30"
+    />
+  </div>
+  <div
+    class="MuiListItemText-root"
+  />
+  <span
+    class="MuiTouchRipple-root"
+  />
+</div>
+`;

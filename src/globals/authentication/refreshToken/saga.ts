@@ -19,7 +19,6 @@ export default function* refreshTokenSaga(
 ) {
     const requestURL = '/.netlify/functions/refreshToken'
 
-    // when 401 error is there do a request to here
     try {
         const response = yield call(request, requestURL, {
             method: 'POST',
@@ -32,6 +31,7 @@ export default function* refreshTokenSaga(
 
         yield put(getRefreshTokenSuccess(response.user))
     } catch (error) {
+        // only put error when not 400
         yield put(getRefreshTokenError(error))
     }
 }

@@ -14,6 +14,6 @@ export interface CountryInterface {
     translations: { [key: string]: string }
 }
 
-export interface CountryState {
+export default interface CountryState {
     readonly country: CountryInterface
 }

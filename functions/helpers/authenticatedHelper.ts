@@ -1,13 +1,12 @@
 import jwt from 'jsonwebtoken'
 
-import serialize from 'serialize-javascript'
 import publicKey from '../keys/publicKeyAccess'
 
 const authenticatedWrapper = (toBeCheckedCookie: string) => {
     if (!toBeCheckedCookie) {
         const response = {
             statusCode: 401,
-            body: serialize({
+            body: JSON.stringify({
                 message:
                     'There is no jwt cookie, so the request is unauthorized'
             })
@@ -17,17 +16,22 @@ const authenticatedWrapper = (toBeCheckedCookie: string) => {
     }
 
     try {
-        const payload = jwt.verify(toBeCheckedCookie, publicKey) as {
-            [key: string]: string | number
+        const bearerToken = toBeCheckedCookie.split('Bearer ')
+
+        const payload = jwt.verify(bearerToken[1], publicKey) as {
+            [key: string]: string
         }
 
-        const response = { statusCode: 200, body: payload.userId }
+        const response = {
+            statusCode: 200,
+            body: payload.userId
+        }
 
         return response
     } catch (err) {
         const response = {
             statusCode: 401,
-            body: serialize({ message: err.message })
+            body: JSON.stringify({ message: err.message })
         }
 
         return response

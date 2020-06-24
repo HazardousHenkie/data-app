@@ -12,9 +12,9 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { createSelector } from 'reselect'
 
-import { makeSelectLoader } from 'reduxComponents/authentication/selectors'
+import { makeSelectLoader } from 'globals/authentication/selectors'
 
-import { logoutRequest } from 'reduxComponents/authentication/logout/actions'
+import { logoutRequest } from 'globals/authentication/logout/actions'
 
 import GoogleLogoutWrapper from './styledComponents'
 
@@ -23,6 +23,7 @@ const stateSelector = createSelector(makeSelectLoader(), loading => ({
 }))
 
 const GoogleLogoutButton: React.FC = () => {
+    // broken?
     const dispatch = useDispatch()
     const { t } = useTranslation('logoutButton')
     const [open, setOpen] = useState<boolean>(false)
@@ -36,7 +37,6 @@ const GoogleLogoutButton: React.FC = () => {
     }
 
     const googleResponseSuccess = () => {
-        setGoogleLoading(false)
         dispatch(logoutRequest())
     }
 

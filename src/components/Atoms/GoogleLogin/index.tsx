@@ -16,9 +16,9 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { createSelector } from 'reselect'
 
-import { makeSelectLoader } from 'reduxComponents/authentication/selectors'
+import { makeSelectLoader } from 'globals/authentication/selectors'
 
-import { loginRequest } from 'reduxComponents/authentication/login/actions'
+import { loginRequest } from 'globals/authentication/login/actions'
 
 import GoogleLoginWrapper from './styledComponents'
 
