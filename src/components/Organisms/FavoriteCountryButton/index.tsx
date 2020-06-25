@@ -11,7 +11,10 @@ import { createStructuredSelector } from 'reselect'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors'
-import { getFavoritedCountries } from 'globals/favoritedCountriesList/actions'
+import {
+    getFavoritedCountries,
+    setFavoritedCountries
+} from 'globals/favoritedCountriesList/actions'
 
 import reducer from 'globals/favoritedCountriesList//reducer'
 import saga from 'globals/favoritedCountriesList/saga'
@@ -20,61 +23,91 @@ import { FavoritedCountryInterface } from 'globals/favoritedCountriesList/types'
 import { initialFavoritedCountriesState } from 'globals/favoritedCountriesList/constants'
 import { CountryInterface } from 'containers/HomePage/Molecules/CountryListItem/types'
 
-import { query } from 'faunadb'
-
 import {
     makeSelectFavoritedCountries,
     makeSelectError,
     makeSelectLoader
 } from 'globals/favoritedCountriesList/selectors'
 
+const stateSelector = createStructuredSelector({
+    favoritedCountries: makeSelectFavoritedCountries(),
+    error: makeSelectError(),
+    loading: makeSelectLoader()
+})
+
 const useCountryFavorite = (
     favoritedCountry: FavoritedCountryInterface,
     active: boolean,
     clicked: boolean
 ) => {
+    const dispatch = useDispatch()
     const [loading, setLoading] = useState<boolean>(false)
-    const [querySuccessfull, setQuerySuccessfull] = useState(false)
     const [fetchingError, setFetchingError] = useState<Error>()
-
+    const [countrySucessfullRequest, setCountrySucessfullRequest] = useState<
+        FavoritedCountryInterface
+    >()
+    const { favoritedCountries } = useSelector(stateSelector)
+    // fix serverless function
+    // fix errors make into seperate component
     // only show button when logged In
     useEffect(() => {
-        // iff favoritedcountry has ref other then 0 it's a delete request
-        // active may not be necessary anymore
-        // if it's a save return the favorited country otherwise return the clicked country (favoritedcountry)
-        if (favoritedCountry.data.countryId !== '' && clicked) {
-            let fetchRequest: Promise<Response>
-
-            if (active) {
-                setQuerySuccessfull(false)
-                // todo.ref['@ref'].id this one? and make it after tht again
-                fetchRequest = request(
-                    `/.netlify/functions/deleteCountry/${favoritedCountry.data.countryId}`,
-                    {
-                        method: 'DELETE',
-                        headers: {
-                            Authorization: `Bearer ${authToken.token}`
-                        }
-                    }
-                )
-            } else {
-                fetchRequest = request(
-                    `/.netlify/functions/saveCountry/${favoritedCountry.data.countryId}`,
-                    {
-                        method: 'GET',
-                        headers: {
-                            Authorization: `Bearer ${authToken.token}`
-                        }
-                    }
-                )
-            }
+        if (clicked) {
             const fetchData = async () => {
                 setLoading(true)
+                let fetchRequest: FavoritedCountryInterface
+
                 try {
-                    await fetchRequest
-                    setQuerySuccessfull(true)
+                    if (favoritedCountry.ref['@ref'].id !== '') {
+                        fetchRequest = await request(
+                            `/.netlify/functions/deleteCountry/${favoritedCountry.ref['@ref'].id}`,
+                            {
+                                method: 'DELETE',
+                                headers: {
+                                    Authorization: `Bearer ${authToken.token}`
+                                }
+                            }
+                        )
+
+                        setCountrySucessfullRequest({
+                            ...initialFavoritedCountriesState.countries[0],
+                            data: {
+                                ...initialFavoritedCountriesState.countries[0]
+                                    .data,
+                                countryId: favoritedCountry.data.countryId
+                            }
+                        })
+
+                        dispatch(
+                            setFavoritedCountries(
+                                favoritedCountries.filter(
+                                    country =>
+                                        country.data.countryId !==
+                                        favoritedCountry.data.countryId
+                                )
+                            )
+                        )
+                    } else {
+                        fetchRequest = await request(
+                            `/.netlify/functions/saveCountry/${favoritedCountry.data.countryId}`,
+                            {
+                                method: 'GET',
+                                headers: {
+                                    Authorization: `Bearer ${authToken.token}`
+                                }
+                            }
+                        )
+
+                        setCountrySucessfullRequest(fetchRequest)
+
+                        dispatch(
+                            setFavoritedCountries([
+                                ...favoritedCountries,
+                                fetchRequest
+                            ])
+                        )
+                    }
                 } catch (error) {
-                    if (error.response.status !== 404) {
+                    if (error.response && error.response.status !== 404) {
                         setFetchingError(error)
                     }
                 }
@@ -84,20 +117,18 @@ const useCountryFavorite = (
 
             fetchData()
         }
-    }, [favoritedCountry, active, clicked])
+    }, [favoritedCountries, dispatch, favoritedCountry, active, clicked])
 
-    return { loading, querySuccessfull, fetchingError }
+    return {
+        loading,
+        countrySucessfullRequest,
+        fetchingError
+    }
 }
 
 interface FavoriteCountryButtonInterface {
     clickedCountry: CountryInterface
 }
-
-const stateSelector = createStructuredSelector({
-    favoritedCountries: makeSelectFavoritedCountries(),
-    error: makeSelectError(),
-    loading: makeSelectLoader()
-})
 
 const FavoriteCountryButton: React.FC<FavoriteCountryButtonInterface> = ({
     clickedCountry
@@ -111,18 +142,22 @@ const FavoriteCountryButton: React.FC<FavoriteCountryButtonInterface> = ({
     })
     const [active, setActive] = useState<boolean>(false)
     const [clicked, setClicked] = useState<boolean>(false)
-    // error handling
-    const { loading, querySuccessfull } = useCountryFavorite(
-        favoritedCountry,
-        active,
-        clicked
-    )
+
+    const {
+        loading,
+        countrySucessfullRequest,
+        fetchingError
+    } = useCountryFavorite(favoritedCountry, active, clicked)
     const { t } = useTranslation('FavoriteCountryButton')
 
     const { favoritedCountries } = useSelector(stateSelector)
 
     useEffect(() => {
-        if (favoritedCountries[0].ts === 0) {
+        if (
+            favoritedCountries &&
+            favoritedCountries[0] &&
+            favoritedCountries[0].ts === 0
+        ) {
             dispatch(getFavoritedCountries())
         }
     }, [dispatch, favoritedCountries])
@@ -131,39 +166,36 @@ const FavoriteCountryButton: React.FC<FavoriteCountryButtonInterface> = ({
     useInjectSaga({ key, saga })
 
     useEffect(() => {
-        const isAlreadyFavoriteCountry = favoritedCountries.find(
-            favoriteCountry =>
-                favoriteCountry.data.countryId === clickedCountry.alpha2Code
-        )
+        if (favoritedCountries) {
+            const isAlreadyFavoriteCountry = favoritedCountries.find(
+                favoriteCountry =>
+                    favoriteCountry.data.countryId === clickedCountry.alpha2Code
+            )
 
-        if (isAlreadyFavoriteCountry) {
-            setFavoritedCountry(isAlreadyFavoriteCountry)
-            setActive(true)
+            if (isAlreadyFavoriteCountry) {
+                setFavoritedCountry(isAlreadyFavoriteCountry)
+                setActive(true)
+            }
         }
     }, [favoritedCountries, clickedCountry])
 
-    // useEffect(() => {
-    //     // return favorited country if it's a new save
-    //     if (queryFavoritedCountry) {
-    //         setActive(activeState => !activeState)
-    //         setFavoritedCountry(queryFavoritedCountry)
-    //         setClicked(false)
-    //     }
-    // }, [queryFavoritedCountry])
+    useEffect(() => {
+        if (countrySucessfullRequest) {
+            setActive(activeState => !activeState)
+            setFavoritedCountry(countrySucessfullRequest)
+            setClicked(false)
+        }
+    }, [countrySucessfullRequest])
 
     const toggleFavorite = () => {
         setClicked(true)
 
-        // make this more beatifull? maybe use a spread from the constants and only assing data.countryid
-        if (!favoritedCountry) {
+        if (favoritedCountry.ref['@ref'].id === '') {
             setFavoritedCountry({
-                ref: query.Ref(query.Collection('country_user'), ''),
-                ts: 0,
+                ...initialFavoritedCountriesState.countries[0],
                 data: {
-                    userId: '',
-                    countryId: clickedCountry.alpha2Code,
-                    updatedAt: 0,
-                    createdAt: 0
+                    ...initialFavoritedCountriesState.countries[0].data,
+                    countryId: clickedCountry.alpha2Code
                 }
             })
         }

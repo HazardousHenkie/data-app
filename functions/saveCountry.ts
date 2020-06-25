@@ -24,14 +24,17 @@ const handler: Handler = async (
 
     if (authenticatedResponse.statusCode === 200) {
         try {
-            await addCountry(authenticatedResponse.body, getId(event.path))
+            const addedCountry = await addCountry(
+                authenticatedResponse.body,
+                getId(event.path)
+            )
 
             response = {
                 statusCode: 200,
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ message: 'Saved successfully.' })
+                body: JSON.stringify(addedCountry)
             }
         } catch (error) {
             response = { statusCode: 400, body: JSON.stringify(error.message) }

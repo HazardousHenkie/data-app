@@ -3,7 +3,7 @@ import FavoritedCountriesState from './types'
 
 enum ActionTypes {
     GET_FAVORITED_COUNTRIES = 'components/FavoritedCountriesList/GET_FAVORITED_COUNTRIES',
-    GET_FAVORITED_COUNTRIES_SUCCESS = 'components/FavoritedCountriesList/GET_FAVORITED_COUNTRIES_SUCCESS',
+    SET_FAVORITED_COUNTRIES = 'components/FavoritedCountriesList/SET_FAVORITED_COUNTRIES',
     GET_FAVORITED_COUNTRIES_ERROR = 'components/FavoritedCountriesList/GET_FAVORITED_COUNTRIES_ERROR'
 }
 
@@ -12,7 +12,12 @@ export const initialFavoritedCountriesState: FavoritedCountriesState = {
     loading: false,
     countries: [
         {
-            ref: query.Ref(query.Collection('country_user'), ''),
+            ref: {
+                '@ref': {
+                    collection: query.Collection('country_user'),
+                    id: ''
+                }
+            },
             ts: 0,
             data: {
                 userId: '',
