@@ -1,9 +1,13 @@
-import { call, put } from 'redux-saga/effects'
+import { call, put, takeLatest } from 'redux-saga/effects'
 
 import request from 'utils/request'
 
 import authToken from 'globals/authentication/authToken'
-import { setFavoritedCountries, getFavoritedCountriesError } from './actions'
+import {
+    getFavoritedCountriesSuccess,
+    getFavoritedCountriesError
+} from './actions'
+import ActionTypes from './constants'
 
 export function* getFavoritedCountriesDataSaga() {
     const requestURL = '/.netlify/functions/getFavoritedCountries'
@@ -16,10 +20,15 @@ export function* getFavoritedCountriesDataSaga() {
             }
         })
 
-        yield put(setFavoritedCountries(response.data))
+        yield put(getFavoritedCountriesSuccess(response.data))
     } catch (error) {
         yield put(getFavoritedCountriesError(error))
     }
 }
 
-export default getFavoritedCountriesDataSaga
+export default function* getFavoritedCountriesDataRootSaga() {
+    yield takeLatest(
+        ActionTypes.GET_FAVORITED_COUNTRIES,
+        getFavoritedCountriesDataSaga
+    )
+}

@@ -60,7 +60,7 @@ const getCountries = async () => {
 }
 
 const handler: Handler = async () => {
-    // if no countries check
+    // if no countries
     const countries = await getCountries()
 
     const response: ResponseInterface = {

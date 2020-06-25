@@ -12,7 +12,8 @@ interface ResponseInterface {
     body: string | number
 }
 
-const handler: Handler = async (
+// async
+const handler: Handler = (
     event: APIGatewayEvent,
     context: Context,
     callback: Callback
@@ -24,7 +25,7 @@ const handler: Handler = async (
 
     if (authenticatedResponse.statusCode === 200) {
         try {
-            await removeCountry(getId(event.path))
+            // await removeCountry(authenticatedResponse.body, getId(event.path))
 
             response = {
                 statusCode: 200,
