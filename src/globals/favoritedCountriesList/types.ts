@@ -1,8 +1,8 @@
+import { ExprArg } from 'faunadb'
 import { ResponseError } from 'utils/request'
 
 export interface FavoritedCountryInterface {
-    // fauny doesn't play along so set to any
-    ref: any
+    ref: ExprArg
     ts: number
     data: {
         userId: string

@@ -15,7 +15,7 @@ function favoritedCountriesListReducer(
                 ...state,
                 loading: true
             }
-        case ActionTypes.SET_FAVORITED_COUNTRIES:
+        case ActionTypes.GET_FAVORITED_COUNTRIES_SUCCESS:
             return {
                 error: false,
                 loading: false,

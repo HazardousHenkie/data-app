@@ -25,9 +25,9 @@ const getCountries = (id: string) => {
     return countries
 }
 
-export const removeCountry = (id: string) => {
+export const removeCountry = (ref: ExprArg) => {
     const removedCountry: Promise<CountryResponseInterface> = faunaClient.query(
-        fQuery.Delete(fQuery.Ref(fQuery.Collection('country_user'), id))
+        fQuery.Delete(ref)
     )
 
     return removedCountry
