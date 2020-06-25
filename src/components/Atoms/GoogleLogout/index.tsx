@@ -23,7 +23,6 @@ const stateSelector = createSelector(makeSelectLoader(), loading => ({
 }))
 
 const GoogleLogoutButton: React.FC = () => {
-    // broken?
     const dispatch = useDispatch()
     const { t } = useTranslation('logoutButton')
     const [open, setOpen] = useState<boolean>(false)

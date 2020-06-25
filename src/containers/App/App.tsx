@@ -23,14 +23,19 @@ import { useTranslation } from 'react-i18next'
 
 import { Helmet } from 'react-helmet'
 
-import { createSelector } from 'reselect'
-import { makeSelectError } from 'globals/authentication/selectors'
+import { createStructuredSelector } from 'reselect'
+import {
+    makeSelectError,
+    makeSelectLoggedIn
+} from 'globals/authentication/selectors'
 import { getFavoritedCountries } from 'globals/favoritedCountriesList/actions'
+
 import Routes from './routes'
 
-const stateSelector = createSelector(makeSelectError(), error => ({
-    error
-}))
+const stateSelector = createStructuredSelector({
+    loggedIn: makeSelectLoggedIn(),
+    error: makeSelectError()
+})
 
 const App: React.FC = () => {
     const dispatch = useDispatch()
@@ -41,7 +46,7 @@ const App: React.FC = () => {
     )
     const [theme, setTheme] = useState(lightTheme)
     const [open, setOpen] = useState<boolean>(false)
-    const { error } = useSelector(stateSelector)
+    const { loggedIn, error } = useSelector(stateSelector)
 
     useEffect(() => {
         if (error) {
@@ -71,9 +76,10 @@ const App: React.FC = () => {
     }, [darkMode])
 
     useEffect(() => {
-        // if logged in
-        dispatch(getFavoritedCountries())
-    }, [dispatch])
+        if (loggedIn) {
+            dispatch(getFavoritedCountries())
+        }
+    }, [loggedIn, dispatch])
 
     const handleClose = () => {
         setOpen(false)
