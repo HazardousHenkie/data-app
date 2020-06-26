@@ -17,6 +17,7 @@ i18n.use(Backend)
             escapeValue: false
         },
         react: {
+            useSuspense: false,
             wait: true
         },
         backend: {

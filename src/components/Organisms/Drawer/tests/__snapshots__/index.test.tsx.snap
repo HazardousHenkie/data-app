@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Drawer /> should render like snapshot 1`] = `
+Array [
+  <div
+    className="sc-AxhUy laGaXi"
+    onClick={[Function]}
+  >
+    <svg
+      aria-hidden={true}
+      className="MuiSvgIcon-root sc-AxgMl eAPdQb"
+      focusable="false"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M7 14l5-5 5 5z"
+      />
+    </svg>
+  </div>,
+  <div
+    className="sc-AxiKw boTYJG"
+  >
+    <div
+      className="sc-AxirZ evChcC"
+    >
+      <div
+        className="sc-AxhCb gvnvGs"
+        onClick={[Function]}
+      >
+        <svg
+          aria-hidden={true}
+          className="MuiSvgIcon-root sc-AxgMl eAPdQb"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M7 14l5-5 5 5z"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>,
+]
+`;

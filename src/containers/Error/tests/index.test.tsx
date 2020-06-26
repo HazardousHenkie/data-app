@@ -2,17 +2,13 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 
 import MockingAppComponent from 'utils/testing/MockingAppComponent'
-import ListItem from '../index'
-import { CountryItem } from '../constants'
+import ErrorPage from '../index'
 
-describe('<ListItem />', () => {
+describe('<ErrorPage />', () => {
     it('should render like snapshot', () => {
         const component = renderer.create(
             <MockingAppComponent>
-                <ListItem
-                    listCountry={CountryItem.country}
-                    setOpen={() => {}}
-                />
+                <ErrorPage errorCode={404} errorMessage="Page not found" />
             </MockingAppComponent>
         )
 

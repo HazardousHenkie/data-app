@@ -20,11 +20,14 @@ import { useTranslation } from 'react-i18next'
 
 import { Helmet } from 'react-helmet'
 
+import history from 'utils/history'
+
 import { createSelector } from 'reselect'
 import { makeSelectLoggedIn } from 'globals/authentication/selectors'
 import { getFavoritedCountries } from 'globals/favoritedCountriesList/actions'
 
 import ErrorSnackbars from 'containers/HomePage/Organisms/Errors'
+import { ConnectedRouter } from 'connected-react-router'
 import Routes from './routes'
 
 const stateSelector = createSelector(makeSelectLoggedIn(), loggedIn => ({
@@ -69,42 +72,44 @@ const App: React.FC = () => {
     }, [loggedIn, dispatch])
 
     return (
-        <StylesProvider injectFirst>
-            <MuiThemeProvider theme={theme}>
-                <ThemeProvider theme={theme}>
-                    <GlobalStyle />
-                    <CssBaseline />
-                    <div className="App">
-                        <Helmet
-                            titleTemplate={t(
-                                'app:titleTemplate',
-                                '%s - Data app'
-                            )}
-                            defaultTitle={t(
-                                'app:defaultTitle',
-                                'data app example'
-                            )}
-                        >
-                            <meta
-                                name="description"
-                                content={t(
-                                    'app:descriptionTitle',
-                                    'A data app example'
+        <ConnectedRouter history={history}>
+            <StylesProvider injectFirst>
+                <MuiThemeProvider theme={theme}>
+                    <ThemeProvider theme={theme}>
+                        <GlobalStyle />
+                        <CssBaseline />
+                        <div className="App">
+                            <Helmet
+                                titleTemplate={t(
+                                    'app:titleTemplate',
+                                    '%s - Data app'
                                 )}
-                            />
-                        </Helmet>
+                                defaultTitle={t(
+                                    'app:defaultTitle',
+                                    'data app example'
+                                )}
+                            >
+                                <meta
+                                    name="description"
+                                    content={t(
+                                        'app:descriptionTitle',
+                                        'A data app example'
+                                    )}
+                                />
+                            </Helmet>
 
-                        <ErrorSnackbars />
+                            <ThemeContext.Provider
+                                value={{ darkMode, setDarkMode }}
+                            >
+                                <ErrorSnackbars />
 
-                        <ThemeContext.Provider
-                            value={{ darkMode, setDarkMode }}
-                        >
-                            <Routes />
-                        </ThemeContext.Provider>
-                    </div>
-                </ThemeProvider>
-            </MuiThemeProvider>
-        </StylesProvider>
+                                <Routes />
+                            </ThemeContext.Provider>
+                        </div>
+                    </ThemeProvider>
+                </MuiThemeProvider>
+            </StylesProvider>
+        </ConnectedRouter>
     )
 }
 
