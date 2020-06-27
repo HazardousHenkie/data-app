@@ -1,18 +1,12 @@
 import React from 'react'
-import renderer from 'react-test-renderer'
+import { render } from 'utils/test-utils'
 
-import MockingAppComponent from 'utils/testing/MockingAppComponent'
 import MenuList from '../index'
 
 describe('<MenuList />', () => {
     it('should render like snapshot', () => {
-        const component = renderer.create(
-            <MockingAppComponent>
-                <MenuList />
-            </MockingAppComponent>
-        )
+        const component = render(<MenuList />)
 
-        const tree = component.toJSON()
-        expect(tree).toMatchSnapshot()
+        expect(component).toMatchSnapshot()
     })
 })

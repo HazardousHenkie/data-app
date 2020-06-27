@@ -46,6 +46,7 @@ Object {
       >
         <div
           class="sc-Axmtr kQOpxN"
+          data-testid="inlineLoader"
         >
           <div
             class="MuiCircularProgress-root MuiCircularProgress-indeterminate"
@@ -269,6 +270,7 @@ Object {
     >
       <div
         class="sc-Axmtr kQOpxN"
+        data-testid="inlineLoader"
       >
         <div
           class="MuiCircularProgress-root MuiCircularProgress-indeterminate"

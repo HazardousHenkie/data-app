@@ -1,18 +1,12 @@
 import React from 'react'
-import renderer from 'react-test-renderer'
+import { render } from 'utils/test-utils'
 
-import MockingAppComponent from 'utils/testing/MockingAppComponent'
 import Drawer from '../index'
 
 describe('<Drawer />', () => {
     it('should render like snapshot', () => {
-        const component = renderer.create(
-            <MockingAppComponent>
-                <Drawer />
-            </MockingAppComponent>
-        )
+        const component = render(<Drawer />)
 
-        const tree = component.toJSON()
-        expect(tree).toMatchSnapshot()
+        expect(component).toMatchSnapshot()
     })
 })

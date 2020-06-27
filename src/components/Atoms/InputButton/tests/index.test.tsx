@@ -1,18 +1,12 @@
 import React from 'react'
-import renderer from 'react-test-renderer'
+import { render } from 'utils/test-utils'
 
-import MockingAppComponent from 'utils/testing/MockingAppComponent'
 import InputButton from '../index'
 
 describe('<InputButton />', () => {
     it('should render like snapshot', () => {
-        const component = renderer.create(
-            <MockingAppComponent>
-                <InputButton>children</InputButton>
-            </MockingAppComponent>
-        )
+        const component = render(<InputButton>children</InputButton>)
 
-        const tree = component.toJSON()
-        expect(tree).toMatchSnapshot()
+        expect(component).toMatchSnapshot()
     })
 })

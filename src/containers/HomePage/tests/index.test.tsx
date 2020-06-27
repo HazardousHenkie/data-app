@@ -1,17 +1,11 @@
 import React from 'react'
-import { render } from '@testing-library/react'
-
-import MockingAppComponent from 'utils/testing/MockingAppComponent'
+import { render } from 'utils/test-utils'
 
 import HomePage from '../index'
 
 describe('<HomePage />', () => {
     it('should render like snapshot', () => {
-        const component = render(
-            <MockingAppComponent>
-                <HomePage />
-            </MockingAppComponent>
-        )
+        const component = render(<HomePage />)
 
         expect(component).toMatchSnapshot()
     })
