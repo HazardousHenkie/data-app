@@ -25,7 +25,7 @@ describe('<GoogleLoginButton />', () => {
         expect(loadingComponent).toBeInTheDocument()
     })
 
-    test('Shows loader when loading', () => {
+    test('Show loader when loading is true inside useSelector', () => {
         const { getByTestId } = render(<GoogleLoginButton />, {
             initialState: {
                 authenticationData: {
@@ -39,7 +39,7 @@ describe('<GoogleLoginButton />', () => {
         expect(loadingComponent).toBeInTheDocument()
     })
 
-    test("Don't show loader when not loading", () => {
+    test("Don't show loader when loading is false inside useSelector", () => {
         const { queryByTestId } = render(<GoogleLoginButton />, {
             initialState: {
                 authenticationData: {
@@ -52,8 +52,14 @@ describe('<GoogleLoginButton />', () => {
 
         expect(loadingComponent).toBeFalsy()
     })
-})
 
-// check if translations is there
-// check if googleLogin (hook data is there)
-// test hooks
+    test('Check if translation text is shown', () => {
+        const { getByText } = render(<GoogleLoginButton />)
+
+        const buttonText = getByText('Login', {
+            selector: 'span'
+        })
+
+        expect(buttonText).toBeInTheDocument()
+    })
+})

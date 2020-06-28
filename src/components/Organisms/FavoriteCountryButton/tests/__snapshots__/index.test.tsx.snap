@@ -9,7 +9,7 @@ Object {
         class="sc-AxirZ kNDIFW"
       >
         <button
-          aria-label="FavoriteCountryButton:label"
+          aria-label="Toggle favorite country"
           class="MuiButtonBase-root MuiIconButton-root"
           tabindex="0"
           type="button"
@@ -40,7 +40,7 @@ Object {
       class="sc-AxirZ kNDIFW"
     >
       <button
-        aria-label="FavoriteCountryButton:label"
+        aria-label="Toggle favorite country"
         class="MuiButtonBase-root MuiIconButton-root"
         tabindex="0"
         type="button"

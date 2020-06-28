@@ -37,8 +37,7 @@ const GoogleLogoutButton: React.FC = () => {
     }
 
     const googleResponseError = () => {
-        t('logout:error', 'Logout error')
-        setError(new Error('logout failed'))
+        setError(new Error('Logout failed'))
         setGoogleLoading(false)
     }
 
@@ -52,6 +51,7 @@ const GoogleLogoutButton: React.FC = () => {
     }) => {
         return (
             <div
+                data-testid="googleLogoutButton"
                 onClick={customOnClick}
                 onKeyDown={customOnClick}
                 role="button"
@@ -65,7 +65,7 @@ const GoogleLogoutButton: React.FC = () => {
     return (
         <>
             {process.env.REACT_APP_GOOGLE_CLIENT_ID && (
-                <GoogleLogoutWrapper>
+                <GoogleLogoutWrapper data-testid="googleLogoutWrapper">
                     {(loading || googleLoading) && <InlineLoader />}
 
                     <GoogleLogoutCustomButton
