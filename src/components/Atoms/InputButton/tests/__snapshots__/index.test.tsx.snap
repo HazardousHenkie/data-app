@@ -12,9 +12,7 @@ Object {
       >
         <span
           class="MuiButton-label"
-        >
-          children
-        </span>
+        />
         <span
           class="MuiTouchRipple-root"
         />
@@ -29,9 +27,7 @@ Object {
     >
       <span
         class="MuiButton-label"
-      >
-        children
-      </span>
+      />
       <span
         class="MuiTouchRipple-root"
       />

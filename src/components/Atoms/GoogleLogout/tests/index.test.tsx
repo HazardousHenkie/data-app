@@ -21,7 +21,6 @@ describe('<GoogleLogoutButton />', () => {
         const { getByTestId } = render(<GoogleLogoutButton />)
 
         const loadingComponent = getByTestId('googleLogoutWrapper')
-
         expect(loadingComponent).toBeInTheDocument()
     })
 
@@ -35,8 +34,22 @@ describe('<GoogleLogoutButton />', () => {
         })
 
         const loadingComponent = getByTestId('inlineLoader')
-
         expect(loadingComponent).toBeInTheDocument()
+
+        const button = getByTestId('googleLogoutButton').querySelector('button')
+        expect(button).toBeDisabled()
+    })
+
+    test('Disable button when loading is true inside useSelector', () => {
+        const { getByTestId } = render(<GoogleLogoutButton />, {
+            initialState: {
+                authenticationData: {
+                    loading: true
+                }
+            }
+        })
+        const button = getByTestId('googleLogoutButton').querySelector('button')
+        expect(button).toBeDisabled()
     })
 
     test("Don't show loader when loading is false inside useSelector", () => {
@@ -53,7 +66,7 @@ describe('<GoogleLogoutButton />', () => {
         expect(loadingComponent).toBeFalsy()
     })
 
-    test('Show component when REACT_APP_GOOGLE_CLIENT_ID is present', () => {
+    test('Show loader when googleLoading is active', () => {
         const { getByTestId } = render(<GoogleLogoutButton />)
 
         const button = getByTestId('googleLogoutButton')
@@ -61,6 +74,16 @@ describe('<GoogleLogoutButton />', () => {
 
         const loadingComponent = getByTestId('inlineLoader')
         expect(loadingComponent).toBeInTheDocument()
+    })
+
+    test('Disable button when googleLoading is true inside useSelector', () => {
+        const { getByTestId } = render(<GoogleLogoutButton />)
+
+        const buttonWrapper = getByTestId('googleLogoutButton')
+        fireEvent.click(buttonWrapper)
+
+        const button = getByTestId('googleLogoutButton').querySelector('button')
+        expect(button).toBeDisabled()
     })
 
     test('Check if translation text is shown', () => {
