@@ -39,18 +39,6 @@ describe('<GoogleLoginButton />', () => {
         expect(loadingComponent).toBeInTheDocument()
     })
 
-    test('Disable button when loading is true inside useSelector', () => {
-        const { container } = render(<GoogleLoginButton />, {
-            initialState: {
-                authenticationData: {
-                    loading: true
-                }
-            }
-        })
-        const button = container.querySelector('button')
-        expect(button).toBeDisabled()
-    })
-
     test("Don't show loader when loading is false inside useSelector", () => {
         const { queryByTestId } = render(<GoogleLoginButton />, {
             initialState: {

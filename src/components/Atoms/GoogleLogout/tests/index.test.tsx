@@ -40,18 +40,6 @@ describe('<GoogleLogoutButton />', () => {
         expect(button).toBeDisabled()
     })
 
-    test('Disable button when loading is true inside useSelector', () => {
-        const { getByTestId } = render(<GoogleLogoutButton />, {
-            initialState: {
-                authenticationData: {
-                    loading: true
-                }
-            }
-        })
-        const button = getByTestId('googleLogoutButton').querySelector('button')
-        expect(button).toBeDisabled()
-    })
-
     test("Don't show loader when loading is false inside useSelector", () => {
         const { queryByTestId } = render(<GoogleLogoutButton />, {
             initialState: {
@@ -74,16 +62,6 @@ describe('<GoogleLogoutButton />', () => {
 
         const loadingComponent = getByTestId('inlineLoader')
         expect(loadingComponent).toBeInTheDocument()
-    })
-
-    test('Disable button when googleLoading is true inside useSelector', () => {
-        const { getByTestId } = render(<GoogleLogoutButton />)
-
-        const buttonWrapper = getByTestId('googleLogoutButton')
-        fireEvent.click(buttonWrapper)
-
-        const button = getByTestId('googleLogoutButton').querySelector('button')
-        expect(button).toBeDisabled()
     })
 
     test('Check if translation text is shown', () => {
