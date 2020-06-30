@@ -1,4 +1,4 @@
-import { Handler, Context, Callback, APIGatewayEvent } from 'aws-lambda'
+import { Handler, APIGatewayEvent } from 'aws-lambda'
 
 import authenticatedHelper from './helpers/authenticatedHelper'
 
@@ -12,11 +12,7 @@ interface ResponseInterface {
     body: string | number
 }
 
-const handler: Handler = async (
-    event: APIGatewayEvent,
-    context: Context,
-    callback: Callback
-) => {
+const handler: Handler = async (event: APIGatewayEvent) => {
     const authenticatedResponse = authenticatedHelper(
         event.headers.authorization
     )
@@ -43,7 +39,7 @@ const handler: Handler = async (
         response = authenticatedResponse
     }
 
-    return callback(null, response)
+    return response
 }
 
 // eslint-disable-next-line import/prefer-default-export
