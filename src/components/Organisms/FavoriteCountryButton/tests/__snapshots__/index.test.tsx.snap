@@ -11,6 +11,7 @@ Object {
         <button
           aria-label="Toggle favorite country"
           class="MuiButtonBase-root MuiIconButton-root"
+          data-testid="iconButton"
           tabindex="0"
           type="button"
         >
@@ -20,6 +21,7 @@ Object {
             <svg
               aria-hidden="true"
               class="MuiSvgIcon-root sc-AxiKw dxxXig"
+              data-testid="favoriteIcon"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -42,6 +44,7 @@ Object {
       <button
         aria-label="Toggle favorite country"
         class="MuiButtonBase-root MuiIconButton-root"
+        data-testid="iconButton"
         tabindex="0"
         type="button"
       >
@@ -51,6 +54,7 @@ Object {
           <svg
             aria-hidden="true"
             class="MuiSvgIcon-root sc-AxiKw dxxXig"
+            data-testid="favoriteIcon"
             focusable="false"
             viewBox="0 0 24 24"
           >

@@ -22,13 +22,15 @@ const initialState = {}
 const store = configureStore(initialState, history)
 
 ReactDOM.render(
-    <Provider store={store}>
-        <ThemeProvider theme={variables}>
-            <Suspense fallback={<Loader />}>
-                <App />
-            </Suspense>
-        </ThemeProvider>
-    </Provider>,
+    <React.StrictMode>
+        <Provider store={store}>
+            <ThemeProvider theme={variables}>
+                <Suspense fallback={<Loader />}>
+                    <App />
+                </Suspense>
+            </ThemeProvider>
+        </Provider>
+    </React.StrictMode>,
     document.getElementById('root')
 )
 

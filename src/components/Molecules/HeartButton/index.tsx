@@ -26,8 +26,16 @@ const HeartButton: React.FC<HeartButtonProps> = ({
         <HeartButtonWrapper>
             {loading && <InlineLoader />}
 
-            <IconButton onClick={heartOnClick} aria-label={label}>
-                {active ? <FavoriteIconStyled /> : <FavoriteBorderIconStyled />}
+            <IconButton
+                onClick={heartOnClick}
+                aria-label={label}
+                data-testid="iconButton"
+            >
+                {active ? (
+                    <FavoriteIconStyled data-testid="favoriteIcon" />
+                ) : (
+                    <FavoriteBorderIconStyled data-testid="favoriteIconBorder" />
+                )}
             </IconButton>
         </HeartButtonWrapper>
     )

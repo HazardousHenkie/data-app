@@ -7,7 +7,7 @@ import BackdropStyled from './styledComponents'
 
 const Loader: React.FC<CircularProgressProps> = props => {
     return (
-        <BackdropStyled open>
+        <BackdropStyled open data-testid="loader">
             <CircularProgress {...props} color="inherit" />
         </BackdropStyled>
     )
