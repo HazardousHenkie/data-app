@@ -13,20 +13,17 @@ import InlineLoader from 'components/Atoms/InlineLoader'
 
 import {
     makeSelectFavoritedCountries,
-    makeSelectError,
     makeSelectLoader
 } from 'globals/favoritedCountriesList/selectors'
 import FavoritedCountriesList from './styledComponents'
 
 const stateSelector = createStructuredSelector({
     favoritedCountries: makeSelectFavoritedCountries(),
-    error: makeSelectError(),
     loading: makeSelectLoader()
 })
 
 const MenuList: React.FC = () => {
     const { t } = useTranslation('menuList')
-    // error hanlding
     const { favoritedCountries, loading } = useSelector(stateSelector)
 
     return (

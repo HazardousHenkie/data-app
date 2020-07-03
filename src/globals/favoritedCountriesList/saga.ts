@@ -3,6 +3,7 @@ import { call, put } from 'redux-saga/effects'
 import request from 'utils/request'
 
 import authToken from 'globals/authentication/authToken'
+import { setError } from 'globals/globalErrors/actions'
 import { setFavoritedCountries, getFavoritedCountriesError } from './actions'
 
 export function* getFavoritedCountriesDataSaga() {
@@ -19,6 +20,7 @@ export function* getFavoritedCountriesDataSaga() {
         yield put(setFavoritedCountries(response.data))
     } catch (error) {
         yield put(getFavoritedCountriesError(error))
+        yield put(setError(error))
     }
 }
 

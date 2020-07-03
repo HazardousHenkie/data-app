@@ -10,9 +10,6 @@ import { getRefreshTokenRequest } from 'globals/authentication/refreshToken/acti
 import ThemeContext from 'components/Atoms/ThemeSwitcher/ThemeContext'
 import { ThemeProvider } from 'styled-components'
 
-import Snackbar from '@material-ui/core/Snackbar'
-import InfoMessage from 'components/Atoms/InfoMessage'
-
 import {
     ThemeProvider as MuiThemeProvider,
     StylesProvider
@@ -23,19 +20,16 @@ import { useTranslation } from 'react-i18next'
 
 import { Helmet } from 'react-helmet'
 
-import { createStructuredSelector } from 'reselect'
-import {
-    makeSelectError,
-    makeSelectLoggedIn
-} from 'globals/authentication/selectors'
+import { createSelector } from 'reselect'
+import { makeSelectLoggedIn } from 'globals/authentication/selectors'
 import { getFavoritedCountries } from 'globals/favoritedCountriesList/actions'
 
+import ErrorSnackbars from 'containers/HomePage/Organisms/Errors'
 import Routes from './routes'
 
-const stateSelector = createStructuredSelector({
-    loggedIn: makeSelectLoggedIn(),
-    error: makeSelectError()
-})
+const stateSelector = createSelector(makeSelectLoggedIn(), loggedIn => ({
+    loggedIn
+}))
 
 const App: React.FC = () => {
     const dispatch = useDispatch()
@@ -45,14 +39,7 @@ const App: React.FC = () => {
         localStorage.getItem('darkmode') === 'true'
     )
     const [theme, setTheme] = useState(lightTheme)
-    const [open, setOpen] = useState<boolean>(false)
-    const { loggedIn, error } = useSelector(stateSelector)
-
-    useEffect(() => {
-        if (error) {
-            setOpen(true)
-        }
-    }, [error])
+    const { loggedIn } = useSelector(stateSelector)
 
     useEffect(() => {
         if (
@@ -81,10 +68,6 @@ const App: React.FC = () => {
         }
     }, [loggedIn, dispatch])
 
-    const handleClose = () => {
-        setOpen(false)
-    }
-
     return (
         <StylesProvider injectFirst>
             <MuiThemeProvider theme={theme}>
@@ -110,22 +93,9 @@ const App: React.FC = () => {
                                 )}
                             />
                         </Helmet>
-                        {error && (
-                            <Snackbar
-                                open={open}
-                                autoHideDuration={6000}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'center'
-                                }}
-                                onClose={handleClose}
-                            >
-                                <InfoMessage
-                                    message={error.toString()}
-                                    severity="error"
-                                />
-                            </Snackbar>
-                        )}
+
+                        <ErrorSnackbars />
+
                         <ThemeContext.Provider
                             value={{ darkMode, setDarkMode }}
                         >

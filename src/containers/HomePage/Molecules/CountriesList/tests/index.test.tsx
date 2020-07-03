@@ -14,7 +14,6 @@ describe('<CountriesList />', () => {
                 <CountriesList open setOpen={() => {}} />
             </MockingAppComponent>
         )
-
         expect(firstChild).toMatchSnapshot()
     })
 })

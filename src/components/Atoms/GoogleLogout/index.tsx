@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 
 import { GoogleLogout, GoogleLogoutProps } from 'react-google-login'
 
-import Snackbar from '@material-ui/core/Snackbar'
-import InfoMessage from 'components/Atoms/InfoMessage'
 import InlineLoader from 'components/Atoms/InlineLoader'
 
 import { useTranslation } from 'react-i18next'
@@ -14,6 +12,7 @@ import { createSelector } from 'reselect'
 
 import { makeSelectLoader } from 'globals/authentication/selectors'
 
+import { setError } from 'globals/globalErrors/actions'
 import { logoutRequest } from 'globals/authentication/logout/actions'
 
 import GoogleLogoutWrapper from './styledComponents'
@@ -25,9 +24,7 @@ const stateSelector = createSelector(makeSelectLoader(), loading => ({
 const GoogleLogoutButton: React.FC = () => {
     const dispatch = useDispatch()
     const { t } = useTranslation('logoutButton')
-    const [open, setOpen] = useState<boolean>(false)
     const [googleLoading, setGoogleLoading] = useState<boolean>(false)
-    const [error, setError] = useState<string>()
 
     const { loading } = useSelector(stateSelector)
 
@@ -39,14 +36,9 @@ const GoogleLogoutButton: React.FC = () => {
         dispatch(logoutRequest())
     }
 
-    const handleClose = () => {
-        setOpen(false)
-    }
-
     const googleResponseError = () => {
-        setOpen(true)
         t('logout:error', 'Logout error')
-        setError('logout failed')
+        setError(new Error('logout failed'))
         setGoogleLoading(false)
     }
 
@@ -75,20 +67,6 @@ const GoogleLogoutButton: React.FC = () => {
             {process.env.REACT_APP_GOOGLE_CLIENT_ID && (
                 <GoogleLogoutWrapper>
                     {(loading || googleLoading) && <InlineLoader />}
-
-                    {error && (
-                        <Snackbar
-                            open={open}
-                            autoHideDuration={6000}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'center'
-                            }}
-                            onClose={handleClose}
-                        >
-                            <InfoMessage message={error} severity="error" />
-                        </Snackbar>
-                    )}
 
                     <GoogleLogoutCustomButton
                         customOnClick={onGoogleLogoutRequest}

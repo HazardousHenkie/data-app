@@ -8,8 +8,6 @@ import {
 
 import { useTranslation } from 'react-i18next'
 
-import Snackbar from '@material-ui/core/Snackbar'
-import InfoMessage from 'components/Atoms/InfoMessage'
 import InlineLoader from 'components/Atoms/InlineLoader'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -18,6 +16,7 @@ import { createSelector } from 'reselect'
 
 import { makeSelectLoader } from 'globals/authentication/selectors'
 
+import { setError } from 'globals/globalErrors/actions'
 import { loginRequest } from 'globals/authentication/login/actions'
 
 import GoogleLoginWrapper from './styledComponents'
@@ -30,8 +29,6 @@ const GoogleLoginButton: React.FC = () => {
     const dispatch = useDispatch()
     const { t } = useTranslation('loginButton')
     const [googleLoading, setGoogleLoading] = useState<boolean>(false)
-    const [open, setOpen] = useState<boolean>(false)
-    const [error, setError] = useState<string>()
 
     const { loading } = useSelector(stateSelector)
 
@@ -52,14 +49,9 @@ const GoogleLoginButton: React.FC = () => {
         }
     }
 
-    const handleClose = () => {
-        setOpen(false)
-    }
-
     const googleResponseError = (response: { [key: string]: string }) => {
         setGoogleLoading(false)
-        setOpen(true)
-        setError(response.error)
+        setError(new Error(response.error))
     }
 
     return (
@@ -67,20 +59,6 @@ const GoogleLoginButton: React.FC = () => {
             {process.env.REACT_APP_GOOGLE_CLIENT_ID && (
                 <GoogleLoginWrapper>
                     {(loading || googleLoading) && <InlineLoader />}
-
-                    {error && (
-                        <Snackbar
-                            open={open}
-                            autoHideDuration={6000}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'center'
-                            }}
-                            onClose={handleClose}
-                        >
-                            <InfoMessage message={error} severity="error" />
-                        </Snackbar>
-                    )}
 
                     <GoogleLogin
                         clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}

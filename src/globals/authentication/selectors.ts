@@ -1,17 +1,12 @@
 import { createSelector, Selector } from 'reselect'
 
 import { ApplicationRootState } from 'types'
+
 import AuthenticationState from './types'
 import initialAuthenticationState from './constants'
 
 const selectAuthenticationData = (state: ApplicationRootState) =>
     state.authenticationData || initialAuthenticationState
-
-const makeSelectError = () =>
-    createSelector(
-        selectAuthenticationData,
-        subState => subState.error
-    ) as Selector<unknown, boolean | Error>
 
 const makeSelectLoggedIn = () =>
     createSelector(
@@ -33,7 +28,6 @@ const makeSelectUser = () =>
 
 export {
     selectAuthenticationData,
-    makeSelectError,
     makeSelectLoggedIn,
     makeSelectLoader,
     makeSelectUser
