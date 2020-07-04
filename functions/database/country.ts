@@ -5,7 +5,7 @@ export interface CountryResponseInterface {
     ref: ExprArg
     ts: number
     data: {
-        userId: number
+        userId: string
         countryId: number
         updatedAt: number
         createdAt: number
