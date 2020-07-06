@@ -9,6 +9,7 @@ import variables from 'styles/variables'
 import { ThemeProvider } from 'styled-components'
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/styles'
 import lightTheme from 'styles/themeStyles'
+import ThemeContext from 'components/Atoms/ThemeSwitcher/ThemeContext'
 
 import { I18nextProvider } from 'react-i18next'
 
@@ -20,7 +21,8 @@ const customRender = (
         initialState = {},
         store = configureStore(initialState, history),
         ...renderOptions
-    } = {}
+    } = {},
+    darkMode = false
 ) => {
     const Wrapper: React.FC = ({ children }) => {
         return (
@@ -29,7 +31,14 @@ const customRender = (
                     <ThemeProvider theme={variables}>
                         <MuiThemeProvider theme={lightTheme}>
                             <ThemeProvider theme={lightTheme}>
-                                {children}
+                                <ThemeContext.Provider
+                                    value={{
+                                        darkMode,
+                                        setDarkMode: () => {}
+                                    }}
+                                >
+                                    {children}
+                                </ThemeContext.Provider>
                             </ThemeProvider>
                         </MuiThemeProvider>
                     </ThemeProvider>

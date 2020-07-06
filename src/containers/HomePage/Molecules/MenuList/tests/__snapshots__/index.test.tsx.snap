@@ -120,6 +120,7 @@ Object {
             <span
               aria-disabled="false"
               class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiSwitch-switchBase"
+              data-testid="ThemeSwitcher"
             >
               <span
                 class="MuiIconButton-label"
@@ -262,6 +263,7 @@ Object {
           <span
             aria-disabled="false"
             class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiSwitch-switchBase"
+            data-testid="ThemeSwitcher"
           >
             <span
               class="MuiIconButton-label"
