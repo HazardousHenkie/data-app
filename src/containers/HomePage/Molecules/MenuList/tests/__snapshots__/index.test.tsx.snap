@@ -53,6 +53,7 @@ Object {
             >
               <div
                 class="MuiInputBase-root MuiOutlinedInput-root sc-AxhUy jdxpJa MuiInputBase-formControl"
+                data-testid="languageSwitcher"
               >
                 <div
                   aria-haspopup="listbox"
@@ -120,7 +121,6 @@ Object {
             <span
               aria-disabled="false"
               class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiSwitch-switchBase"
-              data-testid="ThemeSwitcher"
             >
               <span
                 class="MuiIconButton-label"
@@ -196,6 +196,7 @@ Object {
           >
             <div
               class="MuiInputBase-root MuiOutlinedInput-root sc-AxhUy jdxpJa MuiInputBase-formControl"
+              data-testid="languageSwitcher"
             >
               <div
                 aria-haspopup="listbox"
@@ -263,7 +264,6 @@ Object {
           <span
             aria-disabled="false"
             class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiSwitch-switchBase"
-            data-testid="ThemeSwitcher"
           >
             <span
               class="MuiIconButton-label"

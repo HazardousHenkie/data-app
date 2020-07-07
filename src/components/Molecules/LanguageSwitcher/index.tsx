@@ -25,6 +25,7 @@ const LanguageSwitcher: React.FC = () => {
         <LanguageSwitcherWrapper>
             <FormControl variant="outlined" fullWidth>
                 <SelectStyled
+                    data-testid="languageSwitcher"
                     labelId="select-language"
                     id="select-language"
                     value={i18n.language}
