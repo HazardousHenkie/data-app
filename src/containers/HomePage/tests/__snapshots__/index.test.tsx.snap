@@ -37,7 +37,37 @@ Object {
           role="button"
           tabindex="0"
         >
-          <form />
+          <form>
+            <div
+              class="MuiFormControl-root MuiTextField-root sc-fzozJi hWuMcr sc-fzoLsD lgrigy"
+            >
+              <div
+                class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
+              >
+                <input
+                  aria-invalid="false"
+                  class="MuiInputBase-input MuiOutlinedInput-input"
+                  placeholder="search"
+                  type="text"
+                  value=""
+                />
+                <fieldset
+                  aria-hidden="true"
+                  class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
+                  style="padding-left: 8px;"
+                >
+                  <legend
+                    class="PrivateNotchedOutline-legend-2"
+                    style="width: 0.01px;"
+                  >
+                    <span>
+                      ​
+                    </span>
+                  </legend>
+                </fieldset>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
       <div
@@ -222,7 +252,7 @@ Object {
           </div>
         </div>
         <div
-          class="PrivateSwipeArea-root-1 PrivateSwipeArea-anchorBottom-5"
+          class="PrivateSwipeArea-root-5 PrivateSwipeArea-anchorBottom-9"
           style="height: 20px;"
         />
       </div>
@@ -261,7 +291,37 @@ Object {
         role="button"
         tabindex="0"
       >
-        <form />
+        <form>
+          <div
+            class="MuiFormControl-root MuiTextField-root sc-fzozJi hWuMcr sc-fzoLsD lgrigy"
+          >
+            <div
+              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
+            >
+              <input
+                aria-invalid="false"
+                class="MuiInputBase-input MuiOutlinedInput-input"
+                placeholder="search"
+                type="text"
+                value=""
+              />
+              <fieldset
+                aria-hidden="true"
+                class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
+                style="padding-left: 8px;"
+              >
+                <legend
+                  class="PrivateNotchedOutline-legend-2"
+                  style="width: 0.01px;"
+                >
+                  <span>
+                    ​
+                  </span>
+                </legend>
+              </fieldset>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
     <div
@@ -446,7 +506,7 @@ Object {
         </div>
       </div>
       <div
-        class="PrivateSwipeArea-root-1 PrivateSwipeArea-anchorBottom-5"
+        class="PrivateSwipeArea-root-5 PrivateSwipeArea-anchorBottom-9"
         style="height: 20px;"
       />
     </div>
