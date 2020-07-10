@@ -218,10 +218,12 @@ Object {
       </div>
       <div
         class="sc-AxhUy laGaXi"
+        data-testid="ClickIndicator"
       >
         <svg
           aria-hidden="true"
           class="MuiSvgIcon-root sc-AxgMl eAPdQb"
+          data-testid="SwipeIndicatorInnerUp"
           focusable="false"
           viewBox="0 0 24 24"
         >
@@ -232,6 +234,7 @@ Object {
       </div>
       <div
         class="sc-AxiKw boTYJG"
+        data-testid="drawer"
       >
         <div
           class="sc-AxirZ evChcC"
@@ -472,10 +475,12 @@ Object {
     </div>
     <div
       class="sc-AxhUy laGaXi"
+      data-testid="ClickIndicator"
     >
       <svg
         aria-hidden="true"
         class="MuiSvgIcon-root sc-AxgMl eAPdQb"
+        data-testid="SwipeIndicatorInnerUp"
         focusable="false"
         viewBox="0 0 24 24"
       >
@@ -486,6 +491,7 @@ Object {
     </div>
     <div
       class="sc-AxiKw boTYJG"
+      data-testid="drawer"
     >
       <div
         class="sc-AxirZ evChcC"

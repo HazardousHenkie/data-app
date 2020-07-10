@@ -3,7 +3,6 @@ import { render, fireEvent } from 'utils/test-utils'
 
 import SearchField from '../index'
 
-// check use effect testing
 describe('<SearchField />', () => {
     it('should render like snapshot', () => {
         const component = render(<SearchField setValue={() => {}} />)

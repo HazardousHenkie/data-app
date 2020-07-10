@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 
 import { SwipeableDrawerProps } from '@material-ui/core/SwipeableDrawer'
 
@@ -14,48 +14,28 @@ import {
     SwipeIndicatorInnerDown
 } from './styledComponents'
 
-const useOpenDrawer = () => {
-    const { openDrawer, setOpenDrawer } = useContext(DrawerContext)
-
-    useEffect(() => {
-        if (openDrawer) {
-            setOpenDrawer(true)
-        }
-    }, [openDrawer, setOpenDrawer])
-
-    return { openDrawer, setOpenDrawer }
-}
-
 const Drawer: React.FC<Omit<
     SwipeableDrawerProps,
     'open' | 'onClose' | 'onOpen'
 >> = ({ children }) => {
-    const { openDrawer, setOpenDrawer } = useOpenDrawer()
+    const { openDrawer, setOpenDrawer } = useContext(DrawerContext)
 
-    const toggleDrawer = (open: boolean) => (
-        event: React.KeyboardEvent | React.MouseEvent
-    ) => {
-        if (
-            event &&
-            event.type === 'keydown' &&
-            ((event as React.KeyboardEvent).key === 'Tab' ||
-                (event as React.KeyboardEvent).key === 'Shift')
-        ) {
-            return
-        }
-
+    const toggleDrawer = (open: boolean) => {
         setOpenDrawer(open)
     }
 
     return (
         <>
-            <ClickIndicator onClick={toggleDrawer(true)}>
-                <SwipeIndicatorInner />
+            <ClickIndicator
+                data-testid="ClickIndicator"
+                onClick={() => toggleDrawer(true)}
+            >
+                <SwipeIndicatorInner data-testid="SwipeIndicatorInnerUp" />
             </ClickIndicator>
 
-            <DrawerWrapper>
+            <DrawerWrapper data-testid="drawer">
                 <HandleBar>
-                    <SwipeIndicator onClick={toggleDrawer(true)}>
+                    <SwipeIndicator onClick={() => toggleDrawer(true)}>
                         <SwipeIndicatorInner />
                     </SwipeIndicator>
                 </HandleBar>
@@ -63,10 +43,10 @@ const Drawer: React.FC<Omit<
                 <SwipeableDrawerStyled
                     anchor="bottom"
                     open={openDrawer}
-                    onClose={toggleDrawer(false)}
-                    onOpen={toggleDrawer(true)}
+                    onClose={() => toggleDrawer(false)}
+                    onOpen={() => toggleDrawer(true)}
                 >
-                    <SwipeIndicator down onClick={toggleDrawer(false)}>
+                    <SwipeIndicator down onClick={() => toggleDrawer(false)}>
                         <SwipeIndicatorInnerDown />
                     </SwipeIndicator>
 
