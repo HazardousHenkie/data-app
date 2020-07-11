@@ -20,37 +20,41 @@ const Drawer: React.FC<Omit<
 >> = ({ children }) => {
     const { openDrawer, setOpenDrawer } = useContext(DrawerContext)
 
-    const toggleDrawer = (open: boolean) => {
-        setOpenDrawer(open)
-    }
-
     return (
         <>
             <ClickIndicator
                 data-testid="ClickIndicator"
-                onClick={() => toggleDrawer(true)}
+                onClick={() => setOpenDrawer(true)}
             >
                 <SwipeIndicatorInner data-testid="SwipeIndicatorInnerUp" />
             </ClickIndicator>
 
             <DrawerWrapper data-testid="drawer">
-                <HandleBar>
-                    <SwipeIndicator onClick={() => toggleDrawer(true)}>
-                        <SwipeIndicatorInner />
+                <HandleBar data-testid="handleBar">
+                    <SwipeIndicator
+                        data-testid="swipeIndicator"
+                        onClick={() => setOpenDrawer(true)}
+                    >
+                        <SwipeIndicatorInner data-testid="SwipeIndicatorInner" />
                     </SwipeIndicator>
                 </HandleBar>
 
                 <SwipeableDrawerStyled
                     anchor="bottom"
+                    data-testid="swipeableDrawer"
                     open={openDrawer}
-                    onClose={() => toggleDrawer(false)}
-                    onOpen={() => toggleDrawer(true)}
+                    onClose={() => setOpenDrawer(false)}
+                    onOpen={() => setOpenDrawer(true)}
                 >
-                    <SwipeIndicator down onClick={() => toggleDrawer(false)}>
-                        <SwipeIndicatorInnerDown />
+                    <SwipeIndicator
+                        data-testid="SwipeIndicator"
+                        down
+                        onClick={() => setOpenDrawer(false)}
+                    >
+                        <SwipeIndicatorInnerDown data-testid="SwipeIndicatorInnerDown" />
                     </SwipeIndicator>
 
-                    <HandleBar relative />
+                    <HandleBar data-testid="relativeHandleBar" relative />
 
                     {children}
                 </SwipeableDrawerStyled>

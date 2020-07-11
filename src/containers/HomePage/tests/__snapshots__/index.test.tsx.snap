@@ -238,13 +238,16 @@ Object {
       >
         <div
           class="sc-AxirZ evChcC"
+          data-testid="handleBar"
         >
           <div
             class="sc-AxhCb gvnvGs"
+            data-testid="swipeIndicator"
           >
             <svg
               aria-hidden="true"
               class="MuiSvgIcon-root sc-AxgMl eAPdQb"
+              data-testid="SwipeIndicatorInner"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -495,13 +498,16 @@ Object {
     >
       <div
         class="sc-AxirZ evChcC"
+        data-testid="handleBar"
       >
         <div
           class="sc-AxhCb gvnvGs"
+          data-testid="swipeIndicator"
         >
           <svg
             aria-hidden="true"
             class="MuiSvgIcon-root sc-AxgMl eAPdQb"
+            data-testid="SwipeIndicatorInner"
             focusable="false"
             viewBox="0 0 24 24"
           >
