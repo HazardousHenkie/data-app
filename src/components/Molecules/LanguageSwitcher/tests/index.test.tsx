@@ -4,7 +4,6 @@ import { render, within, fireEvent } from 'utils/test-utils'
 
 import LanguageSwitcher from '../index'
 
-// finish this one
 describe('<LanguageSwitcher />', () => {
     it('Should render like snapshot', () => {
         const component = render(<LanguageSwitcher />)
@@ -49,7 +48,7 @@ describe('<LanguageSwitcher />', () => {
         expect(getByRole('button')).toHaveTextContent('ja')
     })
 
-    it('Check if language changes after select', () => {
+    it('Check listitems', () => {
         const { getByRole, getAllByRole } = render(<LanguageSwitcher />)
 
         fireEvent.mouseDown(getByRole('button'))

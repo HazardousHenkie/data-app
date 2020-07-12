@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 
-import HeartButton from 'components/Molecules/HeartButton'
+import IconButton from '@material-ui/core/IconButton'
+
+import InlineLoader from 'components/Atoms/InlineLoader'
 
 import { useTranslation } from 'react-i18next'
 
@@ -16,16 +18,17 @@ import { FavoritedCountryInterface } from 'globals/favoritedCountriesList/types'
 import { initialFavoritedCountriesState } from 'globals/favoritedCountriesList/constants'
 import { CountryInterface } from 'containers/HomePage/Molecules/CountryListItem/types'
 
-import {
-    makeSelectFavoritedCountries,
-    makeSelectLoader
-} from 'globals/favoritedCountriesList/selectors'
+import { makeSelectFavoritedCountries } from 'globals/favoritedCountriesList/selectors'
+
+import HeartButtonWrapper, {
+    FavoriteIconStyled,
+    FavoriteBorderIconStyled
+} from './styledComponents'
 
 import useCountryFavorite from './useCountryFavoriteHook'
 
 const stateSelector = createStructuredSelector({
-    favoritedCountries: makeSelectFavoritedCountries(),
-    loading: makeSelectLoader()
+    favoritedCountries: makeSelectFavoritedCountries()
 })
 
 interface FavoriteCountryButtonInterface {
@@ -56,6 +59,8 @@ const FavoriteCountryButton: React.FC<FavoriteCountryButtonInterface> = ({
     useInjectReducer({ key, reducer })
     useInjectSaga({ key, saga })
 
+    // move this logic to the reducer or something, it's hard to test when it's here
+    // chek if the intitial country is something?
     useEffect(() => {
         if (favoritedCountries) {
             const isAlreadyFavoriteCountry = favoritedCountries.find(
@@ -93,12 +98,24 @@ const FavoriteCountryButton: React.FC<FavoriteCountryButtonInterface> = ({
     }
 
     return (
-        <HeartButton
-            loading={loading}
-            label={t('FavoriteCountryButton:label', 'Toggle favorite country')}
-            active={active}
-            heartOnClick={toggleFavorite}
-        />
+        <HeartButtonWrapper data-testid="heartButton">
+            {loading && <InlineLoader />}
+
+            <IconButton
+                onClick={toggleFavorite}
+                aria-label={t(
+                    'FavoriteCountryButton:label',
+                    'Toggle favorite country'
+                )}
+                data-testid="iconButton"
+            >
+                {active ? (
+                    <FavoriteIconStyled data-testid="favoriteIcon" />
+                ) : (
+                    <FavoriteBorderIconStyled data-testid="favoriteIconBorder" />
+                )}
+            </IconButton>
+        </HeartButtonWrapper>
     )
 }
 

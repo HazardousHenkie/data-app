@@ -13,26 +13,12 @@ const SideDrawer: React.FC<Omit<DrawerProps, 'anchor' | 'onClose'>> = ({
 }) => {
     const [openDrawer, setOpenDrawer] = useState(false)
 
-    const toggleDrawer = (open: boolean) => (
-        event: React.KeyboardEvent | React.MouseEvent
-    ) => {
-        if (
-            event.type === 'keydown' &&
-            ((event as React.KeyboardEvent).key === 'Tab' ||
-                (event as React.KeyboardEvent).key === 'Shift')
-        ) {
-            return
-        }
-
-        setOpenDrawer(open)
-    }
-
     return (
         <>
             <IconButtonStyled
                 color="inherit"
                 aria-label="open drawer"
-                onClick={toggleDrawer(true)}
+                onClick={() => setOpenDrawer(true)}
                 edge="start"
             >
                 <MenuIcon />
@@ -41,7 +27,7 @@ const SideDrawer: React.FC<Omit<DrawerProps, 'anchor' | 'onClose'>> = ({
             <StyledDrawer
                 anchor="left"
                 open={openDrawer}
-                onClose={toggleDrawer(false)}
+                onClose={() => setOpenDrawer(false)}
             >
                 <DrawerChildren>{children}</DrawerChildren>
             </StyledDrawer>
