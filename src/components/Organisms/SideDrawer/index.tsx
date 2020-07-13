@@ -16,6 +16,7 @@ const SideDrawer: React.FC<Omit<DrawerProps, 'anchor' | 'onClose'>> = ({
     return (
         <>
             <IconButtonStyled
+                data-testid="IconButtonStyled"
                 color="inherit"
                 aria-label="open drawer"
                 onClick={() => setOpenDrawer(true)}
@@ -25,6 +26,7 @@ const SideDrawer: React.FC<Omit<DrawerProps, 'anchor' | 'onClose'>> = ({
             </IconButtonStyled>
 
             <StyledDrawer
+                data-testid="StyledDrawer"
                 anchor="left"
                 open={openDrawer}
                 onClose={() => setOpenDrawer(false)}

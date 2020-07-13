@@ -11,6 +11,7 @@ Object {
         <button
           aria-label="open drawer"
           class="MuiButtonBase-root MuiIconButton-root sc-AxheI eWObgQ MuiIconButton-colorInherit MuiIconButton-edgeStart"
+          data-testid="IconButtonStyled"
           tabindex="0"
           type="button"
         >
@@ -108,6 +109,7 @@ Object {
       <button
         aria-label="open drawer"
         class="MuiButtonBase-root MuiIconButton-root sc-AxheI eWObgQ MuiIconButton-colorInherit MuiIconButton-edgeStart"
+        data-testid="IconButtonStyled"
         tabindex="0"
         type="button"
       >
