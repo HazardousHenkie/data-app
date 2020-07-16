@@ -3,12 +3,6 @@ module.exports = {
     parserOptions: {
         project: "./tsconfig.json"
     },
-    // parserOptions: {
-    //     ecmaFeatures: {
-    //         ecmaVersion: 2018,
-    //         sourcetype: "module"
-    //     }
-    // },
     env: {
         browser: true,
         es6: true,
@@ -44,7 +38,8 @@ module.exports = {
         "react-hooks/exhaustive-deps": "warn",
         "react/jsx-props-no-spreading": "off",
         "@typescript-eslint/no-explicit-any": "off",
-        "@typescript-eslint/explicit-function-return-type": "off"
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/ban-ts-ignore": "warn"
     },
     settings: {
         'import/resolver': {

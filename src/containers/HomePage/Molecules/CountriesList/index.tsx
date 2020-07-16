@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
 import { createStructuredSelector } from 'reselect'
 
@@ -7,7 +7,6 @@ import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors'
 
 import InlineLoader from 'components/Atoms/InlineLoader'
 import InfoMessage from 'components/Atoms/InfoMessage'
-import { CountryInterface } from 'containers/HomePage/Molecules/CountryListItem/types'
 import CountryListItem from 'containers/HomePage/Molecules/CountryListItem'
 
 import Fade from '@material-ui/core/Fade'
@@ -21,7 +20,9 @@ import reducer from './reducer'
 
 import { getCountriesData } from './actions'
 
-import { makeSelectError, makeSelectLoader, makeSelectData } from './selectors'
+import { makeSelectError, makeSelectLoader } from './selectors'
+
+import useFilteredCountries from './useFilteredCountriesHook'
 
 interface CountriesListProps {
     open: boolean
@@ -32,7 +33,6 @@ interface CountriesListProps {
 const key = 'countriesData'
 
 const stateSelector = createStructuredSelector({
-    data: makeSelectData(),
     error: makeSelectError(),
     loading: makeSelectLoader()
 })
@@ -43,27 +43,6 @@ const useGetCountries = () => {
     useEffect(() => {
         dispatch(getCountriesData())
     }, [dispatch])
-}
-
-const useFilteredCountries = (searchString: string | undefined) => {
-    const { data } = useSelector(stateSelector)
-    const [countries, setCountries] = useState<CountryInterface[]>([])
-
-    useEffect(() => {
-        if (searchString && searchString !== '') {
-            setCountries(
-                data.filter(country =>
-                    RegExp(searchString.toLowerCase()).exec(
-                        country.name.toLowerCase()
-                    )
-                )
-            )
-        } else if (searchString === '') {
-            setCountries(data)
-        }
-    }, [searchString, data])
-
-    return countries
 }
 
 const CountriesList: React.FC<CountriesListProps> = ({

@@ -82,7 +82,7 @@ describe('<MenuList />', () => {
         expect(listLabel).toBeInTheDocument()
     })
 
-    test('Have on item in the list', () => {
+    test('Have one item in the list', () => {
         const { getAllByRole } = render(<MenuList />, {
             initialState: {
                 favoritedCountries: countriesFixture
