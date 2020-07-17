@@ -7,12 +7,14 @@ Object {
     <div>
       <div
         class="sc-AxirZ kNDIFW"
+        data-testid="FavoritedCountriesList"
       />
     </div>
   </body>,
   "container": <div>
     <div
       class="sc-AxirZ kNDIFW"
+      data-testid="FavoritedCountriesList"
     />
   </div>,
   "debug": [Function],

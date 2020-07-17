@@ -51,7 +51,7 @@ const GoogleLogoutButton: React.FC = () => {
     }) => {
         return (
             <div
-                data-testid="googleLogoutButton"
+                data-testid="googleLogoutInnerButton"
                 onClick={customOnClick}
                 onKeyDown={customOnClick}
                 role="button"
@@ -63,7 +63,7 @@ const GoogleLogoutButton: React.FC = () => {
     }
 
     return (
-        <>
+        <div data-testid="googleLogoutButton">
             {process.env.REACT_APP_GOOGLE_CLIENT_ID && (
                 <GoogleLogoutWrapper data-testid="googleLogoutWrapper">
                     {(loading || googleLoading) && <InlineLoader />}
@@ -78,7 +78,7 @@ const GoogleLogoutButton: React.FC = () => {
                     />
                 </GoogleLogoutWrapper>
             )}
-        </>
+        </div>
     )
 }
 

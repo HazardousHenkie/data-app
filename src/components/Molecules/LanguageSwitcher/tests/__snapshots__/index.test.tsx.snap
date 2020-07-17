@@ -7,13 +7,14 @@ Object {
     <div>
       <div
         class="sc-AxjAm iPiWHU"
+        data-testid="languageSwitcher"
       >
         <div
           class="MuiFormControl-root MuiFormControl-fullWidth"
         >
           <div
             class="MuiInputBase-root MuiOutlinedInput-root sc-AxirZ gKwgxD MuiInputBase-formControl"
-            data-testid="languageSwitcher"
+            data-testid="languageSwitcher_select"
           >
             <div
               aria-haspopup="listbox"
@@ -63,13 +64,14 @@ Object {
   "container": <div>
     <div
       class="sc-AxjAm iPiWHU"
+      data-testid="languageSwitcher"
     >
       <div
         class="MuiFormControl-root MuiFormControl-fullWidth"
       >
         <div
           class="MuiInputBase-root MuiOutlinedInput-root sc-AxirZ gKwgxD MuiInputBase-formControl"
-          data-testid="languageSwitcher"
+          data-testid="languageSwitcher_select"
         >
           <div
             aria-haspopup="listbox"

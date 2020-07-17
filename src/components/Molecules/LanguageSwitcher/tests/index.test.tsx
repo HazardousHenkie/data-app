@@ -20,7 +20,7 @@ describe('<LanguageSwitcher />', () => {
     it("Shouldn't be initially disabled", () => {
         const { getByTestId } = render(<LanguageSwitcher />)
 
-        const selectBox = getByTestId('languageSwitcher')
+        const selectBox = getByTestId('languageSwitcher_select')
 
         const selectBoxButton = within(selectBox).getByRole('button')
 

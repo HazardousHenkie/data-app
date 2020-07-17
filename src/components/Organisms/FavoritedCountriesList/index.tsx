@@ -27,14 +27,14 @@ const MenuList: React.FC = () => {
     const { favoritedCountries, loading } = useSelector(stateSelector)
 
     return (
-        <FavoritedCountriesList>
+        <FavoritedCountriesList data-testid="FavoritedCountriesList">
             {loading && <InlineLoader />}
 
             {favoritedCountries &&
                 favoritedCountries[0] &&
                 favoritedCountries[0].ts !== 0 && (
                     <List
-                        data-testid="FavoritedCountriesList"
+                        data-testid="FavoritedCountriesList_list"
                         aria-label={t(
                             'favoritedCountryList:titleMenu',
                             'Favorite countries'

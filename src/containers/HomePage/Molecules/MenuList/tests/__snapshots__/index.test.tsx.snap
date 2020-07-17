@@ -7,10 +7,12 @@ Object {
     <div>
       <div
         class="sc-AxgMl vayPh"
+        data-testid="FavoritedCountriesList"
       />
       <ul
         aria-label="Mainmenu"
         class="MuiList-root sc-AxheI iioqvx MuiList-padding"
+        data-testid="ListStyled"
       >
         <li
           class="MuiListItem-root MuiListItem-gutters"
@@ -27,7 +29,11 @@ Object {
         </li>
         <li
           class="MuiListItem-root MuiListItem-gutters"
-        />
+        >
+          <div
+            data-testid="GoogleLoginButton"
+          />
+        </li>
         <li
           class="MuiListItem-root MuiListItem-dense MuiListItem-gutters"
           style="margin-top: auto;"
@@ -47,13 +53,14 @@ Object {
         >
           <div
             class="sc-AxhCb bAhhyD"
+            data-testid="languageSwitcher"
           >
             <div
               class="MuiFormControl-root MuiFormControl-fullWidth"
             >
               <div
                 class="MuiInputBase-root MuiOutlinedInput-root sc-AxhUy jdxpJa MuiInputBase-formControl"
-                data-testid="languageSwitcher"
+                data-testid="languageSwitcher_select"
               >
                 <div
                   aria-haspopup="listbox"
@@ -121,6 +128,7 @@ Object {
             <span
               aria-disabled="false"
               class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiSwitch-switchBase"
+              data-testid="ThemeSwitcher"
             >
               <span
                 class="MuiIconButton-label"
@@ -150,10 +158,12 @@ Object {
   "container": <div>
     <div
       class="sc-AxgMl vayPh"
+      data-testid="FavoritedCountriesList"
     />
     <ul
       aria-label="Mainmenu"
       class="MuiList-root sc-AxheI iioqvx MuiList-padding"
+      data-testid="ListStyled"
     >
       <li
         class="MuiListItem-root MuiListItem-gutters"
@@ -170,7 +180,11 @@ Object {
       </li>
       <li
         class="MuiListItem-root MuiListItem-gutters"
-      />
+      >
+        <div
+          data-testid="GoogleLoginButton"
+        />
+      </li>
       <li
         class="MuiListItem-root MuiListItem-dense MuiListItem-gutters"
         style="margin-top: auto;"
@@ -190,13 +204,14 @@ Object {
       >
         <div
           class="sc-AxhCb bAhhyD"
+          data-testid="languageSwitcher"
         >
           <div
             class="MuiFormControl-root MuiFormControl-fullWidth"
           >
             <div
               class="MuiInputBase-root MuiOutlinedInput-root sc-AxhUy jdxpJa MuiInputBase-formControl"
-              data-testid="languageSwitcher"
+              data-testid="languageSwitcher_select"
             >
               <div
                 aria-haspopup="listbox"
@@ -264,6 +279,7 @@ Object {
           <span
             aria-disabled="false"
             class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiSwitch-switchBase"
+            data-testid="ThemeSwitcher"
           >
             <span
               class="MuiIconButton-label"

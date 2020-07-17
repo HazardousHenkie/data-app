@@ -36,7 +36,9 @@ describe('<GoogleLogoutButton />', () => {
         const loadingComponent = getByTestId('inlineLoader')
         expect(loadingComponent).toBeInTheDocument()
 
-        const button = getByTestId('googleLogoutButton').querySelector('button')
+        const button = getByTestId('googleLogoutInnerButton').querySelector(
+            'button'
+        )
         expect(button).toBeDisabled()
     })
 
@@ -57,7 +59,7 @@ describe('<GoogleLogoutButton />', () => {
     test('Show loader when googleLoading is active', () => {
         const { getByTestId } = render(<GoogleLogoutButton />)
 
-        const button = getByTestId('googleLogoutButton')
+        const button = getByTestId('googleLogoutInnerButton')
         fireEvent.click(button)
 
         const loadingComponent = getByTestId('inlineLoader')
@@ -67,7 +69,7 @@ describe('<GoogleLogoutButton />', () => {
     test('Check if translation text is shown', () => {
         const { getByTestId } = render(<GoogleLogoutButton />)
 
-        const button = getByTestId('googleLogoutButton')
+        const button = getByTestId('googleLogoutInnerButton')
         const buttonText = within(button).getByText('Logout', {
             selector: 'span'
         })

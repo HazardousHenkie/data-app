@@ -66,7 +66,9 @@ describe('<MenuList />', () => {
             }
         })
 
-        const FavoritedCountriesList = getByTestId('FavoritedCountriesList')
+        const FavoritedCountriesList = getByTestId(
+            'FavoritedCountriesList_list'
+        )
         expect(FavoritedCountriesList).toBeInTheDocument()
     })
 

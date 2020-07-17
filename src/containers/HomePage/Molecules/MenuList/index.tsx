@@ -29,7 +29,10 @@ const MenuList: React.FC = () => {
     return (
         <>
             <FavoritedCountriesList />
-            <ListStyled aria-label={t('menuList:titleMenu', 'Mainmenu')}>
+            <ListStyled
+                data-testid="ListStyled"
+                aria-label={t('menuList:titleMenu', 'Mainmenu')}
+            >
                 <ListItem>
                     <ListItemText primary={t('menuList:title', 'Data App')} />
                 </ListItem>
