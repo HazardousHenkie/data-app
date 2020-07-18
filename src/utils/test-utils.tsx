@@ -1,8 +1,8 @@
 import React from 'react'
 import { render } from '@testing-library/react'
-import configureStore from 'configureStore'
 
 import history from 'utils/history'
+
 import { Provider } from 'react-redux'
 
 import variables from 'styles/variables'
@@ -14,6 +14,7 @@ import ThemeContext from 'components/Atoms/ThemeSwitcher/ThemeContext'
 import { I18nextProvider } from 'react-i18next'
 
 import i18n from 'utils/i18nTesting'
+import configureStore from 'store/configureStore'
 
 const customRender = (
     ui: React.ReactElement,
@@ -25,6 +26,8 @@ const customRender = (
     darkMode = false
 ) => {
     const Wrapper: React.FC = ({ children }) => {
+        // useInjectReducer({ key: 'country', reducer: reducer as Reducer })
+
         return (
             <Provider store={store}>
                 <I18nextProvider i18n={i18n}>
@@ -46,6 +49,7 @@ const customRender = (
             </Provider>
         )
     }
+
     return render(ui, {
         wrapper: Wrapper,
         ...renderOptions

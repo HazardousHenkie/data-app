@@ -23,8 +23,9 @@ const CountryInformation: React.FC = () => {
     const { country } = useSelector(stateSelector)
 
     return (
-        <Card variant="outlined">
+        <Card data-testid="CountryInformationCard" variant="outlined">
             <CardHeader
+                data-testid="CountryInformationCardHeader"
                 avatar={
                     <Avatar
                         aria-label={t(
@@ -45,7 +46,7 @@ const CountryInformation: React.FC = () => {
                         : country.translations[i18n.language]
                 }`}
             />
-            <CardContent>
+            <CardContent data-testid="CountryInformationCardContent">
                 {country.nativeName && (
                     <Typography variant="body1" component="p">
                         <strong>

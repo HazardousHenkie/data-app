@@ -1,8 +1,8 @@
 import React from 'react'
 import { render, fireEvent } from 'utils/test-utils'
 
-import configureStore from 'configureStore'
 import history from 'utils/history'
+import configureStore from 'store/configureStore'
 
 import ListItem from '../index'
 import { CountryItem } from '../constants'
@@ -60,6 +60,7 @@ describe('<ListItem />', () => {
 
         fireEvent.click(CountriesListItem)
 
+        expect(mockStore.getState().country).toBe(CountryItem)
         expect(mockStore.dispatch).toHaveBeenCalledWith(
             setSelectedCountry(CountryItem.country)
         )

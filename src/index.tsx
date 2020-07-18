@@ -12,7 +12,7 @@ import 'typeface-roboto'
 
 import { Provider } from 'react-redux'
 import Loader from 'components/Atoms/Loader'
-import configureStore from './configureStore'
+import configureStore from './store/configureStore'
 
 import './utils/i18n'
 
