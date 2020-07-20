@@ -26,8 +26,6 @@ const customRender = (
     darkMode = false
 ) => {
     const Wrapper: React.FC = ({ children }) => {
-        // useInjectReducer({ key: 'country', reducer: reducer as Reducer })
-
         return (
             <Provider store={store}>
                 <I18nextProvider i18n={i18n}>

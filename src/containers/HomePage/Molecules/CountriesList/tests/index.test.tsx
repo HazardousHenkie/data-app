@@ -1,9 +1,12 @@
 import React from 'react'
 import { render } from 'utils/test-utils'
 
-import CountriesList from '../index'
+import configureStore from 'store/configureStore'
+import history from 'utils/history'
 
 import { initialCountriesHeaderState } from '../constants'
+import { getCountriesDataSuccess } from '../actions'
+import CountriesList from '../index'
 
 describe('<CountriesList />', () => {
     it('should render like snapshot', () => {
@@ -12,22 +15,19 @@ describe('<CountriesList />', () => {
         expect(component).toMatchSnapshot()
     })
 
-    // not finished
     it('should render a advisoryText inside CountryInformationCardHeader', () => {
+        const store = configureStore({}, history)
+
         const { getByLabelText } = render(
             <CountriesList open setOpen={() => {}} />,
-            {
-                initialState: {
-                    countriesData: {
-                        ...initialCountriesHeaderState,
-                        loading: false
-                    }
-                }
-            }
+            { store }
+        )
+
+        store.dispatch(
+            getCountriesDataSuccess(initialCountriesHeaderState.data)
         )
 
         const advisoryText = getByLabelText('countries')
-
         expect(advisoryText).toBeInTheDocument()
     })
 })

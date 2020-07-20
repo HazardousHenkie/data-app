@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { createSelector } from 'reselect'
+import { Reducer } from 'redux'
 import { useSelector } from 'react-redux'
 
 import Avatar from '@material-ui/core/Avatar'
@@ -10,6 +11,9 @@ import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 
+import reducer from 'containers/HomePage/Molecules/CountryListItem/reducer'
+import { useInjectReducer } from 'utils/redux-injectors'
+
 import makeSelectCountry from 'containers/HomePage/Molecules/CountryListItem/selectors'
 
 import { useTranslation } from 'react-i18next'
@@ -18,9 +22,13 @@ const stateSelector = createSelector(makeSelectCountry(), country => ({
     country
 }))
 
+const key = 'country'
+
 const CountryInformation: React.FC = () => {
     const { t, i18n } = useTranslation('homePage')
     const { country } = useSelector(stateSelector)
+
+    useInjectReducer({ key, reducer: reducer as Reducer })
 
     return (
         <Card data-testid="CountryInformationCard" variant="outlined">

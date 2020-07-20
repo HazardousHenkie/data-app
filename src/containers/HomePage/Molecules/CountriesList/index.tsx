@@ -37,21 +37,18 @@ const stateSelector = createStructuredSelector({
     loading: makeSelectLoader()
 })
 
-const useGetCountries = () => {
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(getCountriesData())
-    }, [dispatch])
-}
-
 const CountriesList: React.FC<CountriesListProps> = ({
     open,
     setOpen,
     searchString
 }) => {
-    useGetCountries()
+    const dispatch = useDispatch()
+
     const countries = useFilteredCountries(searchString)
+
+    useEffect(() => {
+        dispatch(getCountriesData())
+    }, [dispatch])
 
     const { error, loading } = useSelector(stateSelector)
 
