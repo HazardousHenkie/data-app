@@ -56,9 +56,7 @@ describe('<GoogleLoginButton />', () => {
     test('Check if translation text is shown', () => {
         const { getByText } = render(<GoogleLoginButton />)
 
-        const buttonText = getByText('Login', {
-            selector: 'span'
-        })
+        const buttonText = getByText('Login')
 
         expect(buttonText).toBeInTheDocument()
     })
