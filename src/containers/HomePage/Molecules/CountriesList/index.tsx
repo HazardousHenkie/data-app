@@ -56,7 +56,7 @@ const CountriesList: React.FC<CountriesListProps> = ({
     useInjectSaga({ key, saga })
 
     return (
-        <Fade in={open}>
+        <Fade in={open} data-testid="CountriesList">
             <CountriesListDiv>
                 {error && (
                     <InfoMessage

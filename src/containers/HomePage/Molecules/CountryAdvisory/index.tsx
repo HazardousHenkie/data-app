@@ -33,7 +33,7 @@ const DrawerCountryContent: React.FC = () => {
     const { loading, fetchingError, countryAdvisory } = useCountryAdvisory()
 
     return (
-        <CardStyled variant="outlined">
+        <CardStyled data-testid="CountryAdvisory" variant="outlined">
             {loading && <InlineLoader />}
 
             <CardHeader

@@ -34,7 +34,7 @@ const DrawerCountryContent: React.FC = () => {
                     </Header>
 
                     {loggedIn && (
-                        <FavoriteCountryButtonWrapper>
+                        <FavoriteCountryButtonWrapper data-testid="FavoriteCountryButtonWrapper">
                             <FavoriteCountryButton clickedCountry={country} />
                         </FavoriteCountryButtonWrapper>
                     )}

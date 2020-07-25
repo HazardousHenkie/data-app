@@ -73,6 +73,7 @@ Object {
         >
           <div
             class="MuiPaper-root MuiCard-root sc-AxheI YnnDL MuiPaper-outlined MuiPaper-rounded"
+            data-testid="CountryAdvisory"
           >
             <div
               class="sc-AxjAm hsTYAM"
@@ -212,6 +213,7 @@ Object {
       >
         <div
           class="MuiPaper-root MuiCard-root sc-AxheI YnnDL MuiPaper-outlined MuiPaper-rounded"
+          data-testid="CountryAdvisory"
         >
           <div
             class="sc-AxjAm hsTYAM"
