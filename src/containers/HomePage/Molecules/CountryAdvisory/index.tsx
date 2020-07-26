@@ -27,7 +27,7 @@ const stateSelector = createSelector(makeSelectCountry(), country => ({
     country
 }))
 
-const DrawerCountryContent: React.FC = () => {
+const CountryAdvisory: React.FC = () => {
     const { t, i18n } = useTranslation('homePage')
     const { country } = useSelector(stateSelector)
     const { loading, fetchingError, countryAdvisory } = useCountryAdvisory()
@@ -131,4 +131,4 @@ const DrawerCountryContent: React.FC = () => {
     )
 }
 
-export default DrawerCountryContent
+export default CountryAdvisory

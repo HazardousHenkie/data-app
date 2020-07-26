@@ -60,7 +60,7 @@ const FavoriteCountryButton: React.FC<FavoriteCountryButtonInterface> = ({
     useInjectSaga({ key, saga })
 
     // move this logic to the reducer or something, it's hard to test when it's here
-    // chek if the intitial country is something?
+    // check if the intitial country is something?
     useEffect(() => {
         if (favoritedCountries) {
             const isAlreadyFavoriteCountry = favoritedCountries.find(
