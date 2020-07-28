@@ -9,6 +9,12 @@ import { getCountriesDataSuccess } from '../actions'
 import CountriesList from '../index'
 
 describe('<CountriesList />', () => {
+    let store = configureStore({}, history)
+
+    afterEach(() => {
+        store = configureStore({}, history)
+    })
+
     it('should render like snapshot', () => {
         const component = render(<CountriesList open setOpen={() => {}} />)
 
@@ -16,8 +22,6 @@ describe('<CountriesList />', () => {
     })
 
     it('should render a advisoryText inside CountryInformationCardHeader', () => {
-        const store = configureStore({}, history)
-
         const { getByLabelText } = render(
             <CountriesList open setOpen={() => {}} />,
             { store }

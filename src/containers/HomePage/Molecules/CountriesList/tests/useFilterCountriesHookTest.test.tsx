@@ -13,11 +13,14 @@ import { initialCountriesHeaderState } from '../constants'
 import { getCountriesDataSuccess } from '../actions'
 
 describe('useFilteredCountriesHook', () => {
+    let store = configureStore({}, history)
     const searchString = 'japan'
 
-    it(' If there is a searchstring it should return data from that specific country if that country is there', () => {
-        const store = configureStore({}, history)
+    afterEach(() => {
+        store = configureStore({}, history)
+    })
 
+    it(' If there is a searchstring it should return data from that specific country if that country is there', () => {
         const fixture = [
             {
                 ...initialCountriesHeaderState.data[0],
@@ -46,7 +49,7 @@ describe('useFilteredCountriesHook', () => {
     })
 
     it('If there is no searchstring and store data it should return store initial value', () => {
-        const store = configureStore({}, history)
+        // const store = configureStore({}, history)
 
         const { result } = renderHook(() => useFilteredCountries(''), {
             wrapper: ({ children }) => {
@@ -58,7 +61,7 @@ describe('useFilteredCountriesHook', () => {
     })
 
     it('If there is no searchstring it should return store data', () => {
-        const store = configureStore({}, history)
+        // const store = configureStore({}, history)
 
         const fixture = [
             {
@@ -85,7 +88,7 @@ describe('useFilteredCountriesHook', () => {
     })
 
     it('If there is no store data return empty array', () => {
-        const store = configureStore({}, history)
+        // const store = configureStore({}, history)
 
         const { result } = renderHook(
             () => useFilteredCountries(searchString),

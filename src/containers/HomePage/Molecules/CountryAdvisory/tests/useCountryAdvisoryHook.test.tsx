@@ -4,41 +4,26 @@ import { renderHook, act } from '@testing-library/react-hooks'
 
 import { Provider } from 'react-redux'
 
+import mockFetch, {
+    mockFetchError,
+    mockFetchCleanUp
+} from 'utils/request-test-utils'
 import history from 'utils/history'
 import configureStore from 'store/configureStore'
 
+import { CountryItem } from 'containers/HomePage/Molecules/CountryListItem/constants'
 import setSelectedCountry from 'containers/HomePage/Molecules/CountryListItem/actions'
 import useCountryAdvisoryHook from '../useCountryAdvisoryHook'
 
-// https://medium.com/@AndreCalvo/testing-custom-react-hooks-that-use-fetch-or-other-async-functions-5fb128d07f53
+describe('useCountryAdvisoryHook', () => {
+    let store = configureStore({}, history)
 
-// move this to utils
+    afterAll(() => {
+        store = configureStore({}, history)
+        mockFetchCleanUp()
+    })
 
-const mockFetch = (mockData: { [key: string]: string | object }) => {
-    global.fetch = jest.fn().mockImplementation(() =>
-        Promise.resolve({
-            status: 200,
-            json: () => Promise.resolve(mockData)
-        })
-    )
-}
-
-// const mockFetchError = error => {
-//     global.fetch = jest.fn().mockImplementation(() => Promise.reject(error))
-// }
-
-// const mockFetchCleanUp = () => {
-//     global.fetch.mockClear()
-//     delete global.fetch
-// }
-
-// rename everyting
-// check all test
-describe('useFilteredCountriesHook', () => {
-    // it should fetch the data
-    // it should give an error if response errors
-
-    it('If there is no searchstring it should return store data', async () => {
+    it('If should return the data after a succesfull call', async () => {
         const fixture = {
             data: {
                 NL: {
@@ -55,8 +40,33 @@ describe('useFilteredCountriesHook', () => {
 
         mockFetch(fixture)
 
-        // add the store
-        const store = configureStore({}, history)
+        const { result, waitForNextUpdate } = renderHook(
+            () => useCountryAdvisoryHook(),
+            {
+                wrapper: ({ children }) => {
+                    return <Provider store={store}>{children}</Provider>
+                }
+            }
+        )
+
+        act(() => {
+            store.dispatch(
+                setSelectedCountry({
+                    ...CountryItem.country,
+                    alpha2Code: 'NL'
+                })
+            )
+        })
+
+        await waitForNextUpdate()
+
+        expect(result.current.countryAdvisory).toEqual(fixture.data.NL)
+    })
+
+    it('If should return an error after an unsuccesfull call', async () => {
+        const error = Error('something went wrong')
+
+        mockFetchError(error)
 
         const { result, waitForNextUpdate } = renderHook(
             () => useCountryAdvisoryHook(),
@@ -67,64 +77,40 @@ describe('useFilteredCountriesHook', () => {
             }
         )
 
-        store.dispatch(
-            // add constants and only alpha2code
-            setSelectedCountry({
-                alpha2Code: 'NL',
-                name: '',
-                nativeName: '',
-                capital: '',
-                region: '',
-                subregion: '',
-                flag: '',
-                currency: '',
-                population: 0,
-                latlng: [0, 0],
-                currencies: [{ string: '' }],
-                languages: [{ string: '' }],
-                translations: { string: '' }
-            })
-        )
-
-        expect(result.current.loading).toBe(true)
+        act(() => {
+            store.dispatch(
+                setSelectedCountry({
+                    ...CountryItem.country
+                })
+            )
+        })
 
         await waitForNextUpdate()
 
-        expect(result.current.countryAdvisory).toEqual(fixture.data.NL)
-        // mockFetchCleanUp()
+        expect(result.current.fetchingError).toEqual(error)
     })
 
-    // it('If there is no searchstring it should return store data', async () => {
-    //     const store = configureStore({}, history)
+    it('Should start loading on first load', () => {
+        const { result } = renderHook(() => useCountryAdvisoryHook(), {
+            wrapper: ({ children }) => {
+                return <Provider store={store}>{children}</Provider>
+            }
+        })
 
-    //     const { result, waitForNextUpdate } = renderHook(
-    //         () => useCountryAdvisoryHook(),
-    //         {
-    //             wrapper: ({ children }) => {
-    //                 return <Provider store={store}>{children}</Provider>
-    //             }
-    //         }
-    //     )
+        expect(result.current.loading).toBe(true)
+    })
 
-    //     expect(result.current.loading).toBe(true)
+    it('Loading should be false after call', async () => {
+        const { result, waitForNextUpdate } = renderHook(
+            () => useCountryAdvisoryHook(),
+            {
+                wrapper: ({ children }) => {
+                    return <Provider store={store}>{children}</Provider>
+                }
+            }
+        )
 
-    //     await waitForNextUpdate()
-    //     expect(result.current.loading).toEqual(false)
-    // })
-
-    // it('If there is no searchstring it should return store data', async () => {
-    //     const store = configureStore({}, history)
-
-    //     const { result, waitForNextUpdate } = renderHook(
-    //         () => useCountryAdvisoryHook(),
-    //         {
-    //             wrapper: ({ children }) => {
-    //                 return <Provider store={store}>{children}</Provider>
-    //             }
-    //         }
-    //     )
-
-    //     await waitForNextUpdate()
-    //     expect(result.current.loading).toEqual(false)
-    // })
+        await waitForNextUpdate()
+        expect(result.current.loading).toEqual(false)
+    })
 })
