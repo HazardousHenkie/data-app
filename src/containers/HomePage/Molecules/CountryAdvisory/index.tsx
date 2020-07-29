@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { createSelector } from 'reselect'
+import { Reducer } from 'redux'
 import { useSelector } from 'react-redux'
 
 import Avatar from '@material-ui/core/Avatar'
@@ -15,6 +16,9 @@ import InlineLoader from 'components/Atoms/InlineLoader'
 import makeSelectCountry from 'containers/HomePage/Molecules/CountryListItem/selectors'
 
 import { useTranslation } from 'react-i18next'
+
+import reducer from 'containers/HomePage/Molecules/CountryListItem/reducer'
+import { useInjectReducer } from 'utils/redux-injectors'
 
 import CardStyled, {
     CardBottomTypography,
@@ -32,11 +36,14 @@ const CountryAdvisory: React.FC = () => {
     const { country } = useSelector(stateSelector)
     const { loading, fetchingError, countryAdvisory } = useCountryAdvisory()
 
+    useInjectReducer({ key: 'country', reducer: reducer as Reducer })
+
     return (
         <CardStyled data-testid="CountryAdvisory" variant="outlined">
             {loading && <InlineLoader />}
 
             <CardHeader
+                data-testid="CountryAdvisoryHeader"
                 avatar={
                     <Avatar
                         aria-label={t(
@@ -57,12 +64,16 @@ const CountryAdvisory: React.FC = () => {
                         : country.translations[i18n.language]
                 }`}
             />
-            <CardContent>
+            <CardContent data-testid="CountryAdvisoryCardContent">
                 {fetchingError && (
                     <InfoMessage severity="error" message={fetchingError} />
                 )}
 
-                <Typography variant="body1" component="p">
+                <Typography
+                    variant="body1"
+                    component="p"
+                    data-testid="countryAdvisoryScore"
+                >
                     {countryAdvisory &&
                         countryAdvisory.advisory.score &&
                         !loading && (
@@ -70,9 +81,8 @@ const CountryAdvisory: React.FC = () => {
                                 <strong>
                                     {t(
                                         'homePage:countryAdvisor.score',
-                                        'score'
+                                        'score:'
                                     )}
-                                    :
                                 </strong>
                                 {` ${countryAdvisory.advisory.score}`}
                             </>

@@ -55,7 +55,7 @@ describe('<FavoriteCountryButton />', () => {
         expect(CountryInformationCardHeaderSVG).toBeInTheDocument()
     })
 
-    it('should render a advisoryText inside CountryInformationCardHeader', () => {
+    it('should render a informationText inside CountryInformationCardHeader', () => {
         const { getByText } = render(<CountryInformation />, {
             store
         })
@@ -64,12 +64,12 @@ describe('<FavoriteCountryButton />', () => {
             setSelectedCountry({ ...CountryItem.country, name: 'japan' })
         )
 
-        const advisoryText = getByText('Advisory for japan')
+        const advisoryText = getByText('Information for japan')
 
         expect(advisoryText).toBeInTheDocument()
     })
 
-    it('should render CountryInformationCard', () => {
+    it('should render CountryInformationCardContent', () => {
         const { getByTestId } = render(<CountryInformation />)
 
         const CountryInformationCard = getByTestId(
