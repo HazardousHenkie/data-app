@@ -128,7 +128,7 @@ describe('<CountryAdvisory />', () => {
         expect(countryAdvisoryScore.tagName).toBe('P')
     })
 
-    it('should render score inside countryAdvisoryScore', () => {
+    it('should render score text inside countryAdvisoryScore', () => {
         // @ts-ignore
         useCountryAdvisoryHook.mockReturnValue({
             countryAdvisory: {
@@ -182,4 +182,108 @@ describe('<CountryAdvisory />', () => {
     })
 
     // also check loading
+
+    it('should render message label inside countryAdvisoryScore', () => {
+        // @ts-ignore
+        useCountryAdvisoryHook.mockReturnValue({
+            countryAdvisory: {
+                advisory: {}
+            }
+        })
+
+        const { getByText } = render(<CountryAdvisory />)
+
+        const message = getByText('message:')
+
+        expect(message).toBeInTheDocument()
+    })
+
+    it('should render message inside countryAdvisoryScore', () => {
+        const message = 'Everything is fine!'
+        // @ts-ignore
+        useCountryAdvisoryHook.mockReturnValue({
+            countryAdvisory: {
+                advisory: {
+                    message
+                }
+            }
+        })
+
+        const { getByText } = render(<CountryAdvisory />)
+
+        const score = getByText(message)
+
+        expect(score).toBeInTheDocument()
+    })
+
+    it('should render countryAdvisor notFound message if message is empty if countryAdvisoryScore', () => {
+        // @ts-ignore
+        useCountryAdvisoryHook.mockReturnValue({
+            countryAdvisory: {
+                advisory: {
+                    message: ''
+                }
+            }
+        })
+
+        const { getByText } = render(<CountryAdvisory />)
+
+        const score = getByText('Advisory message not available.')
+
+        expect(score).toBeInTheDocument()
+    })
+
+    it('should render advisoryNotFound if no advisory is empty if countryAdvisoryScore', () => {
+        const { getByText } = render(<CountryAdvisory />)
+
+        const advisoryNotFound = getByText('Advisory not found.')
+
+        expect(advisoryNotFound).toBeInTheDocument()
+    })
+
+    it('should render CountryAdvisoryActions', () => {
+        // @ts-ignore
+        useCountryAdvisoryHook.mockReturnValue({
+            countryAdvisory: {
+                advisory: {}
+            }
+        })
+        const { queryByTestId } = render(<CountryAdvisory />)
+
+        const CountryAdvisoryActions = queryByTestId('CountryAdvisoryActions')
+        expect(CountryAdvisoryActions).toBeInTheDocument()
+    })
+
+    it('should render updatedText inside CountryAdvisoryActions as P', () => {
+        const date = '10 september 2019'
+        // @ts-ignore
+        useCountryAdvisoryHook.mockReturnValue({
+            countryAdvisory: {
+                advisory: {
+                    updated: date
+                }
+            }
+        })
+        const { getByText } = render(<CountryAdvisory />)
+
+        const updatedText = getByText(date)
+        expect(updatedText).toBeInTheDocument()
+        expect(updatedText.tagName).toBe('P')
+    })
+
+    it('should render the source translation and should render inside CountryAdvisoryActions', () => {
+        const link = 'https://www.myfakelinkisnicedot.com'
+        // @ts-ignore
+        useCountryAdvisoryHook.mockReturnValue({
+            countryAdvisory: {
+                advisory: {
+                    source: link
+                }
+            }
+        })
+        const { getByText } = render(<CountryAdvisory />)
+
+        const updatedText = getByText('source')
+        expect(updatedText).toHaveAttribute('href', link)
+    })
 })

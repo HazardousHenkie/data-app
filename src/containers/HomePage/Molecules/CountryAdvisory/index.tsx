@@ -97,9 +97,8 @@ const CountryAdvisory: React.FC = () => {
                             <strong>
                                 {t(
                                     'homePage:countryAdvisor.message',
-                                    'message'
+                                    'message:'
                                 )}
-                                :
                             </strong>
                             {` ${countryAdvisory.advisory.message}`}
                         </>
@@ -123,7 +122,7 @@ const CountryAdvisory: React.FC = () => {
                 </Typography>
             </CardContent>
             {countryAdvisory && !loading && (
-                <CardActions>
+                <CardActions data-testid="CountryAdvisoryActions">
                     <CardBottomTypography variant="body2" color="inherit">
                         {countryAdvisory.advisory.updated}
 
