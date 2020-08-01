@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from 'utils/test-utils'
+import { render, act } from 'utils/test-utils'
 
 import configureStore from 'store/configureStore'
 import history from 'utils/history'
@@ -87,9 +87,11 @@ describe('<CountryAdvisory />', () => {
             store
         })
 
-        store.dispatch(
-            setSelectedCountry({ ...CountryItem.country, name: 'japan' })
-        )
+        act(() => {
+            store.dispatch(
+                setSelectedCountry({ ...CountryItem.country, name: 'japan' })
+            )
+        })
 
         const advisoryText = getByText('Advisory for japan')
 
