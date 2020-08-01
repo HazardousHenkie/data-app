@@ -9,7 +9,7 @@ import setSelectedCountry from 'containers/HomePage/Molecules/CountryListItem/ac
 
 import DrawerCountryContent from '../index'
 
-describe('<FavoriteCountryButton />', () => {
+describe('<DrawerCountryContent />', () => {
     it('should render like snapshot', () => {
         const component = render(<DrawerCountryContent />)
 

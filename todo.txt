@@ -1,0 +1,2 @@
+remove connected router
+add styled components tests

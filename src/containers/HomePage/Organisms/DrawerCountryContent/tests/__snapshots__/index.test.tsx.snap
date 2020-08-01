@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<FavoriteCountryButton /> should render like snapshot 1`] = `
+exports[`<DrawerCountryContent /> should render like snapshot 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>

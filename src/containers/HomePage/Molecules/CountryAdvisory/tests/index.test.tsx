@@ -11,7 +11,6 @@ import CountryAdvisory from '../index'
 
 jest.mock('../useCountryAdvisoryHook')
 
-// finish
 describe('<CountryAdvisory />', () => {
     let store = configureStore({}, history)
 
@@ -180,8 +179,6 @@ describe('<CountryAdvisory />', () => {
 
         expect(countryAdvisoryScoreBr).toBeInTheDocument()
     })
-
-    // also check loading
 
     it('should render message label inside countryAdvisoryScore', () => {
         // @ts-ignore

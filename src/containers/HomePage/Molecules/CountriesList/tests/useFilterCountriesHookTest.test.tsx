@@ -49,8 +49,6 @@ describe('useFilteredCountriesHook', () => {
     })
 
     it('If there is no searchstring and store data it should return store initial value', () => {
-        // const store = configureStore({}, history)
-
         const { result } = renderHook(() => useFilteredCountries(''), {
             wrapper: ({ children }) => {
                 return <Provider store={store}>{children}</Provider>
@@ -61,8 +59,6 @@ describe('useFilteredCountriesHook', () => {
     })
 
     it('If there is no searchstring it should return store data', () => {
-        // const store = configureStore({}, history)
-
         const fixture = [
             {
                 ...initialCountriesHeaderState.data[0],
@@ -88,8 +84,6 @@ describe('useFilteredCountriesHook', () => {
     })
 
     it('If there is no store data return empty array', () => {
-        // const store = configureStore({}, history)
-
         const { result } = renderHook(
             () => useFilteredCountries(searchString),
             {
