@@ -1,2 +1,3 @@
-remove connected router
 add styled components tests
+locale storage tests
+check login after sometime

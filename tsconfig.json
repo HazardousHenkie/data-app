@@ -17,5 +17,5 @@
         "pretty": true,
         "baseUrl": "src"
     },
-    "include": ["src", "functions", "jest.config.js"]
+    "include": ["src", "functions", "jest.config.js", "test.js"]
 }

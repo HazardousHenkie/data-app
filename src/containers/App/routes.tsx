@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react'
-import { Switch, Route } from 'react-router-dom'
+
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import ROUTES from 'strings/routes'
 
@@ -11,10 +12,12 @@ const Error = lazy(() => import('../Error'))
 const Routes: React.FC = () => {
     return (
         <Suspense fallback={<Loader />}>
-            <Switch>
-                <Route path={ROUTES.HOME} exact component={Home} />
-                <Route component={Error} />
-            </Switch>
+            <Router>
+                <Switch>
+                    <Route path={ROUTES.HOME} exact component={Home} />
+                    <Route component={Error} />
+                </Switch>
+            </Router>
         </Suspense>
     )
 }

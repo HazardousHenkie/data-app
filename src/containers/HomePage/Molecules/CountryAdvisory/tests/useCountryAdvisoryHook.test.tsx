@@ -8,7 +8,7 @@ import mockFetch, {
     mockFetchError,
     mockFetchCleanUp
 } from 'utils/request-test-utils'
-import history from 'utils/history'
+
 import configureStore from 'store/configureStore'
 
 import { CountryItem } from 'containers/HomePage/Molecules/CountryListItem/constants'
@@ -30,14 +30,14 @@ describe('useCountryAdvisoryHook', () => {
         }
     }
 
-    let store = configureStore({}, history)
+    let store = configureStore({})
 
     beforeEach(() => {
         mockFetch(fixture)
     })
 
     afterAll(() => {
-        store = configureStore({}, history)
+        store = configureStore({})
         mockFetchCleanUp()
     })
 

@@ -2,7 +2,6 @@ import React from 'react'
 import { render } from 'utils/test-utils'
 
 import configureStore from 'store/configureStore'
-import history from 'utils/history'
 
 import { CountryItem } from 'containers/HomePage/Molecules/CountryListItem/constants'
 import setSelectedCountry from 'containers/HomePage/Molecules/CountryListItem/actions'
@@ -10,10 +9,10 @@ import setSelectedCountry from 'containers/HomePage/Molecules/CountryListItem/ac
 import CountryInformation from '../index'
 
 describe('<FavoriteCountryButton />', () => {
-    let store = configureStore({}, history)
+    let store = configureStore({})
 
     afterEach(() => {
-        store = configureStore({}, history)
+        store = configureStore({})
     })
 
     it('should render like snapshot', () => {

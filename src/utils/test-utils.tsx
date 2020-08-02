@@ -1,8 +1,6 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 
-import history from 'utils/history'
-
 import { Provider } from 'react-redux'
 
 import variables from 'styles/variables'
@@ -10,6 +8,8 @@ import { ThemeProvider } from 'styled-components'
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/styles'
 import lightTheme from 'styles/themeStyles'
 import ThemeContext from 'components/Atoms/ThemeSwitcher/ThemeContext'
+
+import { BrowserRouter as Router } from 'react-router-dom'
 
 import { I18nextProvider } from 'react-i18next'
 
@@ -20,7 +20,7 @@ const customRender = (
     ui: React.ReactElement,
     {
         initialState = {},
-        store = configureStore(initialState, history),
+        store = configureStore(initialState),
         ...renderOptions
     } = {},
     darkMode = false
@@ -38,7 +38,7 @@ const customRender = (
                                         setDarkMode: () => {}
                                     }}
                                 >
-                                    {children}
+                                    <Router>{children}</Router>
                                 </ThemeContext.Provider>
                             </ThemeProvider>
                         </MuiThemeProvider>

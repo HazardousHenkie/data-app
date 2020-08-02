@@ -4,8 +4,6 @@ import { renderHook, act } from '@testing-library/react-hooks'
 
 import { Provider } from 'react-redux'
 
-import history from 'utils/history'
-
 import configureStore from 'store/configureStore'
 import useFilteredCountries from '../useFilteredCountriesHook'
 
@@ -13,11 +11,11 @@ import { initialCountriesHeaderState } from '../constants'
 import { getCountriesDataSuccess } from '../actions'
 
 describe('useFilteredCountriesHook', () => {
-    let store = configureStore({}, history)
+    let store = configureStore({})
     const searchString = 'japan'
 
     afterEach(() => {
-        store = configureStore({}, history)
+        store = configureStore({})
     })
 
     it(' If there is a searchstring it should return data from that specific country if that country is there', () => {

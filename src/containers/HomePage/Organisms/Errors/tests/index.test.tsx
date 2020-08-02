@@ -1,10 +1,7 @@
 import React from 'react'
 import { render } from 'utils/test-utils'
 
-import history from 'utils/history'
 import configureStore from 'store/configureStore'
-
-import { removeError } from 'globals/globalErrors/actions'
 
 import ErrorSnackbars from '../index'
 
@@ -46,7 +43,7 @@ describe('<ErrorSnackbars />', () => {
     })
 
     it('should call handleClose when is closed', () => {
-        const mockStore = configureStore({}, history)
+        const mockStore = configureStore({})
         mockStore.dispatch = jest.fn()
 
         const handleClose = jest.fn()

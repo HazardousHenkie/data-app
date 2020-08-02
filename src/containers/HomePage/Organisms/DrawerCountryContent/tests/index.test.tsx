@@ -2,7 +2,6 @@ import React from 'react'
 import { render } from 'utils/test-utils'
 
 import configureStore from 'store/configureStore'
-import history from 'utils/history'
 
 import { CountryItem } from 'containers/HomePage/Molecules/CountryListItem/constants'
 import setSelectedCountry from 'containers/HomePage/Molecules/CountryListItem/actions'
@@ -16,7 +15,7 @@ describe('<DrawerCountryContent />', () => {
     })
 
     it('should render Header with countryName', () => {
-        const mockStore = configureStore({}, history)
+        const mockStore = configureStore({})
 
         const { getByText } = render(<DrawerCountryContent />, {
             store: mockStore
@@ -48,7 +47,7 @@ describe('<DrawerCountryContent />', () => {
         expect(CountryInformationCard).toBeInTheDocument()
     })
 
-    it('should render FavoriteCountryButtonWrapper and heartButton', () => {
+    it('should render FavoriteCountryButtonWrapper', () => {
         const { getByTestId } = render(<DrawerCountryContent />, {
             initialState: { authenticationData: { loggedIn: true } }
         })
@@ -60,7 +59,7 @@ describe('<DrawerCountryContent />', () => {
         expect(FavoriteCountryButtonWrapper).toBeInTheDocument()
     })
 
-    it('should render FavoriteCountryButtonWrapper and heartButton', () => {
+    it('should render FavoriteCountryButton', () => {
         const { getByTestId } = render(<DrawerCountryContent />, {
             initialState: { authenticationData: { loggedIn: true } }
         })
