@@ -1,9 +1,8 @@
 import React from 'react'
 
-import { render, act } from 'utils/test-utils'
+import { render } from 'utils/test-utils'
 
-import { initialUserState } from 'globals/authentication/constants'
-import { loginSuccess } from 'globals/authentication/login/actions'
+import { Helmet, HelmetTags, HelmetData } from 'react-helmet'
 
 import { getFavoritedCountries } from 'globals/favoritedCountriesList/actions'
 import { getRefreshTokenRequest } from 'globals/authentication/refreshToken/actions'
@@ -17,26 +16,21 @@ import App from '../App'
 jest.mock('../usePrefersDarkMode')
 
 describe('<App />', () => {
-    let mockStore = configureStore({})
-
     beforeEach(() => {
         // @ts-ignore
         usePrefersDarkMode.mockReturnValue({ darkMode: false })
     })
 
-    afterEach(() => {
-        mockStore = configureStore({})
-    })
-
     it('should dispatch getRefreshTokenRequest when localStorage.getItem is set', () => {
+        const store = configureStore({ authenticationData: { loggedIn: true } })
         const userId = '12'
 
-        mockStore.dispatch = jest.fn()
+        store.dispatch = jest.fn()
         localStorage.setItem('userId', userId)
 
-        render(<App />, { store: mockStore })
+        render(<App />, { store })
 
-        expect(mockStore.dispatch).toHaveBeenCalledWith(
+        expect(store.dispatch).toHaveBeenCalledWith(
             getRefreshTokenRequest(userId)
         )
     })
@@ -60,23 +54,43 @@ describe('<App />', () => {
         expect(appDiv).toHaveClass('App darkmode')
     })
 
-    // it('should dispatch getFavoritedCountries when loggedIn', () => {
-    //     mockStore.dispatch = jest.fn()
+    it('should dispatch getFavoritedCountries when loggedIn', () => {
+        const store = configureStore({ authenticationData: { loggedIn: true } })
 
-    //     render(<App />, { store: mockStore })
+        store.dispatch = jest.fn()
 
-    //     act(() => {
-    //         mockStore.dispatch(loginSuccess(initialUserState))
-    //     })
+        render(<App />, {
+            store
+        })
 
-    //     expect(mockStore.dispatch).toHaveBeenCalledWith(getFavoritedCountries())
-    // })
+        expect(store.dispatch).toHaveBeenCalledWith(getFavoritedCountries())
+    })
 
-    // check if getFavoritedCountries is being dispatching when loggedIn
+    it('should set metaDescription', () => {
+        render(<App />)
 
-    // should set titleTemplate %s - Data app
-    // should set defaultTitle data app example
-    // should set metaDescription
-    // should load ErrorSnackbars
-    // should load Routes
+        const metaTags = [
+            { name: 'description', content: 'A data app example' },
+            { name: 'Home Page', content: 'Homepage description' }
+        ]
+
+        const helmet = Helmet.peek()
+        expect((helmet as HelmetTags & HelmetData).metaTags).toEqual(metaTags)
+    })
+
+    it('should load ErrorSnackbars', () => {
+        const { getByTestId } = render(<App />)
+
+        const ErrorSnackbars = getByTestId('ErrorsSnackbarComponent')
+
+        expect(ErrorSnackbars).toBeInTheDocument()
+    })
+
+    it('should load Routes', () => {
+        const { getByTestId } = render(<App />)
+
+        const routes = getByTestId('routes')
+
+        expect(routes).toBeInTheDocument()
+    })
 })

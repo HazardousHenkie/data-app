@@ -37,11 +37,19 @@ const App: React.FC = () => {
     const dispatch = useDispatch()
     const { t } = useTranslation('app')
 
+    // and test hook (test theme)
     // move setTheme to seperate hook to test?
     const [theme, setTheme] = useState(lightTheme)
     const { loggedIn } = useSelector(stateSelector)
 
     const { darkMode, setDarkMode } = usePrefersDarkMode()
+    // const {theme, setTheme} = useTheme()
+
+    useEffect(() => {
+        if (loggedIn) {
+            dispatch(getFavoritedCountries())
+        }
+    }, [loggedIn, dispatch])
 
     useEffect(() => {
         if (
@@ -58,12 +66,6 @@ const App: React.FC = () => {
         setTheme(darkMode ? darkTheme : lightTheme)
     }, [darkMode])
 
-    useEffect(() => {
-        if (loggedIn) {
-            dispatch(getFavoritedCountries())
-        }
-    }, [loggedIn, dispatch])
-
     return (
         <StylesProvider injectFirst>
             <MuiThemeProvider theme={theme}>
@@ -78,10 +80,6 @@ const App: React.FC = () => {
                             titleTemplate={t(
                                 'app:titleTemplate',
                                 '%s - Data app'
-                            )}
-                            defaultTitle={t(
-                                'app:defaultTitle',
-                                'data app example'
                             )}
                         >
                             <meta
