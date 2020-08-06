@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ErrorPage /> should render like snapshot 1`] = `
+<div
+  className="sc-AxirZ guwtUH"
+>
+  <h1
+    className="MuiTypography-root sc-AxjAm cWFipc MuiTypography-h1 MuiTypography-alignCenter"
+  >
+    404
+  </h1>
+  <p
+    className="MuiTypography-root MuiTypography-body1 MuiTypography-alignCenter"
+  >
+    Page not found
+  </p>
+</div>
+`;

@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom'
 import App from 'containers/App/App'
 
 import history from 'utils/history'
-import { ConnectedRouter } from 'connected-react-router'
 
 import variables from 'styles/variables'
 import { ThemeProvider } from 'styled-components'
@@ -12,6 +11,7 @@ import { ThemeProvider } from 'styled-components'
 import 'typeface-roboto'
 
 import { Provider } from 'react-redux'
+import Loader from 'components/Atoms/Loader'
 import configureStore from './configureStore'
 
 import './utils/i18n'
@@ -24,11 +24,9 @@ const store = configureStore(initialState, history)
 ReactDOM.render(
     <Provider store={store}>
         <ThemeProvider theme={variables}>
-            <ConnectedRouter history={history}>
-                <Suspense fallback={null}>
-                    <App />
-                </Suspense>
-            </ConnectedRouter>
+            <Suspense fallback={<Loader />}>
+                <App />
+            </Suspense>
         </ThemeProvider>
     </Provider>,
     document.getElementById('root')

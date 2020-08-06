@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HeaderSearch /> should render like snapshot 1`] = `
+Array [
+  <div
+    className="sc-fznyAO ktFYgq"
+  >
+    <button
+      aria-label="open drawer"
+      className="MuiButtonBase-root MuiIconButton-root sc-AxheI eWObgQ MuiIconButton-colorInherit MuiIconButton-edgeStart"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className="MuiIconButton-label"
+      >
+        <svg
+          aria-hidden={true}
+          className="MuiSvgIcon-root"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+          />
+        </svg>
+      </span>
+    </button>
+    <div
+      className="sc-fznKkj cHSvOt"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      tabIndex={0}
+    >
+      <form />
+    </div>
+  </div>,
+  <div
+    className="sc-AxirZ ixIRlM"
+    style={
+      Object {
+        "opacity": 0,
+        "visibility": "hidden",
+      }
+    }
+  >
+    <nav
+      aria-label="countries"
+      className="MuiList-root MuiList-padding"
+    />
+  </div>,
+]
+`;

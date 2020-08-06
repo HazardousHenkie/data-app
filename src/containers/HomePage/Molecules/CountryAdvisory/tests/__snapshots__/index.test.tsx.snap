@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DrawerCountryContent /> should render like snapshot 1`] = `
+<div
+  className="MuiPaper-root MuiCard-root sc-AxirZ kNDIFW MuiPaper-outlined MuiPaper-rounded"
+>
+  <div
+    className="MuiCardHeader-root"
+  >
+    <div
+      className="MuiCardHeader-avatar"
+    >
+      <div
+        aria-label="homePage:countryAdvisor.avatar"
+        className="MuiAvatar-root MuiAvatar-circle MuiAvatar-colorDefault"
+      >
+        <svg
+          aria-hidden={true}
+          className="MuiSvgIcon-root"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      className="MuiCardHeader-content"
+    >
+      <span
+        className="MuiTypography-root MuiCardHeader-title MuiTypography-body2 MuiTypography-displayBlock"
+      >
+        homePage:countryAdvisor.advisoryTitle
+                undefined
+      </span>
+    </div>
+  </div>
+  <div
+    className="MuiCardContent-root"
+  >
+    <p
+      className="MuiTypography-root MuiTypography-body1"
+    >
+      homePage:countryAdvisor.notFound
+    </p>
+  </div>
+</div>
+`;

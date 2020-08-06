@@ -1,0 +1,186 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MenuList /> should render like snapshot 1`] = `
+Array [
+  <div
+    className="sc-AxgMl vayPh"
+  />,
+  <ul
+    aria-label="Mainmenu"
+    className="MuiList-root sc-AxheI iioqvx MuiList-padding"
+  >
+    <li
+      className="MuiListItem-root MuiListItem-gutters"
+      disabled={false}
+    >
+      <div
+        className="MuiListItemText-root"
+      >
+        <span
+          className="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+        >
+          Data App
+        </span>
+      </div>
+    </li>
+    <li
+      className="MuiListItem-root MuiListItem-gutters"
+      disabled={false}
+    />
+    <li
+      className="MuiListItem-root MuiListItem-dense MuiListItem-gutters"
+      disabled={false}
+      style={
+        Object {
+          "marginTop": "auto",
+        }
+      }
+    >
+      <div
+        className="MuiListItemText-root MuiListItemText-dense"
+      >
+        <span
+          className="MuiTypography-root MuiListItemText-primary MuiTypography-body2 MuiTypography-displayBlock"
+        >
+          Language
+        </span>
+      </div>
+    </li>
+    <li
+      className="MuiListItem-root MuiListItem-gutters"
+      disabled={false}
+    >
+      <div
+        className="sc-AxhCb bAhhyD"
+      >
+        <div
+          className="MuiFormControl-root MuiFormControl-fullWidth"
+        >
+          <div
+            className="MuiInputBase-root MuiOutlinedInput-root sc-AxhUy jdxpJa MuiInputBase-formControl"
+            onClick={[Function]}
+          >
+            <div
+              aria-haspopup="listbox"
+              aria-labelledby="select-language select-language"
+              className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input"
+              id="select-language"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onMouseDown={[Function]}
+              role="button"
+              tabIndex={0}
+            >
+              <span
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "&#8203;",
+                  }
+                }
+              />
+            </div>
+            <input
+              onAnimationStart={[Function]}
+              type="hidden"
+            />
+            <svg
+              aria-hidden={true}
+              className="MuiSvgIcon-root MuiSelect-icon MuiSelect-iconOutlined"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7 10l5 5 5-5z"
+              />
+            </svg>
+            <fieldset
+              aria-hidden={true}
+              className="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
+              style={
+                Object {
+                  "paddingLeft": 8,
+                }
+              }
+            >
+              <legend
+                className="PrivateNotchedOutline-legend-2"
+                style={
+                  Object {
+                    "width": 0.01,
+                  }
+                }
+              >
+                <span
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "&#8203;",
+                    }
+                  }
+                />
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li
+      className="MuiListItem-root MuiListItem-dense MuiListItem-gutters"
+      disabled={false}
+    >
+      <div
+        className="MuiListItemText-root MuiListItemText-dense"
+      >
+        <span
+          className="MuiTypography-root MuiListItemText-primary MuiTypography-body2 MuiTypography-displayBlock"
+        >
+          Theme
+        </span>
+      </div>
+    </li>
+    <li
+      className="MuiListItem-root MuiListItem-dense MuiListItem-gutters"
+      disabled={false}
+    >
+      <span
+        className="MuiSwitch-root"
+      >
+        <span
+          aria-disabled={false}
+          className="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiSwitch-switchBase"
+          onBlur={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={null}
+        >
+          <span
+            className="MuiIconButton-label"
+          >
+            <input
+              aria-label="Theme switcher"
+              checked={false}
+              className="PrivateSwitchBase-input-8 MuiSwitch-input"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            <span
+              className="MuiSwitch-thumb"
+            />
+          </span>
+        </span>
+        <span
+          className="MuiSwitch-track"
+        />
+      </span>
+    </li>
+  </ul>,
+]
+`;
