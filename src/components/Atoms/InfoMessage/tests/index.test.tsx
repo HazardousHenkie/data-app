@@ -1,18 +1,14 @@
 import React from 'react'
-import renderer from 'react-test-renderer'
+import { render } from 'utils/test-utils'
 
-import MockingAppComponent from 'utils/testing/MockingAppComponent'
 import InfoMessage from '../index'
 
 describe('<InfoMessage />', () => {
     it('should render like snapshot', () => {
-        const component = renderer.create(
-            <MockingAppComponent>
-                <InfoMessage severity="error" message="error" />
-            </MockingAppComponent>
+        const component = render(
+            <InfoMessage severity="error" message="error" />
         )
 
-        const tree = component.toJSON()
-        expect(tree).toMatchSnapshot()
+        expect(component).toMatchSnapshot()
     })
 })

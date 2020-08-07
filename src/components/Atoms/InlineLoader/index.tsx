@@ -7,7 +7,7 @@ import LoaderWrapper from './styledComponents'
 
 const InlineLoader: React.FC<CircularProgressProps> = props => {
     return (
-        <LoaderWrapper>
+        <LoaderWrapper data-testid="inlineLoader">
             <CircularProgress {...props} color="inherit" />
         </LoaderWrapper>
     )

@@ -1,18 +1,12 @@
 import React from 'react'
-import renderer from 'react-test-renderer'
+import { render } from 'utils/test-utils'
 
-import MockingAppComponent from 'utils/testing/MockingAppComponent'
 import SideDrawer from '../index'
 
 describe('<SideDrawer />', () => {
     it('should render like snapshot', () => {
-        const component = renderer.create(
-            <MockingAppComponent>
-                <SideDrawer />
-            </MockingAppComponent>
-        )
+        const component = render(<SideDrawer />)
 
-        const tree = component.toJSON()
-        expect(tree).toMatchSnapshot()
+        expect(component).toMatchSnapshot()
     })
 })

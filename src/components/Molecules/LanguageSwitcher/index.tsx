@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
 
-import InlineLoader from 'components/Atoms/InlineLoader'
-
 import { appLocales } from 'utils/i18n'
 import { useTranslation } from 'react-i18next'
 
@@ -25,8 +23,6 @@ const LanguageSwitcher: React.FC = () => {
 
     return (
         <LanguageSwitcherWrapper>
-            {loadingLanguage && <InlineLoader />}
-
             <FormControl variant="outlined" fullWidth>
                 <SelectStyled
                     labelId="select-language"

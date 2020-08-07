@@ -1,11 +1,11 @@
 import React from 'react'
 import { render } from 'utils/test-utils'
 
-import InputField from '../index'
+import App from '../App'
 
-describe('<InputField />', () => {
+describe('<App />', () => {
     it('should render like snapshot', () => {
-        const component = render(<InputField />)
+        const component = render(<App />)
 
         expect(component).toMatchSnapshot()
     })

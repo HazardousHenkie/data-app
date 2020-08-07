@@ -1,20 +1,13 @@
 import React from 'react'
-import { render } from '@testing-library/react'
-
-import MockingAppComponent from 'utils/testing/MockingAppComponent'
+import { render } from 'utils/test-utils'
 
 import CountriesList from '../index'
 
 describe('<CountriesList />', () => {
     it('should render like snapshot', () => {
-        const {
-            container: { firstChild }
-        } = render(
-            <MockingAppComponent>
-                <CountriesList open setOpen={() => {}} />
-            </MockingAppComponent>
-        )
-        expect(firstChild).toMatchSnapshot()
+        const component = render(<CountriesList open setOpen={() => {}} />)
+
+        expect(component).toMatchSnapshot()
     })
 })
 

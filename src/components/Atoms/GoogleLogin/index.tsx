@@ -57,7 +57,7 @@ const GoogleLoginButton: React.FC = () => {
     return (
         <>
             {process.env.REACT_APP_GOOGLE_CLIENT_ID && (
-                <GoogleLoginWrapper>
+                <GoogleLoginWrapper data-testid="googleLoginWrapper">
                     {(loading || googleLoading) && <InlineLoader />}
 
                     <GoogleLogin
