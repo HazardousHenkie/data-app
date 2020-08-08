@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
-import lightTheme, { darkTheme } from 'styles/themeStyles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import GlobalStyle from 'styles/index'
 
@@ -28,6 +27,7 @@ import ErrorSnackbars from 'containers/HomePage/Organisms/Errors'
 import Routes from './routes'
 
 import usePrefersDarkMode from './usePrefersDarkMode'
+import useTheme from './useTheme'
 
 const stateSelector = createSelector(makeSelectLoggedIn(), loggedIn => ({
     loggedIn
@@ -37,13 +37,10 @@ const App: React.FC = () => {
     const dispatch = useDispatch()
     const { t } = useTranslation('app')
 
-    // and test hook (test theme)
-    // move setTheme to seperate hook to test?
-    const [theme, setTheme] = useState(lightTheme)
     const { loggedIn } = useSelector(stateSelector)
 
     const { darkMode, setDarkMode } = usePrefersDarkMode()
-    // const {theme, setTheme} = useTheme()
+    const { theme } = useTheme()
 
     useEffect(() => {
         if (loggedIn) {
@@ -61,10 +58,6 @@ const App: React.FC = () => {
             )
         }
     }, [dispatch])
-
-    useEffect(() => {
-        setTheme(darkMode ? darkTheme : lightTheme)
-    }, [darkMode])
 
     return (
         <StylesProvider injectFirst>
