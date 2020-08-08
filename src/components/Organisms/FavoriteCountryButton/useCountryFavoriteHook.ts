@@ -23,7 +23,6 @@ const stateSelector = createStructuredSelector({
 
 const useCountryFavorite = (
     favoritedCountry: FavoritedCountryInterface,
-    active: boolean,
     clicked: boolean
 ) => {
     const dispatch = useDispatch()
@@ -40,55 +39,54 @@ const useCountryFavorite = (
                 let fetchRequest: FavoritedCountryInterface
 
                 try {
-                    if (favoritedCountry.ref['@ref'].id !== '') {
-                        fetchRequest = await request(
-                            `/.netlify/functions/deleteCountry/${favoritedCountry.ref['@ref'].id}`,
-                            {
-                                method: 'DELETE',
-                                headers: {
-                                    Authorization: `Bearer ${authToken.token}`
-                                }
+                    // if (favoritedCountry.ref['@ref'].id !== '') {
+                    fetchRequest = await request(
+                        `/.netlify/functions/deleteCountry/${favoritedCountry.ref['@ref'].id}`,
+                        {
+                            method: 'DELETE',
+                            headers: {
+                                Authorization: `Bearer ${authToken.token}`
                             }
-                        )
+                        }
+                    )
 
-                        setCountrySucessfullRequest({
-                            ...initialFavoritedCountriesState.countries[0],
-                            data: {
-                                ...initialFavoritedCountriesState.countries[0]
-                                    .data,
-                                countryId: favoritedCountry.data.countryId
-                            }
-                        })
+                    setCountrySucessfullRequest({
+                        ...initialFavoritedCountriesState.countries[0],
+                        data: {
+                            ...initialFavoritedCountriesState.countries[0].data,
+                            countryId: favoritedCountry.data.countryId
+                        }
+                    })
 
-                        dispatch(
-                            setFavoritedCountries(
-                                favoritedCountries.filter(
-                                    country =>
-                                        country.data.countryId !==
-                                        favoritedCountry.data.countryId
-                                )
+                    dispatch(
+                        setFavoritedCountries(
+                            favoritedCountries.filter(
+                                country =>
+                                    country.data.countryId !==
+                                    favoritedCountry.data.countryId
                             )
                         )
-                    } else {
-                        fetchRequest = await request(
-                            `/.netlify/functions/saveCountry/${favoritedCountry.data.countryId}`,
-                            {
-                                method: 'GET',
-                                headers: {
-                                    Authorization: `Bearer ${authToken.token}`
-                                }
-                            }
-                        )
+                    )
+                    // } else {
+                    //     fetchRequest = await request(
+                    //         `/.netlify/functions/saveCountry/${favoritedCountry.data.countryId}`,
+                    //         {
+                    //             method: 'GET',
+                    //             headers: {
+                    //                 Authorization: `Bearer ${authToken.token}`
+                    //             }
+                    //         }
+                    //     )
 
-                        setCountrySucessfullRequest(fetchRequest)
+                    //     setCountrySucessfullRequest(fetchRequest)
 
-                        dispatch(
-                            setFavoritedCountries([
-                                ...favoritedCountries,
-                                fetchRequest
-                            ])
-                        )
-                    }
+                    //     dispatch(
+                    //         setFavoritedCountries([
+                    //             ...favoritedCountries,
+                    //             fetchRequest
+                    //         ])
+                    //     )
+                    // }
                 } catch (error) {
                     if (error.response && error.response.status !== 404) {
                         dispatch(setError(error))
@@ -100,7 +98,7 @@ const useCountryFavorite = (
 
             fetchData()
         }
-    }, [favoritedCountries, dispatch, favoritedCountry, active, clicked])
+    }, [favoritedCountries, dispatch, favoritedCountry, clicked])
 
     return {
         loading,

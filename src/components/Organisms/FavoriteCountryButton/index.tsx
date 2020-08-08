@@ -49,7 +49,6 @@ const FavoriteCountryButton: React.FC<FavoriteCountryButtonInterface> = ({
 
     const { loading, countrySucessfullRequest } = useCountryFavorite(
         favoritedCountry,
-        active,
         clicked
     )
     const { t } = useTranslation('FavoriteCountryButton')

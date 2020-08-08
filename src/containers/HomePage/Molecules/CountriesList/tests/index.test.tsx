@@ -4,7 +4,8 @@ import { render } from 'utils/test-utils'
 import configureStore from 'store/configureStore'
 
 import { initialCountriesHeaderState } from '../constants'
-import { getCountriesDataSuccess } from '../actions'
+
+import { getCountriesData, getCountriesDataSuccess } from '../actions'
 import CountriesList from '../index'
 
 describe('<CountriesList />', () => {
@@ -32,6 +33,16 @@ describe('<CountriesList />', () => {
 
         const advisoryText = getByLabelText('countries')
         expect(advisoryText).toBeInTheDocument()
+    })
+
+    it('should dispatch getCountriesData on load', () => {
+        store.dispatch = jest.fn()
+
+        render(<CountriesList open setOpen={() => {}} />, {
+            store
+        })
+
+        expect(store.dispatch).toHaveBeenCalledWith(getCountriesData())
     })
 })
 
