@@ -28,7 +28,6 @@ describe('<ListItem />', () => {
     test('Should call onClickCountry when ListItem is clicked and pas the countries name', () => {
         const onClickCountry = jest.fn()
 
-        // check if we can test the function
         const { getByTestId } = render(
             <ListItem
                 // @ts-ignore since it's for testing ignore it

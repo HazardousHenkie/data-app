@@ -60,9 +60,7 @@ describe('<FavoriteCountryButton />', () => {
     })
 
     test('Check if translation text is shown', () => {
-        const { getByTestId } = render(
-            <FavoriteCountryButton clickedCountry={CountryItem.country} />
-        )
+        const { getByTestId } = render(heartComponent)
 
         const button = getByTestId('heartButton')
         const buttonText = within(button).getByLabelText(

@@ -1,10 +1,8 @@
 import React from 'react'
 
-import { renderHook, act } from '@testing-library/react-hooks'
+import { query } from 'faunadb'
 
-import { render, within, fireEvent } from 'utils/test-utils'
-
-import { CountryItem } from 'containers/HomePage/Molecules/CountryListItem/constants'
+import { renderHook } from '@testing-library/react-hooks'
 
 import { Provider } from 'react-redux'
 
@@ -15,44 +13,97 @@ import mockFetch, {
 
 import configureStore from 'store/configureStore'
 
+import { ResponseError } from 'utils/request'
+import { setError } from 'globals/globalErrors/actions'
+import { setFavoritedCountries } from 'globals/favoritedCountriesList/actions'
 import { initialFavoritedCountriesState } from 'globals/favoritedCountriesList/constants'
-import FavoriteCountryButton from '../index'
+
 import useCountryFavoriteHook from '../useCountryFavoriteHook'
 
 describe('useCountryFavoriteHook', () => {
-    const fixture = {
-        data: {
-            NL: {
-                iso_alpha2: 'NL',
-                name: 'Netherlands',
-                continent: 'EU',
-                advisory: {
-                    score: 3.4,
-                    sources_active: 8
-                }
-            }
-        }
-    }
-
-    let store = configureStore({})
-
-    beforeEach(() => {
-        mockFetch({})
-    })
-
-    afterAll(() => {
-        store = configureStore({})
+    afterEach(() => {
         mockFetchCleanUp()
     })
 
-    it('If should start loading and return the data after a succesfull call', () => {
-        // const { getByTestId } = render(
-        //     <FavoriteCountryButton clickedCountry={CountryItem.country} />
-        // )
+    const deleteFixture = { message: 'Saved successfully.' }
 
-        // act(() => {
-        //     fireEvent.click(getByTestId('iconButton'))
-        // })
+    it('It should start loading and return the data after a succesfull call (delete)', async () => {
+        mockFetch(deleteFixture)
+
+        const store = configureStore({})
+
+        const { result, waitForNextUpdate } = renderHook(
+            () =>
+                useCountryFavoriteHook(
+                    {
+                        ...initialFavoritedCountriesState.countries[0],
+                        ref: {
+                            '@ref': {
+                                collection: query.Collection('country_user'),
+                                id: 'countryId'
+                            }
+                        }
+                    },
+                    true
+                ),
+            {
+                wrapper: ({ children }) => {
+                    return <Provider store={store}>{children}</Provider>
+                }
+            }
+        )
+
+        expect(result.current.loading).toEqual(true)
+
+        await waitForNextUpdate()
+
+        expect(result.current.countrySucessfullRequest).toEqual(
+            initialFavoritedCountriesState.countries[0]
+        )
+    })
+
+    it('It should dispatch setFavoritedCountries (delete)', async () => {
+        mockFetch(deleteFixture)
+
+        const store = configureStore({})
+
+        store.dispatch = jest.fn()
+
+        const { waitForNextUpdate } = renderHook(
+            () =>
+                useCountryFavoriteHook(
+                    {
+                        ...initialFavoritedCountriesState.countries[0],
+                        ref: {
+                            '@ref': {
+                                collection: query.Collection('country_user'),
+                                id: 'countryId'
+                            }
+                        }
+                    },
+                    true
+                ),
+            {
+                wrapper: ({ children }) => {
+                    return <Provider store={store}>{children}</Provider>
+                }
+            }
+        )
+
+        await waitForNextUpdate()
+
+        expect(store.getState().favoritedCountries).toBe(
+            initialFavoritedCountriesState
+        )
+        expect(store.dispatch).toHaveBeenCalledWith(setFavoritedCountries([]))
+    })
+
+    it('It should start loading and return the data after a succesfull call (get)', async () => {
+        mockFetch({
+            ...initialFavoritedCountriesState.countries[0]
+        })
+
+        const store = configureStore({})
 
         const { result, waitForNextUpdate } = renderHook(
             () =>
@@ -68,58 +119,105 @@ describe('useCountryFavoriteHook', () => {
                 }
             }
         )
-        // act(() => {
-        //     store.dispatch(
-        //         setSelectedCountry({
-        //             ...CountryItem.country,
-        //             alpha2Code: 'NL'
-        //         })
-        //     )
-        // })
-        console.log(result.current)
+
         expect(result.current.loading).toEqual(true)
-        // await waitForNextUpdate()
-        // expect(result.current.countrySucessfullRequest).toEqual(fixture.data.NL)
+
+        await waitForNextUpdate()
+
+        expect(result.current.countrySucessfullRequest).toEqual({
+            ...initialFavoritedCountriesState.countries[0]
+        })
     })
 
-    // it('If should return an error after an unsuccesfull call', async () => {
-    //     const error = Error('something went wrong')
+    it('It should dispatch setFavoritedCountries (get)', async () => {
+        mockFetch({
+            ...initialFavoritedCountriesState.countries[0]
+        })
 
-    //     mockFetchError(error)
+        const store = configureStore({})
 
-    //     const { result, waitForNextUpdate } = renderHook(
-    //         () => useCountryFavoriteHook(),
-    //         {
-    //             wrapper: ({ children }) => {
-    //                 return <Provider store={store}>{children}</Provider>
-    //             }
-    //         }
-    //     )
+        store.dispatch = jest.fn()
 
-    //     act(() => {
-    //         store.dispatch(
-    //             setSelectedCountry({
-    //                 ...CountryItem.country
-    //             })
-    //         )
-    //     })
+        const { waitForNextUpdate } = renderHook(
+            () =>
+                useCountryFavoriteHook(
+                    {
+                        ...initialFavoritedCountriesState.countries[0]
+                    },
+                    true
+                ),
+            {
+                wrapper: ({ children }) => {
+                    return <Provider store={store}>{children}</Provider>
+                }
+            }
+        )
 
-    //     await waitForNextUpdate()
+        await waitForNextUpdate()
 
-    //     expect(result.current.fetchingError).toEqual(error)
-    // })
+        expect(store.getState().favoritedCountries).toBe(
+            initialFavoritedCountriesState
+        )
+        expect(store.dispatch).toHaveBeenCalledWith(
+            setFavoritedCountries(initialFavoritedCountriesState.countries)
+        )
+    })
 
-    // it('Loading should be false after call', async () => {
-    //     const { result, waitForNextUpdate } = renderHook(
-    //         () => useCountryFavoriteHook(),
-    //         {
-    //             wrapper: ({ children }) => {
-    //                 return <Provider store={store}>{children}</Provider>
-    //             }
-    //         }
-    //     )
+    it('If should return an error after an unsuccesfull call', async () => {
+        const responseError = new ResponseError(
+            new Response(),
+            'something went wrong'
+        )
 
-    //     await waitForNextUpdate()
-    //     expect(result.current.loading).toEqual(false)
-    // })
+        mockFetchError(responseError)
+
+        const store = configureStore({})
+        store.dispatch = jest.fn()
+
+        const { waitForNextUpdate } = renderHook(
+            () =>
+                useCountryFavoriteHook(
+                    {
+                        ...initialFavoritedCountriesState.countries[0]
+                    },
+                    true
+                ),
+            {
+                wrapper: ({ children }) => {
+                    return <Provider store={store}>{children}</Provider>
+                }
+            }
+        )
+
+        await waitForNextUpdate()
+
+        expect(store.getState().errors).toStrictEqual({ errors: [] })
+        expect(store.dispatch).toHaveBeenCalledWith(setError(Error('')))
+    })
+
+    it('Loading should be false after call', async () => {
+        mockFetch({
+            ...initialFavoritedCountriesState.countries[0]
+        })
+
+        const store = configureStore({})
+
+        const { result, waitForNextUpdate } = renderHook(
+            () =>
+                useCountryFavoriteHook(
+                    {
+                        ...initialFavoritedCountriesState.countries[0]
+                    },
+                    true
+                ),
+            {
+                wrapper: ({ children }) => {
+                    return <Provider store={store}>{children}</Provider>
+                }
+            }
+        )
+
+        await waitForNextUpdate()
+        expect(result.current.loading).toEqual(false)
+    })
 })

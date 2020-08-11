@@ -32,16 +32,14 @@ describe('useCountryAdvisoryHook', () => {
 
     let store = configureStore({})
 
-    beforeEach(() => {
-        mockFetch(fixture)
-    })
-
     afterAll(() => {
         store = configureStore({})
         mockFetchCleanUp()
     })
 
     it('If should start loading and return the data after a succesfull call', async () => {
+        mockFetch(fixture)
+
         const { result, waitForNextUpdate } = renderHook(
             () => useCountryAdvisoryHook(),
             {
@@ -91,6 +89,8 @@ describe('useCountryAdvisoryHook', () => {
     })
 
     it('Loading should be false after call', async () => {
+        mockFetch(fixture)
+
         const { result, waitForNextUpdate } = renderHook(
             () => useCountryAdvisoryHook(),
             {

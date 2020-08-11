@@ -2,3 +2,13 @@
 // describe('configureStore', () => {
 //     it('should return a store with injected enhancers', () => {})
 // })
+
+ it('should dispatch the getRefreshTokenRequest action if userId is in local storage', () => {
+        const errors = [params.payload]
+        const putDescriptor = errorsGenerator.next(errors).value
+
+        expect(putDescriptor).toEqual(
+            // eslint-disable-next-line redux-saga/no-unhandled-errors
+            put(setErrors([...errors, params.payload]))
+        )
+    })

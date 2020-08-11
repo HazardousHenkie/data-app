@@ -11,14 +11,10 @@ import { initialFavoritedCountriesState } from 'globals/favoritedCountriesList/c
 
 import request from 'utils/request'
 
-import {
-    makeSelectFavoritedCountries,
-    makeSelectLoader
-} from 'globals/favoritedCountriesList/selectors'
+import { makeSelectFavoritedCountries } from 'globals/favoritedCountriesList/selectors'
 
 const stateSelector = createStructuredSelector({
-    favoritedCountries: makeSelectFavoritedCountries(),
-    loading: makeSelectLoader()
+    favoritedCountries: makeSelectFavoritedCountries()
 })
 
 const useCountryFavorite = (
@@ -26,8 +22,8 @@ const useCountryFavorite = (
     initialClicked?: boolean
 ) => {
     const dispatch = useDispatch()
-    const [clicked, setClicked] = useState<boolean>(false)
-    const [loading, setLoading] = useState<boolean>(initialClicked || false)
+    const [clicked, setClicked] = useState<boolean>(initialClicked || false)
+    const [loading, setLoading] = useState<boolean>(false)
     const [countrySucessfullRequest, setCountrySucessfullRequest] = useState<
         FavoritedCountryInterface
     >()
@@ -35,11 +31,11 @@ const useCountryFavorite = (
     const { favoritedCountries } = useSelector(stateSelector)
 
     useEffect(() => {
-        console.log(clicked, 'clicki')
         if (clicked) {
             const fetchData = async () => {
-                console.log('are we here?  ')
                 setLoading(true)
+                setClicked(false)
+
                 let fetchRequest: FavoritedCountryInterface
 
                 try {
@@ -53,8 +49,6 @@ const useCountryFavorite = (
                                 }
                             }
                         )
-
-                        setClicked(false)
 
                         setCountrySucessfullRequest({
                             ...initialFavoritedCountriesState.countries[0],
@@ -74,7 +68,6 @@ const useCountryFavorite = (
                                 )
                             )
                         )
-                        // setClicked(false)
                     } else {
                         fetchRequest = await request(
                             `/.netlify/functions/saveCountry/${favoritedCountry.data.countryId}`,
@@ -86,17 +79,22 @@ const useCountryFavorite = (
                             }
                         )
 
-                        setClicked(false)
-
                         setCountrySucessfullRequest(fetchRequest)
 
-                        dispatch(
-                            setFavoritedCountries([
-                                ...favoritedCountries,
-                                fetchRequest
-                            ])
-                        )
-                        // setClicked(false)
+                        if (
+                            favoritedCountries &&
+                            favoritedCountries.length === 1 &&
+                            favoritedCountries[0].ts === 0
+                        ) {
+                            dispatch(setFavoritedCountries([fetchRequest]))
+                        } else {
+                            dispatch(
+                                setFavoritedCountries([
+                                    ...favoritedCountries,
+                                    fetchRequest
+                                ])
+                            )
+                        }
                     }
                 } catch (error) {
                     if (error.response && error.response.status !== 404) {

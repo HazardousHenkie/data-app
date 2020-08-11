@@ -70,7 +70,7 @@ const CountriesList: React.FC<CountriesListProps> = ({
                 ) : (
                     <List component="nav" aria-label="countries">
                         {countries.map(country => (
-                            <div key={country.name}>
+                            <div key={country.name} data-testid="countryItem">
                                 <CountryListItem
                                     setOpen={setOpen}
                                     listCountry={country}
