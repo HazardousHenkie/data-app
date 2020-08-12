@@ -23,7 +23,11 @@ Object {
         </div>
         <div
           class="MuiListItemText-root"
-        />
+        >
+          <span
+            class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+          />
+        </div>
         <span
           class="MuiTouchRipple-root"
         />
@@ -49,7 +53,11 @@ Object {
       </div>
       <div
         class="MuiListItemText-root"
-      />
+      >
+        <span
+          class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+        />
+      </div>
       <span
         class="MuiTouchRipple-root"
       />

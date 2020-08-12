@@ -52,7 +52,7 @@ Object {
           <span
             style="font-weight: 500; padding: 10px 10px 10px 0px;"
           >
-            logout:button
+            Login
           </span>
         </button>
       </div>
@@ -106,7 +106,7 @@ Object {
         <span
           style="font-weight: 500; padding: 10px 10px 10px 0px;"
         >
-          logout:button
+          Login
         </span>
       </button>
     </div>

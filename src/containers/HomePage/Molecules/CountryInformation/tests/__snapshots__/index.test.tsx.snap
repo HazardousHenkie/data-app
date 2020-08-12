@@ -15,7 +15,7 @@ Object {
             class="MuiCardHeader-avatar"
           >
             <div
-              aria-label="homePage:countryAdvisor.countryInformation"
+              aria-label="Country Information"
               class="MuiAvatar-root MuiAvatar-circle MuiAvatar-colorDefault"
             >
               <svg
@@ -36,8 +36,8 @@ Object {
             <span
               class="MuiTypography-root MuiCardHeader-title MuiTypography-body2 MuiTypography-displayBlock"
             >
-              homePage:countryAdvisor.advisoryTitle
-                undefined
+              Advisory for
+                
             </span>
           </div>
         </div>
@@ -53,7 +53,7 @@ Object {
             class="MuiTypography-root MuiTypography-body1"
           >
             <strong>
-              homePage:countryInformation.languages
+              Languages
               :
             </strong>
               undefined(undefined)
@@ -62,7 +62,7 @@ Object {
             class="MuiTypography-root MuiTypography-body1"
           >
             <strong>
-              homePage:countryInformation.currencies
+              Currencies
               :
             </strong>
               undefined(undefined)
@@ -82,7 +82,7 @@ Object {
           class="MuiCardHeader-avatar"
         >
           <div
-            aria-label="homePage:countryAdvisor.countryInformation"
+            aria-label="Country Information"
             class="MuiAvatar-root MuiAvatar-circle MuiAvatar-colorDefault"
           >
             <svg
@@ -103,8 +103,8 @@ Object {
           <span
             class="MuiTypography-root MuiCardHeader-title MuiTypography-body2 MuiTypography-displayBlock"
           >
-            homePage:countryAdvisor.advisoryTitle
-                undefined
+            Advisory for
+                
           </span>
         </div>
       </div>
@@ -120,7 +120,7 @@ Object {
           class="MuiTypography-root MuiTypography-body1"
         >
           <strong>
-            homePage:countryInformation.languages
+            Languages
             :
           </strong>
             undefined(undefined)
@@ -129,7 +129,7 @@ Object {
           class="MuiTypography-root MuiTypography-body1"
         >
           <strong>
-            homePage:countryInformation.currencies
+            Currencies
             :
           </strong>
             undefined(undefined)

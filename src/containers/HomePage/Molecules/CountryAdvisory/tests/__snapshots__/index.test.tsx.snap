@@ -39,7 +39,7 @@ Object {
             class="MuiCardHeader-avatar"
           >
             <div
-              aria-label="homePage:countryAdvisor.avatar"
+              aria-label="country"
               class="MuiAvatar-root MuiAvatar-circle MuiAvatar-colorDefault"
             >
               <svg
@@ -60,8 +60,8 @@ Object {
             <span
               class="MuiTypography-root MuiCardHeader-title MuiTypography-body2 MuiTypography-displayBlock"
             >
-              homePage:countryAdvisor.advisoryTitle
-                undefined
+              Advisory for
+                
             </span>
           </div>
         </div>
@@ -110,7 +110,7 @@ Object {
           class="MuiCardHeader-avatar"
         >
           <div
-            aria-label="homePage:countryAdvisor.avatar"
+            aria-label="country"
             class="MuiAvatar-root MuiAvatar-circle MuiAvatar-colorDefault"
           >
             <svg
@@ -131,8 +131,8 @@ Object {
           <span
             class="MuiTypography-root MuiCardHeader-title MuiTypography-body2 MuiTypography-displayBlock"
           >
-            homePage:countryAdvisor.advisoryTitle
-                undefined
+            Advisory for
+                
           </span>
         </div>
       </div>

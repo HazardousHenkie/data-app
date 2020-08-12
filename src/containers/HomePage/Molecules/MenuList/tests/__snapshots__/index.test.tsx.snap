@@ -62,15 +62,13 @@ Object {
                   role="button"
                   tabindex="0"
                 >
-                  <span>
-                    ​
-                  </span>
+                  en
                 </div>
                 <input
                   aria-hidden="true"
                   class="MuiSelect-nativeInput"
                   tabindex="-1"
-                  value=""
+                  value="en"
                 />
                 <svg
                   aria-hidden="true"
@@ -206,15 +204,13 @@ Object {
                 role="button"
                 tabindex="0"
               >
-                <span>
-                  ​
-                </span>
+                en
               </div>
               <input
                 aria-hidden="true"
                 class="MuiSelect-nativeInput"
                 tabindex="-1"
-                value=""
+                value="en"
               />
               <svg
                 aria-hidden="true"

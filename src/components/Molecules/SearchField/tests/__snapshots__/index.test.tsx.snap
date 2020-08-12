@@ -5,11 +5,71 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <form />
+      <form>
+        <div
+          class="MuiFormControl-root MuiTextField-root sc-AxjAm xhCqm sc-AxirZ cWXOxu"
+        >
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
+          >
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input"
+              placeholder="search"
+              type="text"
+              value=""
+            />
+            <fieldset
+              aria-hidden="true"
+              class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
+              style="padding-left: 8px;"
+            >
+              <legend
+                class="PrivateNotchedOutline-legend-2"
+                style="width: 0.01px;"
+              >
+                <span>
+                  ​
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+      </form>
     </div>
   </body>,
   "container": <div>
-    <form />
+    <form>
+      <div
+        class="MuiFormControl-root MuiTextField-root sc-AxjAm xhCqm sc-AxirZ cWXOxu"
+      >
+        <div
+          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
+        >
+          <input
+            aria-invalid="false"
+            class="MuiInputBase-input MuiOutlinedInput-input"
+            placeholder="search"
+            type="text"
+            value=""
+          />
+          <fieldset
+            aria-hidden="true"
+            class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
+            style="padding-left: 8px;"
+          >
+            <legend
+              class="PrivateNotchedOutline-legend-2"
+              style="width: 0.01px;"
+            >
+              <span>
+                ​
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+    </form>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
