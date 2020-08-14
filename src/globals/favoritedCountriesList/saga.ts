@@ -19,6 +19,17 @@ export function* getFavoritedCountriesDataSaga() {
 
         yield put(setFavoritedCountries(response.data))
     } catch (error) {
+        // if (
+        //     error.response.status === ERROR_STATUS_CODES.UNAUTHORIZED &&
+        //     localStorage.getItem('userId')
+        // ) {
+        //     yield put(
+        //         getRefreshTokenRequest(localStorage.getItem('userId') as string)
+        //     )
+        // } else {
+        //     yield put(logoutRequest())
+        // }
+
         yield put(getFavoritedCountriesError(error))
         yield put(setError(error))
     }
