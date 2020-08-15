@@ -31,6 +31,8 @@ describe('loginSaga Saga', () => {
         const response = { user: { id: '', name: '', googleId: '1' } }
         const putDescriptor = loginSagaGenerator.next(response).value
 
+        console.log(putDescriptor)
+
         expect(putDescriptor).toEqual(
             // eslint-disable-next-line redux-saga/no-unhandled-errors
             put(loginSuccess(response.user))

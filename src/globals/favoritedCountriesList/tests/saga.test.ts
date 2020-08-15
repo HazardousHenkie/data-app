@@ -5,30 +5,32 @@ import { logoutRequest } from 'globals/authentication/logout/actions'
 import { ResponseError } from 'utils/request'
 import { setError } from 'globals/globalErrors/actions'
 
-import { logoutSuccess, logoutError } from '../actions'
+import { setFavoritedCountries, getFavoritedCountriesError } from '../actions'
 
-import logoutSaga from '../saga'
+import { initialFavoritedCountriesState } from '../constants'
 
-describe('logoutSaga Saga', () => {
-    let logoutSagaGenerator: Generator
+import getFavoritedCountriesDataSaga from '../saga'
+
+describe('getFavoritedCountriesDataSaga Saga', () => {
+    let favoritedCountriesGenerator: Generator
     let callDescriptor: Response
 
     beforeEach(() => {
-        logoutSagaGenerator = logoutSaga()
+        favoritedCountriesGenerator = getFavoritedCountriesDataSaga()
 
-        callDescriptor = logoutSagaGenerator.next().value
+        callDescriptor = favoritedCountriesGenerator.next().value
         expect(callDescriptor).toMatchSnapshot()
     })
 
-    it('should dispatch the logoutSuccess action if call was successfull', () => {
-        const putDescriptor = logoutSagaGenerator.next().value
+    it('should dispatch the setFavoritedCountries action if call was successfull', () => {
+        const response = { data: initialFavoritedCountriesState.countries }
+
+        const putDescriptor = favoritedCountriesGenerator.next(response).value
 
         expect(putDescriptor).toEqual(
             // eslint-disable-next-line redux-saga/no-unhandled-errors
-            put(logoutSuccess())
+            put(setFavoritedCountries(response.data))
         )
-
-        expect(localStorage.removeItem).toHaveBeenCalledTimes(1)
     })
 
     it('should call refreshtoken if localstorage(userid) is set and there is responserror with a 401 error', () => {
@@ -40,7 +42,7 @@ describe('logoutSaga Saga', () => {
 
         const response = new ResponseError(responseError, 'Some error')
 
-        const putDescriptor = logoutSagaGenerator.throw(response).value
+        const putDescriptor = favoritedCountriesGenerator.throw(response).value
 
         expect(putDescriptor).toEqual(
             // eslint-disable-next-line redux-saga/no-unhandled-errors
@@ -53,7 +55,7 @@ describe('logoutSaga Saga', () => {
     it('should call the logoutRequest if the response errors', () => {
         const response = new ResponseError(callDescriptor, 'Some error')
 
-        const putDescriptor = logoutSagaGenerator.throw(response).value
+        const putDescriptor = favoritedCountriesGenerator.throw(response).value
 
         // eslint-disable-next-line redux-saga/no-unhandled-errors
         expect(putDescriptor).toEqual(put(logoutRequest()))
@@ -63,14 +65,19 @@ describe('logoutSaga Saga', () => {
         const response = new ResponseError(callDescriptor, 'Some error')
 
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-        logoutSagaGenerator.throw(response).value
-        const putDescriptorSecondError = logoutSagaGenerator.next(response)
-            .value
+        favoritedCountriesGenerator.throw(response).value
+        const putDescriptorSecondError = favoritedCountriesGenerator.next(
+            response
+        ).value
 
-        // eslint-disable-next-line redux-saga/no-unhandled-errors
-        expect(putDescriptorSecondError).toEqual(put(logoutError(response)))
+        expect(putDescriptorSecondError).toEqual(
+            // eslint-disable-next-line redux-saga/no-unhandled-errors
+            put(getFavoritedCountriesError(response))
+        )
 
-        const putDescriptorThirdError = logoutSagaGenerator.next(response).value
+        const putDescriptorThirdError = favoritedCountriesGenerator.next(
+            response
+        ).value
 
         // eslint-disable-next-line redux-saga/no-unhandled-errors
         expect(putDescriptorThirdError).toEqual(put(setError(response)))
