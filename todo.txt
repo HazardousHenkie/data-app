@@ -1,6 +1,6 @@
 add styled components tests
-locale storage tests
 check login after sometime
 where to add act/or ignore it
 report out of git
-change tsx to ts on tests?
+context test (drawercontext)
+routes.txt test

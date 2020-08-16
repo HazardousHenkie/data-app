@@ -10,7 +10,7 @@ const mockFetch = (mockData: { [key: string]: string | number | object }) => {
 export const mockFetchError = (error: Error) => {
     global.fetch = jest.fn().mockImplementation(() =>
         Promise.resolve({
-            status: 400,
+            status: 401,
             json: () => Promise.resolve(error)
         })
     )

@@ -15,6 +15,8 @@ import configureStore from 'store/configureStore'
 
 import { ResponseError } from 'utils/request'
 import { setError } from 'globals/globalErrors/actions'
+import { logoutRequest } from 'globals/authentication/logout/actions'
+import { getRefreshTokenRequest } from 'globals/authentication/refreshToken/actions'
 import { setFavoritedCountries } from 'globals/favoritedCountriesList/actions'
 import { initialFavoritedCountriesState } from 'globals/favoritedCountriesList/constants'
 
@@ -163,7 +165,7 @@ describe('useCountryFavoriteHook', () => {
         )
     })
 
-    it('If should return an error after an unsuccesfull call', async () => {
+    it('If should return an error and lgout after an unsuccesfull call', async () => {
         const responseError = new ResponseError(
             new Response(),
             'something went wrong'
@@ -192,6 +194,45 @@ describe('useCountryFavoriteHook', () => {
         await waitForNextUpdate()
 
         expect(store.getState().errors).toStrictEqual({ errors: [] })
+
+        expect(store.dispatch).toHaveBeenCalledWith(logoutRequest())
+        expect(store.dispatch).toHaveBeenCalledWith(setError(Error('')))
+    })
+
+    it('If should return an error after and get a new token an unsuccesfull call if error code is 401 and userId is set in localstorage', async () => {
+        const userId = '12'
+        const responseError = new ResponseError(
+            new Response(),
+            'something went wrong'
+        )
+
+        mockFetchError(responseError)
+        localStorage.setItem('userId', userId)
+
+        const store = configureStore({})
+        store.dispatch = jest.fn()
+
+        const { waitForNextUpdate } = renderHook(
+            () =>
+                useCountryFavoriteHook(
+                    {
+                        ...initialFavoritedCountriesState.countries[0]
+                    },
+                    true
+                ),
+            {
+                wrapper: ({ children }) => {
+                    return <Provider store={store}>{children}</Provider>
+                }
+            }
+        )
+
+        await waitForNextUpdate()
+
+        expect(store.getState().errors).toStrictEqual({ errors: [] })
+        expect(store.dispatch).toHaveBeenCalledWith(
+            getRefreshTokenRequest(userId)
+        )
         expect(store.dispatch).toHaveBeenCalledWith(setError(Error('')))
     })
 
