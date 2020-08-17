@@ -1,6 +1,5 @@
 add styled components tests
 check login after sometime
 where to add act/or ignore it
-report out of git
 context test (drawercontext)
 routes.txt test

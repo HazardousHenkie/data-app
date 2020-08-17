@@ -1,10 +1,13 @@
 import React, { lazy, Suspense } from 'react'
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
 import ROUTES from 'strings/routes'
 
 import Loader from 'components/Atoms/Loader'
+
+// import Home from '../HomePage'
+// import Error from '../Error'
 
 const Home = lazy(() => import('../HomePage'))
 const Error = lazy(() => import('../Error'))
@@ -13,12 +16,16 @@ const Routes: React.FC = () => {
     return (
         <div data-testid="routes">
             <Suspense fallback={<Loader />}>
-                <Router>
-                    <Switch>
-                        <Route path={ROUTES.HOME} exact component={Home} />
-                        <Route component={Error} />
-                    </Switch>
-                </Router>
+                <Switch>
+                    <Route
+                        data-testid="homeRoute"
+                        path={ROUTES.HOME}
+                        exact
+                        component={Home}
+                    />
+
+                    <Route component={Error} />
+                </Switch>
             </Suspense>
         </div>
     )
