@@ -3,9 +3,18 @@ import { render, screen } from 'utils/test-utils'
 
 import { Router } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
+import mockFetch, { mockFetchCleanUp } from 'utils/request-test-utils'
 import Routes from '../routes'
 
 describe('<Routes />', () => {
+    beforeEach(() => {
+        mockFetch({})
+    })
+
+    // afterEach(() => {
+    //     mockFetchCleanUp()
+    // })
+
     it('should render loader from start', () => {
         const { getByTestId } = render(<Routes />)
 
@@ -17,9 +26,9 @@ describe('<Routes />', () => {
     test('HomePage should be loaded from the start', async () => {
         render(<Routes />)
 
-        const ErrorPageDiv = await screen.findByTestId('HomePage')
+        const HomePage = await screen.findByTestId('HomePage')
 
-        expect(ErrorPageDiv).toBeInTheDocument()
+        expect(HomePage).toBeInTheDocument()
     })
 
     test('landing on a bad page shows 404 page', async () => {

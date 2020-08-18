@@ -69,15 +69,21 @@ const CountriesList: React.FC<CountriesListProps> = ({
                     <InlineLoader />
                 ) : (
                     <List component="nav" aria-label="countries">
-                        {countries.map(country => (
-                            <div key={country.name} data-testid="countryItem">
-                                <CountryListItem
-                                    setOpen={setOpen}
-                                    listCountry={country}
-                                />
-                                <Divider />
-                            </div>
-                        ))}
+                        {console.log(countries[0] && countries[0].name)}
+                        {countries[0] &&
+                            countries[0].name !== '' &&
+                            countries.map(country => (
+                                <div
+                                    key={country.name}
+                                    data-testid="countryItem"
+                                >
+                                    <CountryListItem
+                                        setOpen={setOpen}
+                                        listCountry={country}
+                                    />
+                                    <Divider />
+                                </div>
+                            ))}
                     </List>
                 )}
             </CountriesListDiv>

@@ -1,5 +1,3 @@
 add styled components tests
 check login after sometime
 where to add act/or ignore it
-context test (drawercontext)
-routes.txt test
