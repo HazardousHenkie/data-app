@@ -11,6 +11,7 @@ Object {
         <button
           aria-label="open drawer"
           class="MuiButtonBase-root MuiIconButton-root sc-fznyAO cWfjdE MuiIconButton-colorInherit MuiIconButton-edgeStart"
+          data-testid="IconButtonStyled"
           tabindex="0"
           type="button"
         >
@@ -37,7 +38,37 @@ Object {
           role="button"
           tabindex="0"
         >
-          <form />
+          <form>
+            <div
+              class="MuiFormControl-root MuiTextField-root sc-fzozJi hWuMcr sc-fzoLsD lgrigy"
+            >
+              <div
+                class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
+              >
+                <input
+                  aria-invalid="false"
+                  class="MuiInputBase-input MuiOutlinedInput-input"
+                  placeholder="search"
+                  type="text"
+                  value=""
+                />
+                <fieldset
+                  aria-hidden="true"
+                  class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
+                  style="padding-left: 8px;"
+                >
+                  <legend
+                    class="PrivateNotchedOutline-legend-2"
+                    style="width: 0.01px;"
+                  >
+                    <span>
+                      ​
+                    </span>
+                  </legend>
+                </fieldset>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
       <div
@@ -188,10 +219,12 @@ Object {
       </div>
       <div
         class="sc-AxhUy laGaXi"
+        data-testid="ClickIndicator"
       >
         <svg
           aria-hidden="true"
           class="MuiSvgIcon-root sc-AxgMl eAPdQb"
+          data-testid="SwipeIndicatorInnerUp"
           focusable="false"
           viewBox="0 0 24 24"
         >
@@ -202,16 +235,20 @@ Object {
       </div>
       <div
         class="sc-AxiKw boTYJG"
+        data-testid="drawer"
       >
         <div
           class="sc-AxirZ evChcC"
+          data-testid="handleBar"
         >
           <div
             class="sc-AxhCb gvnvGs"
+            data-testid="swipeIndicator"
           >
             <svg
               aria-hidden="true"
               class="MuiSvgIcon-root sc-AxgMl eAPdQb"
+              data-testid="SwipeIndicatorInner"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -222,7 +259,7 @@ Object {
           </div>
         </div>
         <div
-          class="PrivateSwipeArea-root-1 PrivateSwipeArea-anchorBottom-5"
+          class="PrivateSwipeArea-root-5 PrivateSwipeArea-anchorBottom-9"
           style="height: 20px;"
         />
       </div>
@@ -235,6 +272,7 @@ Object {
       <button
         aria-label="open drawer"
         class="MuiButtonBase-root MuiIconButton-root sc-fznyAO cWfjdE MuiIconButton-colorInherit MuiIconButton-edgeStart"
+        data-testid="IconButtonStyled"
         tabindex="0"
         type="button"
       >
@@ -261,7 +299,37 @@ Object {
         role="button"
         tabindex="0"
       >
-        <form />
+        <form>
+          <div
+            class="MuiFormControl-root MuiTextField-root sc-fzozJi hWuMcr sc-fzoLsD lgrigy"
+          >
+            <div
+              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
+            >
+              <input
+                aria-invalid="false"
+                class="MuiInputBase-input MuiOutlinedInput-input"
+                placeholder="search"
+                type="text"
+                value=""
+              />
+              <fieldset
+                aria-hidden="true"
+                class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
+                style="padding-left: 8px;"
+              >
+                <legend
+                  class="PrivateNotchedOutline-legend-2"
+                  style="width: 0.01px;"
+                >
+                  <span>
+                    ​
+                  </span>
+                </legend>
+              </fieldset>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
     <div
@@ -412,10 +480,12 @@ Object {
     </div>
     <div
       class="sc-AxhUy laGaXi"
+      data-testid="ClickIndicator"
     >
       <svg
         aria-hidden="true"
         class="MuiSvgIcon-root sc-AxgMl eAPdQb"
+        data-testid="SwipeIndicatorInnerUp"
         focusable="false"
         viewBox="0 0 24 24"
       >
@@ -426,16 +496,20 @@ Object {
     </div>
     <div
       class="sc-AxiKw boTYJG"
+      data-testid="drawer"
     >
       <div
         class="sc-AxirZ evChcC"
+        data-testid="handleBar"
       >
         <div
           class="sc-AxhCb gvnvGs"
+          data-testid="swipeIndicator"
         >
           <svg
             aria-hidden="true"
             class="MuiSvgIcon-root sc-AxgMl eAPdQb"
+            data-testid="SwipeIndicatorInner"
             focusable="false"
             viewBox="0 0 24 24"
           >
@@ -446,7 +520,7 @@ Object {
         </div>
       </div>
       <div
-        class="PrivateSwipeArea-root-1 PrivateSwipeArea-anchorBottom-5"
+        class="PrivateSwipeArea-root-5 PrivateSwipeArea-anchorBottom-9"
         style="height: 20px;"
       />
     </div>

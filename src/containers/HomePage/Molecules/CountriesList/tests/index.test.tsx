@@ -1,6 +1,11 @@
 import React from 'react'
 import { render } from 'utils/test-utils'
 
+import configureStore from 'store/configureStore'
+import history from 'utils/history'
+
+import { initialCountriesHeaderState } from '../constants'
+import { getCountriesDataSuccess } from '../actions'
 import CountriesList from '../index'
 
 describe('<CountriesList />', () => {
@@ -8,6 +13,22 @@ describe('<CountriesList />', () => {
         const component = render(<CountriesList open setOpen={() => {}} />)
 
         expect(component).toMatchSnapshot()
+    })
+
+    it('should render a advisoryText inside CountryInformationCardHeader', () => {
+        const store = configureStore({}, history)
+
+        const { getByLabelText } = render(
+            <CountriesList open setOpen={() => {}} />,
+            { store }
+        )
+
+        store.dispatch(
+            getCountriesDataSuccess(initialCountriesHeaderState.data)
+        )
+
+        const advisoryText = getByLabelText('countries')
+        expect(advisoryText).toBeInTheDocument()
     })
 })
 

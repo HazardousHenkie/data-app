@@ -12,7 +12,7 @@ import 'typeface-roboto'
 
 import { Provider } from 'react-redux'
 import Loader from 'components/Atoms/Loader'
-import configureStore from './configureStore'
+import configureStore from './store/configureStore'
 
 import './utils/i18n'
 
@@ -22,13 +22,15 @@ const initialState = {}
 const store = configureStore(initialState, history)
 
 ReactDOM.render(
-    <Provider store={store}>
-        <ThemeProvider theme={variables}>
-            <Suspense fallback={<Loader />}>
-                <App />
-            </Suspense>
-        </ThemeProvider>
-    </Provider>,
+    <React.StrictMode>
+        <Provider store={store}>
+            <ThemeProvider theme={variables}>
+                <Suspense fallback={<Loader />}>
+                    <App />
+                </Suspense>
+            </ThemeProvider>
+        </Provider>
+    </React.StrictMode>,
     document.getElementById('root')
 )
 

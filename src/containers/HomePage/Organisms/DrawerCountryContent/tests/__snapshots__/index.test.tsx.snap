@@ -20,9 +20,11 @@ Object {
         >
           <div
             class="MuiPaper-root MuiCard-root MuiPaper-outlined MuiPaper-rounded"
+            data-testid="CountryInformationCard"
           >
             <div
               class="MuiCardHeader-root"
+              data-testid="CountryInformationCardHeader"
             >
               <div
                 class="MuiCardHeader-avatar"
@@ -56,6 +58,7 @@ Object {
             </div>
             <div
               class="MuiCardContent-root"
+              data-testid="CountryInformationCardContent"
             >
               
               
@@ -174,9 +177,11 @@ Object {
       >
         <div
           class="MuiPaper-root MuiCard-root MuiPaper-outlined MuiPaper-rounded"
+          data-testid="CountryInformationCard"
         >
           <div
             class="MuiCardHeader-root"
+            data-testid="CountryInformationCardHeader"
           >
             <div
               class="MuiCardHeader-avatar"
@@ -210,6 +215,7 @@ Object {
           </div>
           <div
             class="MuiCardContent-root"
+            data-testid="CountryInformationCardContent"
           >
             
             

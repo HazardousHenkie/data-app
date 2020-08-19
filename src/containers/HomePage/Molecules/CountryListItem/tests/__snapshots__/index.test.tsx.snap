@@ -8,11 +8,13 @@ Object {
       <div
         aria-disabled="false"
         class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
+        data-testid="CountriesListItem"
         role="button"
         tabindex="0"
       >
         <div
           class="MuiListItemIcon-root"
+          data-testid="CountriesListItemIcon"
         >
           <img
             alt=""
@@ -23,6 +25,7 @@ Object {
         </div>
         <div
           class="MuiListItemText-root"
+          data-testid="CountriesListItemText"
         >
           <span
             class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
@@ -38,11 +41,13 @@ Object {
     <div
       aria-disabled="false"
       class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
+      data-testid="CountriesListItem"
       role="button"
       tabindex="0"
     >
       <div
         class="MuiListItemIcon-root"
+        data-testid="CountriesListItemIcon"
       >
         <img
           alt=""
@@ -53,6 +58,7 @@ Object {
       </div>
       <div
         class="MuiListItemText-root"
+        data-testid="CountriesListItemText"
       >
         <span
           class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"

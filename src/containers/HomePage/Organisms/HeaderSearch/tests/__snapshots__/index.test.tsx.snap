@@ -11,6 +11,7 @@ Object {
         <button
           aria-label="open drawer"
           class="MuiButtonBase-root MuiIconButton-root sc-AxheI eWObgQ MuiIconButton-colorInherit MuiIconButton-edgeStart"
+          data-testid="IconButtonStyled"
           tabindex="0"
           type="button"
         >
@@ -37,7 +38,37 @@ Object {
           role="button"
           tabindex="0"
         >
-          <form />
+          <form>
+            <div
+              class="MuiFormControl-root MuiTextField-root sc-AxiKw daTaOF sc-AxhCb cPctAW"
+            >
+              <div
+                class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
+              >
+                <input
+                  aria-invalid="false"
+                  class="MuiInputBase-input MuiOutlinedInput-input"
+                  placeholder="search"
+                  type="text"
+                  value=""
+                />
+                <fieldset
+                  aria-hidden="true"
+                  class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
+                  style="padding-left: 8px;"
+                >
+                  <legend
+                    class="PrivateNotchedOutline-legend-2"
+                    style="width: 0.01px;"
+                  >
+                    <span>
+                      ​
+                    </span>
+                  </legend>
+                </fieldset>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
       <div
@@ -78,6 +109,7 @@ Object {
       <button
         aria-label="open drawer"
         class="MuiButtonBase-root MuiIconButton-root sc-AxheI eWObgQ MuiIconButton-colorInherit MuiIconButton-edgeStart"
+        data-testid="IconButtonStyled"
         tabindex="0"
         type="button"
       >
@@ -104,7 +136,37 @@ Object {
         role="button"
         tabindex="0"
       >
-        <form />
+        <form>
+          <div
+            class="MuiFormControl-root MuiTextField-root sc-AxiKw daTaOF sc-AxhCb cPctAW"
+          >
+            <div
+              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
+            >
+              <input
+                aria-invalid="false"
+                class="MuiInputBase-input MuiOutlinedInput-input"
+                placeholder="search"
+                type="text"
+                value=""
+              />
+              <fieldset
+                aria-hidden="true"
+                class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
+                style="padding-left: 8px;"
+              >
+                <legend
+                  class="PrivateNotchedOutline-legend-2"
+                  style="width: 0.01px;"
+                >
+                  <span>
+                    ​
+                  </span>
+                </legend>
+              </fieldset>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
     <div

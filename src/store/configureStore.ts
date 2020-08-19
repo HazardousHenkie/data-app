@@ -5,7 +5,7 @@ import createSagaMiddleware from 'redux-saga'
 import { History } from 'history'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
-import { InjectedStore, ApplicationRootState } from 'types'
+import { InjectedStore, ApplicationRootState } from '../types'
 
 import rootSaga from './sagas'
 import createReducer from './reducers'

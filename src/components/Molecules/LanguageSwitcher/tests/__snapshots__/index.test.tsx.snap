@@ -1,18 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<LanguageSwitcher /> should render like snapshot 1`] = `
+exports[`<LanguageSwitcher /> Should render like snapshot 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <div
         class="sc-AxjAm iPiWHU"
+        data-testid="languageSwitcher"
       >
         <div
           class="MuiFormControl-root MuiFormControl-fullWidth"
         >
           <div
             class="MuiInputBase-root MuiOutlinedInput-root sc-AxirZ gKwgxD MuiInputBase-formControl"
+            data-testid="languageSwitcher_select"
           >
             <div
               aria-haspopup="listbox"
@@ -62,12 +64,14 @@ Object {
   "container": <div>
     <div
       class="sc-AxjAm iPiWHU"
+      data-testid="languageSwitcher"
     >
       <div
         class="MuiFormControl-root MuiFormControl-fullWidth"
       >
         <div
           class="MuiInputBase-root MuiOutlinedInput-root sc-AxirZ gKwgxD MuiInputBase-formControl"
+          data-testid="languageSwitcher_select"
         >
           <div
             aria-haspopup="listbox"

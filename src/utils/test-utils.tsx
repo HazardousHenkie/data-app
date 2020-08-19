@@ -1,18 +1,20 @@
 import React from 'react'
 import { render } from '@testing-library/react'
-import configureStore from 'configureStore'
 
 import history from 'utils/history'
+
 import { Provider } from 'react-redux'
 
 import variables from 'styles/variables'
 import { ThemeProvider } from 'styled-components'
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/styles'
 import lightTheme from 'styles/themeStyles'
+import ThemeContext from 'components/Atoms/ThemeSwitcher/ThemeContext'
 
 import { I18nextProvider } from 'react-i18next'
 
 import i18n from 'utils/i18nTesting'
+import configureStore from 'store/configureStore'
 
 const customRender = (
     ui: React.ReactElement,
@@ -20,7 +22,8 @@ const customRender = (
         initialState = {},
         store = configureStore(initialState, history),
         ...renderOptions
-    } = {}
+    } = {},
+    darkMode = false
 ) => {
     const Wrapper: React.FC = ({ children }) => {
         return (
@@ -29,7 +32,14 @@ const customRender = (
                     <ThemeProvider theme={variables}>
                         <MuiThemeProvider theme={lightTheme}>
                             <ThemeProvider theme={lightTheme}>
-                                {children}
+                                <ThemeContext.Provider
+                                    value={{
+                                        darkMode,
+                                        setDarkMode: () => {}
+                                    }}
+                                >
+                                    {children}
+                                </ThemeContext.Provider>
                             </ThemeProvider>
                         </MuiThemeProvider>
                     </ThemeProvider>
@@ -37,6 +47,7 @@ const customRender = (
             </Provider>
         )
     }
+
     return render(ui, {
         wrapper: Wrapper,
         ...renderOptions

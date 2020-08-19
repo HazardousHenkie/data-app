@@ -5,6 +5,8 @@ import authenticationReducer from 'globals/authentication/reducer'
 import favoritedCountriesListReducer from 'globals/favoritedCountriesList/reducer'
 import errorsReducer from 'globals/globalErrors/reducer'
 
+// import CountryReducer from 'containers/HomePage/Molecules/CountryListItem/reducer'
+
 import history from 'utils/history'
 
 export default function createReducer(injectedReducers = {}): Reducer {
@@ -13,6 +15,8 @@ export default function createReducer(injectedReducers = {}): Reducer {
         errors: errorsReducer,
         authenticationData: authenticationReducer,
         favoritedCountries: favoritedCountriesListReducer,
+        // fix hot reloading for this one
+        // country: CountryReducer,
         ...injectedReducers
     })
 

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<GoogleLoginButton /> should render like snapshot 1`] = `
+exports[`<ThemeSwitcher /> should render like snapshot 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -11,6 +11,7 @@ Object {
         <span
           aria-disabled="false"
           class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiSwitch-switchBase"
+          data-testid="ThemeSwitcher"
         >
           <span
             class="MuiIconButton-label"
@@ -42,6 +43,7 @@ Object {
       <span
         aria-disabled="false"
         class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiSwitch-switchBase"
+        data-testid="ThemeSwitcher"
       >
         <span
           class="MuiIconButton-label"

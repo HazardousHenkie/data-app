@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react'
 
-import HeartButton from 'components/Molecules/HeartButton'
+import IconButton from '@material-ui/core/IconButton'
+
+import InlineLoader from 'components/Atoms/InlineLoader'
 
 import { useTranslation } from 'react-i18next'
 
-import authToken from 'globals/authentication/authToken'
-import request from 'utils/request'
-
 import { createStructuredSelector } from 'reselect'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors'
-import { setFavoritedCountries } from 'globals/favoritedCountriesList/actions'
 
 import reducer from 'globals/favoritedCountriesList//reducer'
 import saga from 'globals/favoritedCountriesList/saga'
@@ -20,103 +18,18 @@ import { FavoritedCountryInterface } from 'globals/favoritedCountriesList/types'
 import { initialFavoritedCountriesState } from 'globals/favoritedCountriesList/constants'
 import { CountryInterface } from 'containers/HomePage/Molecules/CountryListItem/types'
 
-import {
-    makeSelectFavoritedCountries,
-    makeSelectLoader
-} from 'globals/favoritedCountriesList/selectors'
-import { setError } from 'globals/globalErrors/actions'
+import { makeSelectFavoritedCountries } from 'globals/favoritedCountriesList/selectors'
+
+import HeartButtonWrapper, {
+    FavoriteIconStyled,
+    FavoriteBorderIconStyled
+} from './styledComponents'
+
+import useCountryFavorite from './useCountryFavoriteHook'
 
 const stateSelector = createStructuredSelector({
-    favoritedCountries: makeSelectFavoritedCountries(),
-    loading: makeSelectLoader()
+    favoritedCountries: makeSelectFavoritedCountries()
 })
-
-const useCountryFavorite = (
-    favoritedCountry: FavoritedCountryInterface,
-    active: boolean,
-    clicked: boolean
-) => {
-    const dispatch = useDispatch()
-    const [loading, setLoading] = useState<boolean>(false)
-    const [countrySucessfullRequest, setCountrySucessfullRequest] = useState<
-        FavoritedCountryInterface
-    >()
-    const { favoritedCountries } = useSelector(stateSelector)
-
-    useEffect(() => {
-        if (clicked) {
-            const fetchData = async () => {
-                setLoading(true)
-                let fetchRequest: FavoritedCountryInterface
-
-                try {
-                    if (favoritedCountry.ref['@ref'].id !== '') {
-                        fetchRequest = await request(
-                            `/.netlify/functions/deleteCountry/${favoritedCountry.ref['@ref'].id}`,
-                            {
-                                method: 'DELETE',
-                                headers: {
-                                    Authorization: `Bearer ${authToken.token}`
-                                }
-                            }
-                        )
-
-                        setCountrySucessfullRequest({
-                            ...initialFavoritedCountriesState.countries[0],
-                            data: {
-                                ...initialFavoritedCountriesState.countries[0]
-                                    .data,
-                                countryId: favoritedCountry.data.countryId
-                            }
-                        })
-
-                        dispatch(
-                            setFavoritedCountries(
-                                favoritedCountries.filter(
-                                    country =>
-                                        country.data.countryId !==
-                                        favoritedCountry.data.countryId
-                                )
-                            )
-                        )
-                    } else {
-                        fetchRequest = await request(
-                            `/.netlify/functions/saveCountry/${favoritedCountry.data.countryId}`,
-                            {
-                                method: 'GET',
-                                headers: {
-                                    Authorization: `Bearer ${authToken.token}`
-                                }
-                            }
-                        )
-
-                        setCountrySucessfullRequest(fetchRequest)
-
-                        dispatch(
-                            setFavoritedCountries([
-                                ...favoritedCountries,
-                                fetchRequest
-                            ])
-                        )
-                    }
-                } catch (error) {
-                    if (error.response && error.response.status !== 404) {
-                        dispatch(setError(error))
-                    }
-                }
-
-                setLoading(false)
-            }
-
-            fetchData()
-        }
-    }, [favoritedCountries, dispatch, favoritedCountry, active, clicked])
-
-    return {
-        loading,
-        countrySucessfullRequest
-    }
-}
 
 interface FavoriteCountryButtonInterface {
     clickedCountry: CountryInterface
@@ -146,6 +59,8 @@ const FavoriteCountryButton: React.FC<FavoriteCountryButtonInterface> = ({
     useInjectReducer({ key, reducer })
     useInjectSaga({ key, saga })
 
+    // move this logic to the reducer or something, it's hard to test when it's here
+    // chek if the intitial country is something?
     useEffect(() => {
         if (favoritedCountries) {
             const isAlreadyFavoriteCountry = favoritedCountries.find(
@@ -183,12 +98,24 @@ const FavoriteCountryButton: React.FC<FavoriteCountryButtonInterface> = ({
     }
 
     return (
-        <HeartButton
-            loading={loading}
-            label={t('FavoriteCountryButton:label', 'Toggle favorite country')}
-            active={active}
-            heartOnClick={toggleFavorite}
-        />
+        <HeartButtonWrapper data-testid="heartButton">
+            {loading && <InlineLoader />}
+
+            <IconButton
+                onClick={toggleFavorite}
+                aria-label={t(
+                    'FavoriteCountryButton:label',
+                    'Toggle favorite country'
+                )}
+                data-testid="iconButton"
+            >
+                {active ? (
+                    <FavoriteIconStyled data-testid="favoriteIcon" />
+                ) : (
+                    <FavoriteBorderIconStyled data-testid="favoriteIconBorder" />
+                )}
+            </IconButton>
+        </HeartButtonWrapper>
     )
 }
 

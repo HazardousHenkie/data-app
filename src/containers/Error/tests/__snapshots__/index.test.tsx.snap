@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<ErrorPage /> should render ErrorPageDiv as a div: DIV 1`] = `"DIV"`;
+
+exports[`<ErrorPage /> should render StyledTypographyTitle as a h1: H1 1`] = `"H1"`;
+
+exports[`<ErrorPage /> should render TypographyError as a p: P 1`] = `"P"`;
+
 exports[`<ErrorPage /> should render like snapshot 1`] = `
 Object {
   "asFragment": [Function],
@@ -7,14 +13,17 @@ Object {
     <div>
       <div
         class="sc-AxirZ guwtUH"
+        data-testid="ErrorPageDiv"
       >
         <h1
           class="MuiTypography-root sc-AxjAm cWFipc MuiTypography-h1 MuiTypography-alignCenter"
+          data-testid="StyledTypographyTitle"
         >
           404
         </h1>
         <p
           class="MuiTypography-root MuiTypography-body1 MuiTypography-alignCenter"
+          data-testid="TypographyError"
         >
           Page not found
         </p>
@@ -24,14 +33,17 @@ Object {
   "container": <div>
     <div
       class="sc-AxirZ guwtUH"
+      data-testid="ErrorPageDiv"
     >
       <h1
         class="MuiTypography-root sc-AxjAm cWFipc MuiTypography-h1 MuiTypography-alignCenter"
+        data-testid="StyledTypographyTitle"
       >
         404
       </h1>
       <p
         class="MuiTypography-root MuiTypography-body1 MuiTypography-alignCenter"
+        data-testid="TypographyError"
       >
         Page not found
       </p>
