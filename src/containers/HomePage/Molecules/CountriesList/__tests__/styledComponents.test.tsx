@@ -1,31 +1,75 @@
 import React from 'react'
-import { render } from '@testing-library/react'
+import { render } from 'utils/test-utils'
 
-import lightTheme from 'styles/themeStyles'
+import { Theme } from '@material-ui/core/styles'
+import lightTheme, { darkTheme } from 'styles/themeStyles'
 
-import LoaderWrapper from '../styledComponents'
+import 'jest-styled-components'
 
-const children = '<div>test</div>'
+import CountriesListDiv from '../styledComponents'
 
-const renderComponent = (props = {}) => {
-    const utils = render(
-        <LoaderWrapper theme={lightTheme} {...props}>
-            {children}
-        </LoaderWrapper>
-    )
-    const link = utils.queryByText(children)
-    return { ...utils, link }
-}
+const renderWithTheme = (theme?: Theme) =>
+    render(<CountriesListDiv theme={theme || lightTheme} />)
 
 describe('<LoaderWrapper />', () => {
-    it('should render a <div> tag', () => {
-        const { container } = renderComponent()
-        expect(container).toBeInTheDocument()
-        expect(container.tagName).toBe('DIV')
+    it('should render and match the snapshot', () => {
+        const { container } = renderWithTheme()
+        expect(container.firstChild).toMatchSnapshot()
     })
 
-    it('should not adopt an invalid attribute', () => {
-        const { container } = renderComponent({ attribute: 'test' })
-        expect(container).not.toHaveAttribute('attribute')
+    it('should render a <div> tag', () => {
+        const { container } = renderWithTheme()
+
+        expect(container.tagName).toBe('DIV')
+    })
+})
+
+describe('should use theme from props', () => {
+    it('should render light variable when LightTheme is set', () => {
+        const { container } = renderWithTheme()
+
+        expect(container.firstChild).toHaveStyle(
+            `background: ${lightTheme.palette.primary.light}`
+        )
+
+        expect(container.firstChild).toHaveStyleRule(
+            'background-color',
+            lightTheme.palette.primary.light,
+            {
+                modifier: '::-webkit-scrollbar'
+            }
+        )
+
+        expect(container.firstChild).toHaveStyleRule(
+            'background',
+            lightTheme.palette.primary.dark,
+            {
+                modifier: ' ::-webkit-scrollbar-thumb'
+            }
+        )
+    })
+
+    it('should render light variable when darkmode is set', () => {
+        const { container } = renderWithTheme(darkTheme)
+
+        expect(container.firstChild).toHaveStyle(
+            `background: ${darkTheme.palette.primary.light}`
+        )
+
+        expect(container.firstChild).toHaveStyleRule(
+            'background-color',
+            darkTheme.palette.primary.light,
+            {
+                modifier: '::-webkit-scrollbar'
+            }
+        )
+
+        expect(container.firstChild).toHaveStyleRule(
+            'background',
+            darkTheme.palette.primary.dark,
+            {
+                modifier: ' ::-webkit-scrollbar-thumb'
+            }
+        )
     })
 })

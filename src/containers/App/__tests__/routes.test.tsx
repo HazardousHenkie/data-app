@@ -11,9 +11,9 @@ describe('<Routes />', () => {
         mockFetch({})
     })
 
-    // afterEach(() => {
-    //     mockFetchCleanUp()
-    // })
+    afterEach(() => {
+        mockFetchCleanUp()
+    })
 
     it('should render loader from start', () => {
         const { getByTestId } = render(<Routes />)

@@ -28,7 +28,6 @@ const MenuList: React.FC = () => {
 
     return (
         <>
-            <FavoritedCountriesList />
             <ListStyled
                 data-testid="ListStyled"
                 aria-label={t('menuList:titleMenu', 'Mainmenu')}
@@ -39,6 +38,19 @@ const MenuList: React.FC = () => {
 
                 <ListItem>
                     {loggedIn ? <GoogleLogoutButton /> : <GoogleLoginButton />}
+                </ListItem>
+
+                <ListItem>
+                    <ListItemText
+                        primary={t(
+                            'menuList:favoriteCountries',
+                            'Favorite countries'
+                        )}
+                    />
+                </ListItem>
+
+                <ListItem>
+                    <FavoritedCountriesList />
                 </ListItem>
 
                 <ListItem style={{ marginTop: 'auto' }} dense>

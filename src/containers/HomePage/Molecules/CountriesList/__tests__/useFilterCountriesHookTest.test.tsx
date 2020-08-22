@@ -18,7 +18,7 @@ describe('useFilteredCountriesHook', () => {
         store = configureStore({})
     })
 
-    it(' If there is a searchstring it should return data from that specific country if that country is there', () => {
+    it('If there is a searchstring it should return data from that specific country if that country is there', () => {
         const fixture = [
             {
                 ...initialCountriesHeaderState.data[0],

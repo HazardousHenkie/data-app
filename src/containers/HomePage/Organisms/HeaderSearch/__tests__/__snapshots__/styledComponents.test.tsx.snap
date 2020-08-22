@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CloseCountriesList /> should render and match the snapshot 1`] = `
+.c0 {
+  font-size: 2.5rem;
+  width: 35px;
+  margin-right: 7px;
+  cursor: pointer;
+  -webkit-animation: jizBHZ 0.4s ease-in-out;
+  animation: jizBHZ 0.4s ease-in-out;
+  color: #000;
+}
+
+<svg
+  aria-hidden="true"
+  class="MuiSvgIcon-root c0"
+  focusable="false"
+  theme="[object Object]"
+  viewBox="0 0 24 24"
+>
+  <path
+    d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
+  />
+</svg>
+`;
+
+exports[`<SearchFieldWrapper /> should render and match the snapshot 1`] = `
+.c0 {
+  width: 100%;
+}
+
+<div
+  class="c0"
+/>
+`;
+
+exports[`<TopBar /> should render and match the snapshot 1`] = `
+.c0 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1350;
+  padding: 0 10px;
+  margin: 15px;
+  width: calc(100% - 30px);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.25);
+  background: #fffafa;
+}
+
+<div
+  class="c0"
+/>
+`;

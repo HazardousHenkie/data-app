@@ -22,7 +22,7 @@ export const SearchFieldWrapper = styled.div`
     width: 100%;
 `
 
-const RotateNinetyDegrees = keyframes`
+export const RotateNinetyDegrees = keyframes`
     0% {
         transform: rotate(90deg);
     }

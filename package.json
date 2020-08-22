@@ -26,14 +26,11 @@
     "i18next": "^19.3.2",
     "i18next-browser-languagedetector": "^4.0.2",
     "i18next-http-backend": "^1.0.6",
-    "invariant": "^2.2.4",
     "isomorphic-fetch": "^2.2.1",
     "jest-localstorage-mock": "^2.4.3",
     "jsonwebtoken": "^8.5.1",
     "leaflet": "^1.6.0",
-    "lodash": "^4.17.15",
     "netlify-cli": "^2.48.0",
-    "notistack": "^0.9.17",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-google-login": "^5.1.10",
@@ -137,6 +134,7 @@
     "eslint-plugin-redux-saga": "^1.1.3",
     "husky": "^4.2.3",
     "i18next-parser": "^1.0.2",
+    "jest-styled-components": "^7.0.3",
     "lint-staged": "^10.0.8",
     "netlify-lambda": "^1.6.3",
     "npm-run-all": "^4.1.5",
@@ -144,7 +142,6 @@
     "stylelint": "^13.2.0",
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-config-styled-components": "^0.1.1",
-    "stylelint-processor-styled-components": "^1.10.0",
-    "ts-jest": "^26.1.1"
+    "stylelint-processor-styled-components": "^1.10.0"
   }
 }

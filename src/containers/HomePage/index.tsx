@@ -3,6 +3,10 @@ import React, { useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 
+import { createSelector } from 'reselect'
+import { useSelector } from 'react-redux'
+import makeSelectCountry from 'containers/HomePage/Molecules/CountryListItem/selectors'
+
 import DrawerContext from 'components/Organisms/Drawer/DrawerContext'
 import Drawer from 'components/Organisms/Drawer'
 
@@ -11,9 +15,14 @@ import DrawerCountryContent from './Organisms/DrawerCountryContent'
 
 import OSMap from './map'
 
+const stateSelector = createSelector(makeSelectCountry(), country => ({
+    country
+}))
+
 const HomePage: React.FC = () => {
     const { t } = useTranslation('homePage')
     const [openDrawer, setOpenDrawer] = useState(false)
+    const { country } = useSelector(stateSelector)
 
     return (
         <div data-testid="HomePage">
@@ -30,9 +39,11 @@ const HomePage: React.FC = () => {
             <DrawerContext.Provider value={{ openDrawer, setOpenDrawer }}>
                 <OSMap />
 
-                <Drawer>
-                    <DrawerCountryContent />
-                </Drawer>
+                {country && country.alpha2Code !== '' && (
+                    <Drawer>
+                        <DrawerCountryContent />
+                    </Drawer>
+                )}
             </DrawerContext.Provider>
         </div>
     )

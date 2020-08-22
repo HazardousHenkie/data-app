@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const Header = styled.h1`
+const HeaderStyled = styled.h1`
     font-size: 2rem;
     text-align: center;
     margin: 0 0 10px;
@@ -12,4 +12,4 @@ export const FavoriteCountryButtonWrapper = styled.div`
     top: 20px;
 `
 
-export default Header
+export default HeaderStyled

@@ -9,7 +9,7 @@ Object {
         data-testid="HomePage"
       >
         <div
-          class="sc-fzoLag SLPgS"
+          class="sc-fzoLag bIXRBO"
           data-testid="TopBar"
         >
           <button
@@ -107,167 +107,110 @@ Object {
           </div>
         </div>
         <div
-          class="sc-fzpmMD bMrmBP leaflet-container leaflet-grab leaflet-touch-drag"
-          style="position: relative;"
-          tabindex="0"
+          data-testid="OSMap"
         >
           <div
-            class="leaflet-pane leaflet-map-pane"
-            style="left: 0px; top: 0px;"
+            class="sc-fzpmMD bMrmBP leaflet-container leaflet-grab leaflet-touch-drag"
+            style="position: relative;"
+            tabindex="0"
           >
             <div
-              class="leaflet-pane leaflet-tile-pane"
+              class="leaflet-pane leaflet-map-pane"
+              style="left: 0px; top: 0px;"
             >
               <div
-                class="leaflet-layer "
-                style="z-index: 1;"
+                class="leaflet-pane leaflet-tile-pane"
               >
                 <div
-                  class="leaflet-tile-container leaflet-zoom-animated"
-                  style="z-index: 18; left: 0px; top: 0px;"
+                  class="leaflet-layer "
+                  style="z-index: 1;"
                 >
-                  <img
-                    alt=""
-                    class="leaflet-tile"
-                    role="presentation"
-                    src="https://maps.wikimedia.org/osm-intl/6/31/31.png"
-                    style="width: 256px; height: 256px; left: -256px; top: -256px;"
-                  />
-                  <img
-                    alt=""
-                    class="leaflet-tile"
-                    role="presentation"
-                    src="https://maps.wikimedia.org/osm-intl/6/32/31.png"
-                    style="width: 256px; height: 256px; left: 0px; top: -256px;"
-                  />
-                  <img
-                    alt=""
-                    class="leaflet-tile"
-                    role="presentation"
-                    src="https://maps.wikimedia.org/osm-intl/6/31/32.png"
-                    style="width: 256px; height: 256px; left: -256px; top: 0px;"
-                  />
-                  <img
-                    alt=""
-                    class="leaflet-tile"
-                    role="presentation"
-                    src="https://maps.wikimedia.org/osm-intl/6/32/32.png"
-                    style="width: 256px; height: 256px; left: 0px; top: 0px;"
-                  />
+                  <div
+                    class="leaflet-tile-container leaflet-zoom-animated"
+                    style="z-index: 18; left: 0px; top: 0px;"
+                  >
+                    <img
+                      alt=""
+                      class="leaflet-tile"
+                      role="presentation"
+                      src="https://maps.wikimedia.org/osm-intl/6/31/31.png"
+                      style="width: 256px; height: 256px; left: -256px; top: -256px;"
+                    />
+                    <img
+                      alt=""
+                      class="leaflet-tile"
+                      role="presentation"
+                      src="https://maps.wikimedia.org/osm-intl/6/32/31.png"
+                      style="width: 256px; height: 256px; left: 0px; top: -256px;"
+                    />
+                    <img
+                      alt=""
+                      class="leaflet-tile"
+                      role="presentation"
+                      src="https://maps.wikimedia.org/osm-intl/6/31/32.png"
+                      style="width: 256px; height: 256px; left: -256px; top: 0px;"
+                    />
+                    <img
+                      alt=""
+                      class="leaflet-tile"
+                      role="presentation"
+                      src="https://maps.wikimedia.org/osm-intl/6/32/32.png"
+                      style="width: 256px; height: 256px; left: 0px; top: 0px;"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="leaflet-pane leaflet-shadow-pane"
+              />
+              <div
+                class="leaflet-pane leaflet-overlay-pane"
+              />
+              <div
+                class="leaflet-pane leaflet-marker-pane"
+              />
+              <div
+                class="leaflet-pane leaflet-tooltip-pane"
+              />
+              <div
+                class="leaflet-pane leaflet-popup-pane"
+              />
+            </div>
+            <div
+              class="leaflet-control-container"
+            >
+              <div
+                class="leaflet-top leaflet-left"
+              />
+              <div
+                class="leaflet-top leaflet-right"
+              />
+              <div
+                class="leaflet-bottom leaflet-left"
+              />
+              <div
+                class="leaflet-bottom leaflet-right"
+              >
+                <div
+                  class="leaflet-control-attribution leaflet-control"
+                >
+                  <a
+                    href="https://leafletjs.com"
+                    title="A JS library for interactive maps"
+                  >
+                    Leaflet
+                  </a>
+                   | © 
+                  <a
+                    href="http://osm.org/copyright"
+                  >
+                    OpenStreetMap
+                  </a>
+                   contributors
                 </div>
               </div>
             </div>
-            <div
-              class="leaflet-pane leaflet-shadow-pane"
-            >
-              <img
-                alt=""
-                class="leaflet-marker-shadow leaflet-zoom-hide"
-                src="marker-shadow.png"
-                style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; left: 0px; top: 0px;"
-              />
-            </div>
-            <div
-              class="leaflet-pane leaflet-overlay-pane"
-            />
-            <div
-              class="leaflet-pane leaflet-marker-pane"
-            >
-              <img
-                alt=""
-                class="leaflet-marker-icon leaflet-zoom-hide leaflet-interactive"
-                src="marker-icon.png"
-                style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; left: 0px; top: 0px; z-index: 0;"
-                tabindex="0"
-              />
-            </div>
-            <div
-              class="leaflet-pane leaflet-tooltip-pane"
-            />
-            <div
-              class="leaflet-pane leaflet-popup-pane"
-            />
           </div>
-          <div
-            class="leaflet-control-container"
-          >
-            <div
-              class="leaflet-top leaflet-left"
-            />
-            <div
-              class="leaflet-top leaflet-right"
-            />
-            <div
-              class="leaflet-bottom leaflet-left"
-            />
-            <div
-              class="leaflet-bottom leaflet-right"
-            >
-              <div
-                class="leaflet-control-attribution leaflet-control"
-              >
-                <a
-                  href="https://leafletjs.com"
-                  title="A JS library for interactive maps"
-                >
-                  Leaflet
-                </a>
-                 | © 
-                <a
-                  href="http://osm.org/copyright"
-                >
-                  OpenStreetMap
-                </a>
-                 contributors
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="sc-AxhUy laGaXi"
-          data-testid="ClickIndicator"
-        >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root sc-AxgMl eAPdQb"
-            data-testid="SwipeIndicatorInnerUp"
-            focusable="false"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M7 14l5-5 5 5z"
-            />
-          </svg>
-        </div>
-        <div
-          class="sc-AxiKw boTYJG"
-          data-testid="drawer"
-        >
-          <div
-            class="sc-AxirZ evChcC"
-            data-testid="handleBar"
-          >
-            <div
-              class="sc-AxhCb gvnvGs"
-              data-testid="swipeIndicator"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root sc-AxgMl eAPdQb"
-                data-testid="SwipeIndicatorInner"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M7 14l5-5 5 5z"
-                />
-              </svg>
-            </div>
-          </div>
-          <div
-            class="PrivateSwipeArea-root-5 PrivateSwipeArea-anchorBottom-9"
-            style="height: 20px;"
-          />
         </div>
       </div>
     </div>
@@ -277,7 +220,7 @@ Object {
       data-testid="HomePage"
     >
       <div
-        class="sc-fzoLag SLPgS"
+        class="sc-fzoLag bIXRBO"
         data-testid="TopBar"
       >
         <button
@@ -375,167 +318,110 @@ Object {
         </div>
       </div>
       <div
-        class="sc-fzpmMD bMrmBP leaflet-container leaflet-grab leaflet-touch-drag"
-        style="position: relative;"
-        tabindex="0"
+        data-testid="OSMap"
       >
         <div
-          class="leaflet-pane leaflet-map-pane"
-          style="left: 0px; top: 0px;"
+          class="sc-fzpmMD bMrmBP leaflet-container leaflet-grab leaflet-touch-drag"
+          style="position: relative;"
+          tabindex="0"
         >
           <div
-            class="leaflet-pane leaflet-tile-pane"
+            class="leaflet-pane leaflet-map-pane"
+            style="left: 0px; top: 0px;"
           >
             <div
-              class="leaflet-layer "
-              style="z-index: 1;"
+              class="leaflet-pane leaflet-tile-pane"
             >
               <div
-                class="leaflet-tile-container leaflet-zoom-animated"
-                style="z-index: 18; left: 0px; top: 0px;"
+                class="leaflet-layer "
+                style="z-index: 1;"
               >
-                <img
-                  alt=""
-                  class="leaflet-tile"
-                  role="presentation"
-                  src="https://maps.wikimedia.org/osm-intl/6/31/31.png"
-                  style="width: 256px; height: 256px; left: -256px; top: -256px;"
-                />
-                <img
-                  alt=""
-                  class="leaflet-tile"
-                  role="presentation"
-                  src="https://maps.wikimedia.org/osm-intl/6/32/31.png"
-                  style="width: 256px; height: 256px; left: 0px; top: -256px;"
-                />
-                <img
-                  alt=""
-                  class="leaflet-tile"
-                  role="presentation"
-                  src="https://maps.wikimedia.org/osm-intl/6/31/32.png"
-                  style="width: 256px; height: 256px; left: -256px; top: 0px;"
-                />
-                <img
-                  alt=""
-                  class="leaflet-tile"
-                  role="presentation"
-                  src="https://maps.wikimedia.org/osm-intl/6/32/32.png"
-                  style="width: 256px; height: 256px; left: 0px; top: 0px;"
-                />
+                <div
+                  class="leaflet-tile-container leaflet-zoom-animated"
+                  style="z-index: 18; left: 0px; top: 0px;"
+                >
+                  <img
+                    alt=""
+                    class="leaflet-tile"
+                    role="presentation"
+                    src="https://maps.wikimedia.org/osm-intl/6/31/31.png"
+                    style="width: 256px; height: 256px; left: -256px; top: -256px;"
+                  />
+                  <img
+                    alt=""
+                    class="leaflet-tile"
+                    role="presentation"
+                    src="https://maps.wikimedia.org/osm-intl/6/32/31.png"
+                    style="width: 256px; height: 256px; left: 0px; top: -256px;"
+                  />
+                  <img
+                    alt=""
+                    class="leaflet-tile"
+                    role="presentation"
+                    src="https://maps.wikimedia.org/osm-intl/6/31/32.png"
+                    style="width: 256px; height: 256px; left: -256px; top: 0px;"
+                  />
+                  <img
+                    alt=""
+                    class="leaflet-tile"
+                    role="presentation"
+                    src="https://maps.wikimedia.org/osm-intl/6/32/32.png"
+                    style="width: 256px; height: 256px; left: 0px; top: 0px;"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="leaflet-pane leaflet-shadow-pane"
+            />
+            <div
+              class="leaflet-pane leaflet-overlay-pane"
+            />
+            <div
+              class="leaflet-pane leaflet-marker-pane"
+            />
+            <div
+              class="leaflet-pane leaflet-tooltip-pane"
+            />
+            <div
+              class="leaflet-pane leaflet-popup-pane"
+            />
+          </div>
+          <div
+            class="leaflet-control-container"
+          >
+            <div
+              class="leaflet-top leaflet-left"
+            />
+            <div
+              class="leaflet-top leaflet-right"
+            />
+            <div
+              class="leaflet-bottom leaflet-left"
+            />
+            <div
+              class="leaflet-bottom leaflet-right"
+            >
+              <div
+                class="leaflet-control-attribution leaflet-control"
+              >
+                <a
+                  href="https://leafletjs.com"
+                  title="A JS library for interactive maps"
+                >
+                  Leaflet
+                </a>
+                 | © 
+                <a
+                  href="http://osm.org/copyright"
+                >
+                  OpenStreetMap
+                </a>
+                 contributors
               </div>
             </div>
           </div>
-          <div
-            class="leaflet-pane leaflet-shadow-pane"
-          >
-            <img
-              alt=""
-              class="leaflet-marker-shadow leaflet-zoom-hide"
-              src="marker-shadow.png"
-              style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; left: 0px; top: 0px;"
-            />
-          </div>
-          <div
-            class="leaflet-pane leaflet-overlay-pane"
-          />
-          <div
-            class="leaflet-pane leaflet-marker-pane"
-          >
-            <img
-              alt=""
-              class="leaflet-marker-icon leaflet-zoom-hide leaflet-interactive"
-              src="marker-icon.png"
-              style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; left: 0px; top: 0px; z-index: 0;"
-              tabindex="0"
-            />
-          </div>
-          <div
-            class="leaflet-pane leaflet-tooltip-pane"
-          />
-          <div
-            class="leaflet-pane leaflet-popup-pane"
-          />
         </div>
-        <div
-          class="leaflet-control-container"
-        >
-          <div
-            class="leaflet-top leaflet-left"
-          />
-          <div
-            class="leaflet-top leaflet-right"
-          />
-          <div
-            class="leaflet-bottom leaflet-left"
-          />
-          <div
-            class="leaflet-bottom leaflet-right"
-          >
-            <div
-              class="leaflet-control-attribution leaflet-control"
-            >
-              <a
-                href="https://leafletjs.com"
-                title="A JS library for interactive maps"
-              >
-                Leaflet
-              </a>
-               | © 
-              <a
-                href="http://osm.org/copyright"
-              >
-                OpenStreetMap
-              </a>
-               contributors
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="sc-AxhUy laGaXi"
-        data-testid="ClickIndicator"
-      >
-        <svg
-          aria-hidden="true"
-          class="MuiSvgIcon-root sc-AxgMl eAPdQb"
-          data-testid="SwipeIndicatorInnerUp"
-          focusable="false"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M7 14l5-5 5 5z"
-          />
-        </svg>
-      </div>
-      <div
-        class="sc-AxiKw boTYJG"
-        data-testid="drawer"
-      >
-        <div
-          class="sc-AxirZ evChcC"
-          data-testid="handleBar"
-        >
-          <div
-            class="sc-AxhCb gvnvGs"
-            data-testid="swipeIndicator"
-          >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root sc-AxgMl eAPdQb"
-              data-testid="SwipeIndicatorInner"
-              focusable="false"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M7 14l5-5 5 5z"
-              />
-            </svg>
-          </div>
-        </div>
-        <div
-          class="PrivateSwipeArea-root-5 PrivateSwipeArea-anchorBottom-9"
-          style="height: 20px;"
-        />
       </div>
     </div>
   </div>,

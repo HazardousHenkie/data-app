@@ -38,7 +38,7 @@ describe('<MenuList />', () => {
         const { getAllByRole } = render(<MenuList />)
 
         const listItems = getAllByRole('listitem')
-        expect(listItems).toHaveLength(6)
+        expect(listItems).toHaveLength(8)
     })
 
     it('The first listItem should render Data App text', () => {
@@ -68,6 +68,13 @@ describe('<MenuList />', () => {
         expect(GoogleLoginButton).toBeInTheDocument()
     })
 
+    it('There should be favoriteCountries listItem', () => {
+        const { getByText } = render(<MenuList />)
+
+        const listItemText = getByText('Favorite countries')
+        expect(listItemText).toBeInTheDocument()
+    })
+
     it('The third listItem should render Language text', () => {
         const { getByText } = render(<MenuList />)
 
@@ -86,15 +93,15 @@ describe('<MenuList />', () => {
 it('should render languageSwitcher', () => {
     const { getByTestId } = render(<MenuList />)
 
-    const FavoritedCountriesList = getByTestId('languageSwitcher')
+    const languageSwitcher = getByTestId('languageSwitcher')
 
-    expect(FavoritedCountriesList).toBeInTheDocument()
+    expect(languageSwitcher).toBeInTheDocument()
 })
 
 it('should render ThemeSwitcher', () => {
     const { getByTestId } = render(<MenuList />)
 
-    const FavoritedCountriesList = getByTestId('ThemeSwitcher')
+    const ThemeSwitcher = getByTestId('ThemeSwitcher')
 
-    expect(FavoritedCountriesList).toBeInTheDocument()
+    expect(ThemeSwitcher).toBeInTheDocument()
 })

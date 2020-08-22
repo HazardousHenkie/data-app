@@ -5,10 +5,6 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="sc-AxgMl vayPh"
-        data-testid="FavoritedCountriesList"
-      />
       <ul
         aria-label="Mainmenu"
         class="MuiList-root sc-AxheI iioqvx MuiList-padding"
@@ -32,6 +28,27 @@ Object {
         >
           <div
             data-testid="GoogleLoginButton"
+          />
+        </li>
+        <li
+          class="MuiListItem-root MuiListItem-gutters"
+        >
+          <div
+            class="MuiListItemText-root"
+          >
+            <span
+              class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+            >
+              Favorite countries
+            </span>
+          </div>
+        </li>
+        <li
+          class="MuiListItem-root MuiListItem-gutters"
+        >
+          <div
+            class="sc-AxgMl vayPh"
+            data-testid="FavoritedCountriesList"
           />
         </li>
         <li
@@ -156,10 +173,6 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <div
-      class="sc-AxgMl vayPh"
-      data-testid="FavoritedCountriesList"
-    />
     <ul
       aria-label="Mainmenu"
       class="MuiList-root sc-AxheI iioqvx MuiList-padding"
@@ -183,6 +196,27 @@ Object {
       >
         <div
           data-testid="GoogleLoginButton"
+        />
+      </li>
+      <li
+        class="MuiListItem-root MuiListItem-gutters"
+      >
+        <div
+          class="MuiListItemText-root"
+        >
+          <span
+            class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+          >
+            Favorite countries
+          </span>
+        </div>
+      </li>
+      <li
+        class="MuiListItem-root MuiListItem-gutters"
+      >
+        <div
+          class="sc-AxgMl vayPh"
+          data-testid="FavoritedCountriesList"
         />
       </li>
       <li

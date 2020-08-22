@@ -2,6 +2,8 @@ import { put } from 'redux-saga/effects'
 
 import { ActionType as typeSafeAction } from 'typesafe-actions'
 import { ResponseError } from 'utils/request'
+
+import { logoutRequest } from 'globals/authentication/logout/actions'
 import { setError } from 'globals/globalErrors/actions'
 import ActionTypes from '../constants'
 
@@ -40,11 +42,20 @@ describe('globalAddErrorSaga Saga', () => {
         )
     })
 
-    it('should call the getRefreshTokenError and setError action if the response errors', () => {
+    it('should call the getRefreshTokenError, logoutSuccess and setError action if the response errors', () => {
         const response = new ResponseError(callDescriptor, 'Some error')
         const putDescriptor = refreshTokenGenerator.throw(response).value
+
         // eslint-disable-next-line redux-saga/no-unhandled-errors
-        expect(putDescriptor).toEqual(put(getRefreshTokenError(response)))
+        expect(putDescriptor).toEqual(put(logoutRequest()))
+
+        const putDescriptorFirstError = refreshTokenGenerator.next(response)
+            .value
+
+        expect(putDescriptorFirstError).toEqual(
+            // eslint-disable-next-line redux-saga/no-unhandled-errors
+            put(getRefreshTokenError(response))
+        )
 
         const putDescriptorSecondError = refreshTokenGenerator.next(response)
             .value

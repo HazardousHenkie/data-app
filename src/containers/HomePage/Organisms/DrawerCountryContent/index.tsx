@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid'
 
 import FavoriteCountryButton from 'components/Organisms/FavoriteCountryButton'
 import { makeSelectLoggedIn } from 'globals/authentication/selectors'
-import Header, { FavoriteCountryButtonWrapper } from './styledComponents'
+import HeaderStyled, { FavoriteCountryButtonWrapper } from './styledComponents'
 import CountryAdvisory from '../../Molecules/CountryAdvisory'
 import CountryInformation from '../../Molecules/CountryInformation'
 
@@ -27,11 +27,11 @@ const DrawerCountryContent: React.FC = () => {
         <>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
-                    <Header>
+                    <HeaderStyled>
                         {i18n.language === 'en'
                             ? country.name
                             : country.translations[i18n.language]}
-                    </Header>
+                    </HeaderStyled>
 
                     {loggedIn && (
                         <FavoriteCountryButtonWrapper data-testid="FavoriteCountryButtonWrapper">
