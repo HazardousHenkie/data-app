@@ -17,5 +17,6 @@
         "pretty": true,
         "baseUrl": "src"
     },
-    "include": ["src", "functions", "cypress", "jest.config.js"]
+    "include": ["src", "functions", "jest.config.js"],
+    "exclude": ["cypress"]
 }

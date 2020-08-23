@@ -62,6 +62,7 @@
     "serve:lambda": "netlify-lambda serve functions",
     "eject": "react-scripts eject",
     "test": "react-scripts test",
+    "cypress:test": "cypress run",
     "cypress": "cypress open",
     "lint:staged": "lint-staged",
     "typecheck": "tsc",
