@@ -37,7 +37,7 @@ describe('<TopBar />', () => {
     it('should render a <div> tag', () => {
         const { container } = renderWithTheme()
 
-        expect(container.tagName).toBe('DIV')
+        expect(container.firstElementChild?.tagName).toEqual('DIV')
     })
 
     it('should render shadow variable', () => {
@@ -75,7 +75,7 @@ describe('<SearchFieldWrapper />', () => {
     it('should render a <div> tag', () => {
         const { container } = render(<SearchFieldWrapper />)
 
-        expect(container.tagName).toBe('DIV')
+        expect(container.firstElementChild?.tagName).toEqual('DIV')
     })
 })
 

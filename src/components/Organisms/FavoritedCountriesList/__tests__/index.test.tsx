@@ -84,6 +84,17 @@ describe('<MenuList />', () => {
         expect(listLabel).toBeInTheDocument()
     })
 
+    it('There should be favoriteCountries listItem', () => {
+        const { getByText } = render(<MenuList />, {
+            initialState: {
+                favoritedCountries: countriesFixture
+            }
+        })
+
+        const listItemText = getByText('Favorite countries')
+        expect(listItemText).toBeInTheDocument()
+    })
+
     test('Have one item in the list', () => {
         const { getAllByRole } = render(<MenuList />, {
             initialState: {
@@ -92,6 +103,6 @@ describe('<MenuList />', () => {
         })
 
         const listItems = getAllByRole('listitem')
-        expect(listItems).toHaveLength(1)
+        expect(listItems).toHaveLength(2)
     })
 })

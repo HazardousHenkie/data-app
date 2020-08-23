@@ -3,6 +3,7 @@ import { put } from 'redux-saga/effects'
 import { ResponseError } from 'utils/request'
 import { setError } from 'globals/globalErrors/actions'
 
+import { setFavoritedCountries } from 'globals/favoritedCountriesList/actions'
 import { logoutSuccess, logoutError } from '../actions'
 
 import logoutSaga from '../saga'
@@ -25,6 +26,10 @@ describe('logoutSaga Saga', () => {
             // eslint-disable-next-line redux-saga/no-unhandled-errors
             put(logoutSuccess())
         )
+
+        const secondPutDescriptor = logoutSagaGenerator.next().value
+        // eslint-disable-next-line redux-saga/no-unhandled-errors
+        expect(secondPutDescriptor).toEqual(put(setFavoritedCountries([])))
 
         expect(localStorage.removeItem).toHaveBeenCalledTimes(1)
     })

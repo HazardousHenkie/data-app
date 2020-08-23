@@ -40,6 +40,15 @@ const MenuList: React.FC = () => {
                             'Favorite countries'
                         )}
                     >
+                        <ListItem>
+                            <ListItemText
+                                primary={t(
+                                    'menuList:favoriteCountries',
+                                    'Favorite countries'
+                                )}
+                            />
+                        </ListItem>
+
                         {favoritedCountries.map(favoritedCountry => (
                             <ListItem key={favoritedCountry.data.countryId}>
                                 <ListItemText

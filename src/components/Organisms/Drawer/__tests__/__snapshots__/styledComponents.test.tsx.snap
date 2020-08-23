@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ClickIndicator /> should render and match the snapshot 1`] = `
+.c0 {
+  cursor: pointer;
+  opacity: 0.5;
+  position: absolute;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  margin-left: -15px;
+  border: 2px solid #000;
+  border-radius: 50px;
+  bottom: 10px;
+}
+
+@media (max-width:959.95px) {
+  .c0 {
+    display: none;
+  }
+}
+
+<div
+  class="c0"
+/>
+`;
+
+exports[`<DrawerWrapper /> should render and match the snapshot 1`] = `
+.c0 {
+  position: relative;
+  bottom: 0;
+}
+
+<div
+  class="c0"
+/>
+`;
+
+exports[`<HandleBar /> should render and match the snapshot 1`] = `
+.c0 {
+  border-radius: 100px;
+  width: 50%;
+  bottom: 0;
+  top: auto;
+  position: fixed;
+  left: 25%;
+  margin: 0 auto 8px;
+  background: #000;
+  border: 2px solid #000;
+}
+
+@media (min-width:960px) {
+  .c0 {
+    display: none;
+  }
+}
+
+<div
+  class="c0"
+/>
+`;
+
+exports[`<SwipeIndicator /> should render and match the snapshot 1`] = `
+.c0 {
+  cursor: pointer;
+  opacity: 0.5;
+  position: absolute;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  margin-left: -15px;
+  border: 2px solid #000;
+  border-radius: 50px;
+  bottom: 10px;
+}
+
+<div
+  class="c0"
+/>
+`;
+
+exports[`<SwipeIndicatorInner /> should render and match the snapshot 1`] = `
+.c0 {
+  position: absolute;
+  left: 50%;
+  margin-left: -12px;
+  color: #000;
+  top: 5px;
+  -webkit-animation: kQWVHZ 2s infinite;
+  animation: kQWVHZ 2s infinite;
+}
+
+<svg
+  aria-hidden="true"
+  class="MuiSvgIcon-root c0"
+  focusable="false"
+  theme="[object Object]"
+  viewBox="0 0 24 24"
+>
+  <path
+    d="M7 14l5-5 5 5z"
+  />
+</svg>
+`;
+
+exports[`<SwipeIndicatorInnerDown /> should render and match the snapshot 1`] = `
+.c0 {
+  position: absolute;
+  left: 50%;
+  margin-left: -12px;
+  color: #000;
+  top: -5px;
+  -webkit-animation: faQfbw 2s infinite;
+  animation: faQfbw 2s infinite;
+}
+
+<svg
+  aria-hidden="true"
+  class="MuiSvgIcon-root c0"
+  focusable="false"
+  theme="[object Object]"
+  viewBox="0 0 24 24"
+>
+  <path
+    d="M7 10l5 5 5-5z"
+  />
+</svg>
+`;
+
+exports[`<SwipeableDrawerStyled /> should render and match the snapshot 1`] = `
+<div
+  class="PrivateSwipeArea-root-1 PrivateSwipeArea-anchorBottom-5"
+  style="height: 20px;"
+/>
+`;

@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DrawerChildren /> should render and match the snapshot 1`] = `
+.c0 {
+  width: 250px;
+  height: 100%;
+}
+
+<div
+  class="c0"
+/>
+`;
+
+exports[`<IconButtonStyled /> should render and match the snapshot 1`] = `
+.c0 {
+  padding-left: 18px;
+}
+
+<button
+  class="MuiButtonBase-root MuiIconButton-root c0"
+  tabindex="0"
+  type="button"
+>
+  <span
+    class="MuiIconButton-label"
+  />
+  <span
+    class="MuiTouchRipple-root"
+  />
+</button>
+`;
+
+exports[`<StyledDrawer /> should render and match the snapshot 1`] = `null`;

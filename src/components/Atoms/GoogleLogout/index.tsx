@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-import { GoogleLogout, GoogleLogoutProps } from 'react-google-login'
+import { GoogleLogout } from 'react-google-login'
 
 import InlineLoader from 'components/Atoms/InlineLoader'
 
@@ -24,13 +24,8 @@ const stateSelector = createSelector(makeSelectLoader(), loading => ({
 const GoogleLogoutButton: React.FC = () => {
     const dispatch = useDispatch()
     const { t } = useTranslation('logoutButton')
-    const [googleLoading, setGoogleLoading] = useState<boolean>(false)
 
     const { loading } = useSelector(stateSelector)
-
-    const onGoogleLogoutRequest = () => {
-        setGoogleLoading(true)
-    }
 
     const googleResponseSuccess = () => {
         dispatch(logoutRequest())
@@ -38,41 +33,18 @@ const GoogleLogoutButton: React.FC = () => {
 
     const googleResponseError = () => {
         setError(new Error('Logout failed'))
-        setGoogleLoading(false)
-    }
-
-    interface GoogleLogoutCustomButtonProps extends GoogleLogoutProps {
-        customOnClick: () => void
-    }
-
-    const GoogleLogoutCustomButton: React.FC<GoogleLogoutCustomButtonProps> = ({
-        customOnClick,
-        ...props
-    }) => {
-        return (
-            <div
-                data-testid="googleLogoutInnerButton"
-                onClick={customOnClick}
-                onKeyDown={customOnClick}
-                role="button"
-                tabIndex={0}
-            >
-                <GoogleLogout {...props} />
-            </div>
-        )
     }
 
     return (
         <div data-testid="googleLogoutButton">
             {process.env.REACT_APP_GOOGLE_CLIENT_ID && (
                 <GoogleLogoutWrapper data-testid="googleLogoutWrapper">
-                    {(loading || googleLoading) && <InlineLoader />}
+                    {loading && <InlineLoader />}
 
-                    <GoogleLogoutCustomButton
-                        customOnClick={onGoogleLogoutRequest}
+                    <GoogleLogout
                         clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                         buttonText={t('logout:button', 'Logout')}
-                        disabled={loading || googleLoading}
+                        disabled={loading}
                         onLogoutSuccess={googleResponseSuccess}
                         onFailure={googleResponseError}
                     />

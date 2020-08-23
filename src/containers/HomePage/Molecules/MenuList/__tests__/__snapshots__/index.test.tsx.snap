@@ -27,30 +27,13 @@ Object {
           class="MuiListItem-root MuiListItem-gutters"
         >
           <div
-            data-testid="GoogleLoginButton"
+            data-testid="googleLoginButton"
           />
         </li>
-        <li
-          class="MuiListItem-root MuiListItem-gutters"
-        >
-          <div
-            class="MuiListItemText-root"
-          >
-            <span
-              class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-            >
-              Favorite countries
-            </span>
-          </div>
-        </li>
-        <li
-          class="MuiListItem-root MuiListItem-gutters"
-        >
-          <div
-            class="sc-AxgMl vayPh"
-            data-testid="FavoritedCountriesList"
-          />
-        </li>
+        <div
+          class="sc-AxgMl vayPh"
+          data-testid="FavoritedCountriesList"
+        />
         <li
           class="MuiListItem-root MuiListItem-dense MuiListItem-gutters"
           style="margin-top: auto;"
@@ -195,30 +178,13 @@ Object {
         class="MuiListItem-root MuiListItem-gutters"
       >
         <div
-          data-testid="GoogleLoginButton"
+          data-testid="googleLoginButton"
         />
       </li>
-      <li
-        class="MuiListItem-root MuiListItem-gutters"
-      >
-        <div
-          class="MuiListItemText-root"
-        >
-          <span
-            class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-          >
-            Favorite countries
-          </span>
-        </div>
-      </li>
-      <li
-        class="MuiListItem-root MuiListItem-gutters"
-      >
-        <div
-          class="sc-AxgMl vayPh"
-          data-testid="FavoritedCountriesList"
-        />
-      </li>
+      <div
+        class="sc-AxgMl vayPh"
+        data-testid="FavoritedCountriesList"
+      />
       <li
         class="MuiListItem-root MuiListItem-dense MuiListItem-gutters"
         style="margin-top: auto;"

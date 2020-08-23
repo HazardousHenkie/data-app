@@ -38,7 +38,7 @@ describe('<MenuList />', () => {
         const { getAllByRole } = render(<MenuList />)
 
         const listItems = getAllByRole('listitem')
-        expect(listItems).toHaveLength(8)
+        expect(listItems).toHaveLength(6)
     })
 
     it('The first listItem should render Data App text', () => {
@@ -64,15 +64,8 @@ describe('<MenuList />', () => {
     it('Should render GoogleLoginButton if logged out', () => {
         const { getByTestId } = render(<MenuList />)
 
-        const GoogleLoginButton = getByTestId('GoogleLoginButton')
+        const GoogleLoginButton = getByTestId('googleLoginButton')
         expect(GoogleLoginButton).toBeInTheDocument()
-    })
-
-    it('There should be favoriteCountries listItem', () => {
-        const { getByText } = render(<MenuList />)
-
-        const listItemText = getByText('Favorite countries')
-        expect(listItemText).toBeInTheDocument()
     })
 
     it('The third listItem should render Language text', () => {

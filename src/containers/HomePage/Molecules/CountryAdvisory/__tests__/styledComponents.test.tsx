@@ -18,7 +18,7 @@ describe('<CardStyled />', () => {
     it('should render a <DIV> tag', () => {
         const { container } = render(<CardStyled />)
 
-        expect(container.tagName).toBe('DIV')
+        expect(container.firstElementChild?.tagName).toEqual('DIV')
     })
 })
 

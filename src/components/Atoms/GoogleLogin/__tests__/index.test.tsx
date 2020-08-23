@@ -37,6 +37,9 @@ describe('<GoogleLoginButton />', () => {
         const loadingComponent = getByTestId('inlineLoader')
 
         expect(loadingComponent).toBeInTheDocument()
+
+        const button = getByTestId('googleLoginButton').querySelector('button')
+        expect(button).toBeDisabled()
     })
 
     test("Don't show loader when loading is false inside useSelector", () => {

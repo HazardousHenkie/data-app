@@ -18,7 +18,7 @@ describe('<HeartButtonWrapper />', () => {
     it('should render a <DIV> tag', () => {
         const { container } = render(<HeartButtonWrapper />)
 
-        expect(container.tagName).toBe('DIV')
+        expect(container.firstElementChild?.tagName).toEqual('DIV')
     })
 })
 

@@ -16,7 +16,7 @@ describe('<ErrorPageDiv />', () => {
     it('should render a <div> tag', () => {
         const { container } = render(<ErrorPageDiv />)
 
-        expect(container.tagName).toBe('DIV')
+        expect(container.firstElementChild?.tagName).toEqual('DIV')
     })
 })
 

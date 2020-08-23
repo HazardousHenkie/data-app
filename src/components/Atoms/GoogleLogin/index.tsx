@@ -55,13 +55,12 @@ const GoogleLoginButton: React.FC = () => {
     }
 
     return (
-        <div data-testid="GoogleLoginButton">
+        <div data-testid="googleLoginButton">
             {process.env.REACT_APP_GOOGLE_CLIENT_ID && (
                 <GoogleLoginWrapper data-testid="googleLoginWrapper">
                     {(loading || googleLoading) && <InlineLoader />}
 
                     <GoogleLogin
-                        data-testid="googleLoginButton"
                         clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                         onRequest={onGoogleLoginRequest}
                         buttonText={t('logout:button', 'Login')}

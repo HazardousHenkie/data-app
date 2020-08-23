@@ -40,18 +40,7 @@ const MenuList: React.FC = () => {
                     {loggedIn ? <GoogleLogoutButton /> : <GoogleLoginButton />}
                 </ListItem>
 
-                <ListItem>
-                    <ListItemText
-                        primary={t(
-                            'menuList:favoriteCountries',
-                            'Favorite countries'
-                        )}
-                    />
-                </ListItem>
-
-                <ListItem>
-                    <FavoritedCountriesList />
-                </ListItem>
+                <FavoritedCountriesList />
 
                 <ListItem style={{ marginTop: 'auto' }} dense>
                     <ListItemText

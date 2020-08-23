@@ -1,19 +1,19 @@
 import React from 'react'
 import { render } from 'utils/test-utils'
 
-import BackdropStyled from '../styledComponents'
+import FavoritedCountriesList from '../styledComponents'
 
 import 'jest-styled-components'
 
-describe('<BackdropStyled />', () => {
+describe('<FavoritedCountriesList />', () => {
     it('should render and match the snapshot', () => {
-        const { container } = render(<BackdropStyled open />)
+        const { container } = render(<FavoritedCountriesList />)
 
         expect(container.firstChild).toMatchSnapshot()
     })
 
     it('should render a <DIV> tag', () => {
-        const { container } = render(<BackdropStyled open />)
+        const { container } = render(<FavoritedCountriesList />)
 
         expect(container.firstElementChild?.tagName).toEqual('DIV')
     })

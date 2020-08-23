@@ -26,7 +26,7 @@ describe('<StyledMap />', () => {
     it('should render a <div> tag', () => {
         const { container } = renderWithTheme()
 
-        expect(container.tagName).toBe('DIV')
+        expect(container.firstElementChild?.tagName).toEqual('DIV')
     })
 })
 
