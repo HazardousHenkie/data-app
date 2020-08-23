@@ -3,10 +3,13 @@ import { useState, useEffect } from 'react'
 import { createSelector } from 'reselect'
 import { useSelector } from 'react-redux'
 
+import { Reducer } from 'redux'
+import { useInjectReducer } from 'utils/redux-injectors'
 import makeSelectCountry from 'containers/HomePage/Molecules/CountryListItem/selectors'
 
 import request from 'utils/request'
 
+import reducer from 'containers/HomePage/Molecules/CountryListItem/reducer'
 import CountryAdvisoryInterface from './types'
 
 const stateSelector = createSelector(makeSelectCountry(), country => ({
@@ -20,6 +23,8 @@ const useCountryAdvisory = () => {
     const [countryAdvisory, setCountryAdvisory] = useState<
         CountryAdvisoryInterface
     >()
+
+    useInjectReducer({ key: 'country', reducer: reducer as Reducer })
 
     useEffect(() => {
         const fetchData = async () => {

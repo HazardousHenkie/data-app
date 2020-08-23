@@ -52,24 +52,6 @@ Object {
           
           
           0
-          <p
-            class="MuiTypography-root MuiTypography-body1"
-          >
-            <strong>
-              Languages
-              :
-            </strong>
-              undefined(undefined)
-          </p>
-          <p
-            class="MuiTypography-root MuiTypography-body1"
-          >
-            <strong>
-              Currencies
-              :
-            </strong>
-              undefined(undefined)
-          </p>
         </div>
       </div>
     </div>
@@ -122,24 +104,6 @@ Object {
         
         
         0
-        <p
-          class="MuiTypography-root MuiTypography-body1"
-        >
-          <strong>
-            Languages
-            :
-          </strong>
-            undefined(undefined)
-        </p>
-        <p
-          class="MuiTypography-root MuiTypography-body1"
-        >
-          <strong>
-            Currencies
-            :
-          </strong>
-            undefined(undefined)
-        </p>
       </div>
     </div>
   </div>,

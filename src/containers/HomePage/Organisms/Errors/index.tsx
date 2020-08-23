@@ -33,6 +33,7 @@ const ErrorSnackbars: React.FC = () => {
         <>
             {errors.map((error, index) => (
                 <Snackbar
+                    data-testid="Snackbar"
                     key={error.message}
                     style={{ top: `${index * 50}px` }}
                     open={open}

@@ -65,24 +65,6 @@ Object {
               
               
               0
-              <p
-                class="MuiTypography-root MuiTypography-body1"
-              >
-                <strong>
-                  Languages
-                  :
-                </strong>
-                  undefined(undefined)
-              </p>
-              <p
-                class="MuiTypography-root MuiTypography-body1"
-              >
-                <strong>
-                  Currencies
-                  :
-                </strong>
-                  undefined(undefined)
-              </p>
             </div>
           </div>
         </div>
@@ -91,6 +73,7 @@ Object {
         >
           <div
             class="MuiPaper-root MuiCard-root sc-AxheI YnnDL MuiPaper-outlined MuiPaper-rounded"
+            data-testid="CountryAdvisory"
           >
             <div
               class="sc-AxjAm hsTYAM"
@@ -222,24 +205,6 @@ Object {
             
             
             0
-            <p
-              class="MuiTypography-root MuiTypography-body1"
-            >
-              <strong>
-                Languages
-                :
-              </strong>
-                undefined(undefined)
-            </p>
-            <p
-              class="MuiTypography-root MuiTypography-body1"
-            >
-              <strong>
-                Currencies
-                :
-              </strong>
-                undefined(undefined)
-            </p>
           </div>
         </div>
       </div>
@@ -248,6 +213,7 @@ Object {
       >
         <div
           class="MuiPaper-root MuiCard-root sc-AxheI YnnDL MuiPaper-outlined MuiPaper-rounded"
+          data-testid="CountryAdvisory"
         >
           <div
             class="sc-AxjAm hsTYAM"

@@ -7,6 +7,7 @@ Object {
     <div>
       <div
         class="sc-fznyAO ktFYgq"
+        data-testid="TopBar"
       >
         <button
           aria-label="open drawer"
@@ -35,6 +36,7 @@ Object {
         </button>
         <div
           class="sc-fznKkj cHSvOt"
+          data-testid="SearchFieldWrapper"
           role="button"
           tabindex="0"
         >
@@ -73,6 +75,7 @@ Object {
       </div>
       <div
         class="sc-AxirZ ixIRlM"
+        data-testid="CountriesList"
         style="opacity: 0; visibility: hidden;"
       >
         <div
@@ -105,6 +108,7 @@ Object {
   "container": <div>
     <div
       class="sc-fznyAO ktFYgq"
+      data-testid="TopBar"
     >
       <button
         aria-label="open drawer"
@@ -133,6 +137,7 @@ Object {
       </button>
       <div
         class="sc-fznKkj cHSvOt"
+        data-testid="SearchFieldWrapper"
         role="button"
         tabindex="0"
       >
@@ -171,6 +176,7 @@ Object {
     </div>
     <div
       class="sc-AxirZ ixIRlM"
+      data-testid="CountriesList"
       style="opacity: 0; visibility: hidden;"
     >
       <div

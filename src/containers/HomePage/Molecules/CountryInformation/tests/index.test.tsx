@@ -53,9 +53,6 @@ describe('<FavoriteCountryButton />', () => {
         const store = configureStore({}, history)
 
         const { getByText } = render(<CountryInformation />, {
-            initialState: {
-                country: { country: { name: 'japan' } }
-            },
             store
         })
 
@@ -66,5 +63,369 @@ describe('<FavoriteCountryButton />', () => {
         const advisoryText = getByText('Advisory for japan')
 
         expect(advisoryText).toBeInTheDocument()
+    })
+
+    it('should render CountryInformationCard', () => {
+        const { getByTestId } = render(<CountryInformation />)
+
+        const CountryInformationCard = getByTestId(
+            'CountryInformationCardContent'
+        )
+
+        expect(CountryInformationCard).toBeInTheDocument()
+    })
+
+    it('should render countryNativeName as a P', () => {
+        const store = configureStore({}, history)
+
+        const { getByTestId } = render(<CountryInformation />, {
+            store
+        })
+
+        store.dispatch(
+            setSelectedCountry({ ...CountryItem.country, nativeName: '日本' })
+        )
+
+        const countryNativeName = getByTestId('countryNativeName')
+
+        expect(countryNativeName.tagName).toBe('P')
+    })
+
+    it('should render native name label inside countryNativeName', () => {
+        const store = configureStore({}, history)
+
+        const { getByText } = render(<CountryInformation />, {
+            store
+        })
+
+        store.dispatch(
+            setSelectedCountry({ ...CountryItem.country, nativeName: '日本' })
+        )
+
+        const nativeName = getByText('Native name:')
+
+        expect(nativeName).toBeInTheDocument()
+    })
+
+    it('should render the countries native name inside countryNativeName', () => {
+        const store = configureStore({}, history)
+
+        const { getByText } = render(<CountryInformation />, {
+            store
+        })
+
+        store.dispatch(
+            setSelectedCountry({ ...CountryItem.country, nativeName: '日本' })
+        )
+
+        const nativeName = getByText('日本')
+
+        expect(nativeName).toBeInTheDocument()
+    })
+
+    it('should render countryCapitalName as a P', () => {
+        const store = configureStore({}, history)
+
+        const { getByTestId } = render(<CountryInformation />, {
+            store
+        })
+
+        store.dispatch(
+            setSelectedCountry({ ...CountryItem.country, capital: 'Tokyo' })
+        )
+
+        const countryCapitalName = getByTestId('countryCapitalName')
+
+        expect(countryCapitalName.tagName).toBe('P')
+    })
+
+    it('should render capital label inside countryCapitalName', () => {
+        const store = configureStore({}, history)
+
+        const { getByText } = render(<CountryInformation />, {
+            store
+        })
+
+        store.dispatch(
+            setSelectedCountry({ ...CountryItem.country, capital: 'Tokyo' })
+        )
+
+        const countryCapitalName = getByText('Capital:')
+
+        expect(countryCapitalName).toBeInTheDocument()
+    })
+
+    it('should render the countries capital inside countryCapitalName', () => {
+        const store = configureStore({}, history)
+
+        const { getByText } = render(<CountryInformation />, {
+            store
+        })
+
+        store.dispatch(
+            setSelectedCountry({ ...CountryItem.country, capital: 'Tokyo' })
+        )
+
+        const countryCapitalName = getByText('Tokyo')
+
+        expect(countryCapitalName).toBeInTheDocument()
+    })
+
+    it('should render countryRegionName as a P', () => {
+        const store = configureStore({}, history)
+
+        const { getByTestId } = render(<CountryInformation />, {
+            store
+        })
+
+        store.dispatch(
+            setSelectedCountry({ ...CountryItem.country, region: 'Asia' })
+        )
+
+        const countryRegionName = getByTestId('countryRegionName')
+
+        expect(countryRegionName.tagName).toBe('P')
+    })
+
+    it('should render region label inside countryRegionName', () => {
+        const store = configureStore({}, history)
+
+        const { getByText } = render(<CountryInformation />, {
+            store
+        })
+
+        store.dispatch(
+            setSelectedCountry({ ...CountryItem.country, region: 'Asia' })
+        )
+
+        const countryRegionName = getByText('Region:')
+
+        expect(countryRegionName).toBeInTheDocument()
+    })
+
+    it('should render the countries region inside countryCapitalName', () => {
+        const store = configureStore({}, history)
+
+        const { getByText } = render(<CountryInformation />, {
+            store
+        })
+
+        store.dispatch(
+            setSelectedCountry({ ...CountryItem.country, region: 'Asia' })
+        )
+
+        const countryCapitalName = getByText('Asia')
+
+        expect(countryCapitalName).toBeInTheDocument()
+    })
+
+    it('should render countrySubRegionName as a P', () => {
+        const store = configureStore({}, history)
+
+        const { getByTestId } = render(<CountryInformation />, {
+            store
+        })
+
+        store.dispatch(
+            setSelectedCountry({ ...CountryItem.country, subregion: 'Japan' })
+        )
+
+        const countrySubRegionName = getByTestId('countrySubRegionName')
+
+        expect(countrySubRegionName.tagName).toBe('P')
+    })
+
+    it('should render subregion label inside countrySubRegionName', () => {
+        const store = configureStore({}, history)
+
+        const { getByText } = render(<CountryInformation />, {
+            store
+        })
+
+        store.dispatch(
+            setSelectedCountry({ ...CountryItem.country, subregion: 'Japan' })
+        )
+
+        const countrySubRegionName = getByText('Subregion:')
+
+        expect(countrySubRegionName).toBeInTheDocument()
+    })
+
+    it('should render the countries subregion inside countrySubRegionName', () => {
+        const store = configureStore({}, history)
+
+        const { getByText } = render(<CountryInformation />, {
+            store
+        })
+
+        store.dispatch(
+            setSelectedCountry({ ...CountryItem.country, subregion: 'Japan' })
+        )
+
+        const countrySubRegionName = getByText('Japan')
+
+        expect(countrySubRegionName).toBeInTheDocument()
+    })
+
+    it('should render countryPopulation as a P', () => {
+        const store = configureStore({}, history)
+
+        const { getByTestId } = render(<CountryInformation />, {
+            store
+        })
+
+        store.dispatch(
+            setSelectedCountry({ ...CountryItem.country, population: 500 })
+        )
+
+        const countryPopulation = getByTestId('countryPopulation')
+
+        expect(countryPopulation.tagName).toBe('P')
+    })
+
+    it('should render population label inside countrySubRegionName', () => {
+        const store = configureStore({}, history)
+
+        const { getByText } = render(<CountryInformation />, {
+            store
+        })
+
+        store.dispatch(
+            setSelectedCountry({ ...CountryItem.country, population: 500 })
+        )
+
+        const countryPopulation = getByText('Population:')
+
+        expect(countryPopulation).toBeInTheDocument()
+    })
+
+    it('should render the countries population inside countrySubRegionName', () => {
+        const store = configureStore({}, history)
+
+        const { getByText } = render(<CountryInformation />, {
+            store
+        })
+
+        store.dispatch(
+            setSelectedCountry({ ...CountryItem.country, population: 500 })
+        )
+
+        const countryPopulation = getByText('500')
+
+        expect(countryPopulation).toBeInTheDocument()
+    })
+
+    it('should render countryLanguages as a P', () => {
+        const store = configureStore({}, history)
+
+        const { getByTestId } = render(<CountryInformation />, {
+            store
+        })
+
+        store.dispatch(
+            setSelectedCountry({
+                ...CountryItem.country,
+                languages: [{ name: 'Japanese', nativeName: '日本語' }]
+            })
+        )
+
+        const countryLanguages = getByTestId('countryLanguages')
+
+        expect(countryLanguages.tagName).toBe('P')
+    })
+
+    it('should render languages label inside countryLanguages', () => {
+        const store = configureStore({}, history)
+
+        const { getByText } = render(<CountryInformation />, {
+            store
+        })
+
+        store.dispatch(
+            setSelectedCountry({
+                ...CountryItem.country,
+                languages: [{ name: 'Japanese', nativeName: '日本語' }]
+            })
+        )
+
+        const countryLanguages = getByText('Languages:')
+
+        expect(countryLanguages).toBeInTheDocument()
+    })
+
+    it('should render the countries languages inside countryLanguages', () => {
+        const store = configureStore({}, history)
+
+        const { getByText } = render(<CountryInformation />, {
+            store
+        })
+
+        store.dispatch(
+            setSelectedCountry({
+                ...CountryItem.country,
+                languages: [{ name: 'Japanese', nativeName: '日本語' }]
+            })
+        )
+
+        const countryLanguages = getByText('Japanese(日本語)')
+
+        expect(countryLanguages).toBeInTheDocument()
+    })
+
+    it('should render countryCurrencies as a P', () => {
+        const store = configureStore({}, history)
+
+        const { getByTestId } = render(<CountryInformation />, {
+            store
+        })
+
+        store.dispatch(
+            setSelectedCountry({
+                ...CountryItem.country,
+                currencies: [{ code: 'JPY', symbol: '¥' }]
+            })
+        )
+
+        const countryCurrencies = getByTestId('countryCurrencies')
+
+        expect(countryCurrencies.tagName).toBe('P')
+    })
+
+    it('should render currencies label inside countryCurrencies', () => {
+        const store = configureStore({}, history)
+
+        const { getByText } = render(<CountryInformation />, {
+            store
+        })
+
+        store.dispatch(
+            setSelectedCountry({
+                ...CountryItem.country,
+                currencies: [{ code: 'JPY', symbol: '¥' }]
+            })
+        )
+
+        const countryCurrencies = getByText('Currencies:')
+
+        expect(countryCurrencies).toBeInTheDocument()
+    })
+
+    it('should render the countries currencies inside countryCurrencies', () => {
+        const store = configureStore({}, history)
+
+        const { getByText } = render(<CountryInformation />, {
+            store
+        })
+
+        store.dispatch(
+            setSelectedCountry({
+                ...CountryItem.country,
+                currencies: [{ code: 'JPY', symbol: '¥' }]
+            })
+        )
+
+        const countryCurrencies = getByText('JPY(¥)')
+
+        expect(countryCurrencies).toBeInTheDocument()
     })
 })

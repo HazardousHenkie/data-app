@@ -1,37 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<DrawerCountryContent /> should render like snapshot 1`] = `
+exports[`<CountryAdvisory /> should render like snapshot 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <div
         class="MuiPaper-root MuiCard-root sc-AxirZ kNDIFW MuiPaper-outlined MuiPaper-rounded"
+        data-testid="CountryAdvisory"
       >
-        <div
-          class="sc-AxjAm hsTYAM"
-          data-testid="inlineLoader"
-        >
-          <div
-            class="MuiCircularProgress-root MuiCircularProgress-indeterminate"
-            role="progressbar"
-            style="width: 40px; height: 40px;"
-          >
-            <svg
-              class="MuiCircularProgress-svg"
-              viewBox="22 22 44 44"
-            >
-              <circle
-                class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
-                cx="44"
-                cy="44"
-                fill="none"
-                r="20.2"
-                stroke-width="3.6"
-              />
-            </svg>
-          </div>
-        </div>
         <div
           class="MuiCardHeader-root"
         >
@@ -70,7 +47,9 @@ Object {
         >
           <p
             class="MuiTypography-root MuiTypography-body1"
-          />
+          >
+            Advisory not found.
+          </p>
         </div>
       </div>
     </div>
@@ -78,31 +57,8 @@ Object {
   "container": <div>
     <div
       class="MuiPaper-root MuiCard-root sc-AxirZ kNDIFW MuiPaper-outlined MuiPaper-rounded"
+      data-testid="CountryAdvisory"
     >
-      <div
-        class="sc-AxjAm hsTYAM"
-        data-testid="inlineLoader"
-      >
-        <div
-          class="MuiCircularProgress-root MuiCircularProgress-indeterminate"
-          role="progressbar"
-          style="width: 40px; height: 40px;"
-        >
-          <svg
-            class="MuiCircularProgress-svg"
-            viewBox="22 22 44 44"
-          >
-            <circle
-              class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
-              cx="44"
-              cy="44"
-              fill="none"
-              r="20.2"
-              stroke-width="3.6"
-            />
-          </svg>
-        </div>
-      </div>
       <div
         class="MuiCardHeader-root"
       >
@@ -141,7 +97,9 @@ Object {
       >
         <p
           class="MuiTypography-root MuiTypography-body1"
-        />
+        >
+          Advisory not found.
+        </p>
       </div>
     </div>
   </div>,
