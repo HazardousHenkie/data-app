@@ -10,6 +10,16 @@ describe('HomePage', () => {
             cy.get('.MuiBackdrop-root').click()
             cy.get('[data-testid=StyledDrawer]').should('not.exist')
         })
+
+        it('it should change language correctly', () => {
+            cy.get('[data-testid=IconButtonStyled]').click()
+            cy.get('[data-testid=languageSwitcher_select]').click()
+            cy.get('[role=option]')
+                .eq(1)
+                .click()
+            cy.get('.MuiBackdrop-root').click()
+            cy.get('[placeholder=検索]')
+        })
     })
 })
 
@@ -17,5 +27,6 @@ describe('HomePage', () => {
 // should display favorited countries when logged in (also already done in jest)
 // should test change languages
 // should test change theme
+// check if all three langauges are present?
 
 export {}
