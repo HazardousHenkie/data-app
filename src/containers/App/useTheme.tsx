@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react'
 
 import lightTheme, { darkTheme } from 'styles/themeStyles'
-import usePrefersDarkMode from './usePrefersDarkMode'
 
-const useTheme = () => {
-    const { darkMode } = usePrefersDarkMode()
+const useTheme = (darkMode: boolean) => {
     const [theme, setTheme] = useState(lightTheme)
 
     useEffect(() => {
@@ -12,7 +10,8 @@ const useTheme = () => {
     }, [darkMode])
 
     return {
-        theme
+        theme,
+        setTheme
     }
 }
 

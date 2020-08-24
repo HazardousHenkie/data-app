@@ -17,13 +17,13 @@ describe('usePrefersDarkMode', () => {
         // @ts-ignore
         usePrefersDarkMode.mockReturnValue({ darkMode: true })
 
-        const { result } = renderHook(() => useTheme())
+        const { result } = renderHook(() => useTheme(true))
 
         expect(result.current.theme).toEqual(darkTheme)
     })
 
     it('Should return darkmode if no preference is set', () => {
-        const { result } = renderHook(() => useTheme())
+        const { result } = renderHook(() => useTheme(false))
 
         expect(result.current.theme).toEqual(lightTheme)
     })

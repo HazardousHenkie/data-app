@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import CssBaseline from '@material-ui/core/CssBaseline'
 import GlobalStyle from 'styles/index'
@@ -41,7 +41,8 @@ const App: React.FC = () => {
     const { loggedIn } = useSelector(stateSelector)
 
     const { darkMode, setDarkMode } = usePrefersDarkMode()
-    const { theme } = useTheme()
+
+    const { theme } = useTheme(darkMode)
 
     useEffect(() => {
         if (loggedIn) {
