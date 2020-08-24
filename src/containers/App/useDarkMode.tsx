@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 
-const usePrefersDarkMode = () => {
+const useDarkMode = () => {
     const [darkMode, setDarkMode] = useState(
         localStorage.getItem('darkmode') === 'true'
     )
@@ -18,4 +18,4 @@ const usePrefersDarkMode = () => {
     return { darkMode, setDarkMode }
 }
 
-export default usePrefersDarkMode
+export default useDarkMode

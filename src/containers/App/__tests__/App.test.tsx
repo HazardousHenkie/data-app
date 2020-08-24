@@ -10,17 +10,17 @@ import { getRefreshTokenRequest } from 'globals/authentication/refreshToken/acti
 import configureStore from 'store/configureStore'
 
 import mockFetch, { mockFetchCleanUp } from 'utils/request-test-utils'
-import usePrefersDarkMode from '../usePrefersDarkMode'
+import useDarkMode from '../useDarkMode'
 
 import App from '../App'
 
-jest.mock('../usePrefersDarkMode')
+jest.mock('../useDarkMode')
 
 describe('<App />', () => {
     beforeEach(() => {
         mockFetch({})
         // @ts-ignore
-        usePrefersDarkMode.mockReturnValue({ darkMode: false })
+        useDarkMode.mockReturnValue({ darkMode: false })
 
         // app has several errors which can't be solved since it's the main container component so silence them.
         // when developing uncomment this one.
@@ -55,7 +55,7 @@ describe('<App />', () => {
 
     it('should have darkmode when userPrefersDarkMode is true', () => {
         // @ts-ignore
-        usePrefersDarkMode.mockReturnValue({ darkMode: true })
+        useDarkMode.mockReturnValue({ darkMode: true })
 
         const { getByTestId } = render(<App />)
 

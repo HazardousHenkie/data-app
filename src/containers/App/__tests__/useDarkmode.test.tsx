@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react-hooks'
 
 import useMediaQuery from '@material-ui/core/useMediaQuery'
-import usePrefersDarkMode from '../usePrefersDarkMode'
+import useDarkMode from '../useDarkMode'
 
 jest.mock('@material-ui/core/useMediaQuery')
 
@@ -12,7 +12,7 @@ describe('useTheme', () => {
     })
 
     it('DarkMode should be false when (prefers-color-scheme: dark) is not set', () => {
-        const { result } = renderHook(() => usePrefersDarkMode())
+        const { result } = renderHook(() => useDarkMode())
 
         expect(result.current.darkMode).toEqual(false)
     })
@@ -21,7 +21,7 @@ describe('useTheme', () => {
         // @ts-ignore
         useMediaQuery.mockReturnValue(true)
 
-        const { result } = renderHook(() => usePrefersDarkMode())
+        const { result } = renderHook(() => useDarkMode())
 
         expect(result.current.darkMode).toEqual(true)
     })
