@@ -22,13 +22,11 @@ const stateSelector = createSelector(makeSelectCountry(), country => ({
     country
 }))
 
-const key = 'country'
-
 const CountryInformation: React.FC = () => {
     const { t, i18n } = useTranslation('homePage')
     const { country } = useSelector(stateSelector)
 
-    useInjectReducer({ key, reducer: reducer as Reducer })
+    useInjectReducer({ key: 'country', reducer: reducer as Reducer })
 
     return (
         <Card data-testid="CountryInformationCard" variant="outlined">
@@ -37,7 +35,7 @@ const CountryInformation: React.FC = () => {
                 avatar={
                     <Avatar
                         aria-label={t(
-                            'homePage:countryAdvisor.countryInformation',
+                            'homePage:countryInformation.countryInformation',
                             'Country Information'
                         )}
                     >
@@ -45,8 +43,8 @@ const CountryInformation: React.FC = () => {
                     </Avatar>
                 }
                 title={`${t(
-                    'homePage:countryAdvisor.advisoryTitle',
-                    'Advisory for'
+                    'homePage:countryInformation.informationTitle',
+                    'Information for'
                 )}
                 ${
                     i18n.language === 'en'

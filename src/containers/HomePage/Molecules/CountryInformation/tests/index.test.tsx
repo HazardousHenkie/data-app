@@ -10,6 +10,12 @@ import setSelectedCountry from 'containers/HomePage/Molecules/CountryListItem/ac
 import CountryInformation from '../index'
 
 describe('<FavoriteCountryButton />', () => {
+    let store = configureStore({}, history)
+
+    afterEach(() => {
+        store = configureStore({}, history)
+    })
+
     it('should render like snapshot', () => {
         const component = render(<CountryInformation />)
 
@@ -49,9 +55,7 @@ describe('<FavoriteCountryButton />', () => {
         expect(CountryInformationCardHeaderSVG).toBeInTheDocument()
     })
 
-    it('should render a advisoryText inside CountryInformationCardHeader', () => {
-        const store = configureStore({}, history)
-
+    it('should render a informationText inside CountryInformationCardHeader', () => {
         const { getByText } = render(<CountryInformation />, {
             store
         })
@@ -60,12 +64,12 @@ describe('<FavoriteCountryButton />', () => {
             setSelectedCountry({ ...CountryItem.country, name: 'japan' })
         )
 
-        const advisoryText = getByText('Advisory for japan')
+        const advisoryText = getByText('Information for japan')
 
         expect(advisoryText).toBeInTheDocument()
     })
 
-    it('should render CountryInformationCard', () => {
+    it('should render CountryInformationCardContent', () => {
         const { getByTestId } = render(<CountryInformation />)
 
         const CountryInformationCard = getByTestId(
@@ -76,8 +80,6 @@ describe('<FavoriteCountryButton />', () => {
     })
 
     it('should render countryNativeName as a P', () => {
-        const store = configureStore({}, history)
-
         const { getByTestId } = render(<CountryInformation />, {
             store
         })
@@ -92,8 +94,6 @@ describe('<FavoriteCountryButton />', () => {
     })
 
     it('should render native name label inside countryNativeName', () => {
-        const store = configureStore({}, history)
-
         const { getByText } = render(<CountryInformation />, {
             store
         })
@@ -108,8 +108,6 @@ describe('<FavoriteCountryButton />', () => {
     })
 
     it('should render the countries native name inside countryNativeName', () => {
-        const store = configureStore({}, history)
-
         const { getByText } = render(<CountryInformation />, {
             store
         })
@@ -124,8 +122,6 @@ describe('<FavoriteCountryButton />', () => {
     })
 
     it('should render countryCapitalName as a P', () => {
-        const store = configureStore({}, history)
-
         const { getByTestId } = render(<CountryInformation />, {
             store
         })
@@ -140,8 +136,6 @@ describe('<FavoriteCountryButton />', () => {
     })
 
     it('should render capital label inside countryCapitalName', () => {
-        const store = configureStore({}, history)
-
         const { getByText } = render(<CountryInformation />, {
             store
         })
@@ -156,8 +150,6 @@ describe('<FavoriteCountryButton />', () => {
     })
 
     it('should render the countries capital inside countryCapitalName', () => {
-        const store = configureStore({}, history)
-
         const { getByText } = render(<CountryInformation />, {
             store
         })
@@ -172,8 +164,6 @@ describe('<FavoriteCountryButton />', () => {
     })
 
     it('should render countryRegionName as a P', () => {
-        const store = configureStore({}, history)
-
         const { getByTestId } = render(<CountryInformation />, {
             store
         })
@@ -188,8 +178,6 @@ describe('<FavoriteCountryButton />', () => {
     })
 
     it('should render region label inside countryRegionName', () => {
-        const store = configureStore({}, history)
-
         const { getByText } = render(<CountryInformation />, {
             store
         })
@@ -204,8 +192,6 @@ describe('<FavoriteCountryButton />', () => {
     })
 
     it('should render the countries region inside countryCapitalName', () => {
-        const store = configureStore({}, history)
-
         const { getByText } = render(<CountryInformation />, {
             store
         })
@@ -220,8 +206,6 @@ describe('<FavoriteCountryButton />', () => {
     })
 
     it('should render countrySubRegionName as a P', () => {
-        const store = configureStore({}, history)
-
         const { getByTestId } = render(<CountryInformation />, {
             store
         })
@@ -236,8 +220,6 @@ describe('<FavoriteCountryButton />', () => {
     })
 
     it('should render subregion label inside countrySubRegionName', () => {
-        const store = configureStore({}, history)
-
         const { getByText } = render(<CountryInformation />, {
             store
         })
@@ -252,8 +234,6 @@ describe('<FavoriteCountryButton />', () => {
     })
 
     it('should render the countries subregion inside countrySubRegionName', () => {
-        const store = configureStore({}, history)
-
         const { getByText } = render(<CountryInformation />, {
             store
         })
@@ -268,8 +248,6 @@ describe('<FavoriteCountryButton />', () => {
     })
 
     it('should render countryPopulation as a P', () => {
-        const store = configureStore({}, history)
-
         const { getByTestId } = render(<CountryInformation />, {
             store
         })
@@ -284,8 +262,6 @@ describe('<FavoriteCountryButton />', () => {
     })
 
     it('should render population label inside countrySubRegionName', () => {
-        const store = configureStore({}, history)
-
         const { getByText } = render(<CountryInformation />, {
             store
         })
@@ -300,8 +276,6 @@ describe('<FavoriteCountryButton />', () => {
     })
 
     it('should render the countries population inside countrySubRegionName', () => {
-        const store = configureStore({}, history)
-
         const { getByText } = render(<CountryInformation />, {
             store
         })
@@ -316,8 +290,6 @@ describe('<FavoriteCountryButton />', () => {
     })
 
     it('should render countryLanguages as a P', () => {
-        const store = configureStore({}, history)
-
         const { getByTestId } = render(<CountryInformation />, {
             store
         })
@@ -335,8 +307,6 @@ describe('<FavoriteCountryButton />', () => {
     })
 
     it('should render languages label inside countryLanguages', () => {
-        const store = configureStore({}, history)
-
         const { getByText } = render(<CountryInformation />, {
             store
         })
@@ -354,8 +324,6 @@ describe('<FavoriteCountryButton />', () => {
     })
 
     it('should render the countries languages inside countryLanguages', () => {
-        const store = configureStore({}, history)
-
         const { getByText } = render(<CountryInformation />, {
             store
         })
@@ -373,8 +341,6 @@ describe('<FavoriteCountryButton />', () => {
     })
 
     it('should render countryCurrencies as a P', () => {
-        const store = configureStore({}, history)
-
         const { getByTestId } = render(<CountryInformation />, {
             store
         })
@@ -392,8 +358,6 @@ describe('<FavoriteCountryButton />', () => {
     })
 
     it('should render currencies label inside countryCurrencies', () => {
-        const store = configureStore({}, history)
-
         const { getByText } = render(<CountryInformation />, {
             store
         })
@@ -411,8 +375,6 @@ describe('<FavoriteCountryButton />', () => {
     })
 
     it('should render the countries currencies inside countryCurrencies', () => {
-        const store = configureStore({}, history)
-
         const { getByText } = render(<CountryInformation />, {
             store
         })

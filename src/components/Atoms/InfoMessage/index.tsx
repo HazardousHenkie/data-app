@@ -8,7 +8,11 @@ type ErrorProps = {
 }
 
 const InfoMessage: React.FC<ErrorProps> = ({ message, severity }) => {
-    return <Alert severity={severity}>{message}</Alert>
+    return (
+        <Alert data-testid="infoMessage" severity={severity}>
+            {message}
+        </Alert>
+    )
 }
 
 export default InfoMessage

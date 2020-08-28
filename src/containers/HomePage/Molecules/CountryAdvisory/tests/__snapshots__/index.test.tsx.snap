@@ -11,6 +11,7 @@ Object {
       >
         <div
           class="MuiCardHeader-root"
+          data-testid="CountryAdvisoryHeader"
         >
           <div
             class="MuiCardHeader-avatar"
@@ -44,9 +45,11 @@ Object {
         </div>
         <div
           class="MuiCardContent-root"
+          data-testid="CountryAdvisoryCardContent"
         >
           <p
             class="MuiTypography-root MuiTypography-body1"
+            data-testid="countryAdvisoryScore"
           >
             Advisory not found.
           </p>
@@ -61,6 +64,7 @@ Object {
     >
       <div
         class="MuiCardHeader-root"
+        data-testid="CountryAdvisoryHeader"
       >
         <div
           class="MuiCardHeader-avatar"
@@ -94,9 +98,11 @@ Object {
       </div>
       <div
         class="MuiCardContent-root"
+        data-testid="CountryAdvisoryCardContent"
       >
         <p
           class="MuiTypography-root MuiTypography-body1"
+          data-testid="countryAdvisoryScore"
         >
           Advisory not found.
         </p>

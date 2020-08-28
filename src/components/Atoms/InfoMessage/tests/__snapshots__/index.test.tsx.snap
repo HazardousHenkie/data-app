@@ -7,6 +7,7 @@ Object {
     <div>
       <div
         class="MuiPaper-root MuiAlert-root MuiAlert-standardError MuiPaper-elevation0"
+        data-testid="infoMessage"
         role="alert"
       >
         <div
@@ -34,6 +35,7 @@ Object {
   "container": <div>
     <div
       class="MuiPaper-root MuiAlert-root MuiAlert-standardError MuiPaper-elevation0"
+      data-testid="infoMessage"
       role="alert"
     >
       <div
