@@ -37,6 +37,14 @@ module.exports = {
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
         '@typescript-eslint/ban-ts-ignore': 'warn',
-        '@typescript-eslint/unbound-method': 'warn'
+        '@typescript-eslint/unbound-method': 'warn',
+        'import/no-extraneous-dependencies': [
+            'error',
+            {
+                devDependencies: true,
+                optionalDependencies: false,
+                peerDependencies: false
+            }
+        ]
     }
 }

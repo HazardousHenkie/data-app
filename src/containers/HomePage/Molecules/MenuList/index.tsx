@@ -33,7 +33,10 @@ const MenuList: React.FC = () => {
                 aria-label={t('menuList:titleMenu', 'Mainmenu')}
             >
                 <ListItem>
-                    <ListItemText primary={t('menuList:title', 'Data App')} />
+                    <ListItemText
+                        data-cy="appTitle"
+                        primary={t('menuList:title', 'Data App')}
+                    />
                 </ListItem>
 
                 <ListItem>
@@ -44,6 +47,7 @@ const MenuList: React.FC = () => {
 
                 <ListItem style={{ marginTop: 'auto' }} dense>
                     <ListItemText
+                        data-cy="languageTitleText"
                         primary={t('menuList:languageTitle', 'Language')}
                     />
                 </ListItem>
@@ -51,7 +55,10 @@ const MenuList: React.FC = () => {
                     <LanguageSwitcher />
                 </ListItem>
                 <ListItem dense>
-                    <ListItemText primary={t('menuList:themeTitle', 'Theme')} />
+                    <ListItemText
+                        data-cy="themeSwitcherText"
+                        primary={t('menuList:themeTitle', 'Theme')}
+                    />
                 </ListItem>
                 <ListItem dense>
                     <ThemeSwitcher />
