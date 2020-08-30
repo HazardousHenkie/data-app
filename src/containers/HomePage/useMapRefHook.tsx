@@ -10,7 +10,7 @@ const useMapRef = () => {
         const map = mapRef.current
 
         if (map) {
-            map.leafletElement.locate()
+            map.leafletElement.locate({ timeout: 5000 })
         }
     }, [mapRef])
 

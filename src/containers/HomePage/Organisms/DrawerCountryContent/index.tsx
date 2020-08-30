@@ -27,7 +27,7 @@ const DrawerCountryContent: React.FC = () => {
         <>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
-                    <HeaderStyled>
+                    <HeaderStyled data-jy="countryDrawerTitle">
                         {i18n.language === 'en'
                             ? country.name
                             : country.translations[i18n.language]}

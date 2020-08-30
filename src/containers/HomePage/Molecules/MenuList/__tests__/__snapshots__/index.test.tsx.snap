@@ -15,6 +15,7 @@ Object {
         >
           <div
             class="MuiListItemText-root"
+            data-cy="appTitle"
           >
             <span
               class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
@@ -40,6 +41,7 @@ Object {
         >
           <div
             class="MuiListItemText-root MuiListItemText-dense"
+            data-cy="languageTitleText"
           >
             <span
               class="MuiTypography-root MuiListItemText-primary MuiTypography-body2 MuiTypography-displayBlock"
@@ -111,6 +113,7 @@ Object {
         >
           <div
             class="MuiListItemText-root MuiListItemText-dense"
+            data-cy="themeSwitcherText"
           >
             <span
               class="MuiTypography-root MuiListItemText-primary MuiTypography-body2 MuiTypography-displayBlock"
@@ -166,6 +169,7 @@ Object {
       >
         <div
           class="MuiListItemText-root"
+          data-cy="appTitle"
         >
           <span
             class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
@@ -191,6 +195,7 @@ Object {
       >
         <div
           class="MuiListItemText-root MuiListItemText-dense"
+          data-cy="languageTitleText"
         >
           <span
             class="MuiTypography-root MuiListItemText-primary MuiTypography-body2 MuiTypography-displayBlock"
@@ -262,6 +267,7 @@ Object {
       >
         <div
           class="MuiListItemText-root MuiListItemText-dense"
+          data-cy="themeSwitcherText"
         >
           <span
             class="MuiTypography-root MuiListItemText-primary MuiTypography-body2 MuiTypography-displayBlock"
