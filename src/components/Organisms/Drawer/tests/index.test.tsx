@@ -159,6 +159,4 @@ describe('<Drawer />', () => {
 
         expect(getByText('children')).toBeInTheDocument()
     })
-
-    // check if clicked if prop is passed (check if context is set when clicked)
 })
