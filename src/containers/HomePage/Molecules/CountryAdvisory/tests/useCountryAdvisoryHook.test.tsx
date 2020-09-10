@@ -16,30 +16,32 @@ import setSelectedCountry from 'containers/HomePage/Molecules/CountryListItem/ac
 import useCountryAdvisoryHook from '../useCountryAdvisoryHook'
 
 describe('useCountryAdvisoryHook', () => {
+    const fixture = {
+        data: {
+            NL: {
+                iso_alpha2: 'NL',
+                name: 'Netherlands',
+                continent: 'EU',
+                advisory: {
+                    score: 3.4,
+                    sources_active: 8
+                }
+            }
+        }
+    }
+
     let store = configureStore({}, history)
+
+    beforeEach(() => {
+        mockFetch(fixture)
+    })
 
     afterAll(() => {
         store = configureStore({}, history)
         mockFetchCleanUp()
     })
 
-    it('If should return the data after a succesfull call', async () => {
-        const fixture = {
-            data: {
-                NL: {
-                    iso_alpha2: 'NL',
-                    name: 'Netherlands',
-                    continent: 'EU',
-                    advisory: {
-                        score: 3.4,
-                        sources_active: 8
-                    }
-                }
-            }
-        }
-
-        mockFetch(fixture)
-
+    it('If should start loading and return the data after a succesfull call', async () => {
         const { result, waitForNextUpdate } = renderHook(
             () => useCountryAdvisoryHook(),
             {
@@ -48,7 +50,6 @@ describe('useCountryAdvisoryHook', () => {
                 }
             }
         )
-
         act(() => {
             store.dispatch(
                 setSelectedCountry({
@@ -57,9 +58,8 @@ describe('useCountryAdvisoryHook', () => {
                 })
             )
         })
-
+        expect(result.current.loading).toEqual(true)
         await waitForNextUpdate()
-
         expect(result.current.countryAdvisory).toEqual(fixture.data.NL)
     })
 
@@ -88,16 +88,6 @@ describe('useCountryAdvisoryHook', () => {
         await waitForNextUpdate()
 
         expect(result.current.fetchingError).toEqual(error)
-    })
-
-    it('Should start loading on first load', () => {
-        const { result } = renderHook(() => useCountryAdvisoryHook(), {
-            wrapper: ({ children }) => {
-                return <Provider store={store}>{children}</Provider>
-            }
-        })
-
-        expect(result.current.loading).toBe(true)
     })
 
     it('Loading should be false after call', async () => {

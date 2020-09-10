@@ -2,12 +2,10 @@ import React from 'react'
 import { render, within, fireEvent } from 'utils/test-utils'
 
 import { CountryItem } from 'containers/HomePage/Molecules/CountryListItem/constants'
+import mockFetch, { mockFetchCleanUp } from 'utils/request-test-utils'
 import FavoriteCountryButton from '../index'
 
 import useCountryFavorite from '../useCountryFavoriteHook'
-
-// difficult
-// it also has the hook calling which probably provides an error
 
 jest.mock('../useCountryFavoriteHook')
 
@@ -17,8 +15,13 @@ const heartComponent = (
 
 describe('<FavoriteCountryButton />', () => {
     beforeEach(() => {
+        mockFetch({})
         // @ts-ignore
         useCountryFavorite.mockReturnValue({})
+    })
+
+    afterEach(() => {
+        mockFetchCleanUp()
     })
 
     it('should render like snapshot', () => {

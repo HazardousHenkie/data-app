@@ -1,9 +1,17 @@
 import React from 'react'
 import { render, fireEvent } from 'utils/test-utils'
 
+import mockFetch, { mockFetchCleanUp } from 'utils/request-test-utils'
 import HeaderSearch from '../index'
 
 describe('<HeaderSearch />', () => {
+    beforeEach(() => {
+        mockFetch({})
+    })
+
+    afterAll(() => {
+        mockFetchCleanUp()
+    })
     it('should render like snapshot', () => {
         const component = render(<HeaderSearch />)
 
