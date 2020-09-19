@@ -39,7 +39,8 @@ module.exports = {
         "react/jsx-props-no-spreading": "off",
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/explicit-function-return-type": "off",
-        "@typescript-eslint/ban-ts-ignore": "warn"
+        "@typescript-eslint/ban-ts-ignore": "warn",
+        "@typescript-eslint/unbound-method": "warn"
     },
     settings: {
         'import/resolver': {

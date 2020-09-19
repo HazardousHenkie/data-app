@@ -30,7 +30,7 @@ const ErrorSnackbars: React.FC = () => {
     }
 
     return (
-        <>
+        <div data-testid="ErrorsSnackbarComponent">
             {errors.map((error, index) => (
                 <Snackbar
                     data-testid="Snackbar"
@@ -48,7 +48,7 @@ const ErrorSnackbars: React.FC = () => {
                     <InfoMessage message={error.message} severity="error" />
                 </Snackbar>
             ))}
-        </>
+        </div>
     )
 }
 

@@ -4,9 +4,17 @@ exports[`<ErrorSnackbars /> should render like snapshot 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
-    <div />
+    <div>
+      <div
+        data-testid="ErrorsSnackbarComponent"
+      />
+    </div>
   </body>,
-  "container": <div />,
+  "container": <div>
+    <div
+      data-testid="ErrorsSnackbarComponent"
+    />
+  </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
   "findAllByDisplayValue": [Function],

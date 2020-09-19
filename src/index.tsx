@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom'
 
 import App from 'containers/App/App'
 
-import history from 'utils/history'
-
 import variables from 'styles/variables'
 import { ThemeProvider } from 'styled-components'
 
@@ -19,7 +17,7 @@ import './utils/i18n'
 import * as serviceWorker from './serviceWorker'
 
 const initialState = {}
-const store = configureStore(initialState, history)
+const store = configureStore(initialState)
 
 ReactDOM.render(
     <React.StrictMode>

@@ -1,2 +1,4 @@
-remove connected router
 add styled components tests
+locale storage tests
+check login after sometime
+where to add act/or ignore it

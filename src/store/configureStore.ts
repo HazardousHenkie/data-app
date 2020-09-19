@@ -1,8 +1,6 @@
 import { applyMiddleware, createStore, compose, StoreEnhancer } from 'redux'
-import { routerMiddleware } from 'connected-react-router'
 import { createInjectorsEnhancer, forceReducerReload } from 'redux-injectors'
 import createSagaMiddleware from 'redux-saga'
-import { History } from 'history'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 import { InjectedStore, ApplicationRootState } from '../types'
@@ -11,12 +9,11 @@ import rootSaga from './sagas'
 import createReducer from './reducers'
 
 export default function configureStore(
-    initialState: ApplicationRootState | object,
-    history: History
+    initialState: ApplicationRootState | object
 ): InjectedStore {
     const sagaMiddleware = createSagaMiddleware()
     const { run: runSaga } = sagaMiddleware
-    const middlewares = [sagaMiddleware, routerMiddleware(history)]
+    const middlewares = [sagaMiddleware]
 
     const enhancers = [
         applyMiddleware(...middlewares),

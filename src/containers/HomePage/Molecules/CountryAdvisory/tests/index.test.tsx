@@ -2,7 +2,6 @@ import React from 'react'
 import { render, act } from 'utils/test-utils'
 
 import configureStore from 'store/configureStore'
-import history from 'utils/history'
 
 import { CountryItem } from 'containers/HomePage/Molecules/CountryListItem/constants'
 import setSelectedCountry from 'containers/HomePage/Molecules/CountryListItem/actions'
@@ -12,7 +11,7 @@ import CountryAdvisory from '../index'
 jest.mock('../useCountryAdvisoryHook')
 
 describe('<CountryAdvisory />', () => {
-    let store = configureStore({}, history)
+    let store = configureStore({})
 
     beforeEach(() => {
         // @ts-ignore
@@ -22,7 +21,7 @@ describe('<CountryAdvisory />', () => {
     })
 
     afterEach(() => {
-        store = configureStore({}, history)
+        store = configureStore({})
     })
 
     it('should render like snapshot', () => {

@@ -1,7 +1,6 @@
 import React from 'react'
 import { render, fireEvent } from 'utils/test-utils'
 
-import history from 'utils/history'
 import configureStore from 'store/configureStore'
 
 import ListItem from '../index'
@@ -48,7 +47,7 @@ describe('<ListItem />', () => {
     })
 
     test('onClickCountry should dispatch setSelectedCountry', () => {
-        const mockStore = configureStore({}, history)
+        const mockStore = configureStore({})
         mockStore.dispatch = jest.fn()
 
         const { getByTestId } = render(

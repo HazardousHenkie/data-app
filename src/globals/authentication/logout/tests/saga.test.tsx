@@ -25,6 +25,8 @@ describe('logoutSaga Saga', () => {
             // eslint-disable-next-line redux-saga/no-unhandled-errors
             put(logoutSuccess())
         )
+
+        expect(localStorage.removeItem).toHaveBeenCalledTimes(1)
     })
 
     it('should call the logoutError action if the response errors', () => {

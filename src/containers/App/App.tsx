@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
-import lightTheme, { darkTheme } from 'styles/themeStyles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import GlobalStyle from 'styles/index'
 
@@ -14,21 +13,21 @@ import {
     ThemeProvider as MuiThemeProvider,
     StylesProvider
 } from '@material-ui/styles'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 import { useTranslation } from 'react-i18next'
 
 import { Helmet } from 'react-helmet'
-
-import history from 'utils/history'
 
 import { createSelector } from 'reselect'
 import { makeSelectLoggedIn } from 'globals/authentication/selectors'
 import { getFavoritedCountries } from 'globals/favoritedCountriesList/actions'
 
 import ErrorSnackbars from 'containers/HomePage/Organisms/Errors'
-import { ConnectedRouter } from 'connected-react-router'
+
 import Routes from './routes'
+
+import usePrefersDarkMode from './usePrefersDarkMode'
+import useTheme from './useTheme'
 
 const stateSelector = createSelector(makeSelectLoggedIn(), loggedIn => ({
     loggedIn
@@ -37,12 +36,17 @@ const stateSelector = createSelector(makeSelectLoggedIn(), loggedIn => ({
 const App: React.FC = () => {
     const dispatch = useDispatch()
     const { t } = useTranslation('app')
-    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
-    const [darkMode, setDarkMode] = useState(
-        localStorage.getItem('darkmode') === 'true'
-    )
-    const [theme, setTheme] = useState(lightTheme)
+
     const { loggedIn } = useSelector(stateSelector)
+
+    const { darkMode, setDarkMode } = usePrefersDarkMode()
+    const { theme } = useTheme()
+
+    useEffect(() => {
+        if (loggedIn) {
+            dispatch(getFavoritedCountries())
+        }
+    }, [loggedIn, dispatch])
 
     useEffect(() => {
         if (
@@ -55,61 +59,42 @@ const App: React.FC = () => {
         }
     }, [dispatch])
 
-    useEffect(() => {
-        if (!localStorage.getItem('darkmode')) {
-            setDarkMode(prefersDarkMode)
-        }
-    }, [prefersDarkMode])
-
-    useEffect(() => {
-        setTheme(darkMode ? darkTheme : lightTheme)
-    }, [darkMode])
-
-    useEffect(() => {
-        if (loggedIn) {
-            dispatch(getFavoritedCountries())
-        }
-    }, [loggedIn, dispatch])
-
     return (
-        <ConnectedRouter history={history}>
-            <StylesProvider injectFirst>
-                <MuiThemeProvider theme={theme}>
-                    <ThemeProvider theme={theme}>
-                        <GlobalStyle />
-                        <CssBaseline />
-                        <div className="App">
-                            <Helmet
-                                titleTemplate={t(
-                                    'app:titleTemplate',
-                                    '%s - Data app'
+        <StylesProvider injectFirst>
+            <MuiThemeProvider theme={theme}>
+                <ThemeProvider theme={theme}>
+                    <GlobalStyle />
+                    <CssBaseline />
+                    <div
+                        data-testid="app"
+                        className={`App ${darkMode ? 'darkmode' : ''}`}
+                    >
+                        <Helmet
+                            titleTemplate={t(
+                                'app:titleTemplate',
+                                '%s - Data app'
+                            )}
+                        >
+                            <meta
+                                name="description"
+                                content={t(
+                                    'app:descriptionTitle',
+                                    'A data app example'
                                 )}
-                                defaultTitle={t(
-                                    'app:defaultTitle',
-                                    'data app example'
-                                )}
-                            >
-                                <meta
-                                    name="description"
-                                    content={t(
-                                        'app:descriptionTitle',
-                                        'A data app example'
-                                    )}
-                                />
-                            </Helmet>
+                            />
+                        </Helmet>
 
-                            <ThemeContext.Provider
-                                value={{ darkMode, setDarkMode }}
-                            >
-                                <ErrorSnackbars />
+                        <ThemeContext.Provider
+                            value={{ darkMode, setDarkMode }}
+                        >
+                            <ErrorSnackbars />
 
-                                <Routes />
-                            </ThemeContext.Provider>
-                        </div>
-                    </ThemeProvider>
-                </MuiThemeProvider>
-            </StylesProvider>
-        </ConnectedRouter>
+                            <Routes />
+                        </ThemeContext.Provider>
+                    </div>
+                </ThemeProvider>
+            </MuiThemeProvider>
+        </StylesProvider>
     )
 }
 

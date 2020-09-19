@@ -2,17 +2,16 @@ import React from 'react'
 import { render } from 'utils/test-utils'
 
 import configureStore from 'store/configureStore'
-import history from 'utils/history'
 
 import { initialCountriesHeaderState } from '../constants'
 import { getCountriesDataSuccess } from '../actions'
 import CountriesList from '../index'
 
 describe('<CountriesList />', () => {
-    let store = configureStore({}, history)
+    let store = configureStore({})
 
     afterEach(() => {
-        store = configureStore({}, history)
+        store = configureStore({})
     })
 
     it('should render like snapshot', () => {

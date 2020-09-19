@@ -28,12 +28,17 @@ describe('loginSaga Saga', () => {
     })
 
     it('should dispatch the loginSuccess action if call was successfull', () => {
-        const response = { user: { id: '', name: '' } }
+        const response = { user: { id: '', name: '', googleId: '1' } }
         const putDescriptor = loginSagaGenerator.next(response).value
 
         expect(putDescriptor).toEqual(
             // eslint-disable-next-line redux-saga/no-unhandled-errors
             put(loginSuccess(response.user))
+        )
+
+        expect(localStorage.setItem).toHaveBeenCalledWith(
+            'userId',
+            response.user.googleId
         )
     })
 

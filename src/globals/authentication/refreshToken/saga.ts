@@ -33,7 +33,7 @@ export default function* refreshTokenSaga(
 
         yield put(getRefreshTokenSuccess(response.user))
     } catch (error) {
-        if (error.response.status !== 400) {
+        if (error && error.response && error.response.status !== 400) {
             yield put(getRefreshTokenError(error))
             yield put(setError(error))
         }
