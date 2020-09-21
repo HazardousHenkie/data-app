@@ -4,6 +4,3 @@ how to run external server??? cypress
 // language switch test? in jest?
 // check if theme is changing? check theme switcher? in jest
 // change to type?
-
-
-// change dependencies form normal to dev

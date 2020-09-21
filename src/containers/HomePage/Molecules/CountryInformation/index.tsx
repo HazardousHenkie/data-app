@@ -69,22 +69,6 @@ const CountryInformation: React.FC = () => {
                     </Typography>
                 )}
 
-                {country.capital && (
-                    <Typography
-                        data-testid="countryCapitalName"
-                        variant="body1"
-                        component="p"
-                    >
-                        <strong>
-                            {t(
-                                'homePage:countryInformation.capital',
-                                'Capital:'
-                            )}
-                        </strong>
-                        {` ${country.capital}`}
-                    </Typography>
-                )}
-
                 {country.region && (
                     <Typography
                         data-testid="countryRegionName"
@@ -92,7 +76,7 @@ const CountryInformation: React.FC = () => {
                         component="p"
                     >
                         <strong>
-                            {t('homePage:countryInformation.region', 'Region')}:
+                            {t('homePage:countryInformation.region', 'Region:')}
                         </strong>
                         {` ${country.region}`}
                     </Typography>
@@ -129,27 +113,6 @@ const CountryInformation: React.FC = () => {
                         {` ${country.population}`}
                     </Typography>
                 )}
-
-                {country.languages &&
-                    country.languages[0] &&
-                    country.languages[0].name && (
-                        <Typography
-                            data-testid="countryLanguages"
-                            variant="body1"
-                            component="p"
-                        >
-                            <strong>
-                                {t(
-                                    'homePage:countryInformation.languages',
-                                    'Languages:'
-                                )}
-                            </strong>
-                            {` ${country.languages.map(
-                                (language: { [key: string]: string }) =>
-                                    ` ${language.name}(${language.nativeName})`
-                            )}`}
-                        </Typography>
-                    )}
 
                 {country.currencies &&
                     country.currencies[0] &&

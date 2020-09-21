@@ -12,12 +12,12 @@
     "countryInformation": {
         "countryInformation": "Land informatie",
         "informationTitle": "Informatie voor",
-        "nativeName": "Inheemse naam",
-        "capital": "Hoofdstad",
-        "region": "Regio",
-        "subregion": "Subregio",
-        "population": "Populatie",
-        "languages": "Talen",
-        "currencies": "Valuta's"
+        "nativeName": "Inheemse naam:",
+        "capital": "Hoofdstad:",
+        "region": "Regio:",
+        "subregion": "Subregio:",
+        "population": "Populatie:",
+        "languages": "Talen:",
+        "currencies": "Valuta's:"
     }
 }

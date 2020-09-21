@@ -12,12 +12,12 @@
     "countryInformation": {
         "countryInformation": "国情報",
         "informationTitle": "情報",
-        "nativeName": "ネイティブ名",
-        "capital": "資本",
-        "region": "領域",
-        "subregion": "サブリージョン",
-        "population": "人口",
-        "languages": "言語",
-        "currencies": "通貨"
+        "nativeName": "ネイティブ名:",
+        "capital": "資本:",
+        "region": "領域:",
+        "subregion": "サブリージョン:",
+        "population": "人口:",
+        "languages": "言語:",
+        "currencies": "通貨:"
     }
 }
