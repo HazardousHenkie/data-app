@@ -5,7 +5,7 @@ import usePrefersDarkMode from '../usePrefersDarkMode'
 
 jest.mock('@material-ui/core/useMediaQuery')
 
-describe('usePrefersDarkMode', () => {
+describe('useTheme', () => {
     beforeEach(() => {
         // @ts-ignore
         useMediaQuery.mockReturnValue(false)

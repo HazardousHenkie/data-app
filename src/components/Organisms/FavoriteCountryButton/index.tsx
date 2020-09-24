@@ -45,13 +45,12 @@ const FavoriteCountryButton: React.FC<FavoriteCountryButtonInterface> = ({
         ...initialFavoritedCountriesState.countries[0]
     })
     const [active, setActive] = useState<boolean>(false)
-    const [clicked, setClicked] = useState<boolean>(false)
 
-    const { loading, countrySucessfullRequest } = useCountryFavorite(
-        favoritedCountry,
-        active,
-        clicked
-    )
+    const {
+        loading,
+        countrySucessfullRequest,
+        setClicked
+    } = useCountryFavorite(favoritedCountry)
     const { t } = useTranslation('FavoriteCountryButton')
 
     const { favoritedCountries } = useSelector(stateSelector)
@@ -77,11 +76,11 @@ const FavoriteCountryButton: React.FC<FavoriteCountryButtonInterface> = ({
         if (countrySucessfullRequest) {
             setActive(activeState => !activeState)
             setFavoritedCountry(countrySucessfullRequest)
-            setClicked(false)
         }
     }, [countrySucessfullRequest])
 
     const toggleFavorite = () => {
+        console.log('iconButton')
         setClicked(true)
 
         if (favoritedCountry.ref['@ref'].id === '') {

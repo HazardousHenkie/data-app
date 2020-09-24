@@ -23,19 +23,22 @@ const stateSelector = createStructuredSelector({
 
 const useCountryFavorite = (
     favoritedCountry: FavoritedCountryInterface,
-    active: boolean,
-    clicked: boolean
+    initialClicked?: boolean
 ) => {
     const dispatch = useDispatch()
-    const [loading, setLoading] = useState<boolean>(false)
+    const [clicked, setClicked] = useState<boolean>(false)
+    const [loading, setLoading] = useState<boolean>(initialClicked || false)
     const [countrySucessfullRequest, setCountrySucessfullRequest] = useState<
         FavoritedCountryInterface
     >()
+
     const { favoritedCountries } = useSelector(stateSelector)
 
     useEffect(() => {
+        console.log(clicked, 'clicki')
         if (clicked) {
             const fetchData = async () => {
+                console.log('are we here?  ')
                 setLoading(true)
                 let fetchRequest: FavoritedCountryInterface
 
@@ -50,6 +53,8 @@ const useCountryFavorite = (
                                 }
                             }
                         )
+
+                        setClicked(false)
 
                         setCountrySucessfullRequest({
                             ...initialFavoritedCountriesState.countries[0],
@@ -69,6 +74,7 @@ const useCountryFavorite = (
                                 )
                             )
                         )
+                        // setClicked(false)
                     } else {
                         fetchRequest = await request(
                             `/.netlify/functions/saveCountry/${favoritedCountry.data.countryId}`,
@@ -80,6 +86,8 @@ const useCountryFavorite = (
                             }
                         )
 
+                        setClicked(false)
+
                         setCountrySucessfullRequest(fetchRequest)
 
                         dispatch(
@@ -88,6 +96,7 @@ const useCountryFavorite = (
                                 fetchRequest
                             ])
                         )
+                        // setClicked(false)
                     }
                 } catch (error) {
                     if (error.response && error.response.status !== 404) {
@@ -100,11 +109,12 @@ const useCountryFavorite = (
 
             fetchData()
         }
-    }, [favoritedCountries, dispatch, favoritedCountry, active, clicked])
+    }, [favoritedCountries, dispatch, favoritedCountry, clicked])
 
     return {
         loading,
-        countrySucessfullRequest
+        countrySucessfullRequest,
+        setClicked
     }
 }
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, within, fireEvent } from 'utils/test-utils'
+import { render, within, fireEvent, act } from 'utils/test-utils'
 
 import { CountryItem } from 'containers/HomePage/Molecules/CountryListItem/constants'
 import mockFetch, { mockFetchCleanUp } from 'utils/request-test-utils'
@@ -79,7 +79,9 @@ describe('<FavoriteCountryButton />', () => {
         })
         const { getByTestId } = render(heartComponent)
 
-        fireEvent.click(getByTestId('heartButton'))
+        act(() => {
+            fireEvent.click(getByTestId('heartButton'))
+        })
 
         const icon = getByTestId('favoriteIconBorder')
         expect(icon).toBeInTheDocument()

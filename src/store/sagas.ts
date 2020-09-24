@@ -12,7 +12,6 @@ import logoutSaga from 'globals/authentication/logout/saga'
 import refreshTokenSaga from 'globals/authentication/refreshToken/saga'
 import favoritedCountriesSaga from 'globals/favoritedCountriesList/saga'
 
-// tests?
 export default function* authenticationRootSaga() {
     yield takeLatest(
         ActionTypesRefreshToken.GET_REFRESH_TOKEN_REQUEST,
