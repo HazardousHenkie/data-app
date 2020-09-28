@@ -5,7 +5,6 @@ import { logoutRequest } from 'globals/authentication/logout/actions'
 import { setError } from 'globals/globalErrors/actions'
 import { ResponseError } from './request'
 
-// test this one? maybe it's just a call test?
 function* requestErrorCheck(error: ResponseError) {
     try {
         if (localStorage.getItem('userId')) {
@@ -16,6 +15,7 @@ function* requestErrorCheck(error: ResponseError) {
             yield put(logoutRequest())
         }
     } catch {
+        // are we really getting here????
         yield put(logoutRequest())
         yield put(setError(error))
     }

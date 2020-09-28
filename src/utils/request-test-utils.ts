@@ -1,4 +1,4 @@
-const mockFetch = (mockData: { [key: string]: string | object }) => {
+const mockFetch = (mockData: { [key: string]: string | number | object }) => {
     global.fetch = jest.fn().mockImplementation(() =>
         Promise.resolve({
             status: 200,

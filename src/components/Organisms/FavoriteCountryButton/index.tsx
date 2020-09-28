@@ -80,7 +80,6 @@ const FavoriteCountryButton: React.FC<FavoriteCountryButtonInterface> = ({
     }, [countrySucessfullRequest])
 
     const toggleFavorite = () => {
-        console.log('iconButton')
         setClicked(true)
 
         if (favoritedCountry.ref['@ref'].id === '') {

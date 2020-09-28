@@ -12,6 +12,7 @@ describe('<HeaderSearch />', () => {
     afterAll(() => {
         mockFetchCleanUp()
     })
+
     it('should render like snapshot', () => {
         const component = render(<HeaderSearch />)
 
