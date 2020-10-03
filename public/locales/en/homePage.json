@@ -3,11 +3,11 @@
     "description": "Homepage description",
     "countryAdvisor": {
         "avatar": "country",
-        "advisoryTitle": "Advisory for",
-        "score": "score",
-        "message": "message",
+        "advisoryTitle": "Advisory for: ",
+        "score": "Score: ",
+        "message": "Message: ",
         "notFound": "Advisory not found.",
-        "source": "source"
+        "source": "Source: "
     },
     "countryInformation": {
         "countryInformation": "Country Information",

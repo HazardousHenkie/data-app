@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="sc-AxhUy laGaXi"
+        class="sc-AxhUy hRJRFd"
         data-testid="ClickIndicator"
       >
         <svg
@@ -55,7 +55,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="sc-AxhUy laGaXi"
+      class="sc-AxhUy hRJRFd"
       data-testid="ClickIndicator"
     >
       <svg

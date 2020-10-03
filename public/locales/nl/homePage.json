@@ -3,11 +3,11 @@
     "description": "Homepagina beschrijving",
     "countryAdvisor": {
         "avatar": "land",
-        "advisoryTitle": "advies voor",
-        "score": "score",
-        "message": "bericht",
+        "advisoryTitle": "advies voor: ",
+        "score": "Score: ",
+        "message": "Bericht: ",
         "notFound": "Advies niet gevonden.",
-        "source": "bron"
+        "source": "Bron: "
     },
     "countryInformation": {
         "countryInformation": "Land informatie",
