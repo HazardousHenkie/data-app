@@ -97,6 +97,17 @@ const useCountryFavorite = (
                         }
                     }
                 } catch (error) {
+                    // if (
+                    //     error.response.status === ERROR_STATUS_CODES.UNAUTHORIZED &&
+                    //     localStorage.getItem('userId')
+                    // ) {
+                    //     yield put(
+                    //         getRefreshTokenRequest(localStorage.getItem('userId') as string)
+                    //     )
+                    // } else {
+                    //     yield put(logoutRequest())
+                    // }
+
                     if (error.response && error.response.status !== 404) {
                         dispatch(setError(error))
                     }

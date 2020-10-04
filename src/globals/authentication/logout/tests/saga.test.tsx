@@ -1,5 +1,7 @@
 import { put } from 'redux-saga/effects'
 
+import { getRefreshTokenRequest } from 'globals/authentication/refreshToken/actions'
+import { logoutRequest } from 'globals/authentication/logout/actions'
 import { ResponseError } from 'utils/request'
 import { setError } from 'globals/globalErrors/actions'
 
@@ -29,17 +31,48 @@ describe('logoutSaga Saga', () => {
         expect(localStorage.removeItem).toHaveBeenCalledTimes(1)
     })
 
-    it('should call the logoutError action if the response errors', () => {
+    it('should call refereshtoken if localstorage(userid) and responserror gives a 401 error', () => {
+        localStorage.setItem('userId', 'userId')
+
+        const responseError = Response.error()
+        // @ts-ignore
+        responseError.status = 401
+
+        const response = new ResponseError(responseError, 'Some error')
+
+        const putDescriptor = logoutSagaGenerator.throw(response).value
+
+        expect(putDescriptor).toEqual(
+            // eslint-disable-next-line redux-saga/no-unhandled-errors
+            put(
+                getRefreshTokenRequest(localStorage.getItem('userId') as string)
+            )
+        )
+    })
+
+    it('should call the logoutRequest if the response errors', () => {
         const response = new ResponseError(callDescriptor, 'Some error')
 
         const putDescriptor = logoutSagaGenerator.throw(response).value
-        // eslint-disable-next-line redux-saga/no-unhandled-errors
-        expect(putDescriptor).toEqual(put(logoutError(response)))
 
+        // eslint-disable-next-line redux-saga/no-unhandled-errors
+        expect(putDescriptor).toEqual(put(logoutRequest()))
+    })
+
+    it('should call the setError and logoutError action if the response errors', () => {
+        const response = new ResponseError(callDescriptor, 'Some error')
+
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        logoutSagaGenerator.throw(response).value
         const putDescriptorSecondError = logoutSagaGenerator.next(response)
             .value
 
         // eslint-disable-next-line redux-saga/no-unhandled-errors
-        expect(putDescriptorSecondError).toEqual(put(setError(response)))
+        expect(putDescriptorSecondError).toEqual(put(logoutError(response)))
+
+        const putDescriptorThirdError = logoutSagaGenerator.next(response).value
+
+        // eslint-disable-next-line redux-saga/no-unhandled-errors
+        expect(putDescriptorThirdError).toEqual(put(setError(response)))
     })
 })
