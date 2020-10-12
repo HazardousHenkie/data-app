@@ -3,6 +3,11 @@ import { useState, useEffect } from 'react'
 import { createStructuredSelector } from 'reselect'
 import { useSelector, useDispatch } from 'react-redux'
 
+import ERROR_STATUS_CODES from 'utils/errorStatusCodes'
+
+import { getRefreshTokenRequest } from 'globals/authentication/refreshToken/actions'
+import { logoutRequest } from 'globals/authentication/logout/actions'
+
 import { setFavoritedCountries } from 'globals/favoritedCountriesList/actions'
 import { setError } from 'globals/globalErrors/actions'
 import authToken from 'globals/authentication/authToken'
@@ -97,16 +102,20 @@ const useCountryFavorite = (
                         }
                     }
                 } catch (error) {
-                    // if (
-                    //     error.response.status === ERROR_STATUS_CODES.UNAUTHORIZED &&
-                    //     localStorage.getItem('userId')
-                    // ) {
-                    //     yield put(
-                    //         getRefreshTokenRequest(localStorage.getItem('userId') as string)
-                    //     )
-                    // } else {
-                    //     yield put(logoutRequest())
-                    // }
+                    if (
+                        error.response &&
+                        error.response.status ===
+                            ERROR_STATUS_CODES.UNAUTHORIZED &&
+                        localStorage.getItem('userId')
+                    ) {
+                        dispatch(
+                            getRefreshTokenRequest(
+                                localStorage.getItem('userId') as string
+                            )
+                        )
+                    } else {
+                        dispatch(logoutRequest())
+                    }
 
                     if (error.response && error.response.status !== 404) {
                         dispatch(setError(error))
