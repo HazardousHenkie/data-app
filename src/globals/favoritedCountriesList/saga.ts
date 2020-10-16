@@ -23,7 +23,6 @@ function* getFavoritedCountriesDataSaga() {
 
         yield put(setFavoritedCountries(response.data))
     } catch (error) {
-        console.log(error)
         if (
             error.response.status === ERROR_STATUS_CODES.UNAUTHORIZED &&
             localStorage.getItem('userId')

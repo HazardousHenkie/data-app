@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from 'utils/test-utils'
+import { render, act } from 'utils/test-utils'
 
 import configureStore from 'store/configureStore'
 
@@ -119,14 +119,25 @@ describe('<CountriesList />', () => {
     })
 
     it('should render list with one item', () => {
+        // @ts-ignore
+        useFilteredCountries.mockReturnValue([
+            { ...CountryItem.country, name: 'japan' }
+        ])
+
         const store = configureStore({})
+
         const { getByTestId } = render(
             <CountriesList open setOpen={() => {}} />,
             { store }
         )
 
         store.dispatch(
-            getCountriesDataSuccess(initialCountriesHeaderState.data)
+            getCountriesDataSuccess([
+                {
+                    ...CountryItem.country,
+                    name: 'japan'
+                }
+            ])
         )
 
         const countryItem = getByTestId('countryItem')

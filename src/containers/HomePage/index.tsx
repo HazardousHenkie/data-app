@@ -16,7 +16,7 @@ const HomePage: React.FC = () => {
     const [openDrawer, setOpenDrawer] = useState(false)
 
     return (
-        <>
+        <div data-testid="HomePage">
             <Helmet>
                 <title>{t('homePage:title', 'Home Page')}</title>
                 <meta
@@ -34,7 +34,7 @@ const HomePage: React.FC = () => {
                     <DrawerCountryContent />
                 </Drawer>
             </DrawerContext.Provider>
-        </>
+        </div>
     )
 }
 

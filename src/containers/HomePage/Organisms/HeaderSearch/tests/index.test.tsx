@@ -9,7 +9,7 @@ describe('<HeaderSearch />', () => {
         mockFetch({})
     })
 
-    afterAll(() => {
+    afterEach(() => {
         mockFetchCleanUp()
     })
 
