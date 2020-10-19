@@ -2,6 +2,7 @@ import { call, put, takeLatest } from 'redux-saga/effects'
 
 import request from 'utils/request'
 
+import { setError } from 'globals/globalErrors/actions'
 import { getCountriesDataSuccess, getCountriesDataError } from './actions'
 import ActionTypes from './constants'
 
@@ -16,6 +17,7 @@ export function* getCountriesDataSaga() {
         yield put(getCountriesDataSuccess(response))
     } catch (error) {
         yield put(getCountriesDataError(error))
+        yield put(setError(error))
     }
 }
 

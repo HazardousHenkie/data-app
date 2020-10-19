@@ -3,34 +3,32 @@ import ReactDOM from 'react-dom'
 
 import App from 'containers/App/App'
 
-import history from 'utils/history'
-import { ConnectedRouter } from 'connected-react-router'
-
 import variables from 'styles/variables'
 import { ThemeProvider } from 'styled-components'
 
 import 'typeface-roboto'
 
 import { Provider } from 'react-redux'
-import configureStore from './configureStore'
+import Loader from 'components/Atoms/Loader'
+import configureStore from './store/configureStore'
 
 import './utils/i18n'
 
 import * as serviceWorker from './serviceWorker'
 
 const initialState = {}
-const store = configureStore(initialState, history)
+const store = configureStore(initialState)
 
 ReactDOM.render(
-    <Provider store={store}>
-        <ThemeProvider theme={variables}>
-            <ConnectedRouter history={history}>
-                <Suspense fallback={null}>
+    <React.StrictMode>
+        <Provider store={store}>
+            <ThemeProvider theme={variables}>
+                <Suspense fallback={<Loader />}>
                     <App />
                 </Suspense>
-            </ConnectedRouter>
-        </ThemeProvider>
-    </Provider>,
+            </ThemeProvider>
+        </Provider>
+    </React.StrictMode>,
     document.getElementById('root')
 )
 

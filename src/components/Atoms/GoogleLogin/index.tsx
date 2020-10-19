@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react'
-
-import serialize from 'serialize-javascript'
+import React, { useState } from 'react'
 
 import {
     GoogleLogin,
@@ -8,141 +6,71 @@ import {
     GoogleLoginResponseOffline
 } from 'react-google-login'
 
-import Snackbar from '@material-ui/core/Snackbar'
-import InfoMessage from 'components/Atoms/InfoMessage'
-import InlineLoader from 'components/Atoms/InlineLoader'
-import request from 'utils/request'
+import { useTranslation } from 'react-i18next'
 
-import { useDispatch } from 'react-redux'
-import setUser from 'reduxComponents/User/actions'
+import InlineLoader from 'components/Atoms/InlineLoader'
+
+import { useDispatch, useSelector } from 'react-redux'
+
+import { createSelector } from 'reselect'
+
+import { makeSelectLoader } from 'globals/authentication/selectors'
+
+import { setError } from 'globals/globalErrors/actions'
+import { loginRequest } from 'globals/authentication/login/actions'
 
 import GoogleLoginWrapper from './styledComponents'
 
-const useGoogleAuthResponse = (googleResponseToken: string | undefined) => {
-    const [loading, setLoading] = useState<boolean>(false)
-    const [fetchingError, setFetchingError] = useState<Error>()
-    const [googleAuthServerResponse, setGoogleAuthServerResponse] = useState<
-        object
-    >()
-
-    //      // check if token is still valid and login again if not (check on page load and request not in this file)
-
-    useEffect(() => {
-        if (googleResponseToken && googleResponseToken !== '') {
-            const fetchData = async () => {
-                setLoading(true)
-                try {
-                    const loginObject = { authToken: googleResponseToken }
-
-                    const result = await request(
-                        `/.netlify/functions/googleLogin`,
-                        {
-                            method: 'POST',
-                            body: serialize(loginObject)
-                        }
-                    )
-
-                    if (result) {
-                        setGoogleAuthServerResponse(result)
-                    }
-                } catch (error) {
-                    const errorResponseMessage = await error.response.json()
-                    setFetchingError(errorResponseMessage)
-                }
-
-                setLoading(false)
-            }
-
-            fetchData()
-        }
-    }, [googleResponseToken])
-
-    return { loading, fetchingError, googleAuthServerResponse }
-}
+const stateSelector = createSelector(makeSelectLoader(), loading => ({
+    loading
+}))
 
 const GoogleLoginButton: React.FC = () => {
     const dispatch = useDispatch()
-    const [googleResponseToken, setGoogleResponseToken] = useState<string>()
+    const { t } = useTranslation('loginButton')
     const [googleLoading, setGoogleLoading] = useState<boolean>(false)
-    const [open, setOpen] = useState<boolean>(false)
 
-    const [error, setError] = useState<string>()
-
-    const {
-        loading,
-        fetchingError,
-        googleAuthServerResponse
-    } = useGoogleAuthResponse(googleResponseToken)
+    const { loading } = useSelector(stateSelector)
 
     const onGoogleLoginRequest = () => {
         setGoogleLoading(true)
     }
-
-    useEffect(() => {
-        if (googleAuthServerResponse) {
-            dispatch(setUser(googleAuthServerResponse))
-        }
-    }, [googleAuthServerResponse, dispatch])
-
-    useEffect(() => {
-        if (fetchingError) {
-            setOpen(true)
-            setError(fetchingError.toString())
-        }
-    }, [fetchingError])
 
     const googleResponseSuccess = (
         response: GoogleLoginResponse | GoogleLoginResponseOffline
     ) => {
         setGoogleLoading(false)
         if ((response as GoogleLoginResponse).getAuthResponse().id_token) {
-            setGoogleResponseToken(
-                (response as GoogleLoginResponse).getAuthResponse().id_token
+            dispatch(
+                loginRequest(
+                    (response as GoogleLoginResponse).getAuthResponse().id_token
+                )
             )
         }
     }
 
-    const handleClose = () => {
-        setOpen(false)
-    }
-
     const googleResponseError = (response: { [key: string]: string }) => {
         setGoogleLoading(false)
-        setOpen(true)
-        setError(response.error)
+        setError(new Error(response.error))
     }
 
     return (
-        <>
-            {process.env.REACT_APP_GOOGLE_LOGIN_CLIENT_ID && (
-                <GoogleLoginWrapper>
+        <div data-testid="googleLoginButton">
+            {process.env.REACT_APP_GOOGLE_CLIENT_ID && (
+                <GoogleLoginWrapper data-testid="googleLoginWrapper">
                     {(loading || googleLoading) && <InlineLoader />}
 
-                    {error && (
-                        <Snackbar
-                            open={open}
-                            autoHideDuration={6000}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'center'
-                            }}
-                            onClose={handleClose}
-                        >
-                            <InfoMessage message={error} severity="error" />
-                        </Snackbar>
-                    )}
-
                     <GoogleLogin
-                        clientId={process.env.REACT_APP_GOOGLE_LOGIN_CLIENT_ID}
+                        clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                         onRequest={onGoogleLoginRequest}
-                        buttonText="Login"
-                        disabled={googleLoading}
+                        buttonText={t('logout:button', 'Login')}
+                        disabled={loading || googleLoading}
                         onSuccess={googleResponseSuccess}
                         onFailure={googleResponseError}
                     />
                 </GoogleLoginWrapper>
             )}
-        </>
+        </div>
     )
 }
 

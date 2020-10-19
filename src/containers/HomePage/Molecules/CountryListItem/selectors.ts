@@ -2,9 +2,11 @@ import { createSelector, Selector } from 'reselect'
 
 import { ApplicationRootState } from 'types'
 import { CountryInterface } from './types'
-import { initialCountryState } from './reducer'
+import { CountryItem } from './constants'
 
-const selectCountry = (state: ApplicationRootState) => {
+export const initialCountryState = CountryItem
+
+export const selectCountry = (state: ApplicationRootState) => {
     return state.country || initialCountryState
 }
 

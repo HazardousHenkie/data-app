@@ -1,36 +1,14 @@
-import {
-    ContainerCountriesListState,
-    ContainerCountriesListActions
-} from './types'
+import { ActionType } from 'typesafe-actions'
+import CountriesListState from './types'
 
-import ActionTypes from './constants'
+import * as actions from './actions'
 
-export const initialCountriesHeaderState: ContainerCountriesListState = {
-    error: false,
-    loading: false,
-    data: [
-        {
-            alpha2Code: '',
-            name: '',
-            nativeName: '',
-            capital: '',
-            region: '',
-            subregion: '',
-            flag: '',
-            currency: '',
-            population: 0,
-            latlng: [0, 0],
-            currencies: [{ currency: 'euro' }],
-            languages: [{ language: 'language' }],
-            translations: { japanese: '日本語' }
-        }
-    ]
-}
+import ActionTypes, { initialCountriesHeaderState } from './constants'
 
 function countriesListReducer(
-    state: ContainerCountriesListState = initialCountriesHeaderState,
-    action: ContainerCountriesListActions
-): ContainerCountriesListState {
+    state: CountriesListState = initialCountriesHeaderState,
+    action: ActionType<typeof actions>
+): CountriesListState {
     switch (action.type) {
         case ActionTypes.GET_COUNTRIES_DATA:
             return {

@@ -7,10 +7,12 @@ export const StyledTypographyTitle = styled(Typography)`
     font-weight: bold;
 `
 
-export const ErrorPageDiv = styled.div`
+const ErrorPageDiv = styled.div`
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 `
+
+export default ErrorPageDiv

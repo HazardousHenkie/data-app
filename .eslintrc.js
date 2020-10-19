@@ -1,7 +1,7 @@
 module.exports = {
     parser: "@typescript-eslint/parser",
     parserOptions: {
-        project: "./tsconfig.json"
+        project: ["./cypress/tsconfig.json", "./tsconfig.json"]
     },
     env: {
         browser: true,
@@ -38,7 +38,9 @@ module.exports = {
         "react-hooks/exhaustive-deps": "warn",
         "react/jsx-props-no-spreading": "off",
         "@typescript-eslint/no-explicit-any": "off",
-        "@typescript-eslint/explicit-function-return-type": "off"
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/ban-ts-ignore": "warn",
+        "@typescript-eslint/unbound-method": "warn"
     },
     settings: {
         'import/resolver': {

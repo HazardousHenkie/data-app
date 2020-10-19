@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`loginSaga Saga should call the loginError and setError action if the response errors 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "combinator": false,
+  "payload": Object {
+    "args": Array [
+      "/.netlify/functions/googleLogin",
+      Object {
+        "body": "{\\"authToken\\":\\"userId\\"}",
+        "method": "POST",
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+  "type": "CALL",
+}
+`;
+
+exports[`loginSaga Saga should dispatch the loginSuccess action if call was successfull 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "combinator": false,
+  "payload": Object {
+    "args": Array [
+      "/.netlify/functions/googleLogin",
+      Object {
+        "body": "{\\"authToken\\":\\"userId\\"}",
+        "method": "POST",
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+  "type": "CALL",
+}
+`;

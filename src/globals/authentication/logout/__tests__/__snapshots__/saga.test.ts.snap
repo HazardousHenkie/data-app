@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`logoutSaga Saga should call the logoutRequest if the response errors 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "combinator": false,
+  "payload": Object {
+    "args": Array [
+      "/.netlify/functions/googleLogout",
+      Object {
+        "headers": Object {
+          "Authorization": "Bearer ",
+        },
+        "method": "POST",
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+  "type": "CALL",
+}
+`;
+
+exports[`logoutSaga Saga should call the setError and logoutError action if the response errors 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "combinator": false,
+  "payload": Object {
+    "args": Array [
+      "/.netlify/functions/googleLogout",
+      Object {
+        "headers": Object {
+          "Authorization": "Bearer ",
+        },
+        "method": "POST",
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+  "type": "CALL",
+}
+`;
+
+exports[`logoutSaga Saga should dispatch the logoutSuccess action if call was successfull 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "combinator": false,
+  "payload": Object {
+    "args": Array [
+      "/.netlify/functions/googleLogout",
+      Object {
+        "headers": Object {
+          "Authorization": "Bearer ",
+        },
+        "method": "POST",
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+  "type": "CALL",
+}
+`;

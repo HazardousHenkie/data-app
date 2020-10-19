@@ -32,7 +32,7 @@ const indicator = css`
     border-radius: 50px;
 `
 
-const swipeAnimation = (reverse: boolean): Keyframes => keyframes`
+export const swipeAnimation = (reverse: boolean): Keyframes => keyframes`
     0% {
         transform: translate(0, 0);
         opacity: 0;
@@ -54,7 +54,6 @@ export const SwipeableDrawerStyled = styled(SwipeableDrawer)`
         padding: 20px;
         border-top-right-radius: 25px;
         border-top-left-radius: 25px;
-        background-color: ${({ theme }) => theme.palette.primary.light};
     }
 `
 

@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getFavoritedCountriesDataSaga Saga should call refreshtoken if localstorage(userid) is set and there is responserror with a 401 error 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "combinator": false,
+  "payload": Object {
+    "args": Array [
+      "/.netlify/functions/getFavoritedCountries",
+      Object {
+        "headers": Object {
+          "Authorization": "Bearer ",
+        },
+        "method": "GET",
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+  "type": "CALL",
+}
+`;
+
+exports[`getFavoritedCountriesDataSaga Saga should call the logoutRequest if the response errors 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "combinator": false,
+  "payload": Object {
+    "args": Array [
+      "/.netlify/functions/getFavoritedCountries",
+      Object {
+        "headers": Object {
+          "Authorization": "Bearer ",
+        },
+        "method": "GET",
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+  "type": "CALL",
+}
+`;
+
+exports[`getFavoritedCountriesDataSaga Saga should call the setError and logoutError action if the response errors 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "combinator": false,
+  "payload": Object {
+    "args": Array [
+      "/.netlify/functions/getFavoritedCountries",
+      Object {
+        "headers": Object {
+          "Authorization": "Bearer ",
+        },
+        "method": "GET",
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+  "type": "CALL",
+}
+`;
+
+exports[`getFavoritedCountriesDataSaga Saga should dispatch the setFavoritedCountries action if call was successfull 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "combinator": false,
+  "payload": Object {
+    "args": Array [
+      "/.netlify/functions/getFavoritedCountries",
+      Object {
+        "headers": Object {
+          "Authorization": "Bearer ",
+        },
+        "method": "GET",
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+  "type": "CALL",
+}
+`;

@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography'
 import { withTranslation, WithTranslation } from 'react-i18next'
 
 import { Helmet } from 'react-helmet'
-import { ErrorPageDiv, StyledTypographyTitle } from './styledComponents'
+import ErrorPageDiv, { StyledTypographyTitle } from './styledComponents'
 
 interface ErrorType {
     errorCode: number
@@ -18,7 +18,7 @@ const ErrorPage: React.FC<WithTranslation & ErrorType> = ({
     errorMessage = t('error:notFound', 'Page not found')
 }) => {
     return (
-        <ErrorPageDiv>
+        <ErrorPageDiv data-testid="ErrorPageDiv">
             <Helmet>
                 <title>{t('error:title', 'Error Page')}</title>
                 <meta
@@ -29,11 +29,19 @@ const ErrorPage: React.FC<WithTranslation & ErrorType> = ({
                     )}
                 />
             </Helmet>
-            <StyledTypographyTitle align="center" variant="h1">
+            <StyledTypographyTitle
+                data-testid="StyledTypographyTitle"
+                align="center"
+                variant="h1"
+            >
                 {errorCode}
             </StyledTypographyTitle>
 
-            <Typography align="center" variant="body1">
+            <Typography
+                data-testid="TypographyError"
+                align="center"
+                variant="body1"
+            >
                 {errorMessage}
             </Typography>
         </ErrorPageDiv>

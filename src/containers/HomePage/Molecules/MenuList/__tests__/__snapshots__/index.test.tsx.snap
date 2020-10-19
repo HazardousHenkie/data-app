@@ -1,0 +1,360 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MenuList /> should render like snapshot 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <ul
+        aria-label="Mainmenu"
+        class="MuiList-root sc-AxheI iioqvx MuiList-padding"
+        data-testid="ListStyled"
+      >
+        <li
+          class="MuiListItem-root MuiListItem-gutters"
+        >
+          <div
+            class="MuiListItemText-root"
+          >
+            <span
+              class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+            >
+              Data App
+            </span>
+          </div>
+        </li>
+        <li
+          class="MuiListItem-root MuiListItem-gutters"
+        >
+          <div
+            data-testid="googleLoginButton"
+          />
+        </li>
+        <div
+          class="sc-AxgMl vayPh"
+          data-testid="FavoritedCountriesList"
+        />
+        <li
+          class="MuiListItem-root MuiListItem-dense MuiListItem-gutters"
+          style="margin-top: auto;"
+        >
+          <div
+            class="MuiListItemText-root MuiListItemText-dense"
+          >
+            <span
+              class="MuiTypography-root MuiListItemText-primary MuiTypography-body2 MuiTypography-displayBlock"
+            >
+              Language
+            </span>
+          </div>
+        </li>
+        <li
+          class="MuiListItem-root MuiListItem-gutters"
+        >
+          <div
+            class="sc-AxhCb bAhhyD"
+            data-testid="languageSwitcher"
+          >
+            <div
+              class="MuiFormControl-root MuiFormControl-fullWidth"
+            >
+              <div
+                class="MuiInputBase-root MuiOutlinedInput-root sc-AxhUy jdxpJa MuiInputBase-formControl"
+                data-testid="languageSwitcher_select"
+              >
+                <div
+                  aria-haspopup="listbox"
+                  aria-labelledby="select-language select-language"
+                  class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input"
+                  id="select-language"
+                  role="button"
+                  tabindex="0"
+                >
+                  en
+                </div>
+                <input
+                  aria-hidden="true"
+                  class="MuiSelect-nativeInput"
+                  tabindex="-1"
+                  value="en"
+                />
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSelect-icon MuiSelect-iconOutlined"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M7 10l5 5 5-5z"
+                  />
+                </svg>
+                <fieldset
+                  aria-hidden="true"
+                  class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
+                  style="padding-left: 8px;"
+                >
+                  <legend
+                    class="PrivateNotchedOutline-legend-2"
+                    style="width: 0.01px;"
+                  >
+                    <span>
+                      ​
+                    </span>
+                  </legend>
+                </fieldset>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li
+          class="MuiListItem-root MuiListItem-dense MuiListItem-gutters"
+        >
+          <div
+            class="MuiListItemText-root MuiListItemText-dense"
+          >
+            <span
+              class="MuiTypography-root MuiListItemText-primary MuiTypography-body2 MuiTypography-displayBlock"
+            >
+              Theme
+            </span>
+          </div>
+        </li>
+        <li
+          class="MuiListItem-root MuiListItem-dense MuiListItem-gutters"
+        >
+          <span
+            class="MuiSwitch-root"
+          >
+            <span
+              aria-disabled="false"
+              class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiSwitch-switchBase"
+              data-testid="ThemeSwitcher"
+            >
+              <span
+                class="MuiIconButton-label"
+              >
+                <input
+                  aria-label="Theme switcher"
+                  class="PrivateSwitchBase-input-8 MuiSwitch-input"
+                  type="checkbox"
+                  value=""
+                />
+                <span
+                  class="MuiSwitch-thumb"
+                />
+              </span>
+              <span
+                class="MuiTouchRipple-root"
+              />
+            </span>
+            <span
+              class="MuiSwitch-track"
+            />
+          </span>
+        </li>
+      </ul>
+    </div>
+  </body>,
+  "container": <div>
+    <ul
+      aria-label="Mainmenu"
+      class="MuiList-root sc-AxheI iioqvx MuiList-padding"
+      data-testid="ListStyled"
+    >
+      <li
+        class="MuiListItem-root MuiListItem-gutters"
+      >
+        <div
+          class="MuiListItemText-root"
+        >
+          <span
+            class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+          >
+            Data App
+          </span>
+        </div>
+      </li>
+      <li
+        class="MuiListItem-root MuiListItem-gutters"
+      >
+        <div
+          data-testid="googleLoginButton"
+        />
+      </li>
+      <div
+        class="sc-AxgMl vayPh"
+        data-testid="FavoritedCountriesList"
+      />
+      <li
+        class="MuiListItem-root MuiListItem-dense MuiListItem-gutters"
+        style="margin-top: auto;"
+      >
+        <div
+          class="MuiListItemText-root MuiListItemText-dense"
+        >
+          <span
+            class="MuiTypography-root MuiListItemText-primary MuiTypography-body2 MuiTypography-displayBlock"
+          >
+            Language
+          </span>
+        </div>
+      </li>
+      <li
+        class="MuiListItem-root MuiListItem-gutters"
+      >
+        <div
+          class="sc-AxhCb bAhhyD"
+          data-testid="languageSwitcher"
+        >
+          <div
+            class="MuiFormControl-root MuiFormControl-fullWidth"
+          >
+            <div
+              class="MuiInputBase-root MuiOutlinedInput-root sc-AxhUy jdxpJa MuiInputBase-formControl"
+              data-testid="languageSwitcher_select"
+            >
+              <div
+                aria-haspopup="listbox"
+                aria-labelledby="select-language select-language"
+                class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input"
+                id="select-language"
+                role="button"
+                tabindex="0"
+              >
+                en
+              </div>
+              <input
+                aria-hidden="true"
+                class="MuiSelect-nativeInput"
+                tabindex="-1"
+                value="en"
+              />
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSelect-icon MuiSelect-iconOutlined"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7 10l5 5 5-5z"
+                />
+              </svg>
+              <fieldset
+                aria-hidden="true"
+                class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
+                style="padding-left: 8px;"
+              >
+                <legend
+                  class="PrivateNotchedOutline-legend-2"
+                  style="width: 0.01px;"
+                >
+                  <span>
+                    ​
+                  </span>
+                </legend>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li
+        class="MuiListItem-root MuiListItem-dense MuiListItem-gutters"
+      >
+        <div
+          class="MuiListItemText-root MuiListItemText-dense"
+        >
+          <span
+            class="MuiTypography-root MuiListItemText-primary MuiTypography-body2 MuiTypography-displayBlock"
+          >
+            Theme
+          </span>
+        </div>
+      </li>
+      <li
+        class="MuiListItem-root MuiListItem-dense MuiListItem-gutters"
+      >
+        <span
+          class="MuiSwitch-root"
+        >
+          <span
+            aria-disabled="false"
+            class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiSwitch-switchBase"
+            data-testid="ThemeSwitcher"
+          >
+            <span
+              class="MuiIconButton-label"
+            >
+              <input
+                aria-label="Theme switcher"
+                class="PrivateSwitchBase-input-8 MuiSwitch-input"
+                type="checkbox"
+                value=""
+              />
+              <span
+                class="MuiSwitch-thumb"
+              />
+            </span>
+            <span
+              class="MuiTouchRipple-root"
+            />
+          </span>
+          <span
+            class="MuiSwitch-track"
+          />
+        </span>
+      </li>
+    </ul>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

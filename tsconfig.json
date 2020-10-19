@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "es2017",
+        "target": "es2018",
         "lib": ["dom", "dom.iterable", "esnext"],
         "allowJs": true,
         "skipLibCheck": true,
@@ -17,5 +17,6 @@
         "pretty": true,
         "baseUrl": "src"
     },
-    "include": ["src", "functions"]
+    "include": ["src", "functions", "jest.config.js"],
+    "exclude": ["cypress"]
 }

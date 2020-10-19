@@ -51,8 +51,12 @@ const CountriesListItem: React.FC<CountriesListItemProps> = ({
     }
 
     return (
-        <ListItem button onClick={() => onClickCountry(listCountry.name)}>
-            <ListItemIcon>
+        <ListItem
+            data-testid="CountriesListItem"
+            button
+            onClick={() => onClickCountry(listCountry.name)}
+        >
+            <ListItemIcon data-testid="CountriesListItemIcon">
                 <img
                     width="30"
                     height="20"
@@ -61,6 +65,7 @@ const CountriesListItem: React.FC<CountriesListItemProps> = ({
                 />
             </ListItemIcon>
             <ListItemText
+                data-testid="CountriesListItemText"
                 primary={
                     i18n.language === 'en'
                         ? listCountry.name

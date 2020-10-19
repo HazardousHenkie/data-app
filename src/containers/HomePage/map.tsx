@@ -1,8 +1,6 @@
-import React, { useState, useEffect, useRef, useContext } from 'react'
+import React, { useState, useContext } from 'react'
 
-import { isEmpty } from 'lodash'
-
-import { Map, Marker, MapProps, TileLayer } from 'react-leaflet'
+import { Marker, TileLayer } from 'react-leaflet'
 import * as Leaflet from 'leaflet'
 
 import Loader from 'components/Atoms/Loader'
@@ -11,40 +9,22 @@ import DrawerContext from 'components/Organisms/Drawer/DrawerContext'
 import { createSelector } from 'reselect'
 import { useSelector } from 'react-redux'
 
+import reducer from 'containers/HomePage/Molecules/CountryListItem/reducer'
 import makeSelectCountry from 'containers/HomePage/Molecules/CountryListItem/selectors'
 
+import { Reducer } from 'redux'
+import { useInjectReducer } from 'utils/redux-injectors'
+
 import StyledMap from './styledComponents'
+
+import useMapRef from './useMapRefHook'
+import useMapState from './useMapStateHook'
 
 const stateSelector = createSelector(makeSelectCountry(), country => ({
     country
 }))
 
-const useMapRef = () => {
-    const mapRef = useRef() as React.RefObject<Map<MapProps, Leaflet.Map>>
-
-    useEffect(() => {
-        const map = mapRef.current
-
-        if (map) {
-            map.leafletElement.locate()
-        }
-    }, [mapRef])
-
-    return mapRef
-}
-
-const useMapState = () => {
-    const { country } = useSelector(stateSelector)
-    const [mapState, setMapState] = useState({ lat: 0.0, lng: 0.0 })
-
-    useEffect(() => {
-        if (country.latlng) {
-            setMapState({ lat: country.latlng[0], lng: country.latlng[1] })
-        }
-    }, [country])
-
-    return { mapState, setMapState }
-}
+const key = 'country'
 
 const OSMap: React.FC = () => {
     const { country } = useSelector(stateSelector)
@@ -52,6 +32,8 @@ const OSMap: React.FC = () => {
     const [loading, setLoading] = useState(true)
     const mapRef = useMapRef()
     const { mapState, setMapState } = useMapState()
+
+    useInjectReducer({ key, reducer: reducer as Reducer })
 
     const { setOpenDrawer } = useContext(DrawerContext)
 
@@ -65,7 +47,7 @@ const OSMap: React.FC = () => {
     }
 
     return (
-        <>
+        <div data-testid="OSMap">
             {loading && <Loader />}
 
             <StyledMap
@@ -77,11 +59,12 @@ const OSMap: React.FC = () => {
                 ref={mapRef}
             >
                 <TileLayer
+                    data-testid="TileLayer"
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    url="https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png"
                 />
 
-                {!isEmpty(country) && (
+                {country && country.alpha2Code !== '' && (
                     <Marker
                         onClick={() => {
                             setOpenDrawer(true)
@@ -90,7 +73,7 @@ const OSMap: React.FC = () => {
                     />
                 )}
             </StyledMap>
-        </>
+        </div>
     )
 }
 

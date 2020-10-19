@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { createSelector } from 'reselect'
+import { Reducer } from 'redux'
 import { useSelector } from 'react-redux'
 
 import Avatar from '@material-ui/core/Avatar'
@@ -9,6 +10,9 @@ import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
+
+import reducer from 'containers/HomePage/Molecules/CountryListItem/reducer'
+import { useInjectReducer } from 'utils/redux-injectors'
 
 import makeSelectCountry from 'containers/HomePage/Molecules/CountryListItem/selectors'
 
@@ -22,13 +26,16 @@ const CountryInformation: React.FC = () => {
     const { t, i18n } = useTranslation('homePage')
     const { country } = useSelector(stateSelector)
 
+    useInjectReducer({ key: 'country', reducer: reducer as Reducer })
+
     return (
-        <Card variant="outlined">
+        <Card data-testid="CountryInformationCard" variant="outlined">
             <CardHeader
+                data-testid="CountryInformationCardHeader"
                 avatar={
                     <Avatar
                         aria-label={t(
-                            'homePage:countryAdvisor.countryInformation',
+                            'homePage:countryInformation.countryInformation',
                             'Country Information'
                         )}
                     >
@@ -36,8 +43,8 @@ const CountryInformation: React.FC = () => {
                     </Avatar>
                 }
                 title={`${t(
-                    'homePage:countryAdvisor.advisoryTitle',
-                    'Advisory for'
+                    'homePage:countryInformation.informationTitle',
+                    'Information for'
                 )}
                 ${
                     i18n.language === 'en'
@@ -45,117 +52,125 @@ const CountryInformation: React.FC = () => {
                         : country.translations[i18n.language]
                 }`}
             />
-            <CardContent>
+            <CardContent data-testid="CountryInformationCardContent">
                 {country.nativeName && (
-                    <Typography variant="body1" component="p">
-                        <>
-                            <strong>
-                                {t(
-                                    'homePage:countryInformation.nativeName',
-                                    'Native name'
-                                )}
-                                :
-                            </strong>
-                            {` ${country.nativeName}`}
-                        </>
+                    <Typography
+                        data-testid="countryNativeName"
+                        variant="body1"
+                        component="p"
+                    >
+                        <strong>
+                            {t(
+                                'homePage:countryInformation.nativeName',
+                                'Native name:'
+                            )}
+                        </strong>
+                        {` ${country.nativeName}`}
                     </Typography>
                 )}
 
                 {country.capital && (
-                    <Typography variant="body1" component="p">
-                        <>
-                            <strong>
-                                {t(
-                                    'homePage:countryInformation.capital',
-                                    'Capital'
-                                )}
-                                :
-                            </strong>
-                            {` ${country.capital}`}
-                        </>
+                    <Typography
+                        data-testid="countryCapitalName"
+                        variant="body1"
+                        component="p"
+                    >
+                        <strong>
+                            {t(
+                                'homePage:countryInformation.capital',
+                                'Capital:'
+                            )}
+                        </strong>
+                        {` ${country.capital}`}
                     </Typography>
                 )}
 
                 {country.region && (
-                    <Typography variant="body1" component="p">
-                        <>
-                            <strong>
-                                {t(
-                                    'homePage:countryInformation.region',
-                                    'Region'
-                                )}
-                                :
-                            </strong>
-                            {` ${country.region}`}
-                        </>
+                    <Typography
+                        data-testid="countryRegionName"
+                        variant="body1"
+                        component="p"
+                    >
+                        <strong>
+                            {t('homePage:countryInformation.region', 'Region')}:
+                        </strong>
+                        {` ${country.region}`}
                     </Typography>
                 )}
 
                 {country.subregion && (
-                    <Typography variant="body1" component="p">
-                        <>
-                            <strong>
-                                {t(
-                                    'homePage:countryInformation.subregion',
-                                    'Subregion'
-                                )}
-                                :
-                            </strong>
-                            {` ${country.region}`}
-                        </>
+                    <Typography
+                        data-testid="countrySubRegionName"
+                        variant="body1"
+                        component="p"
+                    >
+                        <strong>
+                            {t(
+                                'homePage:countryInformation.subregion',
+                                'Subregion:'
+                            )}
+                        </strong>
+                        {` ${country.subregion}`}
                     </Typography>
                 )}
 
                 {country.population && (
-                    <Typography variant="body1" component="p">
-                        <>
-                            <strong>
-                                {t(
-                                    'homePage:countryInformation.population',
-                                    'Population'
-                                )}
-                                :
-                            </strong>
-                            {` ${country.population}`}
-                        </>
+                    <Typography
+                        data-testid="countryPopulation"
+                        variant="body1"
+                        component="p"
+                    >
+                        <strong>
+                            {t(
+                                'homePage:countryInformation.population',
+                                'Population:'
+                            )}
+                        </strong>
+                        {` ${country.population}`}
                     </Typography>
                 )}
 
-                {country.languages && (
-                    <Typography variant="body1" component="p">
-                        <>
+                {country.languages &&
+                    country.languages[0] &&
+                    country.languages[0].name && (
+                        <Typography
+                            data-testid="countryLanguages"
+                            variant="body1"
+                            component="p"
+                        >
                             <strong>
                                 {t(
                                     'homePage:countryInformation.languages',
-                                    'Languages'
+                                    'Languages:'
                                 )}
-                                :
                             </strong>
                             {` ${country.languages.map(
                                 (language: { [key: string]: string }) =>
                                     ` ${language.name}(${language.nativeName})`
                             )}`}
-                        </>
-                    </Typography>
-                )}
+                        </Typography>
+                    )}
 
-                {country.currencies && (
-                    <Typography variant="body1" component="p">
-                        <>
+                {country.currencies &&
+                    country.currencies[0] &&
+                    country.currencies[0].code && (
+                        <Typography
+                            data-testid="countryCurrencies"
+                            variant="body1"
+                            component="p"
+                        >
                             <strong>
                                 {t(
                                     'homePage:countryInformation.currencies',
-                                    'Currencies'
+                                    'Currencies:'
                                 )}
-                                :
                             </strong>
                             {` ${country.currencies.map(
                                 currency =>
                                     ` ${currency.code}(${currency.symbol})`
                             )}`}
-                        </>
-                    </Typography>
-                )}
+                        </Typography>
+                    )}
             </CardContent>
         </Card>
     )

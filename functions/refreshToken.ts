@@ -2,10 +2,14 @@ import jwt from 'jsonwebtoken'
 
 import cookie from 'cookie'
 
-import { Handler, Context, Callback, APIGatewayEvent } from 'aws-lambda'
+import { Handler, APIGatewayEvent } from 'aws-lambda'
 
-import { ExprArg } from 'faunadb'
+import createJwtAuthToken from './helpers/jwt-helpers'
+
 import publicKey from './keys/publicKeyRefresh'
+
+import getRefreshToken from './database/token'
+import getUser from './database/user'
 
 interface Response {
     statusCode: number
@@ -13,41 +17,67 @@ interface Response {
     body: string
 }
 
-interface UserResponseInterface {
-    ref: ExprArg
-    ts: number
-    data: { [key: string]: string }
-}
-
-const handler: Handler = (
-    event: APIGatewayEvent,
-    context: Context,
-    callback: Callback
-) => {
+const handler: Handler = async (event: APIGatewayEvent) => {
     let response: Response
 
-    if (event.body && JSON.parse(event.body).authToken) {
-        // get id from somewhere maybe the acces token jwt
-        // check for the user
-
+    if (
+        event.body &&
+        event.headers.cookie &&
+        JSON.parse(event.body) &&
+        JSON.parse(event.body).userId
+    ) {
         try {
-            const payload = jwt.verify(
-                cookie.parse(event.headers.cookie).jwt_refresh,
-                publicKey
-            ) as { [key: string]: string | number }
+            const refreshCookie = cookie.parse(event.headers.cookie).jwt_refresh
+            const { userId } = JSON.parse(event.body)
 
-            response = {
-                statusCode: 200,
-                headers: {
-                    'Set-Cookie': [
-                        // createJwtCookie(
-                        //     existingUser.data.googleId,
-                        //     existingUser.data.name
-                        // )
-                    ],
-                    'Content-Type': 'application/json'
-                },
-                body: 'new auth token succesfully created'
+            if (refreshCookie && userId) {
+                const user = await getUser(userId)
+
+                if (!user) {
+                    throw new Error("User hasn't been registered.")
+                }
+
+                const refreshCookiePayload = jwt.verify(
+                    refreshCookie,
+                    publicKey
+                ) as {
+                    [key: string]: string | number
+                }
+                if (refreshCookiePayload.userId !== userId) {
+                    throw new Error('Invalid refresh token.')
+                }
+
+                const refreshTokenDB = await getRefreshToken(
+                    user.data.googleId,
+                    refreshCookie
+                ).catch(() => {
+                    throw new Error('Invalid refresh token')
+                })
+
+                if (!refreshTokenDB) {
+                    throw new Error('Invalid refresh token')
+                }
+
+                const authToken = createJwtAuthToken(
+                    user.data.googleId,
+                    user.data.name
+                )
+
+                response = {
+                    statusCode: 200,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        user: {
+                            userId: user.data.googleId,
+                            username: user.data.name
+                        },
+                        authToken
+                    })
+                }
+            } else {
+                throw new Error('Cookies not valid or present.')
             }
         } catch (error) {
             response = { statusCode: 400, body: JSON.stringify(error.message) }
@@ -59,19 +89,8 @@ const handler: Handler = (
         }
     }
 
-    return callback(null, response)
+    return response
 }
 
 // eslint-disable-next-line import/prefer-default-export
 export { handler }
-
-// get id from somewhere maybe the acces token jwt
-// check for the user
-
-// check if id and token are in db
-// if everything is fine create new token
-// console.log('before', refreshToken)
-
-// const existingRefreshToken = await getToken(refreshToken, googleUser.sub)
-
-// https://github.com/afteracademy/nodejs-backend-architecture-typescript/blob/master/src/routes/v1/access/token.ts

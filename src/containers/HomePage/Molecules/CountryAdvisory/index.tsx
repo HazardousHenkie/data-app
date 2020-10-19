@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 import { createSelector } from 'reselect'
+import { Reducer } from 'redux'
 import { useSelector } from 'react-redux'
 
 import Avatar from '@material-ui/core/Avatar'
@@ -14,63 +15,35 @@ import InfoMessage from 'components/Atoms/InfoMessage'
 import InlineLoader from 'components/Atoms/InlineLoader'
 import makeSelectCountry from 'containers/HomePage/Molecules/CountryListItem/selectors'
 
-import request from 'utils/request'
-
 import { useTranslation } from 'react-i18next'
-import CountryAdvisoryInterface from './types'
+
+import reducer from 'containers/HomePage/Molecules/CountryListItem/reducer'
+import { useInjectReducer } from 'utils/redux-injectors'
+
 import CardStyled, {
     CardBottomTypography,
     StyledLink
 } from './styledComponents'
 
+import useCountryAdvisory from './useCountryAdvisoryHook'
+
 const stateSelector = createSelector(makeSelectCountry(), country => ({
     country
 }))
 
-const useCountryAdvisory = () => {
-    const { country } = useSelector(stateSelector)
-    const [loading, setLoading] = useState<boolean>(false)
-    const [fetchingError, setFetchingError] = useState<Error>()
-    const [countryAdvisory, setCountryAdvisory] = useState<
-        CountryAdvisoryInterface
-    >()
-
-    useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true)
-            try {
-                const result = await request(
-                    `https://www.travel-advisory.info/api?countrycode=${country.alpha2Code}`
-                )
-
-                if (result) {
-                    setCountryAdvisory(result.data[country.alpha2Code])
-                }
-            } catch (error) {
-                if (error.response.status !== 404) {
-                    setFetchingError(error)
-                }
-            }
-
-            setLoading(false)
-        }
-
-        fetchData()
-    }, [country])
-
-    return { loading, fetchingError, countryAdvisory }
-}
-
-const DrawerCountryContent: React.FC = () => {
+const CountryAdvisory: React.FC = () => {
     const { t, i18n } = useTranslation('homePage')
     const { country } = useSelector(stateSelector)
     const { loading, fetchingError, countryAdvisory } = useCountryAdvisory()
 
+    useInjectReducer({ key: 'country', reducer: reducer as Reducer })
+
     return (
-        <CardStyled variant="outlined">
+        <CardStyled data-testid="CountryAdvisory" variant="outlined">
             {loading && <InlineLoader />}
 
             <CardHeader
+                data-testid="CountryAdvisoryHeader"
                 avatar={
                     <Avatar
                         aria-label={t(
@@ -91,15 +64,16 @@ const DrawerCountryContent: React.FC = () => {
                         : country.translations[i18n.language]
                 }`}
             />
-            <CardContent>
+            <CardContent data-testid="CountryAdvisoryCardContent">
                 {fetchingError && (
-                    <InfoMessage
-                        severity="error"
-                        message={fetchingError.toString()}
-                    />
+                    <InfoMessage severity="error" message={fetchingError} />
                 )}
 
-                <Typography variant="body1" component="p">
+                <Typography
+                    variant="body1"
+                    component="p"
+                    data-testid="countryAdvisoryScore"
+                >
                     {countryAdvisory &&
                         countryAdvisory.advisory.score &&
                         !loading && (
@@ -107,9 +81,8 @@ const DrawerCountryContent: React.FC = () => {
                                 <strong>
                                     {t(
                                         'homePage:countryAdvisor.score',
-                                        'score'
+                                        'score:'
                                     )}
-                                    :
                                 </strong>
                                 {` ${countryAdvisory.advisory.score}`}
                             </>
@@ -124,9 +97,8 @@ const DrawerCountryContent: React.FC = () => {
                             <strong>
                                 {t(
                                     'homePage:countryAdvisor.message',
-                                    'message'
+                                    'message:'
                                 )}
-                                :
                             </strong>
                             {` ${countryAdvisory.advisory.message}`}
                         </>
@@ -150,7 +122,7 @@ const DrawerCountryContent: React.FC = () => {
                 </Typography>
             </CardContent>
             {countryAdvisory && !loading && (
-                <CardActions>
+                <CardActions data-testid="CountryAdvisoryActions">
                     <CardBottomTypography variant="body2" color="inherit">
                         {countryAdvisory.advisory.updated}
 
@@ -168,4 +140,4 @@ const DrawerCountryContent: React.FC = () => {
     )
 }
 
-export default DrawerCountryContent
+export default CountryAdvisory

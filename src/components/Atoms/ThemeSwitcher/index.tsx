@@ -13,6 +13,7 @@ const ThemeSwitcher: React.FC = () => {
 
     return (
         <Switch
+            data-testid="ThemeSwitcher"
             checked={darkMode}
             onChange={handleChange}
             color="default"

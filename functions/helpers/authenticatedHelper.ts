@@ -16,11 +16,16 @@ const authenticatedWrapper = (toBeCheckedCookie: string) => {
     }
 
     try {
-        const payload = jwt.verify(toBeCheckedCookie, publicKey) as {
-            [key: string]: string | number
+        const bearerToken = toBeCheckedCookie.split('Bearer ')
+
+        const payload = jwt.verify(bearerToken[1], publicKey) as {
+            [key: string]: string
         }
 
-        const response = { statusCode: 200, body: payload.userId }
+        const response = {
+            statusCode: 200,
+            body: payload.userId
+        }
 
         return response
     } catch (err) {

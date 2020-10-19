@@ -2,11 +2,11 @@ import { Reducer, Store } from 'redux'
 import { Saga, Task } from 'redux-saga'
 import { SagaInjectionModes } from 'redux-injectors'
 
-import { RouterState } from 'connected-react-router'
-
-import { ContainerCountriesListState } from 'containers/HomePage/Molecules/CountriesList/types'
-import { ContainerCountryState } from 'containers/HomePage/Molecules/CountryListItem/types'
-import { ContainerUserState } from 'reduxComponents/User/types'
+import CountriesListState from 'containers/HomePage/Molecules/CountriesList/types'
+import CountryState from 'containers/HomePage/Molecules/CountryListItem/types'
+import AuthenticationState from 'globals/authentication/types'
+import FavoritedCountriesState from 'globals/favoritedCountriesList/types'
+import ErrorsState from 'globals/globalErrors/types'
 
 export interface InjectedStore extends Store {
     injectedReducers: object
@@ -25,8 +25,9 @@ export interface InjectSagaParams {
     mode?: SagaInjectionModes
 }
 export interface ApplicationRootState {
-    readonly router: RouterState
-    readonly countriesData: ContainerCountriesListState
-    readonly country: ContainerCountryState
-    readonly user: ContainerUserState
+    readonly errors: ErrorsState
+    readonly countriesData: CountriesListState
+    readonly favoritedCountries: FavoritedCountriesState
+    readonly country: CountryState
+    readonly authenticationData: AuthenticationState
 }

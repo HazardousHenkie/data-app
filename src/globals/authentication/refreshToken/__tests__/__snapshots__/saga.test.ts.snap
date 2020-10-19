@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`globalAddErrorSaga Saga should call the getRefreshTokenError, logoutSuccess and setError action if the response errors 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "combinator": false,
+  "payload": Object {
+    "args": Array [
+      "/.netlify/functions/refreshToken",
+      Object {
+        "body": "{\\"userId\\":\\"userId\\"}",
+        "method": "POST",
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+  "type": "CALL",
+}
+`;
+
+exports[`globalAddErrorSaga Saga should dispatch the getRefreshTokenSuccess action if call was successfull 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "combinator": false,
+  "payload": Object {
+    "args": Array [
+      "/.netlify/functions/refreshToken",
+      Object {
+        "body": "{\\"userId\\":\\"userId\\"}",
+        "method": "POST",
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+  "type": "CALL",
+}
+`;

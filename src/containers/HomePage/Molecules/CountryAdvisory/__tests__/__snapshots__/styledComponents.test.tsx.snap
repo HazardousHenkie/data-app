@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CardBottomTypography /> should render and match the snapshot 1`] = `
+.c0 {
+  font-size: 0.75rem;
+}
+
+<p
+  class="MuiTypography-root c0 MuiTypography-body1"
+/>
+`;
+
+exports[`<CardStyled /> should render and match the snapshot 1`] = `
+.c0 {
+  position: relative;
+}
+
+<div
+  class="MuiPaper-root MuiCard-root c0 MuiPaper-elevation1 MuiPaper-rounded"
+/>
+`;
+
+exports[`<StyledLink /> should render and match the snapshot 1`] = `
+.c0 {
+  margin-left: 5px;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+<a
+  class="MuiTypography-root MuiLink-root MuiLink-underlineHover c0 MuiTypography-colorPrimary"
+>
+  Children
+</a>
+`;

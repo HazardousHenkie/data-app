@@ -24,16 +24,20 @@ const HeaderSearch: React.FC = () => {
 
     return (
         <>
-            <TopBar>
+            <TopBar data-testid="TopBar">
                 {!openCountriesList && (
                     <SideDrawer>
                         <MenuList />
                     </SideDrawer>
                 )}
                 {openCountriesList && (
-                    <CloseCountriesList onClick={closeCountriesListClick} />
+                    <CloseCountriesList
+                        data-testid="CloseCountriesList"
+                        onClick={closeCountriesListClick}
+                    />
                 )}
                 <SearchFieldWrapper
+                    data-testid="SearchFieldWrapper"
                     role="button"
                     tabIndex={0}
                     onClick={openCountriesListClick}
@@ -42,6 +46,7 @@ const HeaderSearch: React.FC = () => {
                     <SearchField setValue={setSearchString} />
                 </SearchFieldWrapper>
             </TopBar>
+
             <CountriesList
                 open={openCountriesList}
                 setOpen={setOpenCountriesList}

@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoaderWrapper /> should render and match the snapshot 1`] = `
+.c0 {
+  padding-top: 86px;
+  position: fixed;
+  z-index: 1300;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  overflow-y: hidden;
+  overflow-y: auto;
+  background: #f0f0f0;
+}
+
+.c0::-webkit-scrollbar {
+  background-color: #f0f0f0;
+}
+
+.c0::-webkit-scrollbar-thumb {
+  height: 30px;
+  border-radius: 25px;
+  background: #6b6969;
+}
+
+<div
+  class="c0"
+/>
+`;

@@ -10,8 +10,7 @@ interface SearchFieldProps {
 
 const SearchField: React.FC<SearchFieldProps> = ({ setValue }) => {
     const [inputValue, setInputValue] = useState<string>('')
-    // suspense makes the map not so we will have handle the not ready state here
-    const { t, ready } = useTranslation('searchField', { useSuspense: false })
+    const { t } = useTranslation('searchField')
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -29,12 +28,11 @@ const SearchField: React.FC<SearchFieldProps> = ({ setValue }) => {
 
     return (
         <form>
-            {ready && (
-                <InputFieldStyled
-                    placeholder={t('searchField:inputLabel', 'search')}
-                    onChange={handleOnChange}
-                />
-            )}
+            <InputFieldStyled
+                value={inputValue}
+                placeholder={t('searchField:inputLabel', 'search')}
+                onChange={handleOnChange}
+            />
         </form>
     )
 }
