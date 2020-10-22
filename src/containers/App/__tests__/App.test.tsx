@@ -9,6 +9,7 @@ import { getRefreshTokenRequest } from 'globals/authentication/refreshToken/acti
 
 import configureStore from 'store/configureStore'
 
+import mockFetch, { mockFetchCleanUp } from 'utils/request-test-utils'
 import usePrefersDarkMode from '../usePrefersDarkMode'
 
 import App from '../App'
@@ -17,8 +18,17 @@ jest.mock('../usePrefersDarkMode')
 
 describe('<App />', () => {
     beforeEach(() => {
+        mockFetch({})
         // @ts-ignore
         usePrefersDarkMode.mockReturnValue({ darkMode: false })
+
+        // app has several errors which can't be solved since it's the main container component so silence them.
+        // when developing uncomment this one.
+        jest.spyOn(console, 'error').mockImplementation(() => {})
+    })
+
+    afterEach(() => {
+        mockFetchCleanUp()
     })
 
     it('should dispatch getRefreshTokenRequest when localStorage.getItem is set', () => {

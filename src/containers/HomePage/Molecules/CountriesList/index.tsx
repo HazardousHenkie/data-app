@@ -69,7 +69,6 @@ const CountriesList: React.FC<CountriesListProps> = ({
                     <InlineLoader />
                 ) : (
                     <List component="nav" aria-label="countries">
-                        {console.log(countries[0] && countries[0].name)}
                         {countries[0] &&
                             countries[0].name !== '' &&
                             countries.map(country => (
