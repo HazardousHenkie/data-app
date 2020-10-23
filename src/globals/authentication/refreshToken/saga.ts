@@ -9,6 +9,7 @@ import { ActionType as typeSafeAction } from 'typesafe-actions'
 import { logoutRequest } from 'globals/authentication/logout/actions'
 import { setError } from 'globals/globalErrors/actions'
 
+import ENDPOINTS from 'utils/constants'
 import {
     getRefreshTokenRequest,
     getRefreshTokenSuccess,
@@ -20,10 +21,8 @@ import authToken from '../authToken'
 export default function* refreshTokenSaga(
     params: typeSafeAction<typeof getRefreshTokenRequest>
 ) {
-    const requestURL = '/.netlify/functions/refreshToken'
-
     try {
-        const response = yield call(request, requestURL, {
+        const response = yield call(request, ENDPOINTS.REFRESH_TOKEN, {
             method: 'POST',
             body: serialize({
                 userId: params.payload

@@ -5,15 +5,14 @@ import request from 'utils/request'
 import ERROR_STATUS_CODES from 'utils/errorStatusCodes'
 import { setError } from 'globals/globalErrors/actions'
 import { setFavoritedCountries } from 'globals/favoritedCountriesList/actions'
+import ENDPOINTS from 'utils/constants'
 import { logoutSuccess, logoutError } from './actions'
 
 import authToken from '../authToken'
 
 export default function* logoutSaga() {
-    const requestURL = '/.netlify/functions/googleLogout'
-
     try {
-        yield call(request, requestURL, {
+        yield call(request, ENDPOINTS.LOGOUT, {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${authToken.token}`

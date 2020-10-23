@@ -23,8 +23,7 @@ describe('<App />', () => {
 
     beforeEach(() => {
         mockFetch({})
-        // @ts-ignore
-        useDarkMode.mockReturnValue({ darkMode: false })
+        ;(useDarkMode as jest.Mock).mockReturnValue({ darkMode: false })
     })
 
     afterEach(() => {
@@ -54,8 +53,7 @@ describe('<App />', () => {
     })
 
     it('should have darkmode when userPrefersDarkMode is true', () => {
-        // @ts-ignore
-        useDarkMode.mockReturnValue({ darkMode: true })
+        ;(useDarkMode as jest.Mock).mockReturnValue({ darkMode: true })
 
         const { getByTestId } = render(<App />)
 

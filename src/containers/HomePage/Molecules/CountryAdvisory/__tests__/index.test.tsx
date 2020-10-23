@@ -14,8 +14,7 @@ describe('<CountryAdvisory />', () => {
     let store = configureStore({})
 
     beforeEach(() => {
-        // @ts-ignore
-        useCountryAdvisoryHook.mockReturnValue({
+        ;(useCountryAdvisoryHook as jest.Mock).mockReturnValue({
             loading: false
         })
     })
@@ -39,8 +38,7 @@ describe('<CountryAdvisory />', () => {
     })
 
     it('should render InlineLoader when loading', () => {
-        // @ts-ignore
-        useCountryAdvisoryHook.mockReturnValue({
+        ;(useCountryAdvisoryHook as jest.Mock).mockReturnValue({
             loading: true
         })
 
@@ -99,8 +97,7 @@ describe('<CountryAdvisory />', () => {
 
     it('should render InlineLoader when loading', () => {
         const errorMessage = "Something wen't wrong"
-        // @ts-ignore
-        useCountryAdvisoryHook.mockReturnValue({
+        ;(useCountryAdvisoryHook as jest.Mock).mockReturnValue({
             fetchingError: errorMessage
         })
 
@@ -129,8 +126,7 @@ describe('<CountryAdvisory />', () => {
     })
 
     it('should render score text inside countryAdvisoryScore', () => {
-        // @ts-ignore
-        useCountryAdvisoryHook.mockReturnValue({
+        ;(useCountryAdvisoryHook as jest.Mock).mockReturnValue({
             countryAdvisory: {
                 advisory: {
                     score: 7
@@ -146,8 +142,7 @@ describe('<CountryAdvisory />', () => {
     })
 
     it('should render score inside countryAdvisoryScore', () => {
-        // @ts-ignore
-        useCountryAdvisoryHook.mockReturnValue({
+        ;(useCountryAdvisoryHook as jest.Mock).mockReturnValue({
             countryAdvisory: {
                 advisory: {
                     score: 'test'
@@ -163,8 +158,7 @@ describe('<CountryAdvisory />', () => {
     })
 
     it('should render a br countryAdvisoryScore', () => {
-        // @ts-ignore
-        useCountryAdvisoryHook.mockReturnValue({
+        ;(useCountryAdvisoryHook as jest.Mock).mockReturnValue({
             countryAdvisory: {
                 advisory: {
                     score: 'test'
@@ -182,8 +176,7 @@ describe('<CountryAdvisory />', () => {
     })
 
     it('should render message label inside countryAdvisoryScore', () => {
-        // @ts-ignore
-        useCountryAdvisoryHook.mockReturnValue({
+        ;(useCountryAdvisoryHook as jest.Mock).mockReturnValue({
             countryAdvisory: {
                 advisory: {}
             }
@@ -198,8 +191,7 @@ describe('<CountryAdvisory />', () => {
 
     it('should render message inside countryAdvisoryScore', () => {
         const message = 'Everything is fine!'
-        // @ts-ignore
-        useCountryAdvisoryHook.mockReturnValue({
+        ;(useCountryAdvisoryHook as jest.Mock).mockReturnValue({
             countryAdvisory: {
                 advisory: {
                     message
@@ -215,8 +207,7 @@ describe('<CountryAdvisory />', () => {
     })
 
     it('should render countryAdvisor notFound message if message is empty if countryAdvisoryScore', () => {
-        // @ts-ignore
-        useCountryAdvisoryHook.mockReturnValue({
+        ;(useCountryAdvisoryHook as jest.Mock).mockReturnValue({
             countryAdvisory: {
                 advisory: {
                     message: ''
@@ -240,8 +231,7 @@ describe('<CountryAdvisory />', () => {
     })
 
     it('should render CountryAdvisoryActions', () => {
-        // @ts-ignore
-        useCountryAdvisoryHook.mockReturnValue({
+        ;(useCountryAdvisoryHook as jest.Mock).mockReturnValue({
             countryAdvisory: {
                 advisory: {}
             }
@@ -254,8 +244,7 @@ describe('<CountryAdvisory />', () => {
 
     it('should render updatedText inside CountryAdvisoryActions as P', () => {
         const date = '10 september 2019'
-        // @ts-ignore
-        useCountryAdvisoryHook.mockReturnValue({
+        ;(useCountryAdvisoryHook as jest.Mock).mockReturnValue({
             countryAdvisory: {
                 advisory: {
                     updated: date
@@ -271,8 +260,7 @@ describe('<CountryAdvisory />', () => {
 
     it('should render the source translation and should render inside CountryAdvisoryActions', () => {
         const link = 'https://www.myfakelinkisnicedot.com'
-        // @ts-ignore
-        useCountryAdvisoryHook.mockReturnValue({
+        ;(useCountryAdvisoryHook as jest.Mock).mockReturnValue({
             countryAdvisory: {
                 advisory: {
                     source: link

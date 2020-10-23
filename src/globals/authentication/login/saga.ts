@@ -6,6 +6,7 @@ import request from 'utils/request'
 import { ActionType as typeSafeAction } from 'typesafe-actions'
 
 import { setError } from 'globals/globalErrors/actions'
+import ENDPOINTS from 'utils/constants'
 import { loginSuccess, loginError, loginRequest } from './actions'
 
 import authToken from '../authToken'
@@ -13,10 +14,8 @@ import authToken from '../authToken'
 export default function* loginSaga(
     params: typeSafeAction<typeof loginRequest>
 ) {
-    const requestURL = '/.netlify/functions/googleLogin'
-
     try {
-        const response = yield call(request, requestURL, {
+        const response = yield call(request, ENDPOINTS.lOGIN, {
             method: 'POST',
             body: serialize({ authToken: params.payload })
         })

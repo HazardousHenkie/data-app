@@ -23,8 +23,9 @@ jest.mock('../useFilteredCountriesHook')
 
 describe('<CountriesList />', () => {
     beforeEach(() => {
-        // @ts-ignore
-        useFilteredCountries.mockReturnValue([CountryItem.country])
+        ;(useFilteredCountries as jest.Mock).mockReturnValue([
+            CountryItem.country
+        ])
         mockFetch({})
     })
 
@@ -119,8 +120,7 @@ describe('<CountriesList />', () => {
     })
 
     it('should render list with one item', () => {
-        // @ts-ignore
-        useFilteredCountries.mockReturnValue([
+        ;(useFilteredCountries as jest.Mock).mockReturnValue([
             { ...CountryItem.country, name: 'japan' }
         ])
 
