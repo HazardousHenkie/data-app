@@ -1,0 +1,16 @@
+{
+    "data": {
+        "NL": {
+            "iso_alpha2": "NL",
+            "name": "Netherlands",
+            "continent": "EU",
+            "advisory": {
+                "score": 4,
+                "sources_active": 8,
+                "message": "",
+                "updated": "2020-10-02 07:20:43",
+                "source": "https://www.travel-advisory.info/netherlands"
+            }
+        }
+    }
+}

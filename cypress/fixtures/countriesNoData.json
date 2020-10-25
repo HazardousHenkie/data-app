@@ -1,0 +1,39 @@
+[
+    {
+        "alpha2Code": "AF",
+        "currencies": [
+            { "code": "AFN", "name": "Afghan afghani", "symbol": "Ø" }
+        ],
+        "flag": "https://restcountries.eu/data/afg.svg",
+        "latlng": [33, 65],
+        "name": "Afghanistan",
+        "nativeName": "افغانستان",
+        "population": 27657145,
+        "region": "Asia",
+        "subregion": "Southern Asia",
+        "translations": {
+            "de": "Afghanistan",
+            "es": "AfganistÃ¡n",
+            "fr": "Afghanistan",
+            "ja": "アフガニスタン"
+        }
+    },
+    {
+        "alpha2Code": "NL",
+        "currencies": [],
+        "flag": "https://restcountries.eu/data/nld.svg",
+        "latlng": [52.5, 5.75],
+        "name": "",
+        "nativeName": "",
+        "population": "",
+        "region": "",
+        "subregion": "",
+        "translations": {
+            "de": "Niederlande",
+            "es": "PaÃ­ses Bajos",
+            "fr": "Pays-Bas",
+            "ja": "オランダ",
+            "it": "Paesi Bassi"
+        }
+    }
+]

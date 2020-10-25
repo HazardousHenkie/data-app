@@ -51,6 +51,9 @@ Object {
             class="MuiTypography-root MuiTypography-body1"
             data-testid="countryAdvisoryScore"
           >
+            <span
+              data-cy="countryAdvisorNotFound"
+            />
             Advisory not found.
           </p>
         </div>
@@ -104,6 +107,9 @@ Object {
           class="MuiTypography-root MuiTypography-body1"
           data-testid="countryAdvisoryScore"
         >
+          <span
+            data-cy="countryAdvisorNotFound"
+          />
           Advisory not found.
         </p>
       </div>

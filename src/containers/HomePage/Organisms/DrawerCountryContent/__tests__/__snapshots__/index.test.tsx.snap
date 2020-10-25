@@ -140,7 +140,11 @@ Object {
               <p
                 class="MuiTypography-root MuiTypography-body1"
                 data-testid="countryAdvisoryScore"
-              />
+              >
+                <span
+                  data-cy="countryAdvisorNotFound"
+                />
+              </p>
             </div>
           </div>
         </div>
@@ -283,7 +287,11 @@ Object {
             <p
               class="MuiTypography-root MuiTypography-body1"
               data-testid="countryAdvisoryScore"
-            />
+            >
+              <span
+                data-cy="countryAdvisorNotFound"
+              />
+            </p>
           </div>
         </div>
       </div>
