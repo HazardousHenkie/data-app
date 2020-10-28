@@ -1,4 +1,4 @@
-import { Handler, Context, Callback, APIGatewayEvent } from 'aws-lambda'
+import { Handler, APIGatewayEvent } from 'aws-lambda'
 
 import getCountries, { CountryResponseInterface } from './database/country'
 
@@ -44,11 +44,7 @@ const getFavoritedCountries = async (userId: string) => {
     }
 }
 
-const handler: Handler = async (
-    event: APIGatewayEvent,
-    context: Context,
-    callback: Callback
-) => {
+const handler: Handler = async (event: APIGatewayEvent) => {
     let response: ResponseInterface
 
     const authenticatedResponse = authenticatedHelper(
@@ -75,7 +71,7 @@ const handler: Handler = async (
         response = authenticatedResponse
     }
 
-    return callback(null, response)
+    return response
 }
 
 // eslint-disable-next-line import/prefer-default-export
