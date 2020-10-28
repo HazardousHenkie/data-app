@@ -6,6 +6,7 @@ import serialize from 'serialize-javascript'
 
 import { ActionType as typeSafeAction } from 'typesafe-actions'
 
+import { logoutRequest } from 'globals/authentication/logout/actions'
 import { setError } from 'globals/globalErrors/actions'
 
 import {
@@ -33,6 +34,8 @@ export default function* refreshTokenSaga(
 
         yield put(getRefreshTokenSuccess(response.user))
     } catch (error) {
+        yield put(logoutRequest())
+
         if (error && error.response && error.response.status !== 400) {
             yield put(getRefreshTokenError(error))
             yield put(setError(error))

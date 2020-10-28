@@ -1,10 +1,9 @@
 import { put } from 'redux-saga/effects'
 
-import { getRefreshTokenRequest } from 'globals/authentication/refreshToken/actions'
-import { logoutRequest } from 'globals/authentication/logout/actions'
 import { ResponseError } from 'utils/request'
 import { setError } from 'globals/globalErrors/actions'
 
+import { setFavoritedCountries } from 'globals/favoritedCountriesList/actions'
 import { logoutSuccess, logoutError } from '../actions'
 
 import logoutSaga from '../saga'
@@ -28,26 +27,11 @@ describe('logoutSaga Saga', () => {
             put(logoutSuccess())
         )
 
+        const secondPutDescriptor = logoutSagaGenerator.next().value
+        // eslint-disable-next-line redux-saga/no-unhandled-errors
+        expect(secondPutDescriptor).toEqual(put(setFavoritedCountries([])))
+
         expect(localStorage.removeItem).toHaveBeenCalledTimes(1)
-    })
-
-    it('should call refreshtoken if localstorage(userid) is set and there is responserror with a 401 error', () => {
-        localStorage.setItem('userId', 'userId')
-
-        const responseError = Response.error()
-        // @ts-ignore
-        responseError.status = 401
-
-        const response = new ResponseError(responseError, 'Some error')
-
-        const putDescriptor = logoutSagaGenerator.throw(response).value
-
-        expect(putDescriptor).toEqual(
-            // eslint-disable-next-line redux-saga/no-unhandled-errors
-            put(
-                getRefreshTokenRequest(localStorage.getItem('userId') as string)
-            )
-        )
     })
 
     it('should call the logoutRequest if the response errors', () => {
@@ -56,7 +40,7 @@ describe('logoutSaga Saga', () => {
         const putDescriptor = logoutSagaGenerator.throw(response).value
 
         // eslint-disable-next-line redux-saga/no-unhandled-errors
-        expect(putDescriptor).toEqual(put(logoutRequest()))
+        expect(putDescriptor).toEqual(put(logoutSuccess()))
     })
 
     it('should call the setError and logoutError action if the response errors', () => {

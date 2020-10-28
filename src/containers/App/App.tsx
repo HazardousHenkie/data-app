@@ -24,7 +24,7 @@ import { getFavoritedCountries } from 'globals/favoritedCountriesList/actions'
 
 import ErrorSnackbars from 'containers/HomePage/Organisms/Errors'
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import Routes from './routes'
 
 import usePrefersDarkMode from './usePrefersDarkMode'

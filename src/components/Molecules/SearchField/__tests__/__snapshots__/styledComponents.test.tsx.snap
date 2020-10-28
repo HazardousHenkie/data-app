@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<InputFieldStyled /> should render and match the snapshot 1`] = `
+.c0 fieldset {
+  border: 0;
+}
+
+.c1 {
+  width: 100%;
+}
+
+.c1 input {
+  width: 100%;
+}
+
+<div
+  class="MuiFormControl-root MuiTextField-root c0 c1"
+>
+  <div
+    class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
+  >
+    <input
+      aria-invalid="false"
+      class="MuiInputBase-input MuiOutlinedInput-input"
+      type="text"
+      value=""
+    />
+    <fieldset
+      aria-hidden="true"
+      class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
+      style="padding-left: 8px;"
+    >
+      <legend
+        class="PrivateNotchedOutline-legend-2"
+        style="width: 0.01px;"
+      >
+        <span>
+          ​
+        </span>
+      </legend>
+    </fieldset>
+  </div>
+</div>
+`;

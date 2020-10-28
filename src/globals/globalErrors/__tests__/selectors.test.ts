@@ -1,7 +1,7 @@
 import { makeSelectInitialErrors, makeSelectErrors } from '../selectors'
 import { initialErrorsState } from '../constants'
 
-describe('selectCountry', () => {
+describe('globalErrors', () => {
     it('should select the errors state', () => {
         const mockedState: any = {
             errors: {

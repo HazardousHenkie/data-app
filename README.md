@@ -1,4 +1,23 @@
-Copy to clipboard
+Trying to get better at testing React applications by actually implementing tests in a project.
+The tests should fully cover this application (100% coverage) I did this to get a better feel on how to write tests for a lot of different situations but other applications, depending on the requirements, this might not be needed. I rule of thumb is to not test implementation details and it's good to think about the parts that are important to test and not to just test everything you can think if. Depending on the situation testing everything might make refactors hard and besides that, it costs a lot of time to fully test your application.
+
+A note on testing:
+e2e testing like cypress only tests the top layer (the actual website like an actual user) and checks if the app performs like expected. It doesn't test the underlying code so if something is wrong it might be hard to find the problem. Another drawback is that it's slow to run and brittle e.g. a simple className change can break your test.
+
+A unit tests/integrations tests (like Jest/React-testing-library or Jest/Enzyme) tests your actual code so it's more precise and it becomes easy to pinpoint a problem if a test fails. It's more time consuming to write these tests and it doesn't test if the whole application works.
+
+React-testing-library is a combination of unit tests and integrations tests.
+
+Technologies used:
+
+-   styled components + stylelint
+-   typescript
+-   eslint + prettier
+-   husky + pre-commit
+-   github actions
+-   netlify function (AWS Lambda Functions)
+-   Redux/React Hooks/React Context API
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/711bd9bc-81f2-4484-8bec-ee69eae6d6cb/deploy-status)](https://app.netlify.com/sites/vigilant-gates-137896/deploys)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

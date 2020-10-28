@@ -44,7 +44,7 @@ describe('<ErrorPage />', () => {
 
         const StyledTypographyTitle = getByTestId('StyledTypographyTitle')
 
-        expect(StyledTypographyTitle.tagName).toMatchSnapshot('H1')
+        expect(StyledTypographyTitle.tagName).toMatchSnapshot()
     })
 
     it('should render TypographyError as a p', () => {

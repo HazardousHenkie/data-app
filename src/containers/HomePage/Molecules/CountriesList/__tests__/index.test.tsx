@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, act } from 'utils/test-utils'
+import { render } from 'utils/test-utils'
 
 import configureStore from 'store/configureStore'
 

@@ -17,7 +17,8 @@ jobs:
           node-version: '12.x'
       - name: npm install, build, and test
         run: |
-          yarn install --ignore-engines
+          yarn install  --ignore-engines
+          yarn lint:eslint:fix
           yarn build
           yarn test
         env:

@@ -1,20 +1,20 @@
 import React from 'react'
 
-import { render, within, fireEvent } from 'utils/test-utils'
+import { render, within } from 'utils/test-utils'
 
 import GoogleLogoutButton from '../index'
 
 describe('<GoogleLogoutButton />', () => {
-    it('should render like snapshot', () => {
-        const component = render(<GoogleLogoutButton />)
-
-        expect(component).toMatchSnapshot()
-    })
-
     beforeAll(() => {
         process.env = Object.assign(process.env, {
             REACT_APP_GOOGLE_CLIENT_ID: 'google_client_id'
         })
+    })
+
+    it('should render like snapshot', () => {
+        const component = render(<GoogleLogoutButton />)
+
+        expect(component).toMatchSnapshot()
     })
 
     test('Show component when REACT_APP_GOOGLE_CLIENT_ID is present', () => {
@@ -24,7 +24,7 @@ describe('<GoogleLogoutButton />', () => {
         expect(loadingComponent).toBeInTheDocument()
     })
 
-    test('Show loader when loading is true inside useSelector', () => {
+    test('Show loader when loading is true inside useSelector and button should be disabled', () => {
         const { getByTestId } = render(<GoogleLogoutButton />, {
             initialState: {
                 authenticationData: {
@@ -36,9 +36,7 @@ describe('<GoogleLogoutButton />', () => {
         const loadingComponent = getByTestId('inlineLoader')
         expect(loadingComponent).toBeInTheDocument()
 
-        const button = getByTestId('googleLogoutInnerButton').querySelector(
-            'button'
-        )
+        const button = getByTestId('googleLogoutButton').querySelector('button')
         expect(button).toBeDisabled()
     })
 
@@ -56,20 +54,10 @@ describe('<GoogleLogoutButton />', () => {
         expect(loadingComponent).toBeFalsy()
     })
 
-    test('Show loader when googleLoading is active', () => {
-        const { getByTestId } = render(<GoogleLogoutButton />)
-
-        const button = getByTestId('googleLogoutInnerButton')
-        fireEvent.click(button)
-
-        const loadingComponent = getByTestId('inlineLoader')
-        expect(loadingComponent).toBeInTheDocument()
-    })
-
     test('Check if translation text is shown', () => {
         const { getByTestId } = render(<GoogleLogoutButton />)
 
-        const button = getByTestId('googleLogoutInnerButton')
+        const button = getByTestId('googleLogoutButton')
         const buttonText = within(button).getByText('Logout', {
             selector: 'span'
         })

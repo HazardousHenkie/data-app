@@ -5,10 +5,6 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="sc-AxgMl vayPh"
-        data-testid="FavoritedCountriesList"
-      />
       <ul
         aria-label="Mainmenu"
         class="MuiList-root sc-AxheI iioqvx MuiList-padding"
@@ -31,9 +27,13 @@ Object {
           class="MuiListItem-root MuiListItem-gutters"
         >
           <div
-            data-testid="GoogleLoginButton"
+            data-testid="googleLoginButton"
           />
         </li>
+        <div
+          class="sc-AxgMl vayPh"
+          data-testid="FavoritedCountriesList"
+        />
         <li
           class="MuiListItem-root MuiListItem-dense MuiListItem-gutters"
           style="margin-top: auto;"
@@ -156,10 +156,6 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <div
-      class="sc-AxgMl vayPh"
-      data-testid="FavoritedCountriesList"
-    />
     <ul
       aria-label="Mainmenu"
       class="MuiList-root sc-AxheI iioqvx MuiList-padding"
@@ -182,9 +178,13 @@ Object {
         class="MuiListItem-root MuiListItem-gutters"
       >
         <div
-          data-testid="GoogleLoginButton"
+          data-testid="googleLoginButton"
         />
       </li>
+      <div
+        class="sc-AxgMl vayPh"
+        data-testid="FavoritedCountriesList"
+      />
       <li
         class="MuiListItem-root MuiListItem-dense MuiListItem-gutters"
         style="margin-top: auto;"

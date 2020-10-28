@@ -64,7 +64,7 @@ describe('<MenuList />', () => {
     it('Should render GoogleLoginButton if logged out', () => {
         const { getByTestId } = render(<MenuList />)
 
-        const GoogleLoginButton = getByTestId('GoogleLoginButton')
+        const GoogleLoginButton = getByTestId('googleLoginButton')
         expect(GoogleLoginButton).toBeInTheDocument()
     })
 
@@ -86,15 +86,15 @@ describe('<MenuList />', () => {
 it('should render languageSwitcher', () => {
     const { getByTestId } = render(<MenuList />)
 
-    const FavoritedCountriesList = getByTestId('languageSwitcher')
+    const languageSwitcher = getByTestId('languageSwitcher')
 
-    expect(FavoritedCountriesList).toBeInTheDocument()
+    expect(languageSwitcher).toBeInTheDocument()
 })
 
 it('should render ThemeSwitcher', () => {
     const { getByTestId } = render(<MenuList />)
 
-    const FavoritedCountriesList = getByTestId('ThemeSwitcher')
+    const ThemeSwitcher = getByTestId('ThemeSwitcher')
 
-    expect(FavoritedCountriesList).toBeInTheDocument()
+    expect(ThemeSwitcher).toBeInTheDocument()
 })
