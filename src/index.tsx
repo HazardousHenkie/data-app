@@ -19,6 +19,8 @@ import * as serviceWorker from './serviceWorker'
 const initialState = {}
 const store = configureStore(initialState)
 
+// strict mode is breaking the switcher so discard when finished
+
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>

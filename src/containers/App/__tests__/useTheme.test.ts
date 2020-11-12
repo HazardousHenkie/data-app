@@ -2,28 +2,28 @@ import { renderHook } from '@testing-library/react-hooks'
 
 import lightTheme, { darkTheme } from 'styles/themeStyles'
 
-import usePrefersDarkMode from '../usePrefersDarkMode'
+import useDarkMode from '../useDarkMode'
 import useTheme from '../useTheme'
 
-jest.mock('../usePrefersDarkMode')
+jest.mock('../useDarkMode')
 
-describe('usePrefersDarkMode', () => {
+describe('useDarkMode', () => {
     beforeEach(() => {
         // @ts-ignore
-        usePrefersDarkMode.mockReturnValue({ darkMode: false })
+        useDarkMode.mockReturnValue({ darkMode: false })
     })
 
     it('Should set darkTheme if user prefers darkMode', () => {
         // @ts-ignore
-        usePrefersDarkMode.mockReturnValue({ darkMode: true })
+        useDarkMode.mockReturnValue({ darkMode: true })
 
-        const { result } = renderHook(() => useTheme())
+        const { result } = renderHook(() => useTheme(true))
 
         expect(result.current.theme).toEqual(darkTheme)
     })
 
     it('Should return darkmode if no preference is set', () => {
-        const { result } = renderHook(() => useTheme())
+        const { result } = renderHook(() => useTheme(false))
 
         expect(result.current.theme).toEqual(lightTheme)
     })

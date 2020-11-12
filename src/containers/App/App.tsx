@@ -27,7 +27,7 @@ import ErrorSnackbars from 'containers/HomePage/Organisms/Errors'
 import { BrowserRouter as Router } from 'react-router-dom'
 import Routes from './routes'
 
-import usePrefersDarkMode from './usePrefersDarkMode'
+import useDarkMode from './useDarkMode'
 import useTheme from './useTheme'
 
 const stateSelector = createSelector(makeSelectLoggedIn(), loggedIn => ({
@@ -40,8 +40,9 @@ const App: React.FC = () => {
 
     const { loggedIn } = useSelector(stateSelector)
 
-    const { darkMode, setDarkMode } = usePrefersDarkMode()
-    const { theme } = useTheme()
+    const { darkMode, setDarkMode } = useDarkMode()
+
+    const { theme } = useTheme(darkMode)
 
     useEffect(() => {
         if (loggedIn) {
