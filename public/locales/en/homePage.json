@@ -7,10 +7,11 @@
         "score": "score",
         "message": "message",
         "notFound": "Advisory not found.",
-        "source": "source",
-        "countryInformation": "Country Information"
+        "source": "source"
     },
     "countryInformation": {
+        "countryInformation": "Country Information",
+        "informationTitle": "Information for",
         "nativeName": "Native name",
         "capital": "Capital",
         "region": "Region",

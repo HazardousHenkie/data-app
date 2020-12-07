@@ -70,7 +70,7 @@
     "lint:css": "stylelint '**/*.{js,ts,jsx,tsx}'",
     "lint:eslint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "lint:eslint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
-    "prettify": "prettier --write '**/*.{ts,tsx,jsx,js,json,md,html}'",
+    "prettify": "prettier --write '**/*.{css,ts,tsx,jsx,js,json,md,html}'",
     "trans:extract": "i18next --config .i18next-parser.config.js"
   },
   "eslintConfig": {
@@ -93,8 +93,8 @@
       "npm run lint:eslint:fix",
       "git add --force"
     ],
-    "*.{css,scss,md,json}": [
-      "prettier --write",
+    "*.{css,ts,tsx,jsx,js,json,md,html}": [
+      "npm run prettify",
       "git add --force"
     ]
   },

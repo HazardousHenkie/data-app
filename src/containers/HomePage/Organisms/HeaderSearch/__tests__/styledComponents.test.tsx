@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { css, ThemeProvider } from 'styled-components'
+import { ThemeProvider } from 'styled-components'
 
 import { render } from 'utils/test-utils'
 
@@ -11,8 +11,7 @@ import lightTheme, { darkTheme } from 'styles/themeStyles'
 
 import TopBar, {
     CloseCountriesList,
-    SearchFieldWrapper,
-    RotateNinetyDegrees
+    SearchFieldWrapper
 } from '../styledComponents'
 
 import 'jest-styled-components'

@@ -7,10 +7,11 @@
         "score": "score",
         "message": "bericht",
         "notFound": "Advies niet gevonden.",
-        "source": "bron",
-        "countryInformation": "Landinformatie"
+        "source": "bron"
     },
     "countryInformation": {
+        "countryInformation": "Land informatie",
+        "informationTitle": "Informatie voor",
         "nativeName": "Inheemse naam",
         "capital": "Hoofdstad",
         "region": "Regio",

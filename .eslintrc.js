@@ -1,52 +1,42 @@
 module.exports = {
-    parser: "@typescript-eslint/parser",
+    parser: '@typescript-eslint/parser',
     parserOptions: {
-        project: ["./cypress/tsconfig.json", "./tsconfig.json"]
+        project: ['./cypress/tsconfig.json', './tsconfig.json']
     },
     env: {
         browser: true,
-        es6: true,
-        node: true
+        es6: true
     },
     extends: [
-        "plugin:react/recommended",
-        "airbnb-typescript",
-        "airbnb/hooks",
-        "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking",
-        "prettier",
-        "prettier/react",
-        "prettier/@typescript-eslint",
-        "plugin:jsx-a11y/recommended",
-        "plugin:redux-saga/recommended"
+        'plugin:react/recommended',
+        'airbnb-typescript',
+        'airbnb/hooks',
+        'plugin:@typescript-eslint/eslint-recommended',
+        'prettier',
+        'prettier/react',
+        'prettier/@typescript-eslint',
+        'plugin:jsx-a11y/recommended',
+        'plugin:redux-saga/recommended'
     ],
     plugins: [
-        "react",
-        "react-hooks",
-        "redux-saga",
-        "prettier",
-        "jsx-a11y",
-        "@typescript-eslint"
+        'react',
+        'react-hooks',
+        'redux-saga',
+        'prettier',
+        'jsx-a11y',
+        '@typescript-eslint'
     ],
     rules: {
-        "prettier/prettier": "error",
-        "react/prop-types": "off",
-        "react/no-danger": "error",
-        "no-console": "warn",
-        "react-hooks/rules-of-hooks": "error",
-        "react-hooks/exhaustive-deps": "warn",
-        "react/jsx-props-no-spreading": "off",
-        "@typescript-eslint/no-explicit-any": "off",
-        "@typescript-eslint/explicit-function-return-type": "off",
-        "@typescript-eslint/ban-ts-ignore": "warn",
-        "@typescript-eslint/unbound-method": "warn"
-    },
-    settings: {
-        'import/resolver': {
-          node: {
-            paths: ['src']
-          }
-        }
-      }
+        'prettier/prettier': 'error',
+        'react/prop-types': 'off',
+        'react/no-danger': 'error',
+        'no-console': 'warn',
+        'react-hooks/rules-of-hooks': 'error',
+        'react-hooks/exhaustive-deps': 'warn',
+        'react/jsx-props-no-spreading': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/explicit-function-return-type': 'off',
+        '@typescript-eslint/ban-ts-ignore': 'warn',
+        '@typescript-eslint/unbound-method': 'warn'
+    }
 }

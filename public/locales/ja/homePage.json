@@ -7,10 +7,11 @@
         "score": "スコア",
         "message": "メッセージ",
         "notFound": "助言が見つけられませんでした。",
-        "source": "ソース",
-        "countryInformation": "国情報"
+        "source": "ソース"
     },
     "countryInformation": {
+        "countryInformation": "国情報",
+        "informationTitle": "情報",
         "nativeName": "ネイティブ名",
         "capital": "資本",
         "region": "領域",
