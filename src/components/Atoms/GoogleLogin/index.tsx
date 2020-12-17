@@ -61,6 +61,7 @@ const GoogleLoginButton: React.FC = () => {
                     {(loading || googleLoading) && <InlineLoader />}
 
                     <GoogleLogin
+                        data-cy="googleLogin"
                         clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                         onRequest={onGoogleLoginRequest}
                         buttonText={t('logout:button', 'Login')}
