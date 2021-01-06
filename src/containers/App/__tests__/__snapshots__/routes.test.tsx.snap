@@ -49,6 +49,7 @@ Object {
               <form>
                 <div
                   class="MuiFormControl-root MuiTextField-root sc-fzoLsD iMMGrN sc-fzpans kBbCyO"
+                  data-cy="searchInputField"
                 >
                   <div
                     class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
@@ -264,6 +265,7 @@ Object {
             <form>
               <div
                 class="MuiFormControl-root MuiTextField-root sc-fzoLsD iMMGrN sc-fzpans kBbCyO"
+                data-cy="searchInputField"
               >
                 <div
                   class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"

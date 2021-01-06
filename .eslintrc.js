@@ -38,6 +38,7 @@ module.exports = {
         '@typescript-eslint/explicit-function-return-type': 'off',
         '@typescript-eslint/ban-ts-ignore': 'warn',
         '@typescript-eslint/unbound-method': 'warn',
+        'spaced-comment': 'off',
         'import/no-extraneous-dependencies': [
             'error',
             {

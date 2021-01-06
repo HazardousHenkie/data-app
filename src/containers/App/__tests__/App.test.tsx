@@ -17,14 +17,14 @@ import App from '../App'
 jest.mock('../useDarkMode')
 
 describe('<App />', () => {
+    // app has several errors which can't be solved since it's the main container component so silence them.
+    // when developing uncomment this one.
+    jest.spyOn(console, 'error').mockImplementation(() => {})
+
     beforeEach(() => {
         mockFetch({})
         // @ts-ignore
         useDarkMode.mockReturnValue({ darkMode: false })
-
-        // app has several errors which can't be solved since it's the main container component so silence them.
-        // when developing uncomment this one.
-        jest.spyOn(console, 'error').mockImplementation(() => {})
     })
 
     afterEach(() => {

@@ -13,6 +13,7 @@ Object {
         >
           <h1
             class="sc-AxhUy idbwSw"
+            data-jy="countryDrawerTitle"
           />
         </div>
         <div
@@ -156,6 +157,7 @@ Object {
       >
         <h1
           class="sc-AxhUy idbwSw"
+          data-jy="countryDrawerTitle"
         />
       </div>
       <div

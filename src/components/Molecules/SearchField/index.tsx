@@ -29,6 +29,7 @@ const SearchField: React.FC<SearchFieldProps> = ({ setValue }) => {
     return (
         <form>
             <InputFieldStyled
+                data-cy="searchInputField"
                 value={inputValue}
                 placeholder={t('searchField:inputLabel', 'search')}
                 onChange={handleOnChange}
