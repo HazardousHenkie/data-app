@@ -50,7 +50,6 @@ Object {
           
           
           
-          
           0
         </div>
       </div>
@@ -99,7 +98,6 @@ Object {
         class="MuiCardContent-root"
         data-testid="CountryInformationCardContent"
       >
-        
         
         
         

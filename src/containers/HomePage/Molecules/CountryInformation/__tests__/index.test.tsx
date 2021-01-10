@@ -120,48 +120,6 @@ describe('<FavoriteCountryButton />', () => {
         expect(nativeName).toBeInTheDocument()
     })
 
-    it('should render countryCapitalName as a P', () => {
-        const { getByTestId } = render(<CountryInformation />, {
-            store
-        })
-
-        store.dispatch(
-            setSelectedCountry({ ...CountryItem.country, capital: 'Tokyo' })
-        )
-
-        const countryCapitalName = getByTestId('countryCapitalName')
-
-        expect(countryCapitalName.tagName).toBe('P')
-    })
-
-    it('should render capital label inside countryCapitalName', () => {
-        const { getByText } = render(<CountryInformation />, {
-            store
-        })
-
-        store.dispatch(
-            setSelectedCountry({ ...CountryItem.country, capital: 'Tokyo' })
-        )
-
-        const countryCapitalName = getByText('Capital:')
-
-        expect(countryCapitalName).toBeInTheDocument()
-    })
-
-    it('should render the countries capital inside countryCapitalName', () => {
-        const { getByText } = render(<CountryInformation />, {
-            store
-        })
-
-        store.dispatch(
-            setSelectedCountry({ ...CountryItem.country, capital: 'Tokyo' })
-        )
-
-        const countryCapitalName = getByText('Tokyo')
-
-        expect(countryCapitalName).toBeInTheDocument()
-    })
-
     it('should render countryRegionName as a P', () => {
         const { getByTestId } = render(<CountryInformation />, {
             store
@@ -286,57 +244,6 @@ describe('<FavoriteCountryButton />', () => {
         const countryPopulation = getByText('500')
 
         expect(countryPopulation).toBeInTheDocument()
-    })
-
-    it('should render countryLanguages as a P', () => {
-        const { getByTestId } = render(<CountryInformation />, {
-            store
-        })
-
-        store.dispatch(
-            setSelectedCountry({
-                ...CountryItem.country,
-                languages: [{ name: 'Japanese', nativeName: '日本語' }]
-            })
-        )
-
-        const countryLanguages = getByTestId('countryLanguages')
-
-        expect(countryLanguages.tagName).toBe('P')
-    })
-
-    it('should render languages label inside countryLanguages', () => {
-        const { getByText } = render(<CountryInformation />, {
-            store
-        })
-
-        store.dispatch(
-            setSelectedCountry({
-                ...CountryItem.country,
-                languages: [{ name: 'Japanese', nativeName: '日本語' }]
-            })
-        )
-
-        const countryLanguages = getByText('Languages:')
-
-        expect(countryLanguages).toBeInTheDocument()
-    })
-
-    it('should render the countries languages inside countryLanguages', () => {
-        const { getByText } = render(<CountryInformation />, {
-            store
-        })
-
-        store.dispatch(
-            setSelectedCountry({
-                ...CountryItem.country,
-                languages: [{ name: 'Japanese', nativeName: '日本語' }]
-            })
-        )
-
-        const countryLanguages = getByText('Japanese(日本語)')
-
-        expect(countryLanguages).toBeInTheDocument()
     })
 
     it('should render countryCurrencies as a P', () => {
