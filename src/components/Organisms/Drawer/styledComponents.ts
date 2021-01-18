@@ -99,6 +99,7 @@ export const SwipeIndicator = styled.div<SwipeIndicatorProps>`
 export const ClickIndicator = styled.div`
     ${indicator}
     bottom: 10px;
+    z-index: 10;
 
     ${({ theme }) => theme.breakpoints.down('sm')} {
         display: none;

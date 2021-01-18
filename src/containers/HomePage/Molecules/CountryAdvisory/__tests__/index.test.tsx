@@ -281,7 +281,10 @@ describe('<CountryAdvisory />', () => {
         })
         const { getByText } = render(<CountryAdvisory />)
 
-        const updatedText = getByText('source')
+        const updatedText = getByText(/source/)
+        const updatedLink = getByText(/https:\/\/www.myfakelinkisnicedot.com/)
+
+        expect(updatedLink).toBeInTheDocument()
         expect(updatedText).toHaveAttribute('href', link)
     })
 })

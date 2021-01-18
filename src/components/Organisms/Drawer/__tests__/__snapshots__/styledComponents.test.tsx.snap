@@ -12,6 +12,7 @@ exports[`<ClickIndicator /> should render and match the snapshot 1`] = `
   border: 2px solid #000;
   border-radius: 50px;
   bottom: 10px;
+  z-index: 10;
 }
 
 @media (max-width:959.95px) {

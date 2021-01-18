@@ -77,7 +77,7 @@ const CountryAdvisory: React.FC = () => {
                     {countryAdvisory &&
                         countryAdvisory.advisory.score &&
                         !loading && (
-                            <>
+                            <span data-cy="countryAdvisoryScoreText">
                                 <strong>
                                     {t(
                                         'homePage:countryAdvisor.score',
@@ -85,7 +85,7 @@ const CountryAdvisory: React.FC = () => {
                                     )}
                                 </strong>
                                 {` ${countryAdvisory.advisory.score}`}
-                            </>
+                            </span>
                         )}
 
                     {countryAdvisory &&
@@ -93,7 +93,7 @@ const CountryAdvisory: React.FC = () => {
                         !loading && <br />}
 
                     {countryAdvisory && !loading && (
-                        <>
+                        <span data-cy="countryAdvisoryScoreMessage">
                             <strong>
                                 {t(
                                     'homePage:countryAdvisor.message',
@@ -101,7 +101,7 @@ const CountryAdvisory: React.FC = () => {
                                 )}
                             </strong>
                             {` ${countryAdvisory.advisory.message}`}
-                        </>
+                        </span>
                     )}
 
                     {countryAdvisory &&
@@ -123,15 +123,21 @@ const CountryAdvisory: React.FC = () => {
             </CardContent>
             {countryAdvisory && !loading && (
                 <CardActions data-testid="CountryAdvisoryActions">
-                    <CardBottomTypography variant="body2" color="inherit">
+                    <CardBottomTypography
+                        variant="body2"
+                        color="inherit"
+                        data-cy="countryAdvisoryDate"
+                    >
                         {countryAdvisory.advisory.updated}
 
                         <StyledLink
                             href={countryAdvisory.advisory.source}
                             color="inherit"
                             target="_blank"
+                            data-cy="countryAdvisorySource"
                         >
                             {t('homePage:countryAdvisor.source', 'source')}
+                            {countryAdvisory.advisory.source}
                         </StyledLink>
                     </CardBottomTypography>
                 </CardActions>
