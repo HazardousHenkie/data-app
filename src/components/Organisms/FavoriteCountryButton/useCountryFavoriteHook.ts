@@ -17,6 +17,7 @@ import { initialFavoritedCountriesState } from 'globals/favoritedCountriesList/c
 import request from 'utils/request'
 
 import { makeSelectFavoritedCountries } from 'globals/favoritedCountriesList/selectors'
+import ENDPOINTS from 'utils/constants'
 
 const stateSelector = createStructuredSelector({
     favoritedCountries: makeSelectFavoritedCountries()
@@ -46,7 +47,7 @@ const useCountryFavorite = (
                 try {
                     if (favoritedCountry.ref['@ref'].id !== '') {
                         fetchRequest = await request(
-                            `/.netlify/functions/deleteCountry/${favoritedCountry.ref['@ref'].id}`,
+                            `${ENDPOINTS.DELETE_COUNTRY}${favoritedCountry.ref['@ref'].id}`,
                             {
                                 method: 'DELETE',
                                 headers: {
@@ -75,7 +76,7 @@ const useCountryFavorite = (
                         )
                     } else {
                         fetchRequest = await request(
-                            `/.netlify/functions/saveCountry/${favoritedCountry.data.countryId}`,
+                            `${ENDPOINTS.SAVE_COUNTRY}${favoritedCountry.data.countryId}`,
                             {
                                 method: 'GET',
                                 headers: {

@@ -3,14 +3,13 @@ import { call, put, takeLatest } from 'redux-saga/effects'
 import request from 'utils/request'
 
 import { setError } from 'globals/globalErrors/actions'
+import ENDPOINTS from 'utils/constants'
 import { getCountriesDataSuccess, getCountriesDataError } from './actions'
 import ActionTypes from './constants'
 
 export function* getCountriesDataSaga() {
-    const requestURL = '/.netlify/functions/countries'
-
     try {
-        const response = yield call(request, requestURL, {
+        const response = yield call(request, ENDPOINTS.COUNTRIES, {
             method: 'GET'
         })
 

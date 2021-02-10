@@ -8,13 +8,12 @@ import { logoutRequest } from 'globals/authentication/logout/actions'
 import { getRefreshTokenRequest } from 'globals/authentication/refreshToken/actions'
 import authToken from 'globals/authentication/authToken'
 import { setError } from 'globals/globalErrors/actions'
+import ENDPOINTS from 'utils/constants'
 import { setFavoritedCountries, getFavoritedCountriesError } from './actions'
 
 function* getFavoritedCountriesDataSaga() {
-    const requestURL = '/.netlify/functions/getFavoritedCountries'
-
     try {
-        const response = yield call(request, requestURL, {
+        const response = yield call(request, ENDPOINTS.FAVORITE_COUNTRIES, {
             method: 'GET',
             headers: {
                 Authorization: `Bearer ${authToken.token}`

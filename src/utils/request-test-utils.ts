@@ -19,6 +19,7 @@ export const mockFetchError = (error: Error) => {
 export const mockFetchCleanUp = () => {
     // @ts-ignore
     global.fetch.mockClear()
+    // @ts-ignore
     delete global.fetch
 }
 

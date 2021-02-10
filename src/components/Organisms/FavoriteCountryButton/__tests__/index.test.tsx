@@ -16,8 +16,7 @@ const heartComponent = (
 describe('<FavoriteCountryButton />', () => {
     beforeEach(() => {
         mockFetch({})
-        // @ts-ignore
-        useCountryFavorite.mockReturnValue({})
+        ;(useCountryFavorite as jest.Mock).mockReturnValue({})
     })
 
     afterEach(() => {
@@ -71,8 +70,7 @@ describe('<FavoriteCountryButton />', () => {
     })
 
     it('it should render the FavoriteBorderIconStyled component if active is true', () => {
-        // @ts-ignore
-        useCountryFavorite.mockReturnValue({
+        ;(useCountryFavorite as jest.Mock).mockReturnValue({
             countrySucessfullRequest: CountryItem
         })
         const { getByTestId } = render(heartComponent)
@@ -86,8 +84,7 @@ describe('<FavoriteCountryButton />', () => {
     })
 
     test('Show loader when loading is true', () => {
-        // @ts-ignore
-        useCountryFavorite.mockReturnValue({
+        ;(useCountryFavorite as jest.Mock).mockReturnValue({
             loading: true
         })
 

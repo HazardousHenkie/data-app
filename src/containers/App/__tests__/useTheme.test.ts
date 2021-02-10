@@ -9,13 +9,11 @@ jest.mock('../useDarkMode')
 
 describe('useDarkMode', () => {
     beforeEach(() => {
-        // @ts-ignore
-        useDarkMode.mockReturnValue({ darkMode: false })
+        ;(useDarkMode as jest.Mock).mockReturnValue({ darkMode: false })
     })
 
     it('Should set darkTheme if user prefers darkMode', () => {
-        // @ts-ignore
-        useDarkMode.mockReturnValue({ darkMode: true })
+        ;(useDarkMode as jest.Mock).mockReturnValue({ darkMode: true })
 
         const { result } = renderHook(() => useTheme(true))
 
