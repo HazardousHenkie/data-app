@@ -4,6 +4,7 @@ module.exports = {
         project: ['./cypress/tsconfig.json', './tsconfig.json']
     },
     env: {
+        jest: true,
         browser: true,
         es6: true
     },

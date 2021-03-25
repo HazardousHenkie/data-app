@@ -104,13 +104,18 @@ const CountryAdvisory: React.FC = () => {
                         </span>
                     )}
 
-                    {countryAdvisory &&
-                        countryAdvisory.advisory.message === '' &&
-                        !loading &&
-                        t(
-                            'homePage:countryAdvisor.notFound',
-                            'Advisory message not available.'
-                        )}
+                    <span data-cy="countryAdvisorNotFound">
+                        {countryAdvisory &&
+                            !loading &&
+                            countryAdvisory.advisory.message === '' && (
+                                <>
+                                    {t(
+                                        'homePage:countryAdvisor.notAvailable',
+                                        'Advisory message not available.'
+                                    )}
+                                </>
+                            )}
+                    </span>
 
                     {!countryAdvisory &&
                         !loading &&

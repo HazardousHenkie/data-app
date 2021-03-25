@@ -1,0 +1,5 @@
+TODO: add tests
+liking countries and unliking countries
+favorite countries list test
+open drawer button (initial state)
+how to run external server??? cypress
