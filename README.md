@@ -1,7 +1,7 @@
 # website
 https://vigilant-gates-137896.netlify.app/
 
-#information
+# information
 Trying to get better at testing React applications by actually implementing tests in a project.
 The tests should fully cover this application (100% coverage) I did this to get a better feel on how to write tests for a lot of different situations but other applications, depending on the requirements, this might not be needed. I rule of thumb is to not test implementation details and it's good to think about the parts that are important to test and not to just test everything you can think if. Depending on the situation testing everything might make refactors hard and besides that, it costs a lot of time to fully test your application.
 
